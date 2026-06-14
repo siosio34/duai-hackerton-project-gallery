@@ -1,0 +1,56 @@
+// Domain types for the project gallery.
+// Add new projects in lib/projects.ts following the `Project` shape below.
+
+export type ProjectStatus = "live" | "in-progress" | "archived" | "concept";
+
+// Generative visual treatments. Each maps to a deterministic SVG composition
+// rendered in components/ProjectVisual.tsx, tinted with the project accent.
+export type VisualKind = "strata" | "mesh" | "grid" | "orbit" | "glyph" | "scan";
+
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
+export interface GalleryFrame {
+  caption: string;
+  visual: VisualKind;
+}
+
+export interface Project {
+  slug: string;
+  title: string;
+  /** One-line description shown on the card and detail header. */
+  tagline: string;
+  /** Primary category, e.g. "Web app", "Design system". Drives filtering. */
+  category: string;
+  /** Topic / tech tags surfaced as filter chips. */
+  tags: string[];
+  /** Full tech stack, listed on the detail page. */
+  tech: string[];
+  year: number;
+  status: ProjectStatus;
+  /** Marks editorial weight. Featured projects get larger grid cells. */
+  featured?: boolean;
+  /** Column span on the 12-col desktop grid. Controls editorial rhythm. */
+  span: 4 | 5 | 6 | 7 | 8 | 12;
+  /** Hex accent used to tint the generative visual. */
+  accent: string;
+  visual: VisualKind;
+
+  // --- Detail content ---
+  overview: string;
+  problem: string;
+  role: string;
+  features: string[];
+  outcome: string;
+  links: ProjectLink[];
+  gallery: GalleryFrame[];
+}
+
+export const STATUS_LABEL: Record<ProjectStatus, string> = {
+  live: "Live",
+  "in-progress": "In progress",
+  archived: "Archived",
+  concept: "Concept",
+};
