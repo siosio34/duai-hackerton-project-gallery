@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/lib/types";
 import { STATUS_LABEL } from "@/lib/types";
-import { ProjectVisual } from "./ProjectVisual";
+import { ProjectMedia } from "./ProjectMedia";
 import { Parallax } from "./Parallax";
 
 // Desktop column span on the 12-col grid. Literal strings so Tailwind keeps them.
@@ -32,11 +32,12 @@ export function ProjectCard({
   index: number;
 }) {
   const reduce = useReducedMotion();
+  const liveHref = project.links.find((l) =>
+    /^https?:\/\//.test(l.href),
+  )?.href;
   const visual = (
-    <ProjectVisual
-      kind={project.visual}
-      accent={project.accent}
-      label={project.title}
+    <ProjectMedia
+      project={project}
       className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
     />
   );
@@ -54,8 +55,26 @@ export function ProjectCard({
         ease: [0.22, 1, 0.36, 1],
         layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
       }}
-      className={`group col-span-1 ${SPAN[project.span]}`}
+      className={`group relative col-span-1 ${SPAN[project.span]}`}
     >
+      {/* Direct link to the live site — sibling of the card Link (not nested)
+          so it stays valid HTML and intercepts clicks over its corner. */}
+      {liveHref && (
+        <a
+          href={liveHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          aria-label={`${project.title} — open live site`}
+          className="absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-accent-deep/95 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-wide text-paper shadow-sm backdrop-blur-sm transition-transform hover:scale-105"
+        >
+          <span className="relative flex h-1.5 w-1.5" aria-hidden>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-paper/70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-paper" />
+          </span>
+          Live ↗
+        </a>
+      )}
       <Link
         href={`/projects/${project.slug}`}
         className="block focus-visible:outline-none"
@@ -94,7 +113,7 @@ export function ProjectCard({
             <h2 className="display text-xl font-semibold text-ink transition-colors group-hover:text-accent-deep sm:text-2xl">
               {project.title}
             </h2>
-            <p className="mt-1.5 max-w-[42ch] text-[0.95rem] leading-snug text-ink-soft">
+            <p className="mt-1.5 max-w-[42ch] break-keep text-[0.95rem] leading-relaxed text-ink-soft">
               {project.tagline}
             </p>
           </div>

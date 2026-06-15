@@ -14,7 +14,18 @@ export interface ProjectLink {
 
 export interface GalleryFrame {
   caption: string;
-  visual: VisualKind;
+  /** Real screenshot path under /public. Falls back to `visual` when absent. */
+  image?: string;
+  visual?: VisualKind;
+}
+
+/** Optional real media. When present it replaces the generative visual on the
+ *  card thumbnail and the detail hero. */
+export interface ProjectMedia {
+  /** Looping clip (mp4). Autoplays muted on the card + hero (unless reduced motion). */
+  video?: string;
+  /** Still image — poster for the video, or a standalone screenshot. */
+  poster?: string;
 }
 
 export interface Project {
@@ -37,6 +48,8 @@ export interface Project {
   /** Hex accent used to tint the generative visual. */
   accent: string;
   visual: VisualKind;
+  /** Real screenshot/video media. Overrides the generative visual when set. */
+  media?: ProjectMedia;
 
   // --- Detail content ---
   overview: string;

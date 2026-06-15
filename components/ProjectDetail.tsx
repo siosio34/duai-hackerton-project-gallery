@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/lib/types";
 import { STATUS_LABEL } from "@/lib/types";
 import { ProjectVisual } from "./ProjectVisual";
+import { ProjectMedia } from "./ProjectMedia";
 import { Parallax } from "./Parallax";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -61,7 +62,7 @@ export function ProjectDetail({
             <h1 className="display text-[2.5rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
               {project.title}
             </h1>
-            <p className="mt-4 max-w-[34ch] text-lg leading-snug text-ink-soft sm:text-xl">
+            <p className="mt-4 max-w-[38ch] break-keep text-lg leading-relaxed text-ink-soft sm:text-xl">
               {project.tagline}
             </p>
           </div>
@@ -81,20 +82,24 @@ export function ProjectDetail({
         transition={{ duration: 0.8, ease, delay: 0.1 }}
         className="mt-10 aspect-[16/9] overflow-hidden rounded-xl border border-line bg-paper-2 sm:mt-14 sm:aspect-[16/7]"
       >
-        <Parallax strength={10} className="h-full w-full">
-          <ProjectVisual
-            kind={project.visual}
-            accent={project.accent}
-            label={project.title}
-          />
-        </Parallax>
+        {project.media ? (
+          <ProjectMedia project={project} />
+        ) : (
+          <Parallax strength={10} className="h-full w-full">
+            <ProjectVisual
+              kind={project.visual}
+              accent={project.accent}
+              label={project.title}
+            />
+          </Parallax>
+        )}
       </motion.div>
 
       {/* Overview + sidebar */}
       <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="display text-2xl font-medium leading-tight text-ink sm:text-[2rem]">
+            <p className="break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
               {project.overview}
             </p>
           </Reveal>
@@ -151,7 +156,7 @@ export function ProjectDetail({
       <section className="mt-24 grid grid-cols-1 gap-x-8 gap-y-6 border-t border-line pt-10 lg:grid-cols-12">
         <h2 className="meta-label lg:col-span-3">The problem</h2>
         <Reveal className="lg:col-span-8 lg:col-start-5">
-          <p className="max-w-[60ch] text-xl leading-relaxed text-ink sm:text-2xl">
+          <p className="max-w-[58ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
             {project.problem}
           </p>
         </Reveal>
@@ -173,7 +178,9 @@ export function ProjectDetail({
               <span className="font-mono text-sm text-accent-deep">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-lg leading-snug text-ink">{f}</p>
+              <p className="break-keep text-base leading-relaxed text-ink">
+                {f}
+              </p>
             </motion.li>
           ))}
         </ul>
@@ -183,7 +190,7 @@ export function ProjectDetail({
       <section className="mt-24 border-t border-line pt-10">
         <h2 className="meta-label mb-8">Outcome</h2>
         <Reveal>
-          <p className="display max-w-[24ch] text-3xl font-semibold leading-tight text-ink sm:text-5xl">
+          <p className="max-w-[60ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
             {project.outcome}
           </p>
         </Reveal>
@@ -196,10 +203,23 @@ export function ProjectDetail({
             {project.gallery.map((g, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <figure>
-                  <div className="aspect-[4/3] overflow-hidden rounded-xl border border-line bg-paper-2">
-                    <Parallax strength={7} className="h-full w-full">
-                      <ProjectVisual kind={g.visual} accent={project.accent} />
-                    </Parallax>
+                  <div className="aspect-[16/9] overflow-hidden rounded-xl border border-line bg-paper-2">
+                    {g.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={g.image}
+                        alt={g.caption}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Parallax strength={7} className="h-full w-full">
+                        <ProjectVisual
+                          kind={g.visual ?? project.visual}
+                          accent={project.accent}
+                        />
+                      </Parallax>
+                    )}
                   </div>
                   <figcaption className="mt-3 text-sm text-ink-mute">
                     {g.caption}
