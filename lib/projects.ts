@@ -76,6 +76,62 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "deep-research-report",
+    title: "Deep Research Report",
+    tagline:
+      "단일 컨텍스트의 토큰 한계를 파일 기반 파이프라인으로 우회해 — 13+ 관점 병렬 리서치·증거 원장·적대적 검증을 거친 인용 200건급 한국어 보고서를 만드는 Claude Code 스킬.",
+    category: "Research",
+    tags: ["딥리서치", "멀티에이전트", "증거 기반", "A/B 검증"],
+    tech: [
+      "Claude Code",
+      "Python",
+      "Codex CLI",
+      "Grok CLI",
+      "yt-dlp",
+      "React",
+    ],
+    year: 2026,
+    status: "live",
+    featured: true,
+    span: 8,
+    accent: "#0f766e",
+    visual: "grid",
+    media: { poster: "/media/research-ai-skills/poster.jpg" },
+    overview:
+      "키워드/주제를 받아 다관점 딥 리서치를 수행하고, 근거가 인용된 장문 HTML 보고서를 생성하는 Claude Code 스킬. 핵심 설계는 '파일이 상태다' — 브리프·증거 원장·관점별 노트·종합 등 모든 중간 산출물을 research/<run>/에 파일로 누적해 대화가 잘려도 이어서 진행한다. 원문 소스는 서브에이전트 컨텍스트 안에만 두고, 경계를 넘는 것은 verbatim 인용을 포함한 원장 엔트리와 250단어 요약뿐(압축 경계). 한국어 보고서에는 vendored humanize-korean으로 '번역투·결산 관용구' 같은 AI 티를 제거하는 패스까지 붙는다.",
+    problem:
+      "단일 컨텍스트 리서치 도구는 토큰 한계에 막혀 얕고, 인용이 부실하며, 과장이 걸러지지 않은 산문을 낸다. '읽은 것'과 '인용한 것'이 어긋나고, 무엇이 검증된 사실인지 가려낼 객관적 게이트가 없다. 게다가 스킬이 정말 효과가 있는지를 '정직하게' 증명할 비교 근거조차 보통은 없다 — 좋아 보이는 보고서와 방어 가능한 보고서는 다르다.",
+    role: "솔로 빌드. 다단계 오케스트레이션 파이프라인(Phase 0–5), 신뢰도 등급 증거 원장, 결정적 검증기(validate_report.py), 교차 모델 council·라이브 시그널·영상 자막 수집, 한국어 휴머나이즈 연동, 그리고 효과를 측정한 정직한 A/B 비교 앱까지 전부 설계했다.",
+    features: [
+      "파일이 상태 — 모든 중간 산출물을 run 디렉터리에 누적, 압축 경계를 넘는 건 인용 포함 원장 엔트리 + 250단어 요약뿐. 대화가 잘려도 파일에서 재개.",
+      "13+ 관점 병렬 팬아웃 → 회의론자 → 청구 검증(양보 임계 ≥4/5) → 갭 재팬아웃 루프(새 적격 갭이 없을 때까지 수렴). 실측 19개 서브에이전트.",
+      "Evidence ledger — 출처마다 신뢰도 A–D, claim 단위 기록, 상충 표시. 원장에 없는 사실은 인용 불가. validate_report.py가 섹션·앵커·인용 무결성·커버리지를 기계 검사.",
+      "Council 리뷰 — 로컬 codex/grok/gemini CLI로 교차 모델 적대 리뷰(API 키 불필요), 원장 대조 후 살아남은 지적만 반영. + grok→X 1차 센티먼트, yt-dlp 영상 자막으로 발언 verbatim 확보.",
+      "한국어 자연스러움 패스 — vendored humanize-korean으로 AI 티 제거(HTML 태그·[S#] 인용·수치·고유명사 불변), 이후 검증기 재실행.",
+    ],
+    outcome:
+      "동일 주제·같은 날·같은 한국어로 측정한 정직한 A/B(엔비디아 젠슨 황 방한)에서 — 본문 인용 10→182건(18.2×), 고유 출처 10→141(14.1×), 출처 유형 2→11종, 1차·공식 출처(tier A) 0→21, 영상 1차 자막 0→7, 정량 차트 0→3, 적대적 검증 0→4라운드. 비용도 그대로 보고한다 — 88초→약 53분(≈36×), 측정 서브에이전트 토큰 ~99만. 체리피킹 없이 불리한 지표는 2차 티어로 내렸다. baseline이 단정한 '슈퍼을 격상'·'방한이 증시 견인'·'GPU 26만 장 확정계약'은 모두 검증에서 강등됐다 — 분량이 아니라 검증가능성이 달라진다.",
+    links: [],
+    gallery: [
+      {
+        caption: "산출물 — 인용 141개·정량 차트가 박힌 한국어 딥리서치 보고서 원문.",
+        image: "/media/research-ai-skills/g1-report.jpg",
+      },
+      {
+        caption: "리드 지표 — 모든 수치는 metrics.json에서만(하드코딩 없음).",
+        image: "/media/research-ai-skills/g2-cards.jpg",
+      },
+      {
+        caption: "출처 다양성 — 뉴스·위키 2종 → 11종, 1차·공식 0 → 21.",
+        image: "/media/research-ai-skills/g3-charts.jpg",
+      },
+      {
+        caption: "본문 — 관점별 분석에 인용·차트·불확실성 콜아웃을 함께.",
+        image: "/media/research-ai-skills/g4-report-body.jpg",
+      },
+    ],
+  },
+  {
     slug: "eval-improve-skills",
     title: "Eval-Improve Skills",
     tagline:
