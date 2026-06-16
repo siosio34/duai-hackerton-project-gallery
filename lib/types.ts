@@ -28,12 +28,18 @@ export interface ProjectMedia {
   poster?: string;
 }
 
+/** Top-level grouping on the home page. Built apps/games → "projects";
+ *  Claude Code skills → "skills". */
+export type ProjectSection = "projects" | "skills";
+
 export interface Project {
   slug: string;
   title: string;
   /** One-line description shown on the card and detail header. */
   tagline: string;
-  /** Primary category, e.g. "Web app", "Design system". Drives filtering. */
+  /** Home-page section this belongs to. Defaults to "projects" when omitted. */
+  section?: ProjectSection;
+  /** Primary category, e.g. "Web app", "Design system". Shown as a meta chip. */
   category: string;
   /** Topic / tech tags surfaced as filter chips. */
   tags: string[];

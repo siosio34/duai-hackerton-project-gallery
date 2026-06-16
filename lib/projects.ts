@@ -21,6 +21,7 @@ export const projects: Project[] = [
     title: "DUDU — Bitcoin Upward Life-Climb",
     tagline:
       "온리업 스타일 수직 등반 × 비트코인 자산 성장 판타지. 두두가 도시를 오르면 시뮬레이션 BTC가 오르고, 포트폴리오가 거주 티어를 끌어올린다.",
+    section: "projects",
     category: "Creative",
     tags: ["3D 게임", "WebGL", "멀티플레이", "생성형 비주얼"],
     tech: [
@@ -34,7 +35,7 @@ export const projects: Project[] = [
     year: 2026,
     status: "live",
     featured: true,
-    span: 8,
+    span: 12,
     accent: "#f7931a",
     visual: "strata",
     media: {
@@ -80,6 +81,7 @@ export const projects: Project[] = [
     title: "Deep Research Report",
     tagline:
       "단일 컨텍스트의 토큰 한계를 파일 기반 파이프라인으로 우회해 — 13+ 관점 병렬 리서치·증거 원장·적대적 검증을 거친 인용 200건급 한국어 보고서를 만드는 Claude Code 스킬.",
+    section: "skills",
     category: "Research",
     tags: ["딥리서치", "멀티에이전트", "증거 기반", "A/B 검증"],
     tech: [
@@ -93,7 +95,7 @@ export const projects: Project[] = [
     year: 2026,
     status: "live",
     featured: true,
-    span: 8,
+    span: 6,
     accent: "#0f766e",
     visual: "grid",
     media: { poster: "/media/research-ai-skills/poster.jpg" },
@@ -111,7 +113,12 @@ export const projects: Project[] = [
     ],
     outcome:
       "동일 주제·같은 날·같은 한국어로 측정한 정직한 A/B(엔비디아 젠슨 황 방한)에서 — 본문 인용 10→182건(18.2×), 고유 출처 10→141(14.1×), 출처 유형 2→11종, 1차·공식 출처(tier A) 0→21, 영상 1차 자막 0→7, 정량 차트 0→3, 적대적 검증 0→4라운드. 비용도 그대로 보고한다 — 88초→약 53분(≈36×), 측정 서브에이전트 토큰 ~99만. 체리피킹 없이 불리한 지표는 2차 티어로 내렸다. baseline이 단정한 '슈퍼을 격상'·'방한이 증시 견인'·'GPU 26만 장 확정계약'은 모두 검증에서 강등됐다 — 분량이 아니라 검증가능성이 달라진다.",
-    links: [],
+    links: [
+      {
+        label: "A/B 비교 — 일반응답 vs 스킬",
+        href: "/projects/deep-research-report/compare",
+      },
+    ],
     gallery: [
       {
         caption: "산출물 — 인용 141개·정량 차트가 박힌 한국어 딥리서치 보고서 원문.",
@@ -136,6 +143,7 @@ export const projects: Project[] = [
     title: "Eval-Improve Skills",
     tagline:
       "결과물이든 스킬 자체든, 여러 독립 평가자로 채점해 기준 통과까지 자동으로 개선·재평가하는 Claude Code 스킬.",
+    section: "skills",
     category: "Skill",
     tags: ["LLM 평가", "멀티에이전트", "한국인 페르소나", "스킬 자기개선"],
     tech: [
@@ -148,7 +156,7 @@ export const projects: Project[] = [
     year: 2026,
     status: "live",
     featured: true,
-    span: 8,
+    span: 6,
     accent: "#4f46e5",
     visual: "orbit",
     overview:

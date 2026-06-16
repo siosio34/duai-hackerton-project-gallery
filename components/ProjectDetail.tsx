@@ -50,10 +50,10 @@ export function ProjectDetail({
         transition={{ duration: 0.5, ease }}
       >
         <Link
-          href="/#work"
+          href="/#projects"
           className="meta-label link-underline inline-flex items-center gap-1.5 text-ink-soft"
         >
-          <span aria-hidden>←</span> Index
+          <span aria-hidden>←</span> 갤러리
         </Link>
 
         {/* Header */}

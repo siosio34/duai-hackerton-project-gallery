@@ -8,13 +8,13 @@ import { useReducedMotion } from "motion/react";
 // motivated as storytelling (the page introduces itself in sequence).
 // Honors reduced motion by rendering everything static.
 export function Masthead({
-  count,
+  projects,
+  skills,
   years,
-  disciplines,
 }: {
-  count: number;
+  projects: number;
+  skills: number;
   years: string;
-  disciplines: number;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -46,46 +46,44 @@ export function Masthead({
     >
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-9">
+          <p className="mh-fade meta-label mb-5">Heka의 프로젝트 갤러리</p>
           <h1 className="display text-[2rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
             <span className="block overflow-hidden">
-              <span className="mh-rise inline-block">An index of built</span>
+              <span className="mh-rise inline-block">직접 만들고 배포한</span>
             </span>
-            <span className="block overflow-hidden">
+            <span className="block overflow-hidden pb-2">
               <span className="mh-rise inline-block">
-                things, and how they
+                <span className="text-accent">프로젝트</span>와 스킬.
               </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="mh-rise inline-block text-accent">happened.</span>
             </span>
           </h1>
         </div>
 
         <div className="flex flex-col justify-end lg:col-span-3">
-          <p className="mh-fade max-w-[34ch] text-base leading-relaxed text-ink-soft">
-            Realtime systems, design tooling, and software made for the field.
-            Each entry opens into how it was built.
+          <p className="mh-fade max-w-[34ch] break-keep text-base leading-relaxed text-ink-soft">
+            3D 게임부터 리서치·평가를 자동화하는 Claude Code 스킬까지. 각 카드를
+            열면 무엇을, 왜, 어떻게 만들었는지로 이어집니다.
           </p>
         </div>
       </div>
 
       <dl className="mh-fade mt-14 grid grid-cols-3 gap-4 border-t border-line pt-6 sm:max-w-xl sm:gap-6">
         <div>
-          <dt className="meta-label">Projects</dt>
+          <dt className="meta-label">프로젝트</dt>
           <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
-            {String(count).padStart(2, "0")}
+            {String(projects).padStart(2, "0")}
           </dd>
         </div>
         <div>
-          <dt className="meta-label">Span</dt>
+          <dt className="meta-label">스킬</dt>
+          <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
+            {String(skills).padStart(2, "0")}
+          </dd>
+        </div>
+        <div>
+          <dt className="meta-label">기간</dt>
           <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
             {years}
-          </dd>
-        </div>
-        <div>
-          <dt className="meta-label">Fields</dt>
-          <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
-            {String(disciplines).padStart(2, "0")}
           </dd>
         </div>
       </dl>
