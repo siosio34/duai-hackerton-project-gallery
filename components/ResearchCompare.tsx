@@ -177,7 +177,6 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
           <h2 className="display mt-3 text-3xl font-semibold text-ink sm:text-4xl">
             같은 질문, 두 가지 방식
           </h2>
-          {intro}
         </header>
       ) : (
         <header className="mt-10 border-t border-ink pt-8">
@@ -185,12 +184,11 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
           <h1 className="display mt-4 max-w-[20ch] text-[2.6rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
             같은 질문, 두 가지 방식
           </h1>
-          {intro}
         </header>
       )}
 
-      {/* Headline deltas */}
-      <section className="mt-14">
+      {/* Headline deltas — the measured gap, surfaced first */}
+      <section className="mt-12">
         <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-4">
           {HEADLINES.map((h, i) => (
             <motion.li
@@ -212,6 +210,9 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
           ))}
         </ul>
       </section>
+
+      {/* Explanation follows the numbers */}
+      <div className="mt-12">{intro}</div>
 
       {/* Quantitative comparison — moved up; the key before/after */}
       <section className="mt-24">
