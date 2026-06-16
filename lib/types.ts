@@ -29,6 +29,9 @@ export interface ProjectMedia {
   /** Card-only thumbnail (designed for the grid). Falls back to `poster`. The
    *  detail hero ignores this and uses `poster`. */
   thumbnail?: string;
+  /** A standalone cinematic clip (e.g. the game's intro), shown as its own
+   *  section with playback controls. `portrait` frames a vertical video. */
+  cinematic?: { src: string; poster?: string; portrait?: boolean };
 }
 
 /** Top-level grouping on the home page. Built apps/games → "projects";

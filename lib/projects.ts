@@ -41,6 +41,11 @@ export const projects: Project[] = [
     media: {
       video: "/media/onlyup-duai/hero.mp4",
       poster: "/media/onlyup-duai/poster.jpg",
+      cinematic: {
+        src: "/media/onlyup-duai/prologue.mp4",
+        poster: "/media/onlyup-duai/prologue-poster.jpg",
+        portrait: true,
+      },
     },
     overview:
       "두두는 파란 블롭 캐릭터다. 수직 도시를 오르면 시뮬레이션 BTC 가격이 오르고, 코인을 모으면 보유량이 늘어난다. '가격 × 보유량 = 포트폴리오'가 거주 티어(골목 지하 → 원룸촌 → 아파트 옥상 → 고급 주거지 → ATH 펜트하우스)와 두두의 액세서리를 끌어올린다. 떨어지면 폭락한다. 실제 시세나 거래소와는 무관한 시뮬레이션 데모이고, 투자 조언이 아니다.",

@@ -361,25 +361,31 @@ export function ProjectDetail({
         </section>
       ))}
 
-      {/* Cinematic clip — when the project ships a video */}
-      {project.media?.video && (
+      {/* Cinematic — the game's intro prologue (portrait-aware) */}
+      {project.media?.cinematic && (
         <section className="mt-24 border-t border-line pt-10">
-          <h2 className="meta-label mb-8">시네마틱</h2>
+          <h2 className="meta-label mb-8">시네마틱 프롤로그</h2>
           <Reveal>
-            <figure>
-              <div className="aspect-[16/9] overflow-hidden rounded-xl border border-line bg-ink">
+            <figure className="flex flex-col items-center">
+              <div
+                className={`w-full overflow-hidden rounded-xl border border-line bg-ink ${
+                  project.media.cinematic.portrait
+                    ? "aspect-[3/4] max-w-[420px]"
+                    : "aspect-[16/9]"
+                }`}
+              >
                 <video
                   className="h-full w-full object-cover"
-                  src={project.media.video}
-                  poster={project.media.poster}
+                  src={project.media.cinematic.src}
+                  poster={project.media.cinematic.poster}
                   controls
-                  loop
                   playsInline
                   preload="none"
                 />
               </div>
-              <figcaption className="mt-3 break-keep text-sm text-ink-mute">
-                시작 골목부터 ATH 펜트하우스까지, 한 판의 흐름을 담은 플레이 영상.
+              <figcaption className="mt-3 max-w-[44ch] break-keep text-center text-sm text-ink-mute">
+                게임을 시작하면 흐르는 프롤로그. 슬럼의 두두가 비트코인 한 닢을
+                만나며 이야기가 열린다. (소리 포함)
               </figcaption>
             </figure>
           </Reveal>
