@@ -107,6 +107,9 @@ export const projects: Project[] = [
           { src: "/media/onlyup-duai/obs-sweep.jpg", label: "스윕 바, 회전하며 쓸어낸다" },
           { src: "/media/onlyup-duai/obs-candles.jpg", label: "캔들, 치솟는 봉을 피해" },
           { src: "/media/onlyup-duai/obs-wind.jpg", label: "돌풍, 옆으로 밀어낸다" },
+          { src: "/media/onlyup-duai/obs-crumble.jpg", label: "붕괴 발판, 밟으면 부서진다" },
+          { src: "/media/onlyup-duai/obs-mover.jpg", label: "이동 발판, 좌우로 움직인다" },
+          { src: "/media/onlyup-duai/obs-bounce.jpg", label: "트램펄린, 위로 튕겨 올린다" },
         ],
       },
       {
