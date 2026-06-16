@@ -77,6 +77,7 @@ export const projects: Project[] = [
       { keys: ["Tab"], action: "랭킹 (명예의 전당)" },
       { keys: ["M"], action: "음악" },
     ],
+    controlsImage: "/media/onlyup-duai/controls.png",
     gallery: [],
     showcases: [
       {

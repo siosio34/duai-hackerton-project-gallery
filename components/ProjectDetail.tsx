@@ -387,27 +387,48 @@ export function ProjectDetail({
         </section>
       )}
 
-      {/* Controls (games) */}
-      {project.controls && project.controls.length > 0 && (
+      {/* Controls (games) — in-game card image if present, else keycap grid */}
+      {(project.controlsImage ||
+        (project.controls && project.controls.length > 0)) && (
         <section className="mt-24 border-t border-line pt-10">
           <h2 className="meta-label mb-8">조작법</h2>
-          <ul className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-            {project.controls.map((c) => (
-              <li key={c.action} className="flex items-center gap-3">
-                <span className="flex shrink-0 gap-1">
-                  {c.keys.map((k) => (
-                    <kbd
-                      key={k}
-                      className="inline-flex min-w-[1.9rem] items-center justify-center rounded-md border border-line-strong bg-paper px-2 py-1 font-mono text-xs text-ink shadow-[0_1.5px_0_var(--color-line-strong)]"
-                    >
-                      {k}
-                    </kbd>
-                  ))}
-                </span>
-                <span className="break-keep text-ink-soft">{c.action}</span>
-              </li>
-            ))}
-          </ul>
+          {project.controlsImage ? (
+            <Reveal>
+              <figure className="flex flex-col items-center">
+                <div className="w-full max-w-[560px] overflow-hidden rounded-xl border border-line bg-ink">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={project.controlsImage}
+                    alt="게임 내 조작법 카드"
+                    className="w-full"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="mt-3 break-keep text-center text-sm text-ink-mute">
+                  게임을 시작하면 뜨는 조작법 카드. 정상 거래소까지 올라가 전량
+                  매도하면 승리다.
+                </figcaption>
+              </figure>
+            </Reveal>
+          ) : (
+            <ul className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+              {project.controls!.map((c) => (
+                <li key={c.action} className="flex items-center gap-3">
+                  <span className="flex shrink-0 gap-1">
+                    {c.keys.map((k) => (
+                      <kbd
+                        key={k}
+                        className="inline-flex min-w-[1.9rem] items-center justify-center rounded-md border border-line-strong bg-paper px-2 py-1 font-mono text-xs text-ink shadow-[0_1.5px_0_var(--color-line-strong)]"
+                      >
+                        {k}
+                      </kbd>
+                    ))}
+                  </span>
+                  <span className="break-keep text-ink-soft">{c.action}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       )}
 

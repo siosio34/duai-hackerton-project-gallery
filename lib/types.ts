@@ -83,6 +83,8 @@ export interface Project {
   diagram?: { image: string; caption?: string };
   /** Optional controls reference (games): keycaps + what each does. */
   controls?: { keys: string[]; action: string }[];
+  /** Optional in-game controls card image (shown instead of the keycap grid). */
+  controlsImage?: string;
   /** Optional themed image showcases (concept galleries), each its own section. */
   showcases?: {
     title: string;
