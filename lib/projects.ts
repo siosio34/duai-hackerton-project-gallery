@@ -241,6 +241,10 @@ export const projects: Project[] = [
         href: "/media/research-ai-skills/compare/report.html",
       },
       { label: "A/B 비교 보기", href: "#compare" },
+      {
+        label: "GitHub 레포",
+        href: "https://github.com/siosio34/research-ai-skills",
+      },
     ],
     gallery: [
       {
