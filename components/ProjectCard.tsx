@@ -38,6 +38,7 @@ export function ProjectCard({
   const visual = (
     <ProjectMedia
       project={project}
+      card
       className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
     />
   );

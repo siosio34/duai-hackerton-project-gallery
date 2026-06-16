@@ -98,7 +98,10 @@ export const projects: Project[] = [
     span: 6,
     accent: "#0f766e",
     visual: "grid",
-    media: { poster: "/media/research-ai-skills/poster.jpg" },
+    media: {
+      poster: "/media/research-ai-skills/poster.jpg",
+      thumbnail: "/media/research-ai-skills/thumb.jpg",
+    },
     overview:
       "키워드/주제를 받아 다관점 딥 리서치를 수행하고, 근거가 인용된 장문 HTML 보고서를 생성하는 Claude Code 스킬. 핵심 설계는 '파일이 상태다' — 브리프·증거 원장·관점별 노트·종합 등 모든 중간 산출물을 research/<run>/에 파일로 누적해 대화가 잘려도 이어서 진행한다. 원문 소스는 서브에이전트 컨텍스트 안에만 두고, 경계를 넘는 것은 verbatim 인용을 포함한 원장 엔트리와 250단어 요약뿐(압축 경계). 한국어 보고서에는 vendored humanize-korean으로 '번역투·결산 관용구' 같은 AI 티를 제거하는 패스까지 붙는다.",
     problem:
@@ -159,6 +162,7 @@ export const projects: Project[] = [
     span: 6,
     accent: "#4f46e5",
     visual: "orbit",
+    media: { thumbnail: "/media/eval-improve-skills/thumb.jpg" },
     overview:
       "보고서·기획서·사업제안서·카피·코드 등 완성된 산출물을, 서로 독립적인 평가자 여러 명으로 채점하고 기준치에 도달할 때까지 자동으로 개선·재평가하는 Claude Code 스킬. 같은 평가 엔진을 '무엇을 고치느냐'에 따라 두 모드로 쓴다 — 결과물만 있으면 그 결과물을 갱신(artifact 모드)하고, 입력이 스킬이면 스킬을 돌려 나온 출력을 채점한 뒤 출력이 아니라 스킬 자체(SKILL.md)를 고쳐 다음 실행이 통과하게 만든다(skill 모드).",
     problem:

@@ -24,8 +24,11 @@ export interface GalleryFrame {
 export interface ProjectMedia {
   /** Looping clip (mp4). Autoplays muted on the card + hero (unless reduced motion). */
   video?: string;
-  /** Still image — poster for the video, or a standalone screenshot. */
+  /** Still image — poster for the video, or the detail-hero still. */
   poster?: string;
+  /** Card-only thumbnail (designed for the grid). Falls back to `poster`. The
+   *  detail hero ignores this and uses `poster`. */
+  thumbnail?: string;
 }
 
 /** Top-level grouping on the home page. Built apps/games → "projects";

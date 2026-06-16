@@ -10,9 +10,12 @@ import { ProjectVisual } from "./ProjectVisual";
 export function ProjectMedia({
   project,
   className,
+  card = false,
 }: {
   project: Project;
   className?: string;
+  /** Card context prefers the designed `thumbnail`; the hero ignores it. */
+  card?: boolean;
 }) {
   const reduce = useReducedMotion();
   const media = project.media;
@@ -23,7 +26,7 @@ export function ProjectMedia({
       <video
         className={fill}
         src={media.video}
-        poster={media.poster}
+        poster={media.poster ?? media.thumbnail}
         autoPlay
         muted
         loop
@@ -34,9 +37,10 @@ export function ProjectMedia({
     );
   }
 
-  if (media?.poster) {
+  const still = card ? media?.thumbnail ?? media?.poster : media?.poster;
+  if (still) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img className={fill} src={media.poster} alt="" aria-hidden />;
+    return <img className={fill} src={still} alt="" aria-hidden />;
   }
 
   return (
