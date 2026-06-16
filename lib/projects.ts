@@ -65,7 +65,7 @@ export const projects: Project[] = [
     ],
     outcome:
       "Vercel에 배포돼 있어 누구나 바로 플레이할 수 있다. 루브릭 기반 9장면 자동 스크린샷, 장면별 FPS 측정, 상호작용·물리 기능 테스트를 스크립트로 갖춰 비주얼과 성능, 동작을 회귀 검증한다. 서버가 없을 때도 AI 봇이 대신 등반하고 채팅해서 솔로 레이스가 성립하도록 폴백을 짰다. 덕분에 어떤 환경에서도 깨지지 않는다.",
-    links: [{ label: "Live site", href: "https://onlyup-duai.vercel.app" }],
+    links: [{ label: "Live site", href: "https://onlyup-duai-one.vercel.app" }],
     gallery: [],
     showcases: [
       {

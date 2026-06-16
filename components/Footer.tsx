@@ -33,7 +33,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://onlyup-duai.vercel.app"
+                    href="https://onlyup-duai-one.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link-underline"
