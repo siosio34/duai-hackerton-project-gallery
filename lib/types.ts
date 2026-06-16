@@ -81,6 +81,8 @@ export interface Project {
   };
   /** Optional "how it works" diagram (image under /public) + caption. */
   diagram?: { image: string; caption?: string };
+  /** Optional controls reference (games): keycaps + what each does. */
+  controls?: { keys: string[]; action: string }[];
   /** Optional themed image showcases (concept galleries), each its own section. */
   showcases?: {
     title: string;

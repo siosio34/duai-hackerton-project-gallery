@@ -387,6 +387,30 @@ export function ProjectDetail({
         </section>
       )}
 
+      {/* Controls (games) */}
+      {project.controls && project.controls.length > 0 && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">조작법</h2>
+          <ul className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {project.controls.map((c) => (
+              <li key={c.action} className="flex items-center gap-3">
+                <span className="flex shrink-0 gap-1">
+                  {c.keys.map((k) => (
+                    <kbd
+                      key={k}
+                      className="inline-flex min-w-[1.9rem] items-center justify-center rounded-md border border-line-strong bg-paper px-2 py-1 font-mono text-xs text-ink shadow-[0_1.5px_0_var(--color-line-strong)]"
+                    >
+                      {k}
+                    </kbd>
+                  ))}
+                </span>
+                <span className="break-keep text-ink-soft">{c.action}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* Themed showcases (concept galleries) */}
       {project.showcases?.map((sc) => (
         <section key={sc.title} className="mt-24 border-t border-line pt-10">
