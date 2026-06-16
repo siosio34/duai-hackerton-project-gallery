@@ -96,6 +96,20 @@ export const projects: Project[] = [
         ],
       },
       {
+        title: "발판과 장애물",
+        caption:
+          "단순한 점프가 아니다. 나선·지그재그·계단·롱점프·기둥·붕괴·이동·트램펄린·빙판에, 갈림길 가짜 발판과 시세 캔들·돌풍·스윕 바 같은 함정이 섞인다. 헛디디면 그대로 폭락한다.",
+        cols: 3,
+        aspect: "wide",
+        items: [
+          { src: "/media/onlyup-duai/obs-fork.jpg", label: "갈림길, 둘 중 하나는 가짜 발판" },
+          { src: "/media/onlyup-duai/obs-traffic.jpg", label: "트래픽, 가로지르는 장애물" },
+          { src: "/media/onlyup-duai/obs-sweep.jpg", label: "스윕 바, 회전하며 쓸어낸다" },
+          { src: "/media/onlyup-duai/obs-candles.jpg", label: "캔들, 치솟는 봉을 피해" },
+          { src: "/media/onlyup-duai/obs-wind.jpg", label: "돌풍, 옆으로 밀어낸다" },
+        ],
+      },
+      {
         title: "동네에서 마주치는 NPC들",
         caption:
           "슬럼의 주민들은 돈 벌어오라며 핀잔을 주고, 두두는 운다. 위로 올라갈수록 부자들은 비웃고, 신계에선 떠받든다. 전부 비주얼 노벨식 대화창으로 펼쳐진다.",
