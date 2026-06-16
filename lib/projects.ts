@@ -296,8 +296,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "idea-check-skill",
-    title: "아이디어 체크 스킬",
+    slug: "idea-validation-skill",
+    title: "아이디어 검증 스킬",
     tagline: "공개 준비 중인 스킬입니다.",
     section: "skills",
     category: "Skill",
