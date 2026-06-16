@@ -6,7 +6,8 @@ import { ProjectDetail } from "@/components/ProjectDetail";
 import { projects, getProject } from "@/lib/projects";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  // Placeholder (WIP) projects have no detail page.
+  return projects.filter((p) => !p.placeholder).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -16,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: "Not found" };
+  if (!project || project.placeholder) return { title: "Not found" };
   return {
     title: project.title,
     description: project.tagline,
@@ -35,10 +36,12 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) notFound();
+  if (!project || project.placeholder) notFound();
 
-  const index = projects.findIndex((p) => p.slug === slug);
-  const next = projects[(index + 1) % projects.length];
+  // "Next project" cycles through real (non-placeholder) entries only.
+  const visible = projects.filter((p) => !p.placeholder);
+  const vIndex = visible.findIndex((p) => p.slug === slug);
+  const next = visible[(vIndex + 1) % visible.length];
 
   return (
     <main className="min-h-[100dvh]">

@@ -62,6 +62,9 @@ export interface Project {
   visual: VisualKind;
   /** Real screenshot/video media. Overrides the generative visual when set. */
   media?: ProjectMedia;
+  /** Work-in-progress teaser. Renders a non-clickable card with a "진행중"
+   *  placeholder instead of media, and has no detail page. */
+  placeholder?: boolean;
 
   // --- Detail content ---
   /** Lead paragraph. Optional — when omitted, the detail page leads with `role`. */

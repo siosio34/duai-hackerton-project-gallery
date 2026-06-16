@@ -32,6 +32,61 @@ export function ProjectCard({
   index: number;
 }) {
   const reduce = useReducedMotion();
+
+  // Work-in-progress teaser: non-clickable, "진행중" placeholder, no live link.
+  if (project.placeholder) {
+    return (
+      <motion.article
+        layout
+        initial={reduce ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{
+          duration: 0.7,
+          delay: Math.min(index * 0.05, 0.3),
+          ease: [0.22, 1, 0.36, 1],
+          layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        }}
+        aria-disabled="true"
+        className={`relative col-span-1 cursor-default select-none ${SPAN[project.span]}`}
+      >
+        <div
+          className={`relative ${aspectFor(
+            project.span,
+          )} grid place-items-center overflow-hidden rounded-lg border border-dashed border-line-strong bg-paper-2`}
+        >
+          <div className="text-center">
+            <p className="display text-2xl font-semibold text-ink-mute sm:text-3xl">
+              진행중
+            </p>
+            <p className="meta-label mt-2">Coming soon</p>
+          </div>
+        </div>
+
+        <div className="mt-4 flex items-start justify-between gap-4">
+          <div>
+            <h2 className="display text-xl font-semibold text-ink-soft sm:text-2xl">
+              {project.title}
+            </h2>
+            <p className="mt-1.5 max-w-[42ch] break-keep text-[0.95rem] leading-relaxed text-ink-mute">
+              {project.tagline}
+            </p>
+          </div>
+          <span className="meta-label shrink-0 tabular-nums">
+            {project.year}
+          </span>
+        </div>
+
+        <div className="mt-3">
+          <span className="inline-flex items-center gap-1.5 text-[0.72rem] text-ink-mute">
+            {STATUS_LABEL[project.status]}
+          </span>
+        </div>
+      </motion.article>
+    );
+  }
+
   const liveHref = project.links.find((l) =>
     /^https?:\/\//.test(l.href),
   )?.href;
