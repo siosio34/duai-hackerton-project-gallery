@@ -63,6 +63,8 @@ export interface Project {
   // --- Detail content ---
   overview: string;
   problem: string;
+  /** Optional "why I built it" goals, shown between problem and features. */
+  motivations?: { title: string; body: string }[];
   role: string;
   features: string[];
   outcome: string;

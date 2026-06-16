@@ -66,12 +66,39 @@ export function ProjectDetail({
             <p className="mt-4 max-w-[38ch] break-keep text-lg leading-relaxed text-ink-soft sm:text-xl">
               {project.tagline}
             </p>
+
+            {project.links.length > 0 && (
+              <div className="mt-7 flex flex-wrap gap-3">
+                {project.links.map((l, i) => {
+                  const external =
+                    /^https?:\/\//.test(l.href) || l.href.endsWith(".html");
+                  return (
+                    <a
+                      key={l.label}
+                      href={l.href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className={
+                        i === 0
+                          ? "inline-flex items-center gap-1.5 rounded-full bg-accent-deep px-5 py-2.5 text-sm font-medium text-paper transition-transform hover:-translate-y-px"
+                          : "inline-flex items-center gap-1.5 rounded-full border border-line-strong px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+                      }
+                    >
+                      {l.label}
+                      <span aria-hidden className="text-xs">
+                        {external ? "↗" : "↓"}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <dl className="grid grid-cols-2 gap-y-5 self-end lg:col-span-4">
-            <Meta label="Category" value={project.category} />
-            <Meta label="Year" value={String(project.year)} />
-            <Meta label="Status" value={STATUS_LABEL[project.status]} />
-            <Meta label="Discipline" value={project.tags[0]} />
+            <Meta label="분류" value={project.category} />
+            <Meta label="연도" value={String(project.year)} />
+            <Meta label="상태" value={STATUS_LABEL[project.status]} />
+            <Meta label="분야" value={project.tags[0]} />
           </dl>
         </header>
       </motion.div>
@@ -110,13 +137,13 @@ export function ProjectDetail({
           <Reveal delay={0.1}>
             <div className="space-y-8 border-t border-line pt-6">
               <div>
-                <h2 className="meta-label">Role</h2>
-                <p className="mt-2 leading-relaxed text-ink-soft">
+                <h2 className="meta-label">역할</h2>
+                <p className="mt-2 break-keep leading-relaxed text-ink-soft">
                   {project.role}
                 </p>
               </div>
               <div>
-                <h2 className="meta-label">Stack</h2>
+                <h2 className="meta-label">스택</h2>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <li
@@ -128,26 +155,6 @@ export function ProjectDetail({
                   ))}
                 </ul>
               </div>
-              {project.links.length > 0 && (
-                <div>
-                  <h2 className="meta-label">Links</h2>
-                  <ul className="mt-3 space-y-2">
-                    {project.links.map((l) => (
-                      <li key={l.label}>
-                        <a
-                          href={l.href}
-                          className="link-underline inline-flex items-center gap-1.5 text-accent-deep"
-                        >
-                          {l.label}
-                          <span aria-hidden className="text-xs">
-                            ↗
-                          </span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
           </Reveal>
         </aside>
@@ -155,7 +162,7 @@ export function ProjectDetail({
 
       {/* Problem */}
       <section className="mt-24 grid grid-cols-1 gap-x-8 gap-y-6 border-t border-line pt-10 lg:grid-cols-12">
-        <h2 className="meta-label lg:col-span-3">The problem</h2>
+        <h2 className="meta-label lg:col-span-3">문제</h2>
         <Reveal className="lg:col-span-8 lg:col-start-5">
           <p className="max-w-[58ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
             {project.problem}
@@ -163,9 +170,40 @@ export function ProjectDetail({
         </Reveal>
       </section>
 
+      {/* Motivations — why it was built */}
+      {project.motivations && project.motivations.length > 0 && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-10">왜 만들었나</h2>
+          <ol className="divide-y divide-line border-y border-line">
+            {project.motivations.map((m, i) => (
+              <motion.li
+                key={i}
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.5, delay: i * 0.05, ease }}
+                className="grid grid-cols-1 gap-x-8 gap-y-2 py-7 sm:grid-cols-12"
+              >
+                <div className="flex items-baseline gap-3 sm:col-span-5">
+                  <span className="font-mono text-sm text-accent-deep">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="break-keep text-lg font-medium text-ink">
+                    {m.title}
+                  </h3>
+                </div>
+                <p className="break-keep leading-relaxed text-ink-soft sm:col-span-7">
+                  {m.body}
+                </p>
+              </motion.li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       {/* Features — editorial numbered grid, not a bullet list */}
       <section className="mt-24 border-t border-line pt-10">
-        <h2 className="meta-label mb-10">What it does</h2>
+        <h2 className="meta-label mb-10">기능</h2>
         <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
           {project.features.map((f, i) => (
             <motion.li
@@ -189,7 +227,7 @@ export function ProjectDetail({
 
       {/* Outcome */}
       <section className="mt-24 border-t border-line pt-10">
-        <h2 className="meta-label mb-8">Outcome</h2>
+        <h2 className="meta-label mb-8">성과</h2>
         <Reveal>
           <p className="max-w-[60ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
             {project.outcome}
@@ -242,7 +280,7 @@ export function ProjectDetail({
       >
         <div className="flex items-end justify-between gap-6">
           <div>
-            <span className="meta-label">Next project</span>
+            <span className="meta-label">다음</span>
             <p className="display mt-2 text-4xl font-semibold text-ink transition-colors group-hover:text-accent-deep sm:text-6xl">
               {next.title}
             </p>
