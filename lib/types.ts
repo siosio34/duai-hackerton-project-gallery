@@ -70,6 +70,12 @@ export interface Project {
   problem?: string;
   /** Optional "why I built it" goals, shown where the problem would sit. */
   motivations?: { title: string; body: string }[];
+  /** Optional game scenario / prologue: narration + VN-style dialogue lines. */
+  prologue?: {
+    intro?: string;
+    lines?: { speaker: string; text: string }[];
+    outro?: string;
+  };
   /** Optional "how it works" diagram (image under /public) + caption. */
   diagram?: { image: string; caption?: string };
   /** Optional themed image showcases (concept galleries), each its own section. */

@@ -123,6 +123,76 @@ export function ProjectDetail({
         )}
       </motion.div>
 
+      {/* Cinematic — the game's intro prologue (portrait-aware), shown up top */}
+      {project.media?.cinematic && (
+        <section className="mt-16 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">시네마틱 프롤로그</h2>
+          <Reveal>
+            <figure className="flex flex-col items-center">
+              <div
+                className={`w-full overflow-hidden rounded-xl border border-line bg-ink ${
+                  project.media.cinematic.portrait
+                    ? "aspect-[3/4] max-w-[420px]"
+                    : "aspect-[16/9]"
+                }`}
+              >
+                <video
+                  className="h-full w-full object-cover"
+                  src={project.media.cinematic.src}
+                  poster={project.media.cinematic.poster}
+                  controls
+                  playsInline
+                  preload="none"
+                />
+              </div>
+              <figcaption className="mt-3 max-w-[44ch] break-keep text-center text-sm text-ink-mute">
+                게임을 시작하면 흐르는 프롤로그. 슬럼의 두두가 비트코인 한 닢을
+                만나며 이야기가 열린다. (소리 포함)
+              </figcaption>
+            </figure>
+          </Reveal>
+        </section>
+      )}
+
+      {/* Prologue — game scenario / VN dialogue */}
+      {project.prologue && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">이야기</h2>
+          <div className="max-w-[64ch]">
+            {project.prologue.intro && (
+              <Reveal>
+                <p className="break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
+                  {project.prologue.intro}
+                </p>
+              </Reveal>
+            )}
+            {project.prologue.lines && project.prologue.lines.length > 0 && (
+              <Reveal delay={0.05}>
+                <div className="mt-8 space-y-4 border-l-2 border-accent/40 pl-6">
+                  {project.prologue.lines.map((l, i) => (
+                    <p key={i} className="break-keep leading-relaxed">
+                      <span className="mr-3 font-mono text-xs uppercase tracking-wide text-accent-deep">
+                        {l.speaker}
+                      </span>
+                      <span className="text-[1.05rem] text-ink-soft">
+                        {l.text}
+                      </span>
+                    </p>
+                  ))}
+                </div>
+              </Reveal>
+            )}
+            {project.prologue.outro && (
+              <Reveal delay={0.1}>
+                <p className="mt-8 break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
+                  {project.prologue.outro}
+                </p>
+              </Reveal>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Lead (overview or role) + stack — falls back to a slim stack band */}
       {project.overview || project.role ? (
         <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
@@ -360,37 +430,6 @@ export function ProjectDetail({
           </div>
         </section>
       ))}
-
-      {/* Cinematic — the game's intro prologue (portrait-aware) */}
-      {project.media?.cinematic && (
-        <section className="mt-24 border-t border-line pt-10">
-          <h2 className="meta-label mb-8">시네마틱 프롤로그</h2>
-          <Reveal>
-            <figure className="flex flex-col items-center">
-              <div
-                className={`w-full overflow-hidden rounded-xl border border-line bg-ink ${
-                  project.media.cinematic.portrait
-                    ? "aspect-[3/4] max-w-[420px]"
-                    : "aspect-[16/9]"
-                }`}
-              >
-                <video
-                  className="h-full w-full object-cover"
-                  src={project.media.cinematic.src}
-                  poster={project.media.cinematic.poster}
-                  controls
-                  playsInline
-                  preload="none"
-                />
-              </div>
-              <figcaption className="mt-3 max-w-[44ch] break-keep text-center text-sm text-ink-mute">
-                게임을 시작하면 흐르는 프롤로그. 슬럼의 두두가 비트코인 한 닢을
-                만나며 이야기가 열린다. (소리 포함)
-              </figcaption>
-            </figure>
-          </Reveal>
-        </section>
-      )}
 
       {/* Embedded A/B comparison (deep-research-report only) */}
       {project.slug === "deep-research-report" && <ResearchCompare embedded />}
