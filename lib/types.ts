@@ -89,7 +89,7 @@ export interface Project {
   /** Builder's role. Optional. */
   role?: string;
   features: string[];
-  outcome: string;
+  outcome?: string;
   links: ProjectLink[];
   gallery: GalleryFrame[];
 }

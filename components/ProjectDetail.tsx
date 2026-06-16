@@ -341,14 +341,16 @@ export function ProjectDetail({
       </section>
 
       {/* Outcome */}
-      <section className="mt-24 border-t border-line pt-10">
-        <h2 className="meta-label mb-8">성과</h2>
-        <Reveal>
-          <p className="max-w-[60ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
-            {project.outcome}
-          </p>
-        </Reveal>
-      </section>
+      {project.outcome && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">성과</h2>
+          <Reveal>
+            <p className="max-w-[60ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
+              {project.outcome}
+            </p>
+          </Reveal>
+        </section>
+      )}
 
       {/* Gallery frames */}
       {project.gallery.length > 0 && (
