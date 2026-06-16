@@ -6,6 +6,7 @@ import type { Project } from "@/lib/types";
 import { STATUS_LABEL } from "@/lib/types";
 import { ProjectVisual } from "./ProjectVisual";
 import { ProjectMedia } from "./ProjectMedia";
+import { ResearchCompare } from "./ResearchCompare";
 import { Parallax } from "./Parallax";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -230,6 +231,9 @@ export function ProjectDetail({
           </div>
         </section>
       )}
+
+      {/* Embedded A/B comparison (deep-research-report only) */}
+      {project.slug === "deep-research-report" && <ResearchCompare embedded />}
 
       {/* Next project */}
       <Link

@@ -124,42 +124,68 @@ function SectionHead({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
-export function ResearchCompare() {
+export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
   const reduce = useReducedMotion();
 
-  return (
-    <article className="mx-auto max-w-[1180px] px-5 pb-24 pt-10 sm:px-8">
-      {/* Back link */}
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease }}
-      >
-        <Link
-          href="/projects/deep-research-report"
-          className="meta-label link-underline inline-flex items-center gap-1.5 text-ink-soft"
-        >
-          <span aria-hidden>←</span> Deep Research Report
-        </Link>
-      </motion.div>
+  const intro = (
+    <>
+      <p className="mt-6 max-w-[60ch] break-keep text-lg leading-relaxed text-ink-soft sm:text-xl">
+        일반응답과 <span className="text-ink">deep-research</span> 스킬을 같은 주제·같은 날·같은
+        한국어로 돌렸다. 주제는 엔비디아 Rubin / Vera Rubin과 젠슨 황 방한 한국 수혜주, 기준일
+        2026-06-15.
+      </p>
+      <p className="mt-5 max-w-[64ch] break-keep leading-relaxed text-ink-mute">
+        차이는 <span className="text-ink-soft">웹검색 도구의 유무가 아니다</span> — 두 트랙 모두
+        웹검색을 썼다. 차이는 <span className="text-ink-soft">구조화 리서치 스킬</span>(다관점 팬아웃 ·
+        엔티티 전수 스윕 · 증거 원장 · 회의론·반증 검증 · 외부 LLM council · 한국어 humanize)의 유무다.
+      </p>
+    </>
+  );
 
-      {/* Masthead */}
-      <header className="mt-10 border-t border-ink pt-8">
-        <p className="meta-label text-accent-deep">A/B 대조 실험 · 단일 출처 metrics.json</p>
-        <h1 className="display mt-4 max-w-[20ch] text-[2.6rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
-          같은 질문, 두 가지 방식
-        </h1>
-        <p className="mt-6 max-w-[60ch] break-keep text-lg leading-relaxed text-ink-soft sm:text-xl">
-          일반응답과 <span className="text-ink">deep-research</span> 스킬을 같은 주제·같은 날·같은
-          한국어로 돌렸다. 주제는 엔비디아 Rubin / Vera Rubin과 젠슨 황 방한 한국 수혜주, 기준일
-          2026-06-15.
-        </p>
-        <p className="mt-5 max-w-[64ch] break-keep leading-relaxed text-ink-mute">
-          차이는 <span className="text-ink-soft">웹검색 도구의 유무가 아니다</span> — 두 트랙 모두
-          웹검색을 썼다. 차이는 <span className="text-ink-soft">구조화 리서치 스킬</span>(다관점 팬아웃 ·
-          엔티티 전수 스윕 · 증거 원장 · 회의론·반증 검증 · 외부 LLM council · 한국어 humanize)의 유무다.
-        </p>
-      </header>
+  const Wrapper = embedded ? "section" : "article";
+
+  return (
+    <Wrapper
+      id={embedded ? "compare" : undefined}
+      className={
+        embedded
+          ? "mx-auto mt-24 max-w-[1180px] scroll-mt-24"
+          : "mx-auto max-w-[1180px] px-5 pb-24 pt-10 sm:px-8"
+      }
+    >
+      {!embedded && (
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease }}
+        >
+          <Link
+            href="/projects/deep-research-report"
+            className="meta-label link-underline inline-flex items-center gap-1.5 text-ink-soft"
+          >
+            <span aria-hidden>←</span> Deep Research Report
+          </Link>
+        </motion.div>
+      )}
+
+      {/* Masthead — h1 standalone, section header when embedded */}
+      {embedded ? (
+        <header className="border-t border-ink pt-10">
+          <p className="meta-label text-accent-deep">A/B 대조 실험 · 단일 출처 metrics.json</p>
+          <h2 className="display mt-3 text-3xl font-semibold text-ink sm:text-4xl">
+            같은 질문, 두 가지 방식
+          </h2>
+          {intro}
+        </header>
+      ) : (
+        <header className="mt-10 border-t border-ink pt-8">
+          <p className="meta-label text-accent-deep">A/B 대조 실험 · 단일 출처 metrics.json</p>
+          <h1 className="display mt-4 max-w-[20ch] text-[2.6rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
+            같은 질문, 두 가지 방식
+          </h1>
+          {intro}
+        </header>
+      )}
 
       {/* Headline deltas */}
       <section className="mt-14">
@@ -428,6 +454,6 @@ export function ResearchCompare() {
           </a>
         </p>
       </section>
-    </article>
+    </Wrapper>
   );
 }
