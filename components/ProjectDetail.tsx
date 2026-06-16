@@ -315,6 +315,77 @@ export function ProjectDetail({
         </section>
       )}
 
+      {/* Themed showcases (concept galleries) */}
+      {project.showcases?.map((sc) => (
+        <section key={sc.title} className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-3">{sc.title}</h2>
+          {sc.caption && (
+            <p className="mb-9 max-w-[62ch] break-keep leading-relaxed text-ink-soft">
+              {sc.caption}
+            </p>
+          )}
+          <div
+            className={`grid grid-cols-2 gap-5 ${
+              sc.cols === 4 ? "sm:grid-cols-4" : "sm:grid-cols-3"
+            }`}
+          >
+            {sc.items.map((it, i) => (
+              <motion.figure
+                key={it.src}
+                initial={reduce ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.55, delay: i * 0.05, ease }}
+              >
+                <div
+                  className={`${
+                    sc.aspect === "wide" ? "aspect-[16/10]" : "aspect-square"
+                  } overflow-hidden rounded-xl border border-line bg-paper-2`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={it.src}
+                    alt={it.label ?? ""}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
+                  />
+                </div>
+                {it.label && (
+                  <figcaption className="mt-2.5 break-keep text-sm text-ink-mute">
+                    {it.label}
+                  </figcaption>
+                )}
+              </motion.figure>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      {/* Cinematic clip — when the project ships a video */}
+      {project.media?.video && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">시네마틱</h2>
+          <Reveal>
+            <figure>
+              <div className="aspect-[16/9] overflow-hidden rounded-xl border border-line bg-ink">
+                <video
+                  className="h-full w-full object-cover"
+                  src={project.media.video}
+                  poster={project.media.poster}
+                  controls
+                  loop
+                  playsInline
+                  preload="none"
+                />
+              </div>
+              <figcaption className="mt-3 break-keep text-sm text-ink-mute">
+                시작 골목부터 ATH 펜트하우스까지, 한 판의 흐름을 담은 플레이 영상.
+              </figcaption>
+            </figure>
+          </Reveal>
+        </section>
+      )}
+
       {/* Embedded A/B comparison (deep-research-report only) */}
       {project.slug === "deep-research-report" && <ResearchCompare embedded />}
 

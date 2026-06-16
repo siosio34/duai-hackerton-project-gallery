@@ -69,6 +69,14 @@ export interface Project {
   motivations?: { title: string; body: string }[];
   /** Optional "how it works" diagram (image under /public) + caption. */
   diagram?: { image: string; caption?: string };
+  /** Optional themed image showcases (concept galleries), each its own section. */
+  showcases?: {
+    title: string;
+    caption?: string;
+    cols?: 3 | 4;
+    aspect?: "square" | "wide";
+    items: { src: string; label?: string }[];
+  }[];
   /** Builder's role. Optional. */
   role?: string;
   features: string[];

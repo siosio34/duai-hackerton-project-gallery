@@ -18,9 +18,9 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     slug: "onlyup-duai",
-    title: "DUDU — Bitcoin Upward Life-Climb",
+    title: "DUDU: Bitcoin Upward Life-Climb",
     tagline:
-      "온리업 스타일 수직 등반 × 비트코인 자산 성장 판타지. 두두가 도시를 오르면 시뮬레이션 BTC가 오르고, 포트폴리오가 거주 티어를 끌어올린다.",
+      "온리업 스타일 수직 등반에 비트코인 자산 성장 판타지를 얹었다. 두두가 도시를 오를수록 시뮬레이션 BTC가 오르고, 포트폴리오가 거주 티어를 끌어올린다.",
     section: "projects",
     category: "Creative",
     tags: ["3D 게임", "WebGL", "멀티플레이", "생성형 비주얼"],
@@ -43,36 +43,59 @@ export const projects: Project[] = [
       poster: "/media/onlyup-duai/poster.jpg",
     },
     overview:
-      "두두(파란 블롭 캐릭터)가 수직 도시를 오르면 시뮬레이션 BTC 가격이 오르고, 코인을 모으면 보유량이 늘어 '가격 × 보유량 = 포트폴리오'가 거주 티어(골목 지하 → 원룸촌 → 아파트 옥상 → 고급 주거지 → ATH 펜트하우스)와 두두의 액세서리를 업그레이드한다. 떨어지면 폭락한다. 실제 시세/거래소와 무관한 시뮬레이션 데모이며 투자 조언이 아니다.",
-    problem:
-      "자산 성장이라는 추상적 감각을 몸으로 느낄 방법이 없었다. 차트의 숫자는 '오른다'는 실감으로 이어지지 않는다. 수직 등반이라는 물리적 상승과 자산 그래프를 한 몸으로 묶어, 오르는 손맛과 떨어지는 공포를 동시에 체험하게 만들고 싶었다.",
-    role: "솔로 빌드. Three.js 게임플레이·물리(코요테/버퍼 점프), 7개 존의 절차적 발판 생성, 멀티플레이 동기화(서버리스 폴링), 자동 스크린샷·FPS·기능 테스트 파이프라인까지 전부 설계했다.",
+      "두두는 파란 블롭 캐릭터다. 수직 도시를 오르면 시뮬레이션 BTC 가격이 오르고, 코인을 모으면 보유량이 늘어난다. '가격 × 보유량 = 포트폴리오'가 거주 티어(골목 지하 → 원룸촌 → 아파트 옥상 → 고급 주거지 → ATH 펜트하우스)와 두두의 액세서리를 끌어올린다. 떨어지면 폭락한다. 실제 시세나 거래소와는 무관한 시뮬레이션 데모이고, 투자 조언이 아니다.",
+    role: "혼자 만들었다. Three.js 게임플레이와 물리(코요테·버퍼 점프), 7개 존의 절차적 발판 생성, 서버리스 폴링 기반 멀티플레이 동기화, 그리고 자동 스크린샷·FPS·기능 테스트 파이프라인까지 전부 설계했다.",
     features: [
-      "7개 존(골목 → 펜트하우스 → 달 → 신계) + 정상 등정 후 🐂 BULL RUN 무한 상승장, 직후 🎰 더블다운 한 방 올인 선택.",
-      "발판 패턴 — 나선/지그재그/계단/롱점프/기둥/붕괴/이동/트램펄린/빙판 + 🔮 징검다리(2열 중 하나는 가짜).",
-      "멀티플레이는 Vercel 서버리스 함수 + Upstash Redis ~400ms 폴링으로 동작 — 고스트·Q 강탈·자유 채팅·글로벌 영구 랭킹. Redis가 없으면 솔로 + 로컬 랭킹 + AI 봇으로 자동 폴백.",
-      "CC0 PBR 텍스처·HDRI·은하수 파노라마·존별 3D 데코를 비동기 로드. 7~24MB 네온 간판은 gltf-transform로 ~200KB까지 압축.",
-      "캐릭터·효과음·UI는 모두 프로시저럴(프리미티브 지오메트리·WebAudio·캔버스).",
+      "7개 존을 오른다. 골목에서 펜트하우스, 달, 신계까지. 정상에 닿으면 무한 상승장 BULL RUN이 열리고, 곧바로 번 돈을 한 판에 거는 더블다운이 기다린다.",
+      "발판 패턴이 다양하다. 나선·지그재그·계단·롱점프·기둥·붕괴·이동·트램펄린·빙판에, 두 줄 중 하나가 가짜인 징검다리까지 섞었다.",
+      "멀티플레이는 Vercel 서버리스 함수와 Upstash Redis 폴링(~400ms)으로 돌아간다. 고스트 플레이어, Q 강탈, 자유 채팅, 글로벌 영구 랭킹을 지원하고, Redis가 없으면 솔로와 로컬 랭킹, AI 봇으로 자동 폴백한다.",
+      "CC0 PBR 텍스처·HDRI·은하수 파노라마·존별 3D 데코를 비동기로 불러온다. 7~24MB짜리 네온 간판은 gltf-transform으로 200KB 안팎까지 압축했다.",
+      "캐릭터·효과음·UI는 전부 프로시저럴이다(프리미티브 지오메트리·WebAudio·캔버스).",
     ],
     outcome:
-      "Vercel에 배포되어 누구나 바로 플레이할 수 있다. 루브릭 기반 9장면 자동 스크린샷, 장면별 FPS 측정, 상호작용/물리 기능 테스트를 스크립트로 갖춰 비주얼·성능·동작을 회귀 검증한다. 서버가 없어도 AI 봇이 등반·채팅하며 솔로 레이스가 성립하도록 폴백을 설계해 어떤 환경에서도 깨지지 않는다.",
+      "Vercel에 배포돼 있어 누구나 바로 플레이할 수 있다. 루브릭 기반 9장면 자동 스크린샷, 장면별 FPS 측정, 상호작용·물리 기능 테스트를 스크립트로 갖춰 비주얼과 성능, 동작을 회귀 검증한다. 서버가 없을 때도 AI 봇이 대신 등반하고 채팅해서 솔로 레이스가 성립하도록 폴백을 짰다. 덕분에 어떤 환경에서도 깨지지 않는다.",
     links: [{ label: "Live site", href: "https://onlyup-duai.vercel.app" }],
-    gallery: [
+    gallery: [],
+    showcases: [
       {
-        caption: "골목 지하에서 시작 — 네온 간판과 BTC 터미널 HUD.",
-        image: "/media/onlyup-duai/g1-street.jpg",
+        title: "돈을 벌면 진화하는 두두",
+        caption:
+          "포트폴리오가 커질수록 두두의 차림이 바뀐다. 빈손 블롭에서 시작해 왕관을 쓰고, ATH에 닿으면 몸에서 빛이 난다.",
+        cols: 3,
+        aspect: "square",
+        items: [
+          { src: "/media/onlyup-duai/char-1.jpg", label: "1티어 · 빈손 블롭" },
+          { src: "/media/onlyup-duai/char-2.jpg", label: "중반 · 왕관" },
+          { src: "/media/onlyup-duai/char-3.jpg", label: "ATH · 발광 오라" },
+        ],
       },
       {
-        caption: "아파트 티어 — 포트폴리오가 오르면 거주지가 올라간다.",
-        image: "/media/onlyup-duai/g2-apartments.jpg",
+        title: "층마다 바뀌는 풍경",
+        caption:
+          "거주 티어가 오르면 배경 세계가 통째로 바뀐다. 골목 지하에서 출발해 아파트, 고급 주거지, 펜트하우스를 지나 달과 신계까지 오른다.",
+        cols: 3,
+        aspect: "wide",
+        items: [
+          { src: "/media/onlyup-duai/g1-street.jpg", label: "골목 지하" },
+          { src: "/media/onlyup-duai/g2-apartments.jpg", label: "아파트촌" },
+          { src: "/media/onlyup-duai/scene-lux.jpg", label: "고급 주거지" },
+          { src: "/media/onlyup-duai/scene-penthouse.jpg", label: "펜트하우스" },
+          { src: "/media/onlyup-duai/g3-space.jpg", label: "우주 · 달" },
+          { src: "/media/onlyup-duai/scene-god.jpg", label: "신계" },
+        ],
       },
       {
-        caption: "우주존 — 달 너머로 이어지는 수직 등반.",
-        image: "/media/onlyup-duai/g3-space.jpg",
-      },
-      {
-        caption: "정상 등정 직후 🎰 더블다운 — 챙길지 올인할지.",
-        image: "/media/onlyup-duai/g4-jackpot.jpg",
+        title: "동네에서 마주치는 NPC들",
+        caption:
+          "슬럼의 주민들은 돈 벌어오라며 핀잔을 주고, 두두는 운다. 위로 올라갈수록 부자들은 비웃고, 신계에선 떠받든다. 전부 비주얼 노벨식 대화창으로 펼쳐진다.",
+        cols: 4,
+        aspect: "square",
+        items: [
+          { src: "/media/onlyup-duai/npc-00.jpg" },
+          { src: "/media/onlyup-duai/npc-01.jpg" },
+          { src: "/media/onlyup-duai/npc-02.jpg" },
+          { src: "/media/onlyup-duai/npc-03.jpg" },
+        ],
       },
     ],
   },
