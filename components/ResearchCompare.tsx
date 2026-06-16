@@ -213,9 +213,66 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
         </ul>
       </section>
 
-      {/* ① Two outputs */}
+      {/* Quantitative comparison — moved up; the key before/after */}
       <section className="mt-24">
-        <SectionHead kicker="① 양쪽 산출물" title="대조군과 실험군, 나란히" />
+        <SectionHead kicker="정량 비교" title="스킬 사용 전과 후, 실측 격차" />
+        <Reveal className="mt-10">
+          <div className="overflow-x-auto rounded-xl border border-line">
+            <table className="w-full min-w-[640px] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-line-strong text-left">
+                  <th className="px-5 py-4 font-medium text-ink">지표</th>
+                  <th className="px-5 py-4 text-right font-medium text-ink-mute">스킬 사용 전</th>
+                  <th className="px-5 py-4 text-right font-medium text-ink">스킬 사용 후</th>
+                  <th className="px-5 py-4 text-right font-medium text-ink">격차</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ROWS.map((r, i) => (
+                  <tr
+                    key={r.metric}
+                    className={i % 2 ? "bg-paper-2/40" : undefined}
+                  >
+                    <td className="px-5 py-3.5 align-top">
+                      <span className="text-ink">{r.metric}</span>
+                      {r.note && (
+                        <span className="mt-0.5 block text-xs text-ink-mute">{r.note}</span>
+                      )}
+                    </td>
+                    <td className="px-5 py-3.5 text-right align-top font-mono text-ink-mute tabular-nums">
+                      {r.ctrl}
+                    </td>
+                    <td className="px-5 py-3.5 text-right align-top font-mono text-ink tabular-nums">
+                      {r.exp}
+                      {r.expNote && (
+                        <span className="mt-0.5 block font-sans text-xs text-ink-mute">
+                          {r.expNote}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-5 py-3.5 text-right align-top font-mono font-semibold text-accent-deep tabular-nums">
+                      {r.gap}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <p className="mt-5 max-w-[78ch] break-keep text-sm leading-relaxed text-ink-mute">
+            토큰은 추정이 아니라 실측이다. 클로드코드 세션 트랜스크립트(JSONL)의 usage를 두 트랙의
+            타임스탬프 구간으로 나눠 합산했다. 스킬 사용 전도 0이 아니다(생성 28,383, 총 처리 1,158,423).
+            가장 직관적인 비교는 생성 토큰 약 16.7배다. 비용은 Opus 4.8 종량제 단가로 환산한 값이고
+            Max/Pro 구독 청구액이 아니다. 총 처리 4,486만 가운데 4,350만(cache_read)은 단가가 1/10이라,
+            ‘4천만’은 처리량일 뿐 그만큼 비싸다는 뜻은 아니다.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Two outputs */}
+      <section className="mt-24">
+        <SectionHead kicker="양쪽 산출물" title="스킬 사용 전과 후, 나란히" />
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Control — rendered as real typography, not a raw dump */}
           <Reveal>
@@ -223,8 +280,8 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
               <figcaption className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
                 <span className="flex items-center gap-2.5">
                   <span className="inline-block h-2 w-2 rounded-full bg-ink-mute" aria-hidden />
-                  <span className="font-medium text-ink">일반응답</span>
-                  <span className="meta-label">대조군</span>
+                  <span className="font-medium text-ink">스킬 사용 전</span>
+                  <span className="meta-label">일반응답</span>
                 </span>
                 <a
                   href={`${ASSET}/no-skill-answer.md`}
@@ -268,8 +325,8 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
               <figcaption className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
                 <span className="flex items-center gap-2.5">
                   <span className="inline-block h-2 w-2 rounded-full bg-accent" aria-hidden />
-                  <span className="font-medium text-ink">deep-research 스킬</span>
-                  <span className="meta-label text-accent-deep">실험군</span>
+                  <span className="font-medium text-ink">스킬 사용 후</span>
+                  <span className="meta-label text-accent-deep">deep-research</span>
                 </span>
                 <a
                   href={`${ASSET}/report.html`}
@@ -296,68 +353,11 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
         </div>
       </section>
 
-      {/* ② Quantitative comparison */}
+      {/* Qualitative diffs */}
       <section className="mt-24">
-        <SectionHead kicker="② 정량 비교" title="실측값으로 본 격차" />
-        <Reveal className="mt-10">
-          <div className="overflow-x-auto rounded-xl border border-line">
-            <table className="w-full min-w-[640px] border-collapse text-sm">
-              <thead>
-                <tr className="border-b border-line-strong text-left">
-                  <th className="px-5 py-4 font-medium text-ink">지표</th>
-                  <th className="px-5 py-4 text-right font-medium text-ink-mute">일반응답</th>
-                  <th className="px-5 py-4 text-right font-medium text-ink">스킬</th>
-                  <th className="px-5 py-4 text-right font-medium text-ink">격차</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROWS.map((r, i) => (
-                  <tr
-                    key={r.metric}
-                    className={i % 2 ? "bg-paper-2/40" : undefined}
-                  >
-                    <td className="px-5 py-3.5 align-top">
-                      <span className="text-ink">{r.metric}</span>
-                      {r.note && (
-                        <span className="mt-0.5 block text-xs text-ink-mute">{r.note}</span>
-                      )}
-                    </td>
-                    <td className="px-5 py-3.5 text-right align-top font-mono text-ink-mute tabular-nums">
-                      {r.ctrl}
-                    </td>
-                    <td className="px-5 py-3.5 text-right align-top font-mono text-ink tabular-nums">
-                      {r.exp}
-                      {r.expNote && (
-                        <span className="mt-0.5 block font-sans text-xs text-ink-mute">
-                          {r.expNote}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-5 py-3.5 text-right align-top font-mono font-semibold text-accent-deep tabular-nums">
-                      {r.gap}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <p className="mt-5 max-w-[78ch] break-keep text-sm leading-relaxed text-ink-mute">
-            토큰은 추정이 아니라 실측이다. 클로드코드 세션 트랜스크립트(JSONL)의 usage를 두 트랙의
-            타임스탬프 구간으로 나눠 합산했다. 일반응답도 0이 아니다(생성 28,383, 총 처리 1,158,423).
-            가장 직관적인 비교는 생성 토큰 약 16.7배다. 비용은 Opus 4.8 종량제 단가로 환산한 값이고
-            Max/Pro 구독 청구액이 아니다. 총 처리 4,486만 가운데 4,350만(cache_read)은 단가가 1/10이라,
-            ‘4천만’은 처리량일 뿐 그만큼 비싸다는 뜻은 아니다.
-          </p>
-        </Reveal>
-      </section>
-
-      {/* ③ Qualitative diffs */}
-      <section className="mt-24">
-        <SectionHead kicker="③ 정성 차이" title="스킬이 바로잡거나 더 잡아낸 것" />
+        <SectionHead kicker="정성 차이" title="스킬이 바로잡거나 더 잡아낸 것" />
         <p className="mt-6 max-w-[64ch] break-keep leading-relaxed text-ink-soft">
-          대조군이 1패스로 놓치거나 뭉갠 사실관계를, 스킬은 반증 검증 + 외부 council로 적발·정정했다.
+          스킬 없이 1패스로 놓치거나 뭉갠 사실관계를, 스킬은 반증 검증과 외부 council로 잡아냈다.
         </p>
         <div className="mt-10 space-y-4">
           {DIFFS.map((d, i) => (
@@ -396,7 +396,7 @@ export function ResearchCompare({ embedded = false }: { embedded?: boolean }) {
 
       {/* ④ When each suffices */}
       <section className="mt-24">
-        <SectionHead kicker="④ 판단 기준" title="언제 어느 쪽이면 충분한가" />
+        <SectionHead kicker="판단 기준" title="언제 어느 쪽이면 충분한가" />
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Reveal>
             <div className="h-full rounded-xl border border-line bg-paper-2/50 p-7">

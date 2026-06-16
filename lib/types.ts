@@ -61,11 +61,16 @@ export interface Project {
   media?: ProjectMedia;
 
   // --- Detail content ---
-  overview: string;
-  problem: string;
-  /** Optional "why I built it" goals, shown between problem and features. */
+  /** Lead paragraph. Optional — when omitted, the detail page leads with `role`. */
+  overview?: string;
+  /** The problem framing. Optional — omit when `motivations` carries the "why". */
+  problem?: string;
+  /** Optional "why I built it" goals, shown where the problem would sit. */
   motivations?: { title: string; body: string }[];
-  role: string;
+  /** Optional "how it works" diagram (image under /public) + caption. */
+  diagram?: { image: string; caption?: string };
+  /** Builder's role. Optional. */
+  role?: string;
   features: string[];
   outcome: string;
   links: ProjectLink[];

@@ -123,52 +123,72 @@ export function ProjectDetail({
         )}
       </motion.div>
 
-      {/* Overview + sidebar */}
-      <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <Reveal>
-            <p className="break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
-              {project.overview}
-            </p>
-          </Reveal>
-        </div>
+      {/* Lead (overview or role) + stack — falls back to a slim stack band */}
+      {project.overview || project.role ? (
+        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <p className="break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
+                {project.overview ?? project.role}
+              </p>
+            </Reveal>
+          </div>
 
-        <aside className="lg:col-span-4 lg:col-start-9">
-          <Reveal delay={0.1}>
-            <div className="space-y-8 border-t border-line pt-6">
-              <div>
-                <h2 className="meta-label">역할</h2>
-                <p className="mt-2 break-keep leading-relaxed text-ink-soft">
-                  {project.role}
-                </p>
+          <aside className="lg:col-span-4 lg:col-start-9">
+            <Reveal delay={0.1}>
+              <div className="space-y-8 border-t border-line pt-6">
+                {project.overview && project.role && (
+                  <div>
+                    <h2 className="meta-label">역할</h2>
+                    <p className="mt-2 break-keep leading-relaxed text-ink-soft">
+                      {project.role}
+                    </p>
+                  </div>
+                )}
+                <div>
+                  <h2 className="meta-label">스택</h2>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <li
+                        key={t}
+                        className="rounded-full border border-line-strong px-3 py-1 text-sm text-ink-soft"
+                      >
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h2 className="meta-label">스택</h2>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-full border border-line-strong px-3 py-1 text-sm text-ink-soft"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-        </aside>
-      </div>
+            </Reveal>
+          </aside>
+        </div>
+      ) : (
+        <div className="mt-12 border-t border-line pt-6">
+          <h2 className="meta-label mb-3">스택</h2>
+          <ul className="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <li
+                key={t}
+                className="rounded-full border border-line-strong px-3 py-1 text-sm text-ink-soft"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Problem */}
-      <section className="mt-24 grid grid-cols-1 gap-x-8 gap-y-6 border-t border-line pt-10 lg:grid-cols-12">
-        <h2 className="meta-label lg:col-span-3">문제</h2>
-        <Reveal className="lg:col-span-8 lg:col-start-5">
-          <p className="max-w-[58ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
-            {project.problem}
-          </p>
-        </Reveal>
-      </section>
+      {project.problem && (
+        <section className="mt-24 grid grid-cols-1 gap-x-8 gap-y-6 border-t border-line pt-10 lg:grid-cols-12">
+          <h2 className="meta-label lg:col-span-3">문제</h2>
+          <Reveal className="lg:col-span-8 lg:col-start-5">
+            <p className="max-w-[58ch] break-keep text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed">
+              {project.problem}
+            </p>
+          </Reveal>
+        </section>
+      )}
 
       {/* Motivations — why it was built */}
       {project.motivations && project.motivations.length > 0 && (
@@ -198,6 +218,31 @@ export function ProjectDetail({
               </motion.li>
             ))}
           </ol>
+        </section>
+      )}
+
+      {/* How it works — pipeline diagram */}
+      {project.diagram && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-8">어떻게 돌아가나</h2>
+          <Reveal>
+            <figure>
+              <div className="overflow-hidden rounded-xl border border-line bg-paper-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.diagram.image}
+                  alt="딥리서치 스킬 파이프라인 다이어그램"
+                  className="w-full"
+                  loading="lazy"
+                />
+              </div>
+              {project.diagram.caption && (
+                <figcaption className="mt-3 break-keep text-sm text-ink-mute">
+                  {project.diagram.caption}
+                </figcaption>
+              )}
+            </figure>
+          </Reveal>
         </section>
       )}
 
