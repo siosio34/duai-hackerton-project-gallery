@@ -45,6 +45,7 @@ export function Gallery({ projects }: { projects: Project[] }) {
   const builtProjects = projects.filter(
     (p) => (p.section ?? "projects") === "projects",
   );
+  const automation = projects.filter((p) => p.section === "automation");
   const skills = projects.filter((p) => p.section === "skills");
 
   return (
@@ -55,6 +56,13 @@ export function Gallery({ projects }: { projects: Project[] }) {
         title="프로젝트"
         blurb="직접 설계하고 배포한, 손에 잡히는 결과물. 열어서 플레이하거나 만져볼 수 있는 작업입니다."
         items={builtProjects}
+      />
+      <Section
+        id="automation"
+        kicker="automation"
+        title="자동화"
+        blurb="스크래핑·OCR·백테스트를 엮은 데이터 파이프라인. 흩어진 원천 데이터를 자동으로 모으고 검증해, 한 화면에서 읽히는 결과물로 만들어냅니다."
+        items={automation}
       />
       <Section
         id="skills"

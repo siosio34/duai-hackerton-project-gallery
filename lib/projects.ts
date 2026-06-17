@@ -297,6 +297,87 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
+    slug: "stock-subscribe-result",
+    title: "구독채널 성과 자동검증",
+    tagline:
+      "유료 주식 구독채널 5곳의 1년치 게시물을 통째로 긁어, 자기보고 수익률을 야후 파이낸스 실측으로 대조하고 차트 이미지는 비전 OCR로 끄집어내 한 화면에서 비교하는 데이터 파이프라인.",
+    section: "automation",
+    category: "Data pipeline",
+    tags: ["웹 스크래핑", "비전 OCR", "백테스트", "벤치마크 검증"],
+    tech: [
+      "Node.js",
+      "Chrome DevTools Protocol",
+      "Yahoo Finance",
+      "Vision OCR",
+      "Python",
+    ],
+    year: 2026,
+    status: "live",
+    featured: true,
+    span: 12,
+    accent: "#15803d",
+    visual: "grid",
+    media: {
+      poster: "/media/stock-subscribe-result/hero.png",
+      thumbnail: "/media/stock-subscribe-result/hero.png",
+    },
+    overview:
+      "유료 구독채널이 공개하는 수익률을 곧이곧대로 믿기 어려워서, 직접 검증해 보려고 만든 파이프라인. 팬딩·네이버 프리미엄에 흩어진 미주은·미주부·월텍남·SAPIENS(올바른 미국주식) 1년치 게시물 3,300개 이상을 헤드리스 브라우저로 긁고, 자기보고 수익률을 야후 파이낸스 실측 벤치마크(S&P500·나스닥)와 대조해 정합성을 검사한다. 텍스트엔 없고 차트 캡처에만 있는 매매내역은 비전 OCR로 정량화하고, FIFO로 매매를 복원해 채널별 실제 성과·매수콜 백테스트까지 산출한 뒤, 5개 채널을 한 화면에서 비교하는 대시보드로 묶었다.",
+    problem:
+      "구독채널마다 수익률 공개 방식이 제각각이다. 누구는 실계좌 캡처의 수치를 텍스트로 옮기고(검증 쉬움), 누구는 차트 이미지에만 매도/매수·실현손익을 담아둔다(텍스트만으론 산출 불가). 게다가 자기보고 수익률은 벤치마크를 유리하게 고르거나 이긴 구간만 보여주기 쉽다. 손으로는 1년치 수천 개 게시물을 교차검증할 수 없으니, 수집→대조→OCR→백테스트를 자동으로 잇는 파이프라인이 필요했다.",
+    role: "솔로 빌드. CDP 기반 스크래퍼, 야후 파이낸스 실측 대조 로직, 차트 이미지 비전 OCR, FIFO 매매 복원과 백테스트, 그리고 5채널 통합 대시보드까지 전 구간을 설계했다.",
+    features: [
+      "헤드리스 크롬(Chrome DevTools Protocol)으로 팬딩·네이버 프리미엄의 유료 피드를 무한 스크롤·네트워크 가로채기로 수집 — 미주은 2,515개 + 미주부 812개를 비롯해 1년치 게시물 3,300개 이상을 본문·첨부 단위로 긁었다.",
+      "자기보고 수익률 정합성 검증 — 채널이 적은 월별 벤치마크 수치를 야후 파이낸스 실측(^GSPC·^IXIC)과 대조하고, 월간 수익률을 복리로 합산해 본인이 주장한 1년 수치와 맞물리는지(산술 조작 흔적) 기계로 확인했다. 미주은의 경우 벤치마크 오차 대부분 0.0%p, 복리 합산도 주장치와 일치해 검증 통과.",
+      "이미지에 갇힌 수치 끄집어내기 — 매도/매수·실현손익이 차트 캡처에만 있는 미주부는 월간 계좌공개 이미지를 비전 OCR로 읽어 종목·수량·실현손익을 텍스트로 복원했다.",
+      "FIFO 매매 복원 + 백테스트 — 시점별 매수/매도 로그를 선입선출로 짝지어 종목 단위 실현손익과 매매구간 수익률을 재계산하고, 월텍남 매수콜·SAPIENS Overweight 구간을 야후 실측가로 독립 백테스트했다.",
+      "위험조정 해석을 함께 — 절대 수익률뿐 아니라 벤치마크 초과 승률, 월간 해상도 MDD, 종목 집중도까지 산출해 '초과수익이 실력인지 강세장·고베타의 산물인지'를 분리해 보여준다.",
+      "5채널 통합 대시보드 — 수집·검증·OCR·백테스트 결과를 단일 다크 대시보드로 묶고, 채널별 상세(구독 의사결정 리포트·SAPIENS/월텍남 백테스트)로 드릴다운하게 했다. 모든 수치는 파이프라인 산출물에서만 온다.",
+    ],
+    outcome:
+      "지난 1년(2025.6~2026.5)을 기준으로, 미주은 실계좌 +87%는 벤치마크 정합성·복리 합산 모두 검증을 통과했지만 동시에 월간 MDD 약 -17%·반도체 집중의 고베타 프로파일이라는 단서를 함께 드러냈다 — '이긴 달이 절반인데 총수익이 압도적인 건 이긴 달에 크게 벌어서'라는 구조까지 숫자로 보였다. 미주부는 텍스트만으론 불가능했던 매매내역을 OCR로 복원해 +16.6% 매매구간 수익을 산출했고, 월텍남·SAPIENS 매수콜도 실측가로 백테스트했다. '공개 수익률을 믿어도 되는가'를 사람 손이 아니라 파이프라인으로 답한 게 핵심. (자기제출 캡처의 진위 자체는 검증 불가 — 내부 정합성·벤치마크 정확성만 기계로 통과시켰다.)",
+    links: [
+      {
+        label: "통합 대시보드 보기",
+        href: "/media/stock-subscribe-result/dashboard.html",
+      },
+      {
+        label: "구독 의사결정 리포트",
+        href: "/media/stock-subscribe-result/index.html",
+      },
+      {
+        label: "SAPIENS 백테스트",
+        href: "/media/stock-subscribe-result/sapiens.html",
+      },
+      {
+        label: "월텍남 백테스트",
+        href: "/media/stock-subscribe-result/wtn.html",
+      },
+    ],
+    gallery: [
+      {
+        caption:
+          "미주은 — 삼성증권 실계좌 보유종목과 종목별 수익률. 자기보고 수치를 야후 실측 벤치마크와 대조해 정합성을 통과시켰다.",
+        image: "/media/stock-subscribe-result/g1-mje-holdings.png",
+      },
+      {
+        caption:
+          "미주부 — 시킹알파 픽 10선 실계좌(+87.9%). 차트 이미지에만 있던 매매내역을 비전 OCR로 복원해 종목·평단·수익률로 정량화했다.",
+        image: "/media/stock-subscribe-result/g2-mzb-picks.png",
+      },
+      {
+        caption:
+          "미주부 MZB 매매구간 성과(+16.6%) — FIFO로 매수/매도를 짝지어 종목별 매매구간 수익률을 재계산했다.",
+        image: "/media/stock-subscribe-result/g3-mzb-trades.png",
+      },
+      {
+        caption:
+          "백테스트 — 매수콜·Overweight 구간을 야후 파이낸스 실측가로 독립 검증. 구간별 수익률과 S&P 대비 초과분을 함께 본다.",
+        image: "/media/stock-subscribe-result/g4-backtest.png",
+      },
+    ],
+  },
+  {
     slug: "deep-research-report",
     title: "Deep Research Report",
     tagline:
@@ -387,6 +468,83 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "idea-validation-skill",
+    title: "아이디어 검증 스킬",
+    tagline:
+      "러프한 아이디어 한 줄을 한국 시장 기준 6단계로 검증해, 근거·페르소나·LLM 카운슬·법률 리스크를 분리한 GO/MODIFY/KILL 판정과 디자인된 리포트로 내주는 Claude Code 스킬.",
+    section: "skills",
+    category: "Skill",
+    tags: ["아이디어 검증", "한국 시장", "멀티에이전트", "법률 스크리닝"],
+    tech: [
+      "Claude Code",
+      "Python",
+      "Nemotron-Personas-Korea",
+      "OpenRouter",
+      "Chart.js",
+    ],
+    year: 2026,
+    status: "live",
+    featured: true,
+    span: 6,
+    accent: "#15803d",
+    visual: "scan",
+    media: {
+      thumbnail: "/media/idea-validation-skill/thumb.jpg",
+      poster: "/media/idea-validation-skill/poster.jpg",
+    },
+    overview:
+      "시장 평가(TAM/SAM/SOM·경쟁사 분해)·한국인 합성 페르소나 패널(Nemotron-Personas-Korea)·8역할 LLM 카운슬·한국 법률 스크리닝·빌드 준비 렌즈를 순서대로 돌려, 검증된 근거 / 합성 페르소나 가설 / 카운슬 판단 / 포지셔닝 가설 / 가정 다섯 증거 클래스를 끝까지 분리한다. 결과는 GO/MODIFY/KILL 판정과, 어떤 경쟁사·어떤 사람·어떤 역할·어떤 조항에서 나왔는지 추적 가능한 HTML 리포트. 디자인 프로토타입이나 런칭 카피가 아니라 의사결정용 검증이며, 투자·법률·세무 자문이 아닌 이슈 스파팅이다.",
+    motivations: [
+      {
+        title: "그럴듯함과 검증을 분리하고 싶었다",
+        body: "단일 모델은 아이디어를 띄워주기 쉽다. 근거·페르소나·카운슬·법률을 따로 세워 '괜찮아 보임'과 '검증됨'을 가르고, 가정이 사실로 둔갑하지 않게 끝까지 태그한다.",
+      },
+      {
+        title: "한국 시장·한국 사용자 기준으로",
+        body: "TAM/SAM/SOM과 경쟁사·법률을 한국 공식 출처(통계청·관광공사 등)와 한국인 합성 페르소나로 본다. 글로벌 일반론이 아니라 한국에서 되는지를 묻는다.",
+      },
+      {
+        title: "법률 리스크를 착수 전에 짚는다",
+        body: "개인정보·전자금융·자본시장·표시광고 같은 규제 영역을 조항 단위로 스파팅한다. 합법 여부를 단정하지 않고, 자문이 필요한 지점을 드러낸다.",
+      },
+      {
+        title: "판정은 읽기 좋은 리포트로",
+        body: "차트(시장 매력도 레이더·SOM 시나리오·페르소나 채택vs지불·법률 심각도)와 표, 근거 추적이 함께 있는 디자인된 HTML로 GO/MODIFY/KILL을 낸다.",
+      },
+    ],
+    features: [
+      "6단계 파이프라인 — 아이디어 명료화(1·6 pager) → 시장 평가 → 한국인 페르소나 패널 → LLM 카운슬 → 법률 스크린 → 빌드 준비 렌즈. 각 단계에 게이트가 있어, 통과 못 하면 무엇이 빠졌는지 알리고 다음으로 안 넘어간다.",
+      "다섯 증거 클래스 분리 — 검증된 근거 / 합성 페르소나 가설 / 카운슬 판단 / 포지셔닝 가설 / 가정. 출처 없는 추정이 사실로 인용되지 않게 끝까지 표기한다.",
+      "한국인 합성 페르소나 패널 — Nemotron-Personas-Korea(100만 레코드·26필드)에서 연령·지역·직업·가구·소득·금융성향으로 6~12명 샘플(회의론자 의도 포함), 각자 채택·지불 의향과 실제 사용 맥락을 합성 가설로 반환.",
+      "8역할 LLM 카운슬 — 시장 전략가·회의적 투자자·UX·성장·보안 등 8역할이 독립 1차 의견 → 익명 동료 랭킹 → 의장 종합(Karpathy llm-council). 모델이 여럿이면 역할마다 다른 모델을 붙인다.",
+      "한국 법률 스크리닝 — 개인정보보호법·전자금융거래법·자본시장법·표시광고법 등에서 심각도(LOW~BLOCKER)·트리거 도메인·자문 질문을 조항 단위로 도출. 이슈 스파팅이지 합법 단정이 아니다.",
+      "추적 가능한 디자인 리포트 — 목차·스크롤 진행바와 Chart.js 차트(+오프라인 폴백 표)를 갖춘 HTML로, 각 발견을 출처·사람·역할·조항까지 되짚을 수 있게 렌더한다.",
+    ],
+    outcome:
+      "실제로 갤러리의 '링크트립'(여행 단톡방 → 장소 추출 → 공유 지도·동선) 아이디어를 돌렸다. 판정은 MODIFY(확신 보통) — 페인은 실재하지만 핵심 입력인 단톡 .txt 업로드가 제3자 개인정보 무동의 처리(개인정보보호법 §15/§17)로 출시 불가라는 결론이 법률(HIGH)·카운슬(5 MODIFY·3 KILL)·페르소나(채택 3.0·지불 2.0/5)에서 일관되게 나왔다. 스킬은 '채팅 업로드 제거 → URL 직접 붙여넣기 협업 보드'로 피벗하면 핵심 킬 조건이 사라진다는 권고와, 시장 매력도 55/100·TAM 48.5조·경쟁사 15개 분해를 근거로 함께 제시했다. '될 것 같다'가 아니라 '무엇을 바꿔야 사는가'를 출처로 보여주는 게 이 스킬의 값어치다.",
+    links: [
+      {
+        label: "실제 검증 리포트 보기 — TripLink",
+        href: "/media/idea-validation-skill/report.html",
+      },
+    ],
+    showcases: [
+      {
+        title: "검증 리포트 들여다보기",
+        caption:
+          "링크트립 아이디어를 한국 시장 기준으로 끝까지 돌린 실제 리포트. 시장 규모부터 페르소나·카운슬까지 모든 판단이 근거로 추적된다.",
+        cols: 3,
+        aspect: "wide",
+        items: [
+          { src: "/media/idea-validation-skill/g-market.jpg", label: "시장 평가 — TAM/SAM/SOM과 경쟁사 15개 분해" },
+          { src: "/media/idea-validation-skill/g-persona.jpg", label: "한국인 합성 페르소나 패널의 채택·지불 의향" },
+          { src: "/media/idea-validation-skill/g-council.jpg", label: "8역할 LLM 카운슬 — 5 MODIFY·3 KILL과 의장 종합" },
+        ],
+      },
+    ],
+    gallery: [],
+  },
+  {
     slug: "eval-improve-skills",
     title: "Eval-Improve Skills",
     tagline:
@@ -462,24 +620,6 @@ export const projects: Project[] = [
         image: "/media/eval-improve-skills/abtest.jpg",
       },
     ],
-  },
-  {
-    slug: "idea-validation-skill",
-    title: "아이디어 검증 스킬",
-    tagline: "공개 준비 중인 스킬입니다.",
-    section: "skills",
-    category: "Skill",
-    tags: ["진행중"],
-    tech: [],
-    year: 2026,
-    status: "in-progress",
-    span: 6,
-    accent: "#db2777",
-    visual: "scan",
-    placeholder: true,
-    features: [],
-    links: [],
-    gallery: [],
   },
 ];
 

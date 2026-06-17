@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>월텍남 매수콜 백테스트 리포트</title>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--line:#2a2f3a;--txt:#e7e9ee;--mut:#9aa3b2;--acc:#5b8cff;--grn:#22c55e;--red:#ef4444;--amb:#f59e0b;--paid:#f59e0b;--yt:#ef4444;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;line-height:1.65;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 90px}
+  header{padding:54px 0 24px;border-bottom:1px solid var(--line)}
+  h1{font-size:28px;margin:0 0 10px;letter-spacing:-.5px}
+  .sub{color:var(--mut);font-size:14px}
+  h2{font-size:21px;margin:46px 0 4px;letter-spacing:-.3px}
+  h3{font-size:15px;margin:22px 0 8px;color:#cdd3df}
+  .lead{color:var(--mut);margin:2px 0 16px;font-size:14px}
+  .verdict{background:linear-gradient(135deg,#1b2230,#171a21);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:24px 0}
+  .verdict b{color:#fff}
+  .grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.g4,.g3{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .kpi{text-align:center}.kpi .n{font-size:25px;font-weight:700;letter-spacing:-.5px}.kpi .l{font-size:12px;color:var(--mut);margin-top:3px}
+  .pos{color:var(--grn)}.neg{color:var(--red)}.accent{color:var(--acc)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+  th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:11.5px;letter-spacing:.3px}
+  tbody tr:hover{background:#1a1e27}
+  .chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);margin-top:8px}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .warn{background:#241c12;border:1px solid #5a4420;border-radius:10px;padding:13px 16px;font-size:13px;color:#f0d9b5;margin:14px 0}
+  .ok{background:#102218;border:1px solid #1f5236;border-radius:10px;padding:13px 16px;font-size:13px;color:#bdf0d2;margin:14px 0}
+  .tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:11px;font-weight:600}
+  .tag.paid{background:#3a2c12;color:#f0c074}.tag.yt{background:#3a1518;color:#f0a0a8}
+  .tag.high{background:#13321f;color:#7ee2a8}.tag.med{background:#23262e;color:#9aa3b2}
+  .muted{color:var(--mut)}.small{font-size:12.5px}
+  svg text{fill:var(--mut);font-size:10px}
+  footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>월텍남 — "매수 추천 시점에 샀다면?" 백테스트</h1>
+  <div class="sub">유튜브 167영상(1년) + 어스플러스 실전투자클럽 277글(2025-10~) 전수 분석 · 명시적 매수 추천만 추출 · 추천일~2026-06-17 보유 가정 · 벤치마크 Yahoo 실측</div>
+</header>
+
+<div class="verdict">
+  <b>결론.</b> 월텍남은 <b>무료 유튜브에선 종목 콜을 거의 안 합니다</b>(167영상 중 4건, 본인이 "종목 안 찍는다" 반복 선언).
+  반면 <b>유료 어스플러스에선 명시적 매수콜 35건</b>이 나왔고, 추천일~현재 <b>평균 +15.2% (S&amp;P 대비 +5.8%p, 초과승률 60%)</b>로 시장을 앞섰습니다.
+  특히 <b>'강력추천(high)' 14건은 평균 +18.3% (초과 +8.6%p, 초과승 10/14)</b>로 더 좋았습니다.
+  단 — 강세장 보유 가정·매도시점 없음·NVDA 편중·작은 표본이라는 한계가 큽니다.
+</div>
+
+<h2>① 핵심 수치 (어스플러스 유료 35콜)</h2>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+15.2%</div><div class="l">평균 수익률</div></div>
+  <div class="card kpi"><div class="n pos">+5.8%p</div><div class="l">S&amp;P 대비 평균 초과</div></div>
+  <div class="card kpi"><div class="n">21/35</div><div class="l">시장 초과 승률 (60%)</div></div>
+  <div class="card kpi"><div class="n">25/35</div><div class="l">절대 수익 승률 (71%)</div></div>
+</div>
+<div class="ok"><b>확신도가 높을수록 성과도 좋았다.</b> 'high'로 강하게 권한 14건은 평균 <b>+18.3%</b>, 초과 <b>+8.6%p</b>, 초과승 10/14(71%). 'med'(완곡)는 평균 +12% 수준. → 그의 강한 콜은 실제로 변별력이 있었다는 신호(단 표본 작음).</div>
+
+<h2>② 소스·확신도 비교</h2>
+<table>
+  <thead><tr><th>구분</th><th></th><th>건수</th><th>평균수익</th><th>평균초과</th><th>초과승률</th></tr></thead>
+  <tbody id="cmpTable"></tbody>
+</table>
+<p class="small muted">유튜브(무료) 4건은 평균 +3.3%로 시장(−5.3%p)에 뒤짐 — 무료 채널은 매수신호용이 아님이 재확인됨. 매수콜의 89%(35/39)가 유료에 집중.</p>
+
+<h2>③ 종목별 성과</h2>
+<div class="lead">콜 횟수순 · 막대=평균 수익률</div>
+<div class="chart"><svg id="tkChart" viewBox="0 0 940 360" width="100%"></svg></div>
+<div class="warn"><b>편중과 명암.</b> 전체 39콜 중 <b>NVDA가 13건(33%)</b> — 그의 핵심 확신은 엔비디아이고 평균 +10.9%로 꾸준했습니다. 반대로 <b>PLTR(팔란티어)는 6번 반복 추천했지만 평균 −6.0%</b>로 최악(특히 3월 고점 부근 반복 추천). CRCL(서클)도 −15%. 대박 콜(CRWD +98%, SNOW +54%, GEV +49%, CRWV +41%, MU +33%, APP +28%)이 평균을 끌어올린 측면도 큼.</div>
+
+<h2>④ 전체 매수콜 (39건, 추천일순)</h2>
+<table>
+  <thead><tr><th>추천일</th><th>종목</th><th>소스</th><th>확신</th><th>수익률</th><th>동기간S&amp;P</th><th>초과</th></tr></thead>
+  <tbody id="recTable"></tbody>
+</table>
+
+<h2>⑤ 해석 시 반드시 감안할 한계</h2>
+<ul class="small" style="color:#cdd3df">
+  <li><b>매도 시점이 없음.</b> "추천일~현재 보유" 가정이라, 실제로 그가 중간에 팔라고 했을 수 있음(특히 "분할매수/분할매도" 스타일).</li>
+  <li><b>대부분 "분할매수/모아가라" 표현.</b> 단일 진입가(추천일 종가)로 계산했지만 실제 평단은 다를 수 있음.</li>
+  <li><b>강세장 보너스.</b> 이 기간 S&amp;P가 평균 +9~10% 올랐음. 절대수익의 상당분은 시장 덕.</li>
+  <li><b>NVDA 편중(33%)·작은 표본.</b> 종목별 1~2건이 많아 운/실력 분리 불가. 통계적 신뢰도 낮음.</li>
+  <li><b>추출 한계.</b> 자동자막/유료글에서 "명시적 매수"만 엄격 추출 — 일부 완곡한 콜은 누락, 일부 본인 매매 서술이 포함됐을 수 있음.</li>
+  <li><b>기간 불일치.</b> 어스플러스 클럽은 2025-10 시작이라 미주은·미주부(1년)와 단순 비교 불가.</li>
+</ul>
+
+<footer>
+데이터: 유튜브 @waltechman 자막 167개 · 어스플러스 us-insight.com club/58 글 277개 · Yahoo Finance 실측. 명시적 매수추천은 14개 서브에이전트가 엄격 기준으로 추출. 본 리포트는 정보분석용이며 투자권유가 아님. 백테스트는 과거 성과이며 미래를 보장하지 않습니다.
+</footer>
+</div>
+<script>
+const RECS=[{"src":"PAID","date":"2025-11-16","ticker":"NVDA","conf":"high","ret":11.3,"sp":12.6,"excess":-1.3},{"src":"YT","date":"2025-11-26","ticker":"NVDA","conf":"med","ret":15.2,"sp":10.3,"excess":4.9},{"src":"YT","date":"2025-12-11","ticker":"ORCL","conf":"high","ret":-4.7,"sp":8.8,"excess":-13.5},{"src":"PAID","date":"2025-12-13","ticker":"AVGO","conf":"med","ret":11.3,"sp":10.2,"excess":1.1},{"src":"PAID","date":"2025-12-13","ticker":"ORCL","conf":"med","ret":2.5,"sp":10.2,"excess":-7.7},{"src":"PAID","date":"2025-12-17","ticker":"NVDA","conf":"high","ret":21.5,"sp":11.8,"excess":9.7},{"src":"PAID","date":"2025-12-18","ticker":"GEV","conf":"med","ret":53.9,"sp":10.9,"excess":43.0},{"src":"PAID","date":"2025-12-19","ticker":"CRWV","conf":"high","ret":41.0,"sp":9.9,"excess":31.1},{"src":"PAID","date":"2026-01-04","ticker":"CRCL","conf":"med","ret":-6.0,"sp":8.8,"excess":-14.8},{"src":"PAID","date":"2026-01-18","ticker":"GEV","conf":"med","ret":43.6,"sp":10.5,"excess":33.1},{"src":"PAID","date":"2026-02-02","ticker":"APP","conf":"high","ret":7.8,"sp":7.7,"excess":0.1},{"src":"PAID","date":"2026-02-05","ticker":"APP","conf":"med","ret":38.8,"sp":10.5,"excess":28.3},{"src":"PAID","date":"2026-02-05","ticker":"MSFT","conf":"med","ret":0.5,"sp":10.5,"excess":-10.0},{"src":"PAID","date":"2026-02-05","ticker":"PLTR","conf":"med","ret":3.6,"sp":10.5,"excess":-6.9},{"src":"PAID","date":"2026-02-05","ticker":"SNOW","conf":"med","ret":53.6,"sp":10.5,"excess":43.1},{"src":"PAID","date":"2026-02-05","ticker":"NVDA","conf":"med","ret":20.8,"sp":10.5,"excess":10.3},{"src":"PAID","date":"2026-02-05","ticker":"AVGO","conf":"med","ret":21.6,"sp":10.5,"excess":11.1},{"src":"PAID","date":"2026-02-17","ticker":"NVDA","conf":"high","ret":12.3,"sp":9.8,"excess":2.5},{"src":"PAID","date":"2026-02-17","ticker":"TSM","conf":"high","ret":17.5,"sp":9.8,"excess":7.7},{"src":"PAID","date":"2026-02-17","ticker":"AVGO","conf":"high","ret":13.5,"sp":9.8,"excess":3.7},{"src":"PAID","date":"2026-02-17","ticker":"APP","conf":"med","ret":38.4,"sp":9.8,"excess":28.6},{"src":"PAID","date":"2026-02-24","ticker":"ZS","conf":"high","ret":-12.7,"sp":9.0,"excess":-21.7},{"src":"PAID","date":"2026-02-24","ticker":"CRWD","conf":"high","ret":97.8,"sp":9.0,"excess":88.8},{"src":"PAID","date":"2026-03-03","ticker":"PLTR","conf":"med","ret":-8.5,"sp":10.2,"excess":-18.7},{"src":"PAID","date":"2026-03-05","ticker":"PLTR","conf":"high","ret":-11.8,"sp":10.0,"excess":-21.8},{"src":"PAID","date":"2026-03-05","ticker":"CRCL","conf":"med","ret":-24.6,"sp":10.0,"excess":-34.6},{"src":"PAID","date":"2026-03-07","ticker":"PLTR","conf":"med","ret":-13.9,"sp":10.5,"excess":-24.4},{"src":"PAID","date":"2026-03-09","ticker":"NVDA","conf":"med","ret":13.7,"sp":10.5,"excess":3.2},{"src":"PAID","date":"2026-03-11","ticker":"ORCL","conf":"med","ret":15.9,"sp":10.9,"excess":5.0},{"src":"PAID","date":"2026-03-17","ticker":"NVDA","conf":"high","ret":14.1,"sp":11.8,"excess":2.3},{"src":"PAID","date":"2026-03-18","ticker":"NVDA","conf":"high","ret":15.1,"sp":13.4,"excess":1.7},{"src":"PAID","date":"2026-03-19","ticker":"NVDA","conf":"med","ret":16.3,"sp":13.7,"excess":2.6},{"src":"YT","date":"2026-04-08","ticker":"PLTR","conf":"med","ret":-4.3,"sp":10.7,"excess":-15.0},{"src":"YT","date":"2026-04-26","ticker":"TSLA","conf":"med","ret":6.9,"sp":4.7,"excess":2.2},{"src":"PAID","date":"2026-04-26","ticker":"NVDA","conf":"med","ret":-4.1,"sp":4.7,"excess":-8.8},{"src":"PAID","date":"2026-05-05","ticker":"PLTR","conf":"med","ret":-0.9,"sp":3.5,"excess":-4.4},{"src":"PAID","date":"2026-05-07","ticker":"NVDA","conf":"med","ret":-1.8,"sp":2.4,"excess":-4.2},{"src":"PAID","date":"2026-05-08","ticker":"NVDA","conf":"med","ret":-3.5,"sp":1.5,"excess":-5.0},{"src":"PAID","date":"2026-05-12","ticker":"MU","conf":"high","ret":33.2,"sp":1.5,"excess":31.7}];
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+const cls=n=>n>=0?'pos':'neg';const fmt=n=>(n>=0?'+':'')+n.toFixed(1)+'%';
+
+// comparison table
+function row(label,col,rows){if(!rows.length)return '';const r=rows.map(x=>x.ret),e=rows.map(x=>x.excess);const ew=rows.filter(x=>x.excess>0).length;return `<tr><td>${label}</td><td><span class="tag ${col}">${rows.length}건</span></td><td>${rows.length}</td><td class="${cls(mean(r))}">${fmt(mean(r))}</td><td class="${cls(mean(e))}">${fmt(mean(e))}p</td><td>${ew}/${rows.length}</td></tr>`;}
+const paid=RECS.filter(r=>r.src==='PAID'),yt=RECS.filter(r=>r.src==='YT'),hi=RECS.filter(r=>r.conf==='high'),me=RECS.filter(r=>r.conf==='med');
+document.getElementById('cmpTable').innerHTML=
+ row('어스플러스(유료)','paid',paid)+row('유튜브(무료)','yt',yt)+
+ `<tr><td colspan="6" style="border:0;height:6px"></td></tr>`+
+ row('확신 high','high',hi)+row('완곡 med','med',me)+
+ `<tr style="font-weight:700"><td>전체</td><td></td><td>${RECS.length}</td><td class="${cls(mean(RECS.map(r=>r.ret)))}">${fmt(mean(RECS.map(r=>r.ret)))}</td><td class="${cls(mean(RECS.map(r=>r.excess)))}">${fmt(mean(RECS.map(r=>r.excess)))}p</td><td>${RECS.filter(r=>r.excess>0).length}/${RECS.length}</td></tr>`;
+
+// per-ticker chart
+const byT={};RECS.forEach(r=>{(byT[r.ticker]=byT[r.ticker]||[]).push(r.ret);});
+const tks=Object.entries(byT).map(([k,v])=>({t:k,n:v.length,avg:mean(v)})).sort((a,b)=>b.n-a.n||b.avg-a.avg);
+(function(){const svg=document.getElementById('tkChart');const W=940,H=360,pl=46,pr=20,pt=14,pb=46;
+ const vals=tks.map(t=>t.avg);const mn=Math.min(0,...vals),mx=Math.max(...vals);const xw=W-pl-pr,yh=H-pt-pb;const bw=xw/tks.length*0.62;
+ const Y=v=>pt+yh*(1-(v-mn)/(mx-mn));const zero=Y(0);let g='';
+ for(let k=0;k<=5;k++){const val=mn+(mx-mn)*k/5,y=Y(val);g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#242833"/><text x="${pl-6}" y="${y+3}" text-anchor="end">${Math.round(val)}%</text>`;}
+ tks.forEach((t,i)=>{const cx=pl+xw*(i+0.5)/tks.length;const y=Y(Math.max(0,t.avg)),h=Math.abs(Y(t.avg)-zero);const col=t.avg>=0?css('--grn'):css('--red');
+   g+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${col}"/>`;
+   g+=`<text x="${cx}" y="${t.avg>=0?y-4:y+h+11}" text-anchor="middle" style="fill:${col};font-weight:700;font-size:9px">${t.avg>=0?'+':''}${t.avg.toFixed(0)}</text>`;
+   g+=`<text x="${cx}" y="${H-26}" text-anchor="middle" style="font-size:9px;fill:#cdd3df">${t.t}</text>`;
+   g+=`<text x="${cx}" y="${H-14}" text-anchor="middle" style="font-size:8px">${t.n}회</text>`;});
+ svg.innerHTML=g;})();
+
+// full table
+document.getElementById('recTable').innerHTML=RECS.map(r=>
+ `<tr><td>${r.date}</td><td><b>${r.ticker}</b></td><td><span class="tag ${r.src==='PAID'?'paid':'yt'}">${r.src==='PAID'?'유료':'유튜브'}</span></td><td><span class="tag ${r.conf}">${r.conf}</span></td><td class="${cls(r.ret)}">${fmt(r.ret)}</td><td class="muted">${fmt(r.sp)}</td><td class="${cls(r.excess)}">${fmt(r.excess)}p</td></tr>`).join('');
+</script>
+</body>
+</html>

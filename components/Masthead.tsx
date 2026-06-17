@@ -9,10 +9,12 @@ import { useReducedMotion } from "motion/react";
 // Honors reduced motion by rendering everything static.
 export function Masthead({
   projects,
+  automation,
   skills,
   years,
 }: {
   projects: number;
+  automation: number;
   skills: number;
   years: string;
 }) {
@@ -61,17 +63,23 @@ export function Masthead({
 
         <div className="flex flex-col justify-end lg:col-span-3">
           <p className="mh-fade max-w-[34ch] break-keep text-base leading-relaxed text-ink-soft">
-            3D 게임부터 리서치·평가를 자동화하는 Claude Code 스킬까지. 각 카드를
-            열면 무엇을, 왜, 어떻게 만들었는지로 이어집니다.
+            3D 게임부터 데이터 수집·검증 자동화, 리서치·평가를 돕는 Claude Code
+            스킬까지. 각 카드를 열면 무엇을, 왜, 어떻게 만들었는지로 이어집니다.
           </p>
         </div>
       </div>
 
-      <dl className="mh-fade mt-14 grid grid-cols-3 gap-4 border-t border-line pt-6 sm:max-w-xl sm:gap-6">
+      <dl className="mh-fade mt-14 grid grid-cols-4 gap-4 border-t border-line pt-6 sm:max-w-2xl sm:gap-6">
         <div>
           <dt className="meta-label">프로젝트</dt>
           <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
             {String(projects).padStart(2, "0")}
+          </dd>
+        </div>
+        <div>
+          <dt className="meta-label">자동화</dt>
+          <dd className="mt-1 font-mono text-lg font-medium tabular-nums text-ink sm:text-2xl">
+            {String(automation).padStart(2, "0")}
           </dd>
         </div>
         <div>

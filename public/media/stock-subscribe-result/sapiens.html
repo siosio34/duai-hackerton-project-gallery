@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAPIENS(올바른 미국주식) Overweight 백테스트</title>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--line:#2a2f3a;--txt:#e7e9ee;--mut:#9aa3b2;--acc:#5b8cff;--grn:#22c55e;--red:#ef4444;--amb:#f59e0b;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;line-height:1.65;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 90px}
+  header{padding:54px 0 24px;border-bottom:1px solid var(--line)}
+  h1{font-size:27px;margin:0 0 10px;letter-spacing:-.5px}
+  .sub{color:var(--mut);font-size:14px}
+  h2{font-size:21px;margin:46px 0 4px;letter-spacing:-.3px}
+  h3{font-size:15px;margin:22px 0 8px;color:#cdd3df}
+  .lead{color:var(--mut);margin:2px 0 16px;font-size:14px}
+  .verdict{background:linear-gradient(135deg,#1b2230,#171a21);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:24px 0}
+  .verdict b{color:#fff}
+  .grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.g4,.g3,.g2{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .kpi{text-align:center}.kpi .n{font-size:24px;font-weight:700;letter-spacing:-.5px}.kpi .l{font-size:12px;color:var(--mut);margin-top:3px}
+  .pos{color:var(--grn)}.neg{color:var(--red)}.accent{color:var(--acc)}.amb{color:var(--amb)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+  th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:11.5px}
+  tbody tr:hover{background:#1a1e27}
+  .chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+  .warn{background:#241c12;border:1px solid #5a4420;border-radius:10px;padding:13px 16px;font-size:13px;color:#f0d9b5;margin:14px 0}
+  .ok{background:#102218;border:1px solid #1f5236;border-radius:10px;padding:13px 16px;font-size:13px;color:#bdf0d2;margin:14px 0}
+  .bad{background:#241316;border:1px solid #5c2630;border-radius:10px;padding:13px 16px;font-size:13px;color:#f3c6cd;margin:14px 0}
+  .tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:11px;font-weight:600}
+  .tag.ow{background:#13321f;color:#7ee2a8}.tag.dn{background:#2c2118;color:#e0b07a}
+  .muted{color:var(--mut)}.small{font-size:12.5px}
+  svg text{fill:var(--mut);font-size:10px}
+  footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>SAPIENS · 올바른 미국주식 — "Overweight 유지기간" 백테스트</h1>
+  <div class="sub">네이버 프리미엄 "올바른 미국주식 by SAPIENS" 주간전략보고 49주(2025-07~2026-06) 전수 · 종목별 Overweight 시작 → 다운그레이드(Neutral/UW) 또는 현재까지의 수익률 · 벤치마크 Yahoo 실측</div>
+</header>
+
+<div class="verdict">
+  <b>결론.</b> SAPIENS(메리츠 올바른투자랩 운용역)는 매주 종목별 <b>Overweight/Neutral/Underweight 투자의견</b>을 공개합니다.
+  OW 구간 31건 평균 수익률은 <b>+38.2%</b>(시장 대비 +28%p)로 화려해 보이지만, <b>중앙값은 +3.9%(시장 대비 −4.1%p)</b> — 즉 <b>전형적인 OW 콜은 시장을 살짝 밑돌았고</b>, 평균은 소수의 폭등주가 끌어올린 착시입니다.
+  진짜 성과는 <b>"메모리·AI인프라 테마 집중"</b>에서 나왔습니다(해당 9종목 평균 +158% vs 그 외 22종목 −11%).
+</div>
+
+<h2>① 핵심 수치 (OW 구간 31건, 평균 보유 171일)</h2>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+38.2%</div><div class="l">평균 수익률</div></div>
+  <div class="card kpi"><div class="n amb">+3.9%</div><div class="l">중앙값 (평균과 큰 괴리)</div></div>
+  <div class="card kpi"><div class="n">17/31</div><div class="l">절대 수익 승률 (55%)</div></div>
+  <div class="card kpi"><div class="n neg">14/31</div><div class="l">시장 초과 승률 (45%)</div></div>
+</div>
+<div class="bad"><b>평균의 함정.</b> 평균 초과 +28%p지만 <b>중앙값 초과는 −4.1%p</b> — OW 콜의 <b>절반 이상이 시장을 하회</b>했습니다. 평균은 BE(+490%)·MU(+269%)·SNDK(+199%) 같은 슈퍼사이클 폭등주가 끌어올린 것(BE 1종목 빼면 평균 +38%→+23%).</div>
+
+<h2>② 진짜 동력 = 테마 집중 (실력의 정체)</h2>
+<div class="grid g2">
+  <div class="card"><div class="kpi"><div class="n pos">+157.6%</div><div class="l">메모리·AI인프라·전력·광통신 9종목<br>(BE·MU·SNDK·VRT·AAOI·VIAV·LITE·TSM·CRWV)</div></div></div>
+  <div class="card"><div class="kpi"><div class="n neg">−10.6%</div><div class="l">그 외 22종목 평균</div></div></div>
+</div>
+<div class="ok"><b>그래도 칭찬할 점 — 유지/축소 판단엔 변별력이 있었다.</b> 현재까지 <b>OW 유지한 16건은 평균 +83.9%</b>, 중간에 <b>Neutral로 내린 15건은 평균 −10.5%</b>. 즉 "오른 주도주는 계속 OW, 부진주는 강등"하는 결정이 대체로 맞았습니다(미주은의 알파≈0과는 대비). 단 유지한 것 중에도 SE −43%·DASH −31%·FIGR −59%처럼 크게 틀린 것도 있음.</div>
+
+<h2>③ 전체 Overweight 구간 (31건, 수익률순)</h2>
+<div class="lead">시작=첫 Overweight 주 · 종료=Neutral/UW 강등 주(없으면 현재) · 막대=수익률</div>
+<div class="chart"><svg id="bar" viewBox="0 0 940 420" width="100%"></svg></div>
+<table>
+  <thead><tr><th>종목</th><th>시작</th><th>종료</th><th>보유일</th><th>수익률</th><th>동기S&amp;P</th><th>초과</th><th>상태</th></tr></thead>
+  <tbody id="tbl"></tbody>
+</table>
+
+<h2>④ 해석 시 한계 (반드시)</h2>
+<ul class="small" style="color:#cdd3df">
+  <li><b>유지기간 정의.</b> "첫 OW → 첫 명시적 강등(Neutral/UW)"로 잡음. SAPIENS가 "코멘트를 잊는 종목도 있다"고 해서 <b>미언급 주는 OW 유지로 간주</b>(carry-forward). 조용히 빠진 종목은 보유기간이 과대평가됐을 수 있음.</li>
+  <li><b>강세장·메모리 슈퍼사이클.</b> 동기간 S&amp;P가 윈도우별 평균 +9~20%. 성과 상당분이 시장+테마 덕.</li>
+  <li><b>평균 왜곡.</b> 분포가 극단적으로 치우침(꼬리 폭등주). 평균보다 <b>중앙값(+3.9%)·초과중앙값(−4.1%p)</b>이 체감에 가까움.</li>
+  <li><b>이건 "투자의견(rating)"이지 실제 매매가 아님.</b> SAPIENS 실제 펀드(메리츠 올바른투자랩)의 비중·매매 타이밍과는 다를 수 있음. 1주씩 사서 끝까지 들고 가정한 단순 백테스트.</li>
+  <li><b>추출 한계.</b> 49개 주간보고를 10개 서브에이전트가 OW/N/UW로 분류 — 일부 주 미언급/누락 가능. Tactical Idea 등 OW/N/UW 외 등급은 제외.</li>
+  <li>표본 11개월(클럽이 2025-07부터)·종목당 1~2구간이라 통계 신뢰도는 제한적.</li>
+</ul>
+
+<footer>
+데이터: contents.premium.naver.com/sapiens/sapiensasset 글 398개 중 주간전략보고 49개 · Yahoo Finance 실측. 투자의견은 본문 명시 기준으로 서브에이전트가 추출. 본 리포트는 정보분석용이며 투자권유가 아님. 과거 성과는 미래를 보장하지 않습니다.
+</footer>
+</div>
+<script>
+const W=[{"t":"BE","s":"2025-08-18","e":"2026-06-17","d":303,"ret":490.3,"sp":16.5,"exc":473.9,"c":"STILL_OW"},{"t":"MU","s":"2025-12-22","e":"2026-06-17","d":177,"ret":269.4,"sp":9.2,"exc":260.2,"c":"STILL_OW"},{"t":"SNDK","s":"2026-02-23","e":"2026-06-17","d":114,"ret":198.8,"sp":9.9,"exc":189.0,"c":"STILL_OW"},{"t":"VRT","s":"2025-07-14","e":"2026-06-17","d":338,"ret":150.4,"sp":19.8,"exc":130.6,"c":"STILL_OW"},{"t":"AAOI","s":"2026-03-02","e":"2026-06-17","d":107,"ret":86.9,"sp":9.2,"exc":77.7,"c":"STILL_OW"},{"t":"TSM","s":"2025-07-21","e":"2026-06-17","d":331,"ret":80.3,"sp":19.1,"exc":61.1,"c":"STILL_OW"},{"t":"VIAV","s":"2026-03-09","e":"2026-06-17","d":100,"ret":71.3,"sp":10.5,"exc":60.8,"c":"STILL_OW"},{"t":"GOOGL","s":"2025-09-08","e":"2026-06-17","d":282,"ret":59.8,"sp":15.6,"exc":44.1,"c":"STILL_OW"},{"t":"LITE","s":"2026-02-23","e":"2026-06-17","d":114,"ret":41.9,"sp":9.9,"exc":32.0,"c":"STILL_OW"},{"t":"CRWV","s":"2026-02-23","e":"2026-06-17","d":114,"ret":28.8,"sp":9.9,"exc":19.0,"c":"STILL_OW"},{"t":"NVDA","s":"2025-07-14","e":"2026-06-17","d":338,"ret":26.6,"sp":19.8,"exc":6.8,"c":"STILL_OW"},{"t":"ORCL","s":"2025-08-18","e":"2025-10-27","d":70,"ret":13.2,"sp":6.6,"exc":6.6,"c":"N"},{"t":"FSLR","s":"2025-07-21","e":"2026-03-02","d":224,"ret":12.1,"sp":9.1,"exc":2.9,"c":"N"},{"t":"AMD","s":"2025-10-06","e":"2026-02-09","d":126,"ret":6.0,"sp":3.3,"exc":2.7,"c":"N"},{"t":"TMDX","s":"2025-07-14","e":"2025-12-15","d":154,"ret":5.4,"sp":8.7,"exc":-3.4,"c":"N"},{"t":"CRDO","s":"2025-08-18","e":"2026-02-09","d":175,"ret":3.9,"sp":8.0,"exc":-4.1,"c":"N"},{"t":"TWLO","s":"2025-07-21","e":"2025-11-03","d":105,"ret":3.8,"sp":8.7,"exc":-4.9,"c":"N"},{"t":"MELI","s":"2025-07-21","e":"2025-08-11","d":21,"ret":-3.7,"sp":1.1,"exc":-4.7,"c":"N"},{"t":"DLO","s":"2025-10-06","e":"2026-06-17","d":254,"ret":-9.2,"sp":11.4,"exc":-20.6,"c":"STILL_OW"},{"t":"META","s":"2025-07-14","e":"2025-11-03","d":112,"ret":-11.5,"sp":9.3,"exc":-20.8,"c":"N"},{"t":"ALAB","s":"2025-08-11","e":"2025-10-20","d":70,"ret":-12.9,"sp":5.7,"exc":-18.6,"c":"N"},{"t":"HOOD","s":"2025-07-21","e":"2026-02-09","d":203,"ret":-17.0,"sp":10.5,"exc":-27.5,"c":"N"},{"t":"MELI","s":"2025-10-20","e":"2026-06-17","d":240,"ret":-20.4,"sp":11.5,"exc":-31.9,"c":"STILL_OW"},{"t":"U","s":"2025-09-22","e":"2025-10-20","d":28,"ret":-23.2,"sp":0.6,"exc":-23.8,"c":"N"},{"t":"PINS","s":"2025-07-14","e":"2025-11-10","d":119,"ret":-24.9,"sp":9.0,"exc":-33.9,"c":"N"},{"t":"DASH","s":"2025-07-14","e":"2026-06-17","d":338,"ret":-30.8,"sp":19.8,"exc":-50.6,"c":"STILL_OW"},{"t":"U","s":"2025-11-10","e":"2026-02-02","d":84,"ret":-33.2,"sp":2.1,"exc":-35.3,"c":"N"},{"t":"NTNX","s":"2025-07-21","e":"2025-12-01","d":133,"ret":-37.2,"sp":8.0,"exc":-45.2,"c":"N"},{"t":"CRCL","s":"2025-07-14","e":"2025-08-25","d":42,"ret":-38.8,"sp":2.7,"exc":-41.5,"c":"N"},{"t":"SE","s":"2025-07-14","e":"2026-06-17","d":338,"ret":-42.7,"sp":19.8,"exc":-62.5,"c":"STILL_OW"},{"t":"FIGR","s":"2026-01-19","e":"2026-06-17","d":149,"ret":-58.7,"sp":10.5,"exc":-69.2,"c":"STILL_OW"}];
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const cls=n=>n>=0?'pos':'neg';const fmt=n=>(n>=0?'+':'')+n.toFixed(1)+'%';
+document.getElementById('tbl').innerHTML=W.map(r=>`<tr><td><b>${r.t}</b></td><td class="muted">${r.s}</td><td class="muted">${r.e}</td><td>${r.d}</td><td class="${cls(r.ret)}">${fmt(r.ret)}</td><td class="muted">${fmt(r.sp)}</td><td class="${cls(r.exc)}">${fmt(r.exc)}p</td><td><span class="tag ${r.c==='STILL_OW'?'ow':'dn'}">${r.c==='STILL_OW'?'유지중':'강등'}</span></td></tr>`).join('');
+(function(){const svg=document.getElementById('bar');const W2=940,H=420,pl=46,pr=14,pt=14,pb=44;
+ const vals=W.map(r=>r.ret);const mn=Math.min(...vals),mx=Math.max(...vals);const xw=W2-pl-pr,yh=H-pt-pb;const bw=xw/W.length*0.66;
+ const Y=v=>pt+yh*(1-(v-mn)/(mx-mn));const zero=Y(0);let g='';
+ for(let k=0;k<=6;k++){const val=mn+(mx-mn)*k/6,y=Y(val);g+=`<line x1="${pl}" y1="${y}" x2="${W2-pr}" y2="${y}" stroke="#242833"/><text x="${pl-6}" y="${y+3}" text-anchor="end">${Math.round(val)}%</text>`;}
+ W.forEach((r,i)=>{const cx=pl+xw*(i+0.5)/W.length;const y=Y(Math.max(0,r.ret)),h=Math.abs(Y(r.ret)-zero);const col=r.ret>=0?css('--grn'):css('--red');
+   g+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="1.5" fill="${col}" opacity="${r.c==='STILL_OW'?1:0.55}"/>`;
+   g+=`<text x="${cx}" y="${H-30}" text-anchor="middle" transform="rotate(90 ${cx} ${H-30})" style="font-size:8px;fill:#cdd3df">${r.t}</text>`;});
+ g+=`<text x="${pl}" y="${H-4}" style="font-size:9px;fill:var(--mut)">진한 막대=현재 유지중 / 연한 막대=중간 강등</text>`;
+ svg.innerHTML=g;})();
+</script>
+</body>
+</html>

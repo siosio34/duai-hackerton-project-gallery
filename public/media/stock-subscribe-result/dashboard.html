@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주식 채널 통합 분석 — 콘텐츠·스타일·보유종목·수익률</title>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--line:#2a2f3a;--txt:#e7e9ee;--mut:#9aa3b2;--acc:#5b8cff;--grn:#22c55e;--red:#ef4444;--amb:#f59e0b;
+    --mje:#5b8cff;--mzb:#f59e0b;--wtn:#a855f7;--sap:#22c55e;--sa:#ec4899;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;line-height:1.65;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px 90px}
+  header{padding:52px 0 20px;border-bottom:1px solid var(--line)}
+  h1{font-size:27px;margin:0 0 10px;letter-spacing:-.5px}
+  .sub{color:var(--mut);font-size:14px}
+  h2{font-size:22px;margin:50px 0 6px;letter-spacing:-.3px;padding-left:12px;border-left:4px solid var(--line)}
+  h2.mje{border-color:var(--mje)} h2.mzb{border-color:var(--mzb)} h2.wtn{border-color:var(--wtn)} h2.sap{border-color:var(--sap)} h2.sa{border-color:var(--sa)}
+  h3{font-size:14px;margin:16px 0 7px;color:#cdd3df;text-transform:uppercase;letter-spacing:.5px}
+  .lead{color:var(--mut);margin:2px 0 14px;font-size:14px}
+  .verdict{background:linear-gradient(135deg,#1b2230,#171a21);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:22px 0}
+  .verdict b{color:#fff}
+  .grid{display:grid;gap:13px}.g2{grid-template-columns:1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.g4{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .kpi{text-align:center}.kpi .n{font-size:22px;font-weight:700;letter-spacing:-.5px}.kpi .l{font-size:11.5px;color:var(--mut);margin-top:3px}
+  .pos{color:var(--grn)}.neg{color:var(--red)}.amb{color:var(--amb)}.muted{color:var(--mut)}.small{font-size:12.5px}
+  .tblwrap{overflow-x:auto;margin:10px 0}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:11px}
+  tbody tr:hover{background:#1a1e27}
+  .cmp{min-width:680px}.cmp td,.cmp th{text-align:left;vertical-align:top}
+  .bar{height:8px;background:var(--panel2);border-radius:5px;overflow:hidden;display:inline-block;width:64px;vertical-align:middle;margin-left:6px}
+  .bar>span{display:block;height:100%}
+  .pillbox{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+  .pill{font-size:12px;padding:4px 10px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:#cdd3df}
+  .warn{background:#241c12;border:1px solid #5a4420;border-radius:10px;padding:12px 15px;font-size:12.5px;color:#f0d9b5;margin:12px 0}
+  .ok{background:#102218;border:1px solid #1f5236;border-radius:10px;padding:12px 15px;font-size:12.5px;color:#bdf0d2;margin:12px 0}
+  .bad{background:#241316;border:1px solid #5c2630;border-radius:10px;padding:12px 15px;font-size:12.5px;color:#f3c6cd;margin:12px 0}
+  ul.clean{padding-left:18px;margin:6px 0}ul.clean li{margin:4px 0}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  .nav{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:12px}
+  .nav a{color:var(--acc);text-decoration:none}
+  svg text{fill:var(--mut);font-size:10px}
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--mut);font-size:12px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:820px){.twocol{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>주식 채널 통합 분석 — 콘텐츠 · 투자스타일 · 보유종목 · 수익률</h1>
+  <div class="sub">미주은 · 미주부 · SAPIENS(올바른 미국주식) · 시킹알파 알파픽 · 월텍남 · 분석기간 ~2026-06-17 · Yahoo 실측</div>
+  <div class="nav">바로가기 → <a href="#cmp">통합표</a><a href="#mje">미주은</a><a href="#mzb">미주부</a><a href="#sap">SAPIENS</a><a href="#sa">시킹알파픽</a><a href="#wtn">월텍남</a></div>
+</header>
+
+<div class="verdict"><b>한 장 요약.</b> 5곳 모두 지난 1년 <b>메모리·AI 슈퍼사이클</b>로 좋은 절대수익을 냈습니다. 단 측정방식·위험을 보정하면 — 미주은 +87%(알파≈0, 베타 2.84), 미주부 흑자(검증 제한), SAPIENS OW 평균 +38%(중앙값 +4%, 테마빨), 시킹알파픽(내 계좌) +88%, 월텍남 유료콜 +15%. <b>"무엇을 골랐나"보다 "메모리·AI에 올라탔나"가 수익을 갈랐습니다.</b></div>
+
+<!-- ===== 통합표 ===== -->
+<h2 id="cmp">통합 비교표</h2>
+<div class="lead">⚠️ 헤드라인 성과는 측정방식이 달라 직접비교 불가 — "시장대비·위험·검증"으로 보세요</div>
+<div class="tblwrap"><table class="cmp">
+<thead><tr><th>채널</th><th>헤드라인 성과 (측정방식)</th><th>시장 대비</th><th>리스크/알파</th><th>투명성</th></tr></thead>
+<tbody>
+<tr><td><span class="dot" style="background:var(--mje)"></span><b>미주은</b></td><td class="pos">+87.2% <span class="muted">실계좌 1년(검증)</span></td><td>S&amp;P+28%·NQ+40% 대비 초과 큼</td><td>MDD−16.7%·베타2.84·<b class="neg">알파≈0</b></td><td>★★★★</td></tr>
+<tr><td><span class="dot" style="background:var(--mzb)"></span><b>미주부</b></td><td class="pos">+6,300만원 <span class="muted">연 실현손익</span></td><td>회전실현 +26%(상방편향)</td><td>미공개·<span class="muted">검증 제한</span></td><td>★★★☆☆</td></tr>
+<tr><td><span class="dot" style="background:var(--sap)"></span><b>SAPIENS</b></td><td class="pos">+38.2% <span class="muted">OW구간평균/<span class="amb">중앙값+3.9%</span></span></td><td>평균+28%p·<b class="neg">중앙값−4.1%p</b></td><td>테마집중이 전부; 유지/강등 판단 변별력</td><td>★★★★</td></tr>
+<tr><td><span class="dot" style="background:var(--sa)"></span><b>시킹알파픽</b></td><td class="pos">+87.9% <span class="muted">내 계좌 9종목</span></td><td>MU+196·AMD+150 견인</td><td><span class="muted">SA 픽(본인 알파 아님)</span></td><td>★★★☆</td></tr>
+<tr><td><span class="dot" style="background:var(--wtn)"></span><b>월텍남</b></td><td class="pos">+15.2% <span class="muted">유료 매수콜 평균</span></td><td><b class="pos">+5.8%p</b>(확신콜 +8.6%p)</td><td>약~중 양(+); NVDA 편중</td><td>★★★☆ 유료</td></tr>
+</tbody></table></div>
+
+<!-- ===== 미주은 ===== -->
+<h2 id="mje" class="mje">① 미주은 — 미국주식으로 은퇴하기</h2>
+<div class="twocol">
+  <div class="card"><h3>📤 콘텐츠 타입</h3><ul class="clean small">
+    <li><b>연 2,515개 (주 48개)</b> — 물량 압도적</li>
+    <li>일반 분석글 58% · 영상/팟캐스트/더빙 31% · "만화책"(이미지 해설) 10%</li>
+    <li>매매현황·투자종목현황(엑셀 첨부) 주 2~3회</li>
+    <li>월초 <b>수익률 현황</b>(삼성증권 실계좌 캡처) 공개</li>
+    <li>평균 좋아요 113·조회 3,367 (대형 팬덤)</li></ul></div>
+  <div class="card"><h3>📈 투자 스타일</h3><ul class="clean small">
+    <li><b>고베타 모멘텀</b>(베타 2.84) — 강세장 초과수익형</li>
+    <li>메가캡 <b>메모리·반도체 고집중</b> (보유 17~18종목, top5 39%)</li>
+    <li>현금 18%·회전율 월 12% — "오르면 일부매도, 빠지면 매수" 적극매매</li>
+    <li>모멘텀 포폴 + 우량주 포폴 별도 운영</li>
+    <li>1년 +87%지만 <b>위험조정시 지수 대비 우위 사라짐</b>(샤프 1.76&lt;지수 2.0)</li></ul></div>
+</div>
+<h3>💼 실제 보유구간(매수→매도) 수익률 — 엑셀 41개 스냅샷 기준</h3>
+<div class="grid g4" style="margin-bottom:6px">
+  <div class="card kpi"><div class="n pos">+42.2%</div><div class="l">비중가중 평균(중앙값 +11.6%)</div></div>
+  <div class="card kpi"><div class="n pos">+22.5%p</div><div class="l">시장 대비 평균초과</div></div>
+  <div class="card kpi"><div class="n">34/57</div><div class="l">시장 초과 승률(60%)</div></div>
+  <div class="card kpi"><div class="n">101일</div><div class="l">평균 보유</div></div>
+</div>
+<div class="ok"><b>"이익은 달리게 둔다" 패턴.</b> 현재 <b>보유중 18종목 평균 +80.7%</b> vs 이미 <b>매도한 39종목 평균 +4.3%</b> — 메모리·반도체(SNDK·MRVL·WDC·MU·AMD·DELL, 모두 26년초 매수 후 보유중)는 끝까지 들고 +100~213%, 부진주는 일찍 정리. 종목선택+보유판단에 변별력 있음(月단위 회귀의 알파≈0과는 결이 다름 — 그쪽은 포폴 전체 베타가 지배).</div>
+<div class="tblwrap"><table><thead><tr><th>종목</th><th>매수</th><th>매도</th><th>일수</th><th>비중</th><th>수익률</th><th>초과</th><th></th></tr></thead><tbody id="mjeRunTbl"></tbody></table></div>
+<div class="warn"><b>주의:</b> 매수/매도일은 <b>엑셀 스냅샷에 종목이 들고남</b> 기준(±1~2주 오차, 실제 매매현황 이미지 OCR 아님). "보유중" 수익률은 <b>미실현·현재 메모리 고점</b> 반영 → 조정시 하락. ⟨이전부터보유⟩는 관측 시작(25-07-01) 이전 매수라 실제 진입가와 다름. 비트코인/이더 ETF는 제외.</div>
+
+<!-- ===== 미주부 ===== -->
+<h2 id="mzb" class="mzb">② 미주부 — MZB 파이어니어 클럽</h2>
+<div class="twocol">
+  <div class="card"><h3>📤 콘텐츠 타입</h3><ul class="clean small">
+    <li><b>연 812개 (주 16개)</b> — 소수정예</li>
+    <li>텍스트·표 중심 분석글 93% · 영상 7% · <b>평균 1.9만자</b>(길고 분석적)</li>
+    <li>적정주가 템플릿 · 내부자매매 추적 · 성장률 추적기</li>
+    <li>계좌공개(매매/실현손익, <b>이미지</b>) · 주간 회원전용 방송</li>
+    <li>시킹알파 알파픽 큐레이션(아래 ④)</li></ul></div>
+  <div class="card"><h3>📈 투자 스타일</h3><ul class="clean small">
+    <li><b>룰 기반 퀀트</b> — MZB퀀트계좌 월 1회 리밸런싱</li>
+    <li>적정주가(밸류에이션) + 성장률 + 내부자매매 신호 종합</li>
+    <li>멀티계좌(미국주식 / 연금저축 / ISA)</li>
+    <li>중소형·테마주 비중 큼(S·ARQT·PGY·HIMS·SYM)</li>
+    <li><b>승자 실현·패자 보유</b> 경향(PGY 3회 물타기); 최근 현금↑</li></ul></div>
+</div>
+<h3>💼 실제 매매구간(매수→매도) 수익률 — 계좌공개 매매로그 OCR 기준</h3>
+<div class="grid g4" style="margin-bottom:6px">
+  <div class="card kpi"><div class="n pos">+16.6%</div><div class="l">매매구간 평균(중앙값 +7.0%)</div></div>
+  <div class="card kpi"><div class="n pos">+9.8%p</div><div class="l">시장 대비 평균초과</div></div>
+  <div class="card kpi"><div class="n">69/135</div><div class="l">시장 초과 승률(51%)</div></div>
+  <div class="card kpi"><div class="n">107일</div><div class="l">평균 보유</div></div>
+</div>
+<div class="warn"><b>"승자 실현·패자 보유" 패턴 (미주은과 정반대).</b> 이미 <b>매도한 99건 평균 +22.3%</b> vs 아직 <b>들고있는 36건 평균 +1.0%</b> — 오른 종목은 팔아 이익실현하고, 빠진 종목은 들고 감(PGY·HIMS·S·VST·TEM 등). 회전이 잦아 큰 추세를 끝까지 못 먹는 구조.</div>
+<h3>🔁 종목별 매매 성과 (구간 평균 · 135건 매매)</h3>
+<div class="tblwrap"><table><thead><tr><th>종목</th><th>매매횟수</th><th>구간평균 수익</th><th>매도/보유</th><th></th></tr></thead><tbody id="mzbAggTbl"></tbody></table></div>
+<h3>📅 매수일 → 매도일 타임라인 (135건, 매수일순)</h3>
+<div class="tblwrap" style="max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:10px"><table><thead><tr><th>종목</th><th>매수일</th><th>매도일</th><th>보유일</th><th>수익률</th><th>초과</th><th></th></tr></thead><tbody id="mzbTradeTbl"></tbody></table></div>
+<div class="warn"><b>주의:</b> 매수/매도일은 계좌공개 글의 매매로그 OCR에서 추출 — 같은 종목 매수/매도를 <b>FIFO로 짝지음</b>(부분매매·물타기 단순화). <b>"추정"</b> 표시 38건은 매도가 기록된 매수보다 많아(윈도우 시작 이전부터 보유) 매수일을 25-06-23로 잡은 것이라 진입가·수익률이 부정확. 실제 매수일 확인분은 97건. 국내 ETF 매매·종목별 미기재분 제외.</div>
+
+<h3>💵 실제 체결가 기반 실현손익 (체결 OCR · FIFO 매칭)</h3>
+<div class="grid g4" style="margin-bottom:6px">
+  <div class="card kpi"><div class="n pos">+$13,081</div><div class="l">실현손익 (72 라운드트립)</div></div>
+  <div class="card kpi"><div class="n">41/72</div><div class="l">실현 수익 승률(57%)</div></div>
+  <div class="card kpi"><div class="n pos">+$3,990</div><div class="l">미실현 (보유평가 $98k)</div></div>
+  <div class="card kpi"><div class="n pos">+12.9%</div><div class="l">라운드트립 평균(중앙값 +4.8%)</div></div>
+</div>
+<div class="twocol">
+  <div><h3 style="margin-top:4px">종목별 실현손익 ($)</h3><div class="tblwrap" style="max-height:360px;overflow-y:auto;border:1px solid var(--line);border-radius:10px"><table><thead><tr><th>종목</th><th>실현손익</th><th>횟수</th><th>평균률</th><th></th></tr></thead><tbody id="mzbRealTbl"></tbody></table></div></div>
+  <div><h3 style="margin-top:4px">미청산 보유 (평단→현재)</h3><div class="tblwrap" style="max-height:360px;overflow-y:auto;border:1px solid var(--line);border-radius:10px"><table><thead><tr><th>종목</th><th>수량</th><th>평단</th><th>현재</th><th>수익률</th></tr></thead><tbody id="mzbOpenTbl"></tbody></table></div></div>
+</div>
+<div class="ok"><b>정밀 결과 — 실제 체결가로 본 "승자실현·패자보유".</b> 실현 톱: MU +$4,576·NBIS +$1,909·AMD +$1,689. 반면 <b>PGY는 8번 매매해 −$1,338</b>(물타기하다 $29→$11.7), HIMS −$1,038. 미청산엔 큰 손실 그대로: <b>SMCI −47%·SYM −29%·TEM −21%·VST −15%</b>를 보유 중. 즉 <b>오른 건 팔아 +$13k 실현, 빠진 건 안 팔고 보유</b>(미실현 +$3,990은 MU·GOOGL 등 소수 승자가 손실주들을 겨우 상쇄).</div>
+<div class="warn"><b>주의:</b> 체결열이 화면 밖이라 못 읽은 매수가 있어 14종목(ARQT·PGY·HIMS·S 등)은 매도가 매수기록보다 많음 → 그 종목 실현손익 <b>일부 누락(과소)</b>. 2025-12-02·2026-03-03 등 대형 리밸런싱 일부 체결 미포착. 부분매매 FIFO 단순화. 금액은 체결가×수량 USD(환율·수수료 제외).</div>
+
+<!-- ===== SAPIENS ===== -->
+<h2 id="sap" class="sap">③ SAPIENS — 올바른 미국주식 (네이버 프리미엄)</h2>
+<div class="twocol">
+  <div class="card"><h3>📤 콘텐츠 타입</h3><ul class="clean small">
+    <li><b>연 398개 (주 8회)</b> · 유료 구독 · 평균 1.4만자</li>
+    <li>일간보고(투자의 생각) · <b>주간전략보고</b>(종목별 OW/N/UW 등급)</li>
+    <li>알파테크리포트(종목 딥다이브) · 월텍룸 · 월간 라이브</li></ul></div>
+  <div class="card"><h3>📈 투자 스타일</h3><ul class="clean small">
+    <li><b>실제 펀드매니저</b>(메리츠 올바른투자랩 운용역)</li>
+    <li>종목별 <b>Overweight/Neutral/Underweight 등급제</b> + 모델포폴 주간 비중조정</li>
+    <li>PEG·성장률 기반 밸류에이션 · Top Pick = NVDA</li>
+    <li>메모리/AI인프라 강한 OW; AAPL·TSLA 일관 UW</li></ul></div>
+</div>
+<h3>💼 Overweight 종목 &amp; 유지구간 수익률 (첫 OW→강등/현재)</h3>
+<div class="tblwrap"><table><thead><tr><th>종목</th><th>유지구간</th><th>수익률</th><th>동기S&amp;P</th><th>상태</th><th></th></tr></thead><tbody id="sapTbl"></tbody></table></div>
+<div class="ok"><b>핵심:</b> OW 31구간 평균 +38%지만 <b>중앙값 +3.9%</b>. 메모리·AI인프라 9종목(+158%)이 전부였고 그 외 22종목은 −11%. 단 유지(+84%)/강등(−11%) 판단엔 변별력 있었음. (전체·차트는 <a href="sapiens.html" style="color:var(--acc)">sapiens.html</a>)</div>
+
+<!-- ===== 시킹알파픽 ===== -->
+<h2 id="sa" class="sa">④ 시킹알파 알파픽 (미주부 공유 · 내 실계좌)</h2>
+<div class="lead">미주부가 큐레이션하는 시킹알파 <b>Alpha Picks</b>(퀀트 종목선정)의 "2026 시장을 주도할 10선"을 1주씩 실제 매수한 포트폴리오</div>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+87.9%</div><div class="l">누적(매입 $1,748→$3,285)</div></div>
+  <div class="card kpi"><div class="n">9종목</div><div class="l">현재 보유</div></div>
+  <div class="card kpi"><div class="n pos">7/9</div><div class="l">수익 종목</div></div>
+  <div class="card kpi"><div class="n">+398%</div><div class="l">SA 알파픽 공식(2022~, 본인주장)</div></div>
+</div>
+<div class="tblwrap"><table><thead><tr><th>종목</th><th>매입가</th><th>현재가</th><th>비중</th><th>누적수익률</th><th></th></tr></thead><tbody id="saTbl"></tbody></table></div>
+<div class="warn"><b>주의:</b> 이건 <b>시킹알파의 픽</b>이고 미주부 기여는 큐레이션·재검증. "+398%(2022.7~)"는 시킹알파 자체 공식 마케팅 수치(미주부 인용)로 독립검증 아님. 종목별 매입시점 상이.</div>
+
+<!-- ===== 월텍남 ===== -->
+<h2 id="wtn" class="wtn">⑤ 월텍남 — 월스트리트 테크남</h2>
+<div class="twocol">
+  <div class="card"><h3>📤 콘텐츠 타입</h3><ul class="clean small">
+    <li>유튜브 무료(연 167영상): AI·테크·시황 분석/교육</li>
+    <li>어스플러스 유료클럽: 데일리·알파테크리포트</li>
+    <li>"종목 안 찍는다" 표방 — 무료엔 명시적 매수콜 4건뿐</li></ul></div>
+  <div class="card"><h3>📈 투자 스타일 &amp; 매수콜 성과</h3><ul class="clean small">
+    <li>분석·교육 중심, 분할매수 선호</li>
+    <li>유료 매수콜 35건 평균 <b class="pos">+15.2%</b>(시장 +5.8%p)</li>
+    <li>확신(high)콜 +18.3%; <b>NVDA 편중(13건)</b></li>
+    <li>전체·차트는 <a href="wtn.html" style="color:var(--acc)">wtn.html</a></li></ul></div>
+</div>
+
+<div class="bad" style="margin-top:30px"><b>전 채널 공통 경고.</b> ① 지난 1년은 역사적 강세장+메모리 슈퍼사이클 — 재현 보장 불가 · ② 측정방식 달라 헤드라인 직접비교 금물 · ③ 위험조정·중앙값으론 대부분 "시장 초과 실력" 약함 · ④ 표본 1년(SAPIENS·월텍남유료 8~11개월)·약세장 미검증 · ⑤ 자가보고/이미지/자막 추출이라 오차 존재. 본 자료는 정보분석용이며 투자권유가 아님.</div>
+
+<footer>데이터: 팬딩 · 유튜브 · 어스플러스 · 네이버프리미엄 · 시킹알파(내계좌) · Yahoo Finance 실측. 상세: <a href="index.html" style="color:var(--mut)">index</a> · <a href="wtn.html" style="color:var(--mut)">wtn</a> · <a href="sapiens.html" style="color:var(--mut)">sapiens</a></footer>
+</div>
+<script>
+const cls=n=>n==null?'muted':(n>=0?'pos':'neg');
+const fmt=n=>n==null?'N/A':(n>=0?'+':'')+(Math.abs(n)>=1000?Math.round(n).toLocaleString():n.toFixed(1))+'%';
+function barCell(v,max,col){if(v==null)return '';const w=Math.max(2,Math.min(100,Math.abs(v)/max*100));return `<span class="bar"><span style="width:${w}%;background:${v<0?'var(--red)':col}"></span></span>`;}
+
+// 미주은 실제 보유구간
+const MJE=[{"t":"SNDK","en":"26-02-27","ex":"현재","d":109,"w":7.0,"r":213.5,"x":204.3,"st":true,"lc":false},{"t":"MRVL","en":"26-03-19","ex":"현재","d":89,"w":6.0,"r":211.4,"x":197.7,"st":true,"lc":false},{"t":"WDC","en":"26-02-27","ex":"현재","d":109,"w":3.5,"r":143.7,"x":134.5,"st":true,"lc":false},{"t":"MU","en":"26-04-10","ex":"현재","d":67,"w":6.4,"r":142.7,"x":132.5,"st":true,"lc":false},{"t":"DELL","en":"26-03-24","ex":"현재","d":84,"w":2.6,"r":131.9,"x":117.4,"st":true,"lc":false},{"t":"AMD","en":"26-04-10","ex":"현재","d":67,"w":4.9,"r":107.0,"x":96.8,"st":true,"lc":false},{"t":"ARM","en":"26-04-29","ex":"현재","d":48,"w":3.9,"r":96.5,"x":91.2,"st":true,"lc":false},{"t":"TSM","en":"25-07-01","ex":"현재","d":350,"w":4.1,"r":91.6,"x":70.4,"st":true,"lc":true},{"t":"CLS","en":"25-07-01","ex":"26-02-28","d":242,"w":6.1,"r":86.4,"x":75.5,"st":false,"lc":true},{"t":"GOOGL","en":"25-07-01","ex":"26-02-28","d":242,"w":4.4,"r":77.6,"x":66.6,"st":false,"lc":true},{"t":"AAOI","en":"26-03-24","ex":"현재","d":84,"w":4.3,"r":68.2,"x":53.6,"st":true,"lc":false},{"t":"CRDO","en":"26-04-14","ex":"현재","d":63,"w":6.3,"r":62.6,"x":54.8,"st":true,"lc":false},{"t":"MU","en":"25-12-01","ex":"26-03-27","d":116,"w":9.0,"r":48.6,"x":55.1,"st":false,"lc":false},{"t":"AMD","en":"25-07-01","ex":"26-02-28","d":242,"w":5.9,"r":47.1,"x":36.1,"st":false,"lc":true},{"t":"COHR","en":"26-02-25","ex":"현재","d":111,"w":4.3,"r":42.9,"x":34.8,"st":true,"lc":false},{"t":"CRDO","en":"25-07-01","ex":"26-02-25","d":239,"w":5.3,"r":41.0,"x":28.9,"st":false,"lc":true},{"t":"TSLA","en":"25-07-01","ex":"26-02-25","d":239,"w":4.3,"r":38.8,"x":26.7,"st":false,"lc":true},{"t":"CLS","en":"26-03-27","ex":"현재","d":81,"w":3.4,"r":36.3,"x":18.4,"st":true,"lc":false},{"t":"NVDA","en":"25-07-01","ex":"현재","d":350,"w":8.2,"r":35.5,"x":14.3,"st":true,"lc":true},{"t":"LITE","en":"26-03-19","ex":"현재","d":89,"w":7.0,"r":24.0,"x":10.3,"st":true,"lc":false},{"t":"000660","en":"26-05-21","ex":"현재","d":26,"w":5.3,"r":22.8,"x":21.9,"st":true,"lc":false},{"t":"TLN","en":"25-07-01","ex":"26-03-03","d":245,"w":3.8,"r":21.9,"x":11.9,"st":false,"lc":true},{"t":"AVGO","en":"25-07-01","ex":"26-02-28","d":242,"w":5.4,"r":21.1,"x":10.2,"st":false,"lc":true},{"t":"OXY","en":"26-03-03","ex":"26-04-06","d":34,"w":2.5,"r":17.8,"x":20.8,"st":false,"lc":false},{"t":"LNG","en":"26-03-03","ex":"26-04-06","d":34,"w":2.3,"r":15.4,"x":18.4,"st":false,"lc":false},{"t":"005930","en":"26-05-21","ex":"현재","d":26,"w":3.0,"r":14.5,"x":13.6,"st":true,"lc":false},{"t":"FSLR","en":"25-08-01","ex":"26-02-25","d":208,"w":1.9,"r":14.2,"x":2.9,"st":false,"lc":false},{"t":"EOG","en":"26-03-03","ex":"26-04-06","d":34,"w":2.5,"r":11.7,"x":14.8,"st":false,"lc":false},{"t":"ALAB","en":"25-09-01","ex":"25-10-01","d":30,"w":1.6,"r":11.6,"x":7.0,"st":false,"lc":false},{"t":"COP","en":"26-03-03","ex":"26-04-06","d":34,"w":2.4,"r":11.1,"x":14.1,"st":false,"lc":false},{"t":"FANG","en":"26-03-03","ex":"26-03-19","d":16,"w":1.9,"r":7.8,"x":10.9,"st":false,"lc":false},{"t":"VRT","en":"26-03-19","ex":"26-06-09","d":82,"w":5.5,"r":7.6,"x":-4.2,"st":false,"lc":false},{"t":"STX","en":"26-02-27","ex":"26-03-19","d":20,"w":1.3,"r":6.6,"x":10.5,"st":false,"lc":false},{"t":"BE","en":"26-05-08","ex":"현재","d":39,"w":3.8,"r":5.2,"x":3.6,"st":true,"lc":false},{"t":"GEV","en":"26-02-25","ex":"26-06-09","d":104,"w":4.6,"r":5.1,"x":-1.2,"st":false,"lc":false},{"t":"AMZN","en":"25-07-01","ex":"25-09-01","d":62,"w":4.1,"r":3.9,"x":-0.4,"st":false,"lc":true},{"t":"MRVL","en":"26-02-01","ex":"26-02-25","d":24,"w":1.7,"r":2.9,"x":3.3,"st":false,"lc":false},{"t":"PLTR","en":"25-07-01","ex":"26-02-25","d":239,"w":4.0,"r":2.7,"x":-9.4,"st":false,"lc":true},{"t":"AVGO","en":"26-04-10","ex":"현재","d":67,"w":3.1,"r":1.4,"x":-8.8,"st":true,"lc":false},{"t":"NXT","en":"25-07-01","ex":"25-08-01","d":31,"w":0.6,"r":-1.7,"x":-2.3,"st":false,"lc":true},{"t":"APP","en":"26-04-16","ex":"26-04-28","d":12,"w":1.7,"r":-3.7,"x":-5.0,"st":false,"lc":false},{"t":"UBER","en":"25-07-01","ex":"25-08-01","d":31,"w":1.8,"r":-5.7,"x":-6.3,"st":false,"lc":true},{"t":"VST","en":"25-07-01","ex":"25-12-01","d":153,"w":1.4,"r":-6.1,"x":-16.0,"st":false,"lc":true},{"t":"ORCL","en":"26-04-16","ex":"26-04-29","d":13,"w":6.1,"r":-8.1,"x":-9.5,"st":false,"lc":false},{"t":"ASX","en":"26-02-28","ex":"26-03-19","d":19,"w":2.2,"r":-9.5,"x":-5.5,"st":false,"lc":false},{"t":"META","en":"25-07-01","ex":"26-02-27","d":241,"w":4.6,"r":-9.7,"x":-20.7,"st":false,"lc":true},{"t":"PLTR","en":"26-03-27","ex":"26-04-10","d":14,"w":2.9,"r":-10.5,"x":-17.5,"st":false,"lc":false},{"t":"ASML","en":"26-02-25","ex":"26-03-19","d":22,"w":2.7,"r":-10.5,"x":-5.6,"st":false,"lc":false},{"t":"CRCL","en":"26-04-16","ex":"26-04-28","d":12,"w":2.8,"r":-12.2,"x":-13.6,"st":false,"lc":false},{"t":"BE","en":"26-02-27","ex":"26-04-02","d":34,"w":3.4,"r":-12.9,"x":-8.6,"st":false,"lc":false},{"t":"NXT","en":"26-02-25","ex":"26-03-03","d":6,"w":1.7,"r":-13.2,"x":-11.3,"st":false,"lc":false},{"t":"HOOD","en":"26-04-16","ex":"26-04-29","d":13,"w":5.4,"r":-18.0,"x":-19.4,"st":false,"lc":false},{"t":"TTD","en":"25-07-01","ex":"25-09-01","d":62,"w":2.0,"r":-25.6,"x":-29.9,"st":false,"lc":true},{"t":"CRWV","en":"25-11-01","ex":"25-12-01","d":30,"w":1.0,"r":-39.0,"x":-38.4,"st":false,"lc":false},{"t":"COIN","en":"25-08-01","ex":"26-02-25","d":208,"w":2.9,"r":-41.5,"x":-52.9,"st":false,"lc":false},{"t":"BMNR","en":"25-11-01","ex":"26-02-25","d":116,"w":1.7,"r":-49.8,"x":-51.2,"st":false,"lc":false},{"t":"MSTR","en":"25-07-01","ex":"25-12-01","d":153,"w":2.5,"r":-54.1,"x":-64.0,"st":false,"lc":true}];
+document.getElementById('mjeRunTbl').innerHTML=MJE.map(r=>`<tr><td><b>${r.t}</b>${r.lc?' <span class="muted" style="font-size:9px">이전보유</span>':''}</td><td class="muted small">${r.en}</td><td class="small ${r.st?'pos':'muted'}">${r.ex}</td><td class="muted">${r.d}</td><td class="muted">${r.w}%</td><td class="${cls(r.r)}">${fmt(r.r)}</td><td class="${cls(r.x)}">${fmt(r.x)}p</td><td>${barCell(r.r,213,'var(--mje)')}</td></tr>`).join('');
+
+// 미주부 종목별 매매 성과
+const MZB=[{"t":"NBIS","n":1,"avg":150.9,"c":1,"h":0},{"t":"AMD","n":3,"avg":130.9,"c":3,"h":0},{"t":"MU","n":2,"avg":126.4,"c":2,"h":0},{"t":"COHR","n":8,"avg":79.9,"c":8,"h":0},{"t":"GOOGL","n":4,"avg":71.9,"c":4,"h":0},{"t":"NOW","n":1,"avg":38.7,"c":1,"h":0},{"t":"ARQT","n":10,"avg":33.1,"c":9,"h":1},{"t":"SCHD","n":1,"avg":21.9,"c":1,"h":0},{"t":"ZETA","n":1,"avg":21.3,"c":1,"h":0},{"t":"ASML","n":2,"avg":19.8,"c":2,"h":0},{"t":"LIT","n":1,"avg":18.3,"c":1,"h":0},{"t":"VRT","n":5,"avg":15.8,"c":4,"h":1},{"t":"EWY","n":1,"avg":15.1,"c":1,"h":0},{"t":"NVDA","n":5,"avg":14.6,"c":4,"h":1},{"t":"FSLR","n":4,"avg":14.4,"c":3,"h":1},{"t":"TSM","n":4,"avg":13.3,"c":3,"h":1},{"t":"LLY","n":5,"avg":11.2,"c":3,"h":2},{"t":"UNH","n":5,"avg":10.6,"c":4,"h":1},{"t":"PGY","n":8,"avg":7.8,"c":4,"h":4},{"t":"BE","n":2,"avg":4.8,"c":2,"h":0},{"t":"LUNR","n":1,"avg":3.4,"c":1,"h":0},{"t":"SRPT","n":3,"avg":2.8,"c":3,"h":0},{"t":"AMZN","n":3,"avg":2.1,"c":3,"h":0},{"t":"UBER","n":2,"avg":1.4,"c":2,"h":0},{"t":"AVGO","n":3,"avg":-0.2,"c":2,"h":1},{"t":"SNAP","n":4,"avg":-1.0,"c":3,"h":1},{"t":"ORCL","n":5,"avg":-1.5,"c":3,"h":2},{"t":"HIMS","n":6,"avg":-1.7,"c":3,"h":3},{"t":"S","n":10,"avg":-1.9,"c":7,"h":3},{"t":"GLD","n":1,"avg":-4.7,"c":1,"h":0},{"t":"MSFT","n":5,"avg":-11.2,"c":2,"h":3},{"t":"VST","n":6,"avg":-11.6,"c":2,"h":4},{"t":"SMCI","n":2,"avg":-13.2,"c":1,"h":1},{"t":"TEM","n":3,"avg":-18.9,"c":0,"h":3},{"t":"FOUR","n":4,"avg":-20.1,"c":4,"h":0},{"t":"SYM","n":4,"avg":-23.9,"c":1,"h":3}];
+document.getElementById('mzbAggTbl').innerHTML=MZB.map(r=>`<tr><td><b>${r.t}</b></td><td class="muted">${r.n}회</td><td class="${cls(r.avg)}">${fmt(r.avg)}</td><td class="muted small">매도${r.c}/보유${r.h}</td><td>${barCell(r.avg,150,'var(--mzb)')}</td></tr>`).join('');
+
+// 미주부 매매 타임라인
+const MZBT=[{"t": "AMD", "en": "25-06-23", "ex": "26-06-02", "d": 344, "r": 302.5, "x": 276.2, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "25-07-08", "d": 15, "r": -4.4, "x": -7.8, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "25-08-05", "d": 43, "r": 6.4, "x": 1.9, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "25-09-03", "d": 72, "r": 10.7, "x": 3.7, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "26-01-07", "d": 198, "r": 105.4, "x": 90.5, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "26-04-02", "d": 283, "r": 64.1, "x": 54.8, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "26-04-29", "d": 310, "r": 55.3, "x": 36.9, "cl": true, "lf": true}, {"t": "ARQT", "en": "25-06-23", "ex": "26-05-05", "d": 316, "r": 62.6, "x": 42.2, "cl": true, "lf": true}, {"t": "ASML", "en": "25-06-23", "ex": "25-07-16", "d": 23, "r": -3.2, "x": -7.2, "cl": true, "lf": true}, {"t": "ASML", "en": "25-06-23", "ex": "25-12-02", "d": 162, "r": 42.8, "x": 29.5, "cl": true, "lf": true}, {"t": "COHR", "en": "25-06-23", "ex": "25-07-08", "d": 15, "r": 12.1, "x": 8.8, "cl": true, "lf": true}, {"t": "COHR", "en": "25-06-23", "ex": "25-08-05", "d": 43, "r": 31.0, "x": 26.4, "cl": true, "lf": true}, {"t": "COHR", "en": "25-06-23", "ex": "25-11-04", "d": 134, "r": 59.6, "x": 47.2, "cl": true, "lf": true}, {"t": "COHR", "en": "25-06-23", "ex": "26-02-06", "d": 228, "r": 182.3, "x": 167.3, "cl": true, "lf": true}, {"t": "COHR", "en": "25-06-23", "ex": "26-05-05", "d": 316, "r": 316.3, "x": 295.9, "cl": true, "lf": true}, {"t": "FOUR", "en": "25-06-23", "ex": "26-01-19", "d": 210, "r": -31.1, "x": -46.3, "cl": true, "lf": true}, {"t": "FOUR", "en": "25-06-23", "ex": "26-02-06", "d": 228, "r": -36.6, "x": -51.7, "cl": true, "lf": true}, {"t": "GOOGL", "en": "25-06-23", "ex": "25-11-04", "d": 134, "r": 68.2, "x": 55.8, "cl": true, "lf": true}, {"t": "GOOGL", "en": "25-06-23", "ex": "25-12-02", "d": 162, "r": 91.4, "x": 78.0, "cl": true, "lf": true}, {"t": "GOOGL", "en": "25-06-23", "ex": "26-03-03", "d": 253, "r": 84.1, "x": 70.9, "cl": true, "lf": true}, {"t": "HIMS", "en": "25-06-23", "ex": "25-06-23", "d": 0, "r": 0.0, "x": 0.0, "cl": true, "lf": true}, {"t": "HIMS", "en": "25-06-23", "ex": "25-09-03", "d": 72, "r": 5.9, "x": -1.1, "cl": true, "lf": true}, {"t": "LLY", "en": "25-06-23", "ex": "25-12-02", "d": 162, "r": 36.2, "x": 22.9, "cl": true, "lf": true}, {"t": "NVDA", "en": "25-06-23", "ex": "25-11-04", "d": 134, "r": 37.8, "x": 25.4, "cl": true, "lf": true}, {"t": "NVDA", "en": "25-06-23", "ex": "26-02-06", "d": 228, "r": 28.6, "x": 13.6, "cl": true, "lf": true}, {"t": "PGY", "en": "25-06-23", "ex": "25-08-05", "d": 43, "r": 74.7, "x": 70.1, "cl": true, "lf": true}, {"t": "S", "en": "25-06-23", "ex": "25-07-08", "d": 15, "r": 5.8, "x": 2.4, "cl": true, "lf": true}, {"t": "S", "en": "25-06-23", "ex": "25-08-05", "d": 43, "r": -1.6, "x": -6.1, "cl": true, "lf": true}, {"t": "SCHD", "en": "25-06-23", "ex": "26-03-03", "d": 253, "r": 21.9, "x": 8.7, "cl": true, "lf": true}, {"t": "SMCI", "en": "25-06-23", "ex": "25-07-08", "d": 15, "r": 20.1, "x": 16.8, "cl": true, "lf": true}, {"t": "SRPT", "en": "25-06-23", "ex": "25-08-05", "d": 43, "r": -11.2, "x": -15.8, "cl": true, "lf": true}, {"t": "SRPT", "en": "25-06-23", "ex": "26-04-29", "d": 310, "r": 9.5, "x": -8.9, "cl": true, "lf": true}, {"t": "SRPT", "en": "25-06-23", "ex": "26-05-07", "d": 318, "r": 10.2, "x": -11.5, "cl": true, "lf": true}, {"t": "TSM", "en": "25-06-23", "ex": "25-10-06", "d": 105, "r": 44.2, "x": 32.4, "cl": true, "lf": true}, {"t": "UBER", "en": "25-06-23", "ex": "25-10-06", "d": 105, "r": 17.4, "x": 5.6, "cl": true, "lf": true}, {"t": "UNH", "en": "25-06-23", "ex": "26-05-05", "d": 316, "r": 23.6, "x": 3.1, "cl": true, "lf": true}, {"t": "VRT", "en": "25-06-23", "ex": "25-07-08", "d": 15, "r": 8.0, "x": 4.7, "cl": true, "lf": true}, {"t": "ZETA", "en": "25-06-23", "ex": "25-09-16", "d": 85, "r": 21.3, "x": 11.6, "cl": true, "lf": true}, {"t": "AVGO", "en": "25-07-08", "ex": "25-11-04", "d": 119, "r": 29.7, "x": 20.9, "cl": true, "lf": false}, {"t": "FSLR", "en": "25-07-08", "ex": "25-08-05", "d": 28, "r": 12.9, "x": 11.7, "cl": true, "lf": false}, {"t": "GOOGL", "en": "25-07-08", "ex": "25-10-06", "d": 90, "r": 43.8, "x": 35.5, "cl": true, "lf": false}, {"t": "AMZN", "en": "25-08-05", "ex": "25-11-04", "d": 91, "r": 16.6, "x": 9.1, "cl": true, "lf": false}, {"t": "VRT", "en": "25-08-05", "ex": "25-10-06", "d": 62, "r": 17.4, "x": 10.4, "cl": true, "lf": false}, {"t": "UNH", "en": "25-08-26", "ex": "25-12-02", "d": 98, "r": 8.7, "x": 3.1, "cl": true, "lf": false}, {"t": "COHR", "en": "25-09-03", "ex": "25-10-06", "d": 33, "r": 29.7, "x": 25.2, "cl": true, "lf": false}, {"t": "S", "en": "25-09-03", "ex": "25-11-04", "d": 62, "r": -6.4, "x": -11.4, "cl": true, "lf": false}, {"t": "UNH", "en": "25-09-03", "ex": "26-01-07", "d": 126, "r": 12.4, "x": 5.1, "cl": true, "lf": false}, {"t": "S", "en": "25-09-16", "ex": "26-03-03", "d": 168, "r": -25.7, "x": -28.9, "cl": true, "lf": false}, {"t": "AMZN", "en": "25-10-06", "ex": "26-02-06", "d": 123, "r": -4.8, "x": -7.6, "cl": true, "lf": false}, {"t": "FOUR", "en": "25-10-06", "ex": "25-11-04", "d": 29, "r": -15.2, "x": -15.6, "cl": true, "lf": false}, {"t": "MSFT", "en": "25-10-06", "ex": "26-05-05", "d": 211, "r": -21.8, "x": -29.5, "cl": true, "lf": false}, {"t": "PGY", "en": "25-10-06", "ex": "26-04-02", "d": 178, "r": -60.3, "x": -58.0, "cl": true, "lf": false}, {"t": "S", "en": "25-10-06", "ex": "26-04-29", "d": 205, "r": -17.9, "x": -23.8, "cl": true, "lf": false}, {"t": "SMCI", "en": "25-10-06", "ex": "현재", "d": 254, "r": -46.5, "x": -57.9, "cl": false, "lf": false}, {"t": "SNAP", "en": "25-10-06", "ex": "25-11-04", "d": 29, "r": -12.3, "x": -12.8, "cl": true, "lf": false}, {"t": "VST", "en": "25-10-30", "ex": "26-02-06", "d": 99, "r": -21.0, "x": -22.6, "cl": true, "lf": false}, {"t": "ARQT", "en": "25-11-07", "ex": "25-12-02", "d": 25, "r": 21.5, "x": 20.0, "cl": true, "lf": false}, {"t": "HIMS", "en": "25-11-07", "ex": "26-05-12", "d": 186, "r": -39.0, "x": -49.0, "cl": true, "lf": false}, {"t": "PGY", "en": "25-11-07", "ex": "26-04-18", "d": 162, "r": -38.7, "x": -44.6, "cl": true, "lf": false}, {"t": "VST", "en": "25-11-07", "ex": "26-04-02", "d": 146, "r": -20.6, "x": -18.5, "cl": true, "lf": false}, {"t": "ORCL", "en": "25-11-14", "ex": "26-02-06", "d": 84, "r": -35.7, "x": -38.7, "cl": true, "lf": false}, {"t": "VST", "en": "25-11-14", "ex": "현재", "d": 215, "r": -11.9, "x": -23.4, "cl": false, "lf": false}, {"t": "AMZN", "en": "25-11-21", "ex": "26-03-03", "d": 102, "r": -5.4, "x": -8.7, "cl": true, "lf": false}, {"t": "FOUR", "en": "25-11-21", "ex": "25-12-02", "d": 11, "r": 2.6, "x": -0.8, "cl": true, "lf": false}, {"t": "MSFT", "en": "25-11-21", "ex": "26-06-02", "d": 193, "r": -6.1, "x": -21.4, "cl": true, "lf": false}, {"t": "ORCL", "en": "25-11-21", "ex": "26-03-03", "d": 102, "r": -24.8, "x": -28.1, "cl": true, "lf": false}, {"t": "S", "en": "25-11-21", "ex": "26-05-12", "d": 172, "r": 0.3, "x": -11.8, "cl": true, "lf": false}, {"t": "VST", "en": "25-11-21", "ex": "현재", "d": 208, "r": -8.7, "x": -22.4, "cl": false, "lf": false}, {"t": "COHR", "en": "25-12-02", "ex": "26-01-07", "d": 36, "r": 16.2, "x": 14.9, "cl": true, "lf": false}, {"t": "MSFT", "en": "25-12-02", "ex": "현재", "d": 197, "r": -19.3, "x": -29.3, "cl": false, "lf": false}, {"t": "NVDA", "en": "25-12-02", "ex": "26-01-07", "d": 36, "r": 4.2, "x": 2.9, "cl": true, "lf": false}, {"t": "ORCL", "en": "25-12-02", "ex": "26-06-02", "d": 182, "r": 22.4, "x": 10.9, "cl": true, "lf": false}, {"t": "S", "en": "25-12-02", "ex": "26-06-02", "d": 182, "r": 4.5, "x": -7.0, "cl": true, "lf": false}, {"t": "SNAP", "en": "25-12-02", "ex": "26-02-06", "d": 66, "r": -31.5, "x": -33.0, "cl": true, "lf": false}, {"t": "UBER", "en": "25-12-02", "ex": "26-02-06", "d": 66, "r": -14.6, "x": -16.1, "cl": true, "lf": false}, {"t": "VRT", "en": "25-12-02", "ex": "26-02-06", "d": 66, "r": 8.1, "x": 6.6, "cl": true, "lf": false}, {"t": "TEM", "en": "26-01-01", "ex": "현재", "d": 167, "r": -18.9, "x": -28.4, "cl": false, "lf": false}, {"t": "AVGO", "en": "26-01-07", "ex": "26-03-03", "d": 55, "r": -8.6, "x": -7.1, "cl": true, "lf": false}, {"t": "FSLR", "en": "26-01-07", "ex": "26-03-03", "d": 55, "r": -18.1, "x": -16.6, "cl": true, "lf": false}, {"t": "LLY", "en": "26-01-07", "ex": "26-04-02", "d": 85, "r": -15.4, "x": -10.5, "cl": true, "lf": false}, {"t": "PGY", "en": "26-01-07", "ex": "26-05-07", "d": 120, "r": -36.1, "x": -42.1, "cl": true, "lf": false}, {"t": "SYM", "en": "26-01-07", "ex": "26-03-03", "d": 55, "r": -24.3, "x": -22.8, "cl": true, "lf": false}, {"t": "VRT", "en": "26-01-07", "ex": "26-04-02", "d": 85, "r": 52.4, "x": 57.2, "cl": true, "lf": false}, {"t": "HIMS", "en": "26-01-19", "ex": "현재", "d": 149, "r": -1.0, "x": -11.5, "cl": false, "lf": false}, {"t": "S", "en": "26-01-19", "ex": "현재", "d": 149, "r": 11.9, "x": 1.4, "cl": false, "lf": false}, {"t": "TEM", "en": "26-01-19", "ex": "현재", "d": 149, "r": -24.3, "x": -34.8, "cl": false, "lf": false}, {"t": "HIMS", "en": "26-01-31", "ex": "현재", "d": 137, "r": 14.1, "x": 6.4, "cl": false, "lf": false}, {"t": "MSFT", "en": "26-01-31", "ex": "현재", "d": 137, "r": -6.6, "x": -14.2, "cl": false, "lf": false}, {"t": "NBIS", "en": "26-01-31", "ex": "26-05-14", "d": 103, "r": 150.9, "x": 143.3, "cl": true, "lf": false}, {"t": "SYM", "en": "26-01-31", "ex": "현재", "d": 137, "r": -22.9, "x": -30.6, "cl": false, "lf": false}, {"t": "TEM", "en": "26-01-31", "ex": "현재", "d": 137, "r": -13.6, "x": -21.3, "cl": false, "lf": false}, {"t": "AMD", "en": "26-02-06", "ex": "26-04-02", "d": 55, "r": 4.3, "x": 9.4, "cl": true, "lf": false}, {"t": "ARQT", "en": "26-02-06", "ex": "26-03-03", "d": 25, "r": -13.6, "x": -11.9, "cl": true, "lf": false}, {"t": "BE", "en": "26-02-06", "ex": "26-03-03", "d": 25, "r": 7.0, "x": 8.7, "cl": true, "lf": false}, {"t": "FSLR", "en": "26-02-06", "ex": "26-06-02", "d": 116, "r": 42.2, "x": 32.4, "cl": true, "lf": false}, {"t": "LLY", "en": "26-02-06", "ex": "26-06-02", "d": 116, "r": 0.9, "x": -8.9, "cl": true, "lf": false}, {"t": "MU", "en": "26-02-06", "ex": "26-05-05", "d": 88, "r": 62.3, "x": 57.6, "cl": true, "lf": false}, {"t": "SYM", "en": "26-02-06", "ex": "현재", "d": 131, "r": -30.2, "x": -38.5, "cl": false, "lf": false}, {"t": "PGY", "en": "26-02-10", "ex": "현재", "d": 127, "r": 14.6, "x": 6.4, "cl": false, "lf": false}, {"t": "PGY", "en": "26-02-12", "ex": "현재", "d": 125, "r": 26.5, "x": 16.5, "cl": false, "lf": false}, {"t": "PGY", "en": "26-02-24", "ex": "현재", "d": 113, "r": 42.9, "x": 33.9, "cl": false, "lf": false}, {"t": "AMD", "en": "26-03-03", "ex": "26-05-05", "d": 63, "r": 86.0, "x": 79.6, "cl": true, "lf": false}, {"t": "COHR", "en": "26-03-03", "ex": "26-04-02", "d": 30, "r": -8.1, "x": -4.6, "cl": true, "lf": false}, {"t": "EWY", "en": "26-03-03", "ex": "26-04-18", "d": 46, "r": 15.1, "x": 10.6, "cl": true, "lf": false}, {"t": "GLD", "en": "26-03-03", "ex": "26-04-18", "d": 46, "r": -4.7, "x": -9.3, "cl": true, "lf": false}, {"t": "LIT", "en": "26-03-03", "ex": "26-04-18", "d": 46, "r": 18.3, "x": 13.8, "cl": true, "lf": false}, {"t": "LLY", "en": "26-03-03", "ex": "현재", "d": 106, "r": 11.6, "x": 1.4, "cl": false, "lf": false}, {"t": "MSFT", "en": "26-03-03", "ex": "현재", "d": 106, "r": -2.3, "x": -12.5, "cl": false, "lf": false}, {"t": "NVDA", "en": "26-03-03", "ex": "26-05-05", "d": 63, "r": 9.1, "x": 2.6, "cl": true, "lf": false}, {"t": "PGY", "en": "26-03-03", "ex": "현재", "d": 106, "r": 39.0, "x": 28.8, "cl": false, "lf": false}, {"t": "SNAP", "en": "26-03-03", "ex": "26-05-05", "d": 63, "r": 16.4, "x": 9.9, "cl": true, "lf": false}, {"t": "UNH", "en": "26-03-03", "ex": "26-03-03", "d": 0, "r": 0.0, "x": 0.0, "cl": true, "lf": false}, {"t": "SYM", "en": "26-03-11", "ex": "현재", "d": 98, "r": -18.2, "x": -29.1, "cl": false, "lf": false}, {"t": "LLY", "en": "26-03-19", "ex": "현재", "d": 90, "r": 22.6, "x": 8.9, "cl": false, "lf": false}, {"t": "LUNR", "en": "26-04-02", "ex": "26-05-05", "d": 33, "r": 3.4, "x": -6.9, "cl": true, "lf": false}, {"t": "MU", "en": "26-04-02", "ex": "26-06-02", "d": 61, "r": 190.5, "x": 174.9, "cl": true, "lf": false}, {"t": "ORCL", "en": "26-04-02", "ex": "현재", "d": 76, "r": 29.1, "x": 15.0, "cl": false, "lf": false}, {"t": "S", "en": "26-04-02", "ex": "현재", "d": 76, "r": 14.0, "x": -0.2, "cl": false, "lf": false}, {"t": "SNAP", "en": "26-04-02", "ex": "현재", "d": 76, "r": 23.3, "x": 9.2, "cl": false, "lf": false}, {"t": "TSM", "en": "26-04-02", "ex": "26-04-02", "d": 0, "r": 0.0, "x": 0.0, "cl": true, "lf": false}, {"t": "BE", "en": "26-05-05", "ex": "26-06-02", "d": 28, "r": 2.6, "x": -2.3, "cl": true, "lf": false}, {"t": "FSLR", "en": "26-05-05", "ex": "현재", "d": 43, "r": 20.5, "x": 17.0, "cl": false, "lf": false}, {"t": "NOW", "en": "26-05-05", "ex": "26-06-02", "d": 28, "r": 38.7, "x": 33.9, "cl": true, "lf": false}, {"t": "ORCL", "en": "26-05-05", "ex": "현재", "d": 43, "r": 1.6, "x": -1.9, "cl": false, "lf": false}, {"t": "S", "en": "26-05-05", "ex": "현재", "d": 43, "r": -4.2, "x": -7.7, "cl": false, "lf": false}, {"t": "TSM", "en": "26-05-05", "ex": "26-06-02", "d": 28, "r": 13.3, "x": 8.4, "cl": true, "lf": false}, {"t": "VST", "en": "26-05-05", "ex": "현재", "d": 43, "r": -4.3, "x": -7.8, "cl": false, "lf": false}, {"t": "ARQT", "en": "26-06-02", "ex": "현재", "d": 15, "r": 23.0, "x": 24.3, "cl": false, "lf": false}, {"t": "AVGO", "en": "26-06-02", "ex": "현재", "d": 15, "r": -21.8, "x": -20.5, "cl": false, "lf": false}, {"t": "HIMS", "en": "26-06-02", "ex": "현재", "d": 15, "r": 9.7, "x": 11.0, "cl": false, "lf": false}, {"t": "NVDA", "en": "26-06-02", "ex": "현재", "d": 15, "r": -6.8, "x": -5.5, "cl": false, "lf": false}, {"t": "TSM", "en": "26-06-02", "ex": "현재", "d": 15, "r": -4.4, "x": -3.2, "cl": false, "lf": false}, {"t": "UNH", "en": "26-06-02", "ex": "현재", "d": 15, "r": 8.5, "x": 9.8, "cl": false, "lf": false}, {"t": "VRT", "en": "26-06-02", "ex": "현재", "d": 15, "r": -6.7, "x": -5.4, "cl": false, "lf": false}, {"t": "VST", "en": "26-06-02", "ex": "현재", "d": 15, "r": -2.8, "x": -1.5, "cl": false, "lf": false}];
+document.getElementById('mzbTradeTbl').innerHTML=MZBT.map(r=>`<tr><td><b>${r.t}</b>${r.lf?' <span class="muted" style="font-size:9px">추정</span>':''}</td><td class="muted small">${r.en}</td><td class="small ${!r.cl?'pos':'muted'}">${r.ex}</td><td class="muted">${r.d}</td><td class="${cls(r.r)}">${fmt(r.r)}</td><td class="${cls(r.x)}">${fmt(r.x)}p</td><td>${barCell(r.r,150,'var(--mzb)')}</td></tr>`).join('');
+
+// 미주부 실제 체결 FIFO
+const REAL=[{"t":"MU","pnl":4576,"n":2,"avg":113.4},{"t":"NBIS","pnl":1909,"n":1,"avg":112.2},{"t":"AMD","pnl":1689,"n":4,"avg":56.0},{"t":"NOW","pnl":1147,"n":1,"avg":40.1},{"t":"FSLR","pnl":1063,"n":3,"avg":35.3},{"t":"BE","pnl":1006,"n":2,"avg":41.9},{"t":"VRT","pnl":984,"n":3,"avg":30.8},{"t":"ORCL","pnl":937,"n":5,"avg":7.3},{"t":"GOOGL","pnl":863,"n":2,"avg":48.9},{"t":"COHR","pnl":590,"n":1,"avg":33.7},{"t":"UNH","pnl":528,"n":2,"avg":15.4},{"t":"AVGO","pnl":465,"n":1,"avg":33.9},{"t":"S","pnl":457,"n":8,"avg":2.6},{"t":"TSM","pnl":427,"n":2,"avg":17.1},{"t":"LUNR","pnl":394,"n":1,"avg":24.4},{"t":"SRPT","pnl":307,"n":2,"avg":7.6},{"t":"AMZN","pnl":242,"n":3,"avg":10.4},{"t":"LLY","pnl":-11,"n":3,"avg":-0.4},{"t":"SNAP","pnl":-65,"n":4,"avg":-4.4},{"t":"ARQT","pnl":-363,"n":5,"avg":-2.6},{"t":"FOUR","pnl":-490,"n":3,"avg":-9.1},{"t":"MSFT","pnl":-576,"n":3,"avg":-11.8},{"t":"VST","pnl":-622,"n":2,"avg":-21.1},{"t":"HIMS","pnl":-1038,"n":1,"avg":-30.5},{"t":"PGY","pnl":-1338,"n":8,"avg":-18.5}];
+document.getElementById('mzbRealTbl').innerHTML=REAL.map(r=>`<tr><td><b>${r.t}</b></td><td class="${cls(r.pnl)}">${r.pnl>=0?'+$':'-$'}${Math.abs(r.pnl).toLocaleString()}</td><td class="muted">${r.n}</td><td class="${cls(r.avg)}">${fmt(r.avg)}</td><td>${barCell(r.pnl,4576,'var(--mzb)')}</td></tr>`).join('');
+const OPEN=[{"t":"MU","q":6,"avgcost":370.69,"cur":1020.76,"ret":175.4},{"t":"GOOGL","q":10,"avgcost":176.79,"cur":373.25,"ret":111.1},{"t":"UNH","q":28,"avgcost":328.76,"cur":407.65,"ret":24.0},{"t":"LLY","q":2,"avgcost":918.05,"cur":1122.5,"ret":22.3},{"t":"ARQT","q":140,"avgcost":21.22,"cur":25.58,"ret":20.5},{"t":"FSLR","q":15,"avgcost":226.5,"cur":264.36,"ret":16.7},{"t":"SNAP","q":300,"avgcost":4.93,"cur":5.71,"ret":15.9},{"t":"AMZN","q":14,"avgcost":216.7,"cur":246,"ret":13.5},{"t":"AVGO","q":19,"avgcost":348.14,"cur":376.71,"ret":8.2},{"t":"HIMS","q":210,"avgcost":29.09,"cur":30.17,"ret":3.7},{"t":"ORCL","q":6,"avgcost":182.6,"cur":188.33,"ret":3.1},{"t":"S","q":200,"avgcost":14.76,"cur":15.19,"ret":2.9},{"t":"VRT","q":11,"avgcost":305.51,"cur":311.93,"ret":2.1},{"t":"TSM","q":15,"avgcost":429.05,"cur":425.83,"ret":-0.8},{"t":"BE","q":8,"avgcost":287.44,"cur":274.5,"ret":-4.5},{"t":"NVDA","q":20,"avgcost":220.63,"cur":207.41,"ret":-6.0},{"t":"MSFT","q":13,"avgcost":445.1,"cur":393.83,"ret":-11.5},{"t":"VST","q":85,"avgcost":179.67,"cur":153.52,"ret":-14.6},{"t":"TEM","q":80,"avgcost":63.69,"cur":50.56,"ret":-20.6},{"t":"SYM","q":110,"avgcost":58.7,"cur":41.72,"ret":-28.9},{"t":"SMCI","q":40,"avgcost":55.53,"cur":29.22,"ret":-47.4}];
+document.getElementById('mzbOpenTbl').innerHTML=OPEN.map(r=>`<tr><td><b>${r.t}</b></td><td class="muted">${r.q}</td><td class="muted small">$${r.avgcost}</td><td class="small">$${r.cur}</td><td class="${cls(r.ret)}">${fmt(r.ret)}</td></tr>`).join('');
+
+// SAPIENS OW windows
+const W=[{"t":"BE","s":"2025-08-18","e":"2026-06-17","ret":490.3,"sp":16.5,"c":"STILL_OW"},{"t":"MU","s":"2025-12-22","e":"2026-06-17","ret":269.4,"sp":9.2,"c":"STILL_OW"},{"t":"SNDK","s":"2026-02-23","e":"2026-06-17","ret":198.8,"sp":9.9,"c":"STILL_OW"},{"t":"VRT","s":"2025-07-14","e":"2026-06-17","ret":150.4,"sp":19.8,"c":"STILL_OW"},{"t":"AAOI","s":"2026-03-02","e":"2026-06-17","ret":86.9,"sp":9.2,"c":"STILL_OW"},{"t":"TSM","s":"2025-07-21","e":"2026-06-17","ret":80.3,"sp":19.1,"c":"STILL_OW"},{"t":"VIAV","s":"2026-03-09","e":"2026-06-17","ret":71.3,"sp":10.5,"c":"STILL_OW"},{"t":"GOOGL","s":"2025-09-08","e":"2026-06-17","ret":59.8,"sp":15.6,"c":"STILL_OW"},{"t":"LITE","s":"2026-02-23","e":"2026-06-17","ret":41.9,"sp":9.9,"c":"STILL_OW"},{"t":"CRWV","s":"2026-02-23","e":"2026-06-17","ret":28.8,"sp":9.9,"c":"STILL_OW"},{"t":"NVDA","s":"2025-07-14","e":"2026-06-17","ret":26.6,"sp":19.8,"c":"STILL_OW"},{"t":"ORCL","s":"2025-08-18","e":"2025-10-27","ret":13.2,"sp":6.6,"c":"N"},{"t":"FSLR","s":"2025-07-21","e":"2026-03-02","ret":12.1,"sp":9.1,"c":"N"},{"t":"AMD","s":"2025-10-06","e":"2026-02-09","ret":6.0,"sp":3.3,"c":"N"},{"t":"TMDX","s":"2025-07-14","e":"2025-12-15","ret":5.4,"sp":8.7,"c":"N"},{"t":"CRDO","s":"2025-08-18","e":"2026-02-09","ret":3.9,"sp":8.0,"c":"N"},{"t":"TWLO","s":"2025-07-21","e":"2025-11-03","ret":3.8,"sp":8.7,"c":"N"},{"t":"MELI","s":"2025-07-21","e":"2025-08-11","ret":-3.7,"sp":1.1,"c":"N"},{"t":"DLO","s":"2025-10-06","e":"2026-06-17","ret":-9.2,"sp":11.4,"c":"STILL_OW"},{"t":"META","s":"2025-07-14","e":"2025-11-03","ret":-11.5,"sp":9.3,"c":"N"},{"t":"ALAB","s":"2025-08-11","e":"2025-10-20","ret":-12.9,"sp":5.7,"c":"N"},{"t":"HOOD","s":"2025-07-21","e":"2026-02-09","ret":-17.0,"sp":10.5,"c":"N"},{"t":"MELI","s":"2025-10-20","e":"2026-06-17","ret":-20.4,"sp":11.5,"c":"STILL_OW"},{"t":"U","s":"2025-09-22","e":"2025-10-20","ret":-23.2,"sp":0.6,"c":"N"},{"t":"PINS","s":"2025-07-14","e":"2025-11-10","ret":-24.9,"sp":9.0,"c":"N"},{"t":"DASH","s":"2025-07-14","e":"2026-06-17","ret":-30.8,"sp":19.8,"c":"STILL_OW"},{"t":"U","s":"2025-11-10","e":"2026-02-02","ret":-33.2,"sp":2.1,"c":"N"},{"t":"NTNX","s":"2025-07-21","e":"2025-12-01","ret":-37.2,"sp":8.0,"c":"N"},{"t":"CRCL","s":"2025-07-14","e":"2025-08-25","ret":-38.8,"sp":2.7,"c":"N"},{"t":"SE","s":"2025-07-14","e":"2026-06-17","ret":-42.7,"sp":19.8,"c":"STILL_OW"},{"t":"FIGR","s":"2026-01-19","e":"2026-06-17","ret":-58.7,"sp":10.5,"c":"STILL_OW"}];
+document.getElementById('sapTbl').innerHTML=W.map(r=>`<tr><td><b>${r.t}</b></td><td class="muted small">${r.s.slice(2)}~${r.e==='2026-06-17'?'현재':r.e.slice(2)}</td><td class="${cls(r.ret)}">${fmt(r.ret)}</td><td class="muted">${fmt(r.sp)}</td><td><span class="small" style="color:${r.c==='STILL_OW'?'var(--grn)':'var(--amb)'}">${r.c==='STILL_OW'?'유지중':'강등'}</span></td><td>${barCell(r.ret,490,'var(--sap)')}</td></tr>`).join('');
+
+// Seeking Alpha picks
+const saPicks=[['MU',345.09,1020.76,31.07,195.8],['AMD',203.17,507.29,15.44,149.7],['CIEN',230.56,430.30,13.10,86.6],['COHR',178.06,382.81,11.65,115.0],['CLS',302.30,382.01,11.63,26.4],['ALL',212.21,223.09,6.79,5.1],['ATI',122.30,196.31,5.98,60.5],['INCY',106.87,99.75,3.04,-6.7],['B',47.81,42.77,1.30,-10.5]];
+document.getElementById('saTbl').innerHTML=saPicks.map(s=>`<tr><td><b>${s[0]}</b></td><td class="muted">$${s[1].toFixed(2)}</td><td>$${s[2].toFixed(2)}</td><td>${s[3].toFixed(1)}%</td><td class="${cls(s[4])}">${fmt(s[4])}</td><td>${barCell(s[4],196,'var(--sa)')}</td></tr>`).join('');
+</script>
+</body>
+</html>

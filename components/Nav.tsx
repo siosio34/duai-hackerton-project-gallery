@@ -27,6 +27,12 @@ export function Nav() {
             프로젝트
           </Link>
           <Link
+            href="/#automation"
+            className="meta-label link-underline hidden text-ink-soft sm:inline-block"
+          >
+            자동화
+          </Link>
+          <Link
             href="/#skills"
             className="meta-label link-underline hidden text-ink-soft sm:inline-block"
           >

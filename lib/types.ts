@@ -35,8 +35,8 @@ export interface ProjectMedia {
 }
 
 /** Top-level grouping on the home page. Built apps/games → "projects";
- *  Claude Code skills → "skills". */
-export type ProjectSection = "projects" | "skills";
+ *  data-automation pipelines → "automation"; Claude Code skills → "skills". */
+export type ProjectSection = "projects" | "automation" | "skills";
 
 export interface Project {
   slug: string;

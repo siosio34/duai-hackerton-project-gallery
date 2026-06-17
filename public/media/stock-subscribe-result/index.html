@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미주은 · 미주부 1년 성과 — 구독 의사결정 리포트</title>
+<style>
+  :root{
+    --bg:#0f1115;--panel:#171a21;--panel2:#1e222b;--line:#2a2f3a;
+    --txt:#e7e9ee;--mut:#9aa3b2;--acc:#5b8cff;--grn:#22c55e;--red:#ef4444;--amb:#f59e0b;
+    --mje:#5b8cff;--mzb:#f59e0b;--sp:#8b93a3;--nq:#a855f7;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;line-height:1.65;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 90px}
+  header{padding:54px 0 26px;border-bottom:1px solid var(--line)}
+  h1{font-size:30px;margin:0 0 10px;letter-spacing:-.5px}
+  .sub{color:var(--mut);font-size:14px}
+  h2{font-size:22px;margin:50px 0 4px;letter-spacing:-.3px}
+  h3{font-size:16px;margin:26px 0 8px;color:#cdd3df}
+  .lead{color:var(--mut);margin:2px 0 16px;font-size:14px}
+  .verdict{background:linear-gradient(135deg,#1b2230,#171a21);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:24px 0}
+  .verdict b{color:#fff}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .kpi{text-align:center}.kpi .n{font-size:25px;font-weight:700;letter-spacing:-.5px}.kpi .l{font-size:12px;color:var(--mut);margin-top:2px}
+  .pos{color:var(--grn)}.neg{color:var(--red)}.accent{color:var(--acc)}.ambc{color:var(--amb)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+  th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:12px;letter-spacing:.3px}
+  tbody tr:hover{background:#1a1e27}
+  .cmp td:nth-child(2){color:var(--mje)} .cmp td:nth-child(3){color:var(--mzb)}
+  .cmp td:first-child{color:var(--txt);font-weight:600}
+  .chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);margin-top:8px}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .tag{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--mut);margin:2px 4px 2px 0}
+  .warn{background:#241c12;border:1px solid #5a4420;border-radius:10px;padding:13px 16px;font-size:13px;color:#f0d9b5;margin:14px 0}
+  .ok{background:#102218;border:1px solid #1f5236;border-radius:10px;padding:13px 16px;font-size:13px;color:#bdf0d2;margin:14px 0}
+  .bad{background:#241316;border:1px solid #5c2630;border-radius:10px;padding:13px 16px;font-size:13px;color:#f3c6cd;margin:14px 0}
+  .bar{height:9px;background:var(--panel2);border-radius:6px;overflow:hidden;display:inline-block;width:80px;vertical-align:middle;margin-left:8px}
+  .bar>span{display:block;height:100%;background:var(--mje)}
+  ul.clean{padding-left:18px}ul.clean li{margin:5px 0}
+  .muted{color:var(--mut)}.small{font-size:12.5px}
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:12px}
+  .star{color:var(--amb)}
+  svg text{fill:var(--mut);font-size:10px}
+  .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .who{border-left:3px solid var(--mje);padding-left:12px}
+  .who.b{border-color:var(--mzb)}
+  .nav{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:14px}
+  .nav a{color:var(--acc);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>미주은 · 미주부 — 1년 성과 &amp; 구독 의사결정 리포트</h1>
+  <div class="sub">분석기간 2025-06-17 ~ 2026-06-17 · 팬딩 구독 피드 전수(3,327개) · 미주은 실계좌 엑셀 41개 + 미주부 계좌공개 이미지 203장 OCR · 벤치마크 Yahoo Finance 실측</div>
+  <div class="nav"><a href="#decide">①의사결정표</a><a href="#mje">②미주은</a><a href="#mzb">③미주부</a><a href="#sapick">③-B시킹알파픽</a><a href="#posts">④게시글</a><a href="#guide">⑤판단가이드</a></div>
+</header>
+
+<div class="verdict">
+  <b>핵심 결론.</b> 두 채널 다 강세장에서 시장을 크게 앞섰습니다. 그러나 —
+  <b>미주은의 +87%는 위험(베타 2.84배)을 키운 결과로, 위험 대비 효율(샤프 1.76)은 그냥 지수(2.0)보다 낮고 종목선택 초과수익(알파)은 ≈0</b>입니다.
+  <b>미주부는 실현손익·매매가 모두 흑자(연 +6,300만원, 21회 중 17승)이고 더 체계적</b>이지만, 계좌 전체 수익률이 <b>모의(템플릿) 단위와 이미지에 묶여 미주은만큼 검증되지 않습니다.</b>
+  → "검증된 절대수익"은 미주은, "규칙·분산·발굴"은 미주부. 단 둘 다 <b>약세장 미검증·고변동</b>이 공통 리스크.
+</div>
+
+<!-- ============ 의사결정표 ============ -->
+<h2 id="decide">① 한눈에 비교</h2>
+<div class="lead">같은 1년, 같은 시장(S&amp;P +28% · 나스닥 +40%) 기준</div>
+<table class="cmp">
+  <thead><tr><th>지표</th><th>미주은</th><th>미주부</th></tr></thead>
+  <tbody>
+    <tr><td>검증된 1년 수익률</td><td><b>+87.2%</b> (실계좌 시간가중, 교차검증✓)</td><td>측정 불가* <span class="muted">(실현손익 +6,300만원 / 모의계좌 누적 +163%)</span></td></tr>
+    <tr><td>최대낙폭(MDD)</td><td>−16.7% <span class="muted">(월간해상도)</span></td><td>미공개</td></tr>
+    <tr><td>연변동성</td><td>40.6%</td><td>미공개</td></tr>
+    <tr><td>샤프 / 소르티노</td><td>1.76 / 6.29</td><td>미공개</td></tr>
+    <tr><td>베타 / 알파(연)</td><td>2.84 / <span class="neg">−1.1%</span></td><td>미공개</td></tr>
+    <tr><td>투명성·검증가능성</td><td><span class="star">★★★★</span>☆ 실계좌+엑셀, 텍스트로 검증</td><td><span class="star">★★★</span>☆☆ 이미지·일부 모의계좌</td></tr>
+    <tr><td>연간 게시글</td><td>2,515개 (주 48개)</td><td>812개 (주 16개)</td></tr>
+    <tr><td>영상 비중 / 평균 글길이</td><td>31% / 1.1만자</td><td>7% / 1.9만자</td></tr>
+    <tr><td>투자 스타일</td><td>메가캡 반도체·메모리 <b>고집중 모멘텀</b></td><td>멀티계좌 <b>룰기반 퀀트</b>, 중소형 포함 분산</td></tr>
+    <tr><td>보유 종목수</td><td>17~18개 (현금 3.9~31%)</td><td>20+ (퀀트) + ETF계좌</td></tr>
+    <tr><td>평균 참여(좋아요/조회)</td><td>113 / 3,367</td><td>9 / 1,056</td></tr>
+  </tbody>
+</table>
+<p class="small muted">*미주부는 매매로그·실현손익은 실계좌(원화)지만, 계좌 전체 % 수익률은 $48k→$79k <b>명목 템플릿(모의투자)</b> 화면으로만 공개돼 미주은식 시간가중 수익률과 직접 비교 불가.</p>
+
+<div class="ok"><b>신뢰도 검증.</b> 미주은이 글에 적은 S&amp;P500·나스닥 월간 수치를 Yahoo 실측과 대조 → <b>거의 완벽 일치</b>(오차 대부분 0.00%p, 실측 S&amp;P +28.2%로 본인표기 +27.9%보다 높아 유리하게 낮추지 않음). 월간 12개 복리(87.2%)=본인 주장 연 +87.59% → 산술 조작 흔적 없음.</div>
+
+<!-- ============ 미주은 ============ -->
+<h2 id="mje">② 미주은 — 검증된 고베타 모멘텀</h2>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+87.2%</div><div class="l">1년 수익률 (S&amp;P +28%)</div></div>
+  <div class="card kpi"><div class="n neg">−16.7%</div><div class="l">최대낙폭 (S&amp;P −6.4%)</div></div>
+  <div class="card kpi"><div class="n">1.76</div><div class="l">샤프 (S&amp;P 2.02·나스닥1.92)</div></div>
+  <div class="card kpi"><div class="n ambc">β2.84</div><div class="l">알파 −1.1%/년</div></div>
+</div>
+
+<h3>누적 성과 곡선 (월말, 시작=100)</h3>
+<div class="chart">
+  <svg id="cumChart" viewBox="0 0 900 300" width="100%"></svg>
+  <div class="legend"><span><i style="background:var(--mje)"></i>미주은</span><span><i style="background:var(--nq)"></i>나스닥</span><span><i style="background:var(--sp)"></i>S&amp;P500</span></div>
+</div>
+
+<div class="bad"><b>가장 중요한 발견 — "수익은 컸지만 실력(알파)은 아니다".</b>
+그의 수익률은 시장과 상관 0.88, <b>베타 2.84</b>로 거의 "시장 ×2.8배 레버리지"처럼 움직였습니다.
+베타를 감안한 <b>알파(초과수익)는 연 −1.1%</b>로 사실상 0이며, <b>위험 대비 효율(샤프 1.76)은 그냥 S&amp;P(2.02)·나스닥(1.92)보다 낮습니다.</b>
+즉 같은 변동성을 감수한 레버리지 지수ETF가 비슷하거나 더 나았을 수 있다는 뜻. (표본 12개월이라 알파 추정 오차는 큼)</div>
+
+<h3>월별 수익률 (본인공개 · 벤치마크 실측검증)</h3>
+<table>
+  <thead><tr><th>월</th><th>미주은</th><th>S&amp;P500</th><th>나스닥</th><th>vs S&amp;P</th></tr></thead>
+  <tbody id="monthTable"></tbody>
+  <tfoot><tr style="font-weight:700"><td>1년 복리</td><td class="pos">+87.2%</td><td>+27.9%</td><td>+40.1%</td><td>초과승률 7/12</td></tr></tfoot>
+</table>
+<p class="small muted">총수익이 압도적인 건 "이긴 달에 크게(4월 +31%·5월 +26%) 벌어서". 하락장엔 더 빠짐(2월 −8.0% vs S&amp;P −1.4%). 전형적 고베타 모멘텀.</p>
+
+<h3>현재 포트폴리오 (2026-06-16 · 실계좌 엑셀) — 메모리/반도체 집중</h3>
+<div class="lead">유동자산 ~21.9억원 · 보유 종목 1년간 13~20개 · top5 평균 39% · 스냅샷간 회전율 월 ~12%</div>
+<table><thead><tr><th>종목</th><th>티커</th><th>비중</th><th></th></tr></thead><tbody id="holdTable"></tbody></table>
+
+<h3>핵심 보유종목 실제 1년 수익률 (Yahoo)</h3>
+<div class="warn">구간 단순수익률(point-to-point)이라 그가 전구간 보유했다는 뜻이 아님. 회전매매로 실현수익(+87%)은 이 수치들보다 훨씬 낮음. <b>이 환경은 메모리 슈퍼사이클</b>(엑셀 현재가=야후 일치로 정합성 확인).</div>
+<table><thead><tr><th>티커</th><th>1년 수익률</th><th></th></tr></thead><tbody id="mjeStockTable"></tbody></table>
+
+<!-- ============ 미주부 ============ -->
+<h2 id="mzb">③ 미주부 — 체계적이나 검증은 제한적</h2>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+6,300만원</div><div class="l">연간 실현손익(실계좌)</div></div>
+  <div class="card kpi"><div class="n">17승 4패</div><div class="l">리밸런싱 손익 회차</div></div>
+  <div class="card kpi"><div class="n accent">+163%</div><div class="l">모의계좌 누적(템플릿)*</div></div>
+  <div class="card kpi"><div class="n">37</div><div class="l">계좌공개 횟수/년</div></div>
+</div>
+
+<h3>월별 리밸런싱 "회전분 실현수익률" (이미지 OCR)</h3>
+<div class="chart"><svg id="mzbChart" viewBox="0 0 900 250" width="100%"></svg>
+  <div class="legend"><span><i style="background:var(--grn)"></i>이익 회차</span><span><i style="background:var(--red)"></i>손실 회차</span></div></div>
+<div class="warn"><b>해석 주의 — 이건 "계좌 수익률"이 아님.</b> 이 수치(손익금액÷매수금액, 평균 +26%)는 <b>그 달 매도한 물량의 원가 대비 실현손익</b>입니다. 그는 <b>오른 종목을 팔고 빠진 종목은 들고/물타기</b>(PGY 3회 추가매수)하는 경향이라 이 지표는 구조적으로 양수로 나옵니다. 진짜 계좌 총수익률 지표가 아닙니다.</div>
+
+<h3>모의(템플릿) 계좌 누적수익률 추이</h3>
+<div class="chart"><svg id="tmplChart" viewBox="0 0 900 220" width="100%"></svg>
+  <div class="legend"><span><i style="background:var(--mzb)"></i>MZB 모의계좌 누적 ($48k→$79k 명목)</span></div></div>
+<p class="small muted">*이 누적(+66%→+163%)은 룰을 적용한 <b>모의/백테스트 명목계좌</b> 화면 수치로, 미주부 실제 자금의 검증된 수익률이 아님. 실계좌는 위 실현손익(원화)과 큰 미실현 평가익(보유 캡처상 TSLA +249%·NVDA +409% 등)으로 흑자임은 분명하나, 기준자본·입출금 미공개로 정확한 % 산출 불가.</p>
+
+<h3>최다 매매 종목 &amp; 실제 1년 수익률 — 분산·중소형 성향</h3>
+<table><thead><tr><th>티커</th><th>매매횟수</th><th>1년 수익률</th><th></th></tr></thead><tbody id="mzbStockTable"></tbody></table>
+<p class="small muted">미주은(메가캡 반도체)보다 <b>중소형·테마주 비중이 큼</b>(S·ARQT·PGY·HIMS·SYM·TEM 등). 최다매매 상위 종목 중 다수가 1년 기준 하락(HIMS −49%·FOUR −57%·S −15%·PGY −15%) — 승자 실현/패자 보유 패턴과 일치.</p>
+
+<!-- ============ 시킹알파 픽 ============ -->
+<h2 id="sapick">③-B 보너스 · 시킹알파 픽 10선 (미주부 큐레이션) — 실제 계좌</h2>
+<div class="lead">미주부가 공유한 시킹알파 Alpha Picks "2026 시장을 주도할 시킹알파픽 10선"을 1주씩 실제 매수한 포트폴리오 (구독자 제공 스크린샷 기준)</div>
+<div class="grid g4">
+  <div class="card kpi"><div class="n pos">+87.9%</div><div class="l">누적 수익률 (매입 대비)</div></div>
+  <div class="card kpi"><div class="n">$1,748 → $3,285</div><div class="l">매입원가 → 현재평가</div></div>
+  <div class="card kpi"><div class="n neg">−5.53%</div><div class="l">당일 (반도체 급락일)</div></div>
+  <div class="card kpi"><div class="n">9종목</div><div class="l">현재 보유 (MU 31% 최대)</div></div>
+</div>
+<table>
+  <thead><tr><th>티커</th><th>매입가</th><th>현재가</th><th>비중</th><th>누적수익률</th><th></th></tr></thead>
+  <tbody id="saTable"></tbody>
+  <tfoot><tr style="font-weight:700"><td>합계/평균</td><td>$1,748</td><td>$3,285</td><td>100%</td><td class="pos">+87.9%</td><td></td></tr></tfoot>
+</table>
+<div class="ok"><b>이 바스켓은 잘 작동했습니다.</b> 미주부가 큐레이션한 시킹알파 픽 10선을 실제로 따라 산 결과 <b>누적 +87.9%</b> — 메모리·AI 슈퍼사이클 효자(MU +195.8%, AMD +149.7%, COHR +115.0%, CIEN +86.6%)가 견인. 공교롭게도 미주은 1년 수익률(+87%)과 비슷한 수준입니다.</div>
+<div class="warn"><b>단, 해석 주의.</b> ① 종목별 <b>매입 시점이 제각각</b>이라 "1년 수익률"이 아니라 "각자 진입가 대비 현재"이며, 진입이 빠른 종목일수록 수치가 큼. ② <b>강세장·메모리 슈퍼사이클</b> 덕이 큼(같은 환경에서 미주은·미주부·월텍남 모두 비슷한 메가캡/메모리로 비슷하게 벌었음). ③ 이건 <b>시킹알파의 픽</b>이지 미주부 고유 알파가 아님 — 미주부의 기여는 "큐레이션·재검증". ④ 부진주(B −10.5%, INCY −6.7%)도 존재. ⑤ 표본 9종목·단일 바스켓이라 일반화 불가.</div>
+
+<!-- ============ 게시글 ============ -->
+<h2 id="posts">④ 게시글·콘텐츠 패턴</h2>
+<div class="chart"><svg id="postChart" viewBox="0 0 900 240" width="100%"></svg>
+  <div class="legend"><span><i style="background:var(--mje)"></i>미주은 월별</span><span><i style="background:var(--mzb)"></i>미주부 월별</span></div></div>
+<div class="grid g2">
+  <div class="card"><h3 style="margin-top:0;color:var(--mje)">미주은</h3><ul class="clean small">
+    <li>연 <b>2,515개</b> (월 210·주 48) — 물량 압도적</li><li>일반글 58% · 영상/팟캐스트 31% · 만화책 10%</li>
+    <li>평균 글길이 1.1만자 · 평균 <b>좋아요 113·조회 3,367</b> (대형 팬덤)</li><li>매매현황 글 연 86회 — 매우 잦은 트레이딩</li></ul></div>
+  <div class="card"><h3 style="margin-top:0;color:var(--mzb)">미주부</h3><ul class="clean small">
+    <li>연 <b>812개</b> (월 68·주 16) — 소수정예</li><li>일반글 93% · 영상 7% (텍스트·표 중심, 더 분석적)</li>
+    <li>평균 글길이 <b>1.9만자</b> · 평균 좋아요 9·조회 1,056 (소규모·심층)</li><li>주간 수익률 리뷰는 영상이라 텍스트 검증 불가</li></ul></div>
+</div>
+
+<h3>가장 많이 다룬 종목 (언급빈도 Top10 · ⚠️언급≠추천)</h3>
+<div class="grid g2">
+  <div class="card"><b style="color:var(--mje)">미주은</b><div id="mjeTickers" style="margin-top:8px"></div></div>
+  <div class="card"><b style="color:var(--mzb)">미주부</b><div id="mzbTickers" style="margin-top:8px"></div></div>
+</div>
+
+<!-- ============ 판단 가이드 ============ -->
+<h2 id="guide">⑤ 구독 의사결정 가이드</h2>
+<div class="grid g2">
+  <div class="card"><div class="who"><h3 style="margin-top:0">미주은 구독이 맞다면</h3><ul class="clean small">
+    <li>강세장에서 <b>시장 초과 절대수익</b>을 적극 노린다</li><li>MDD ~−17%·고변동·종목집중을 감내할 수 있다</li>
+    <li>주 수십 개 글·잦은 매매를 따라갈 시간/멘탈이 된다</li><li>투명하게 검증된 트랙레코드를 중시한다</li>
+  </ul></div></div>
+  <div class="card"><div class="who b"><h3 style="margin-top:0">미주부 구독이 맞다면</h3><ul class="clean small">
+    <li><b>룰 기반·정량·분산</b> 접근을 선호한다</li><li>월 1회 리밸런싱 등 <b>낮은 매매빈도</b>를 원한다</li>
+    <li>종목 발굴(적정주가·내부자매매·중소형)을 원한다</li><li>성과가 일부 모의계좌 기반인 점을 감수할 수 있다</li>
+  </ul></div></div>
+</div>
+<div class="bad"><b>둘 다에 해당하는 냉정한 경고.</b>
+① 지난 1년 성과는 <b>역사적 AI·메모리 강세장 + 고변동</b>의 산물 — 재현 보장 불가.
+② 미주은은 <b>위험조정 시 지수 대비 우위가 사라짐</b>(샤프&lt;지수, 알파≈0). 단순 지수/레버리지ETF 대비 "구독료+노력"의 값어치를 따져야.
+③ 따라 하면 <b>변동성·종목집중·손실 종목</b>까지 그대로 떠안음.
+④ <b>표본 1년은 운/실력 분리에 너무 짧다.</b> 최소 약세장 1회 포함 2~3년 누적으로 재검증 권장.</div>
+
+<footer>
+데이터: 팬딩(fanding.kr) 구독 피드 3,327개 · 미주은 실계좌 엑셀 41개 · 미주부 계좌공개 이미지 203장(OCR) · Yahoo Finance 실측.
+미주은 수익률은 본인 공개치를 내부정합성·벤치마크로 교차검증한 것이며 제3자 감사자료가 아님. 미주부 모의계좌 누적·일부 수치는 이미지 판독 기반으로 오차 가능. 본 리포트는 정보분석용이며 투자권유가 아닙니다. 투자 책임은 본인에게 있습니다.
+</footer>
+</div>
+
+<script>
+const months=['25.6','25.7','25.8','25.9','25.10','25.11','25.12','26.1','26.2','26.3','26.4','26.5'];
+const mje=[8.72,12.48,-0.86,4.59,7.56,-3.01,-2.84,3.19,-8.04,-6.88,31.31,25.51];
+const sp=[4.96,2.17,1.91,3.53,2.27,0.13,0.24,1.36,-1.4,-5.09,10.4,5.15];
+const nq=[6.35,3.7,1.58,5.61,4.69,-1.51,-0.53,0.95,-3.92,-4.75,15.3,8.36];
+const holdings=[['샌디스크','SNDK',9.2],['마이크론','MU',8.4],['마벨','MRVL',7.1],['SK하이닉스','000660',6.0],['루멘텀','LITE',5.6],['AMD','AMD',5.5],['크레도','CRDO',5.4],['삼성전자','005930',4.8],['암 홀딩스','ARM',3.9],['웨스턴디지털','WDC',3.9],['코히런트','COHR',3.9],['블룸에너지','BE',3.4],['어플옵토','AAOI',3.3],['엔비디아','NVDA',3.2],['셀레스티카','CLS',2.9],['델','DELL',2.8],['브로드컴','AVGO',2.6],['TSMC','TSM',2.1],['현금','—',15.8]];
+const mjeStocks=[['SNDK',4417],['BE',1216],['WDC',1066],['AAOI',1042],['LITE',1009],['MU',750],['COHR',380],['AMD',299],['MRVL',299],['DELL',258],['CLS',189],['ARM',174],['VRT',157],['TSM',101],['AVGO',52],['NVDA',44],['PLTR',-2.5]];
+const mzbReturns=[['25.6',61.95],['25.7',33.21],['25.8',30.41],['25.9',2.33],['25.10',48.72],['25.11',21.85],['25.12',31.52],['26.1',30.27],['26.2(a)',43.67],['26.2(b)',-6.04],['26.3',-6.76],['26.4(a)',-1.89],['26.4(b)',14.14],['26.4(c)',33.64],['26.5(a)',25.97],['26.5(b)',21.14],['26.5(c)',-3.85],['26.6',35.97]];
+const tmpl=[['25.8',66.67],['26.1',113.33],['26.2',75.98],['26.6',163.33]];
+const mzbStocks=[['S',15,-14.7],['ARQT',12,92.9],['COHR',11,380],['PGY',11,-14.6],['VRT',8,167.8],['UNH',8,35.5],['VST',8,-13.2],['ORCL',8,-8.6],['HIMS',7,-49.1],['FSLR',7,83.7],['MSFT',7,-17.0],['SNAP',7,-30.2],['NVDA',7,44.1],['LLY',7,42.9],['NBIS',2,448.5],['SYM',5,33.9],['TEM',4,-27.9],['FOUR',6,-56.6],['SMCI',2,-32.2]];
+const mjeTk=[['NVDA',835],['MSFT',603],['GOOGL',577],['META',444],['AMD',408],['AMZN',371],['AAPL',333],['MU',287],['TSLA',286],['AVGO',257]];
+const mzbTk=[['MSFT',383],['NVDA',326],['GOOGL',281],['TSLA',230],['AMZN',196],['META',196],['AAPL',185],['AMD',135],['ORCL',110],['AVGO',105]];
+const postMje=[120,228,180,204,186,185,148,169,140,217,291,289,158];
+const postMzb=[27,76,85,63,62,68,68,63,69,62,67,67,35];
+const postLabels=['25.6','25.7','25.8','25.9','25.10','25.11','25.12','26.1','26.2','26.3','26.4','26.5','26.6'];
+
+const fmt=n=>(n>=0?'+':'')+n.toFixed(2)+'%';
+const cls=n=>n>=0?'pos':'neg';
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+document.getElementById('monthTable').innerHTML=months.map((m,i)=>`<tr><td>${m}</td><td class="${cls(mje[i])}">${fmt(mje[i])}</td><td>${fmt(sp[i])}</td><td>${fmt(nq[i])}</td><td>${mje[i]>sp[i]?'✅':'❌'}</td></tr>`).join('');
+const mw=Math.max(...holdings.map(h=>h[2]));
+document.getElementById('holdTable').innerHTML=holdings.map(h=>`<tr><td>${h[0]}</td><td class="muted">${h[1]}</td><td>${h[2].toFixed(1)}%</td><td><span class="bar"><span style="width:${h[2]/mw*100}%;${h[1]==='—'?'background:var(--mut)':''}"></span></span></td></tr>`).join('');
+const mr=Math.max(...mjeStocks.map(s=>s[1]));
+document.getElementById('mjeStockTable').innerHTML=mjeStocks.map(s=>`<tr><td>${s[0]}</td><td class="${cls(s[1])}">${s[1]>=0?'+':''}${s[1].toLocaleString()}%</td><td><span class="bar"><span style="width:${Math.max(2,s[1]/mr*100)}%;${s[1]<0?'background:var(--red)':''}"></span></span></td></tr>`).join('');
+document.getElementById('mzbStockTable').innerHTML=mzbStocks.map(s=>`<tr><td>${s[0]}</td><td class="muted">${s[1]}회</td><td class="${cls(s[2])}">${s[2]>=0?'+':''}${s[2].toLocaleString()}%</td><td><span class="bar"><span style="width:${Math.max(2,Math.min(100,(s[2]+60)/5))}%;${s[2]<0?'background:var(--red)':'background:var(--mzb)'}"></span></span></td></tr>`).join('');
+const tk=a=>a.map((t,i)=>`<span class="tag">${i+1}. ${t[0]} <b style="color:#cdd3df">${t[1]}</b></span>`).join('');
+document.getElementById('mjeTickers').innerHTML=tk(mjeTk);
+document.getElementById('mzbTickers').innerHTML=tk(mzbTk);
+
+// Seeking Alpha picks (user's actual basket)
+const saPicks=[['MU',345.09,1020.76,31.07,195.8],['AMD',203.17,507.29,15.44,149.7],['CIEN',230.56,430.30,13.10,86.6],['COHR',178.06,382.81,11.65,115.0],['CLS',302.30,382.01,11.63,26.4],['ALL',212.21,223.09,6.79,5.1],['ATI',122.30,196.31,5.98,60.5],['INCY',106.87,99.75,3.04,-6.7],['B',47.81,42.77,1.30,-10.5]];
+const saMax=Math.max(...saPicks.map(s=>s[4]));
+document.getElementById('saTable').innerHTML=saPicks.map(s=>`<tr><td><b>${s[0]}</b></td><td class="muted">$${s[1].toFixed(2)}</td><td>$${s[2].toFixed(2)}</td><td>${s[3].toFixed(1)}%</td><td class="${cls(s[4])}">${fmt(s[4])}</td><td><span class="bar"><span style="width:${Math.max(2,Math.min(100,(s[4]+15)/2.1))}%;${s[4]<0?'background:var(--red)':'background:var(--mzb)'}"></span></span></td></tr>`).join('');
+
+function cum(a){let v=100,o=[100];for(const r of a){v*=1+r/100;o.push(v);}return o;}
+function lineChart(id,series,labels,suffix){const svg=document.getElementById(id);const W=900,H=svg.viewBox.baseVal.height,pl=46,pr=46,pt=16,pb=28;
+  const all=series.flatMap(s=>s.data);let mn=Math.min(...all),mx=Math.max(...all);const xw=W-pl-pr,yh=H-pt-pb;
+  const X=i=>pl+xw*i/(labels.length-1),Y=v=>pt+yh*(1-(v-mn)/(mx-mn));let g='';
+  for(let k=0;k<=5;k++){const val=mn+(mx-mn)*k/5,y=Y(val);g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#242833"/><text x="${pl-6}" y="${y+3}" text-anchor="end">${Math.round(val)}${suffix||''}</text>`;}
+  labels.forEach((l,i)=>{if(labels.length<=8||i%2===0||i===labels.length-1)g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${l}</text>`;});
+  series.forEach(s=>{let d=s.data.map((v,i)=>`${i===0?'M':'L'}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.w||2}"/>`;const lv=s.data[s.data.length-1];g+=`<text x="${W-pr+3}" y="${Y(lv)+3}" style="fill:${s.color};font-weight:700">${Math.round(lv)}</text>`;});
+  svg.innerHTML=g;}
+function barChart(id,data,suffix){const svg=document.getElementById(id);const W=900,H=svg.viewBox.baseVal.height,pl=46,pr=14,pt=18,pb=30;
+  const vals=data.map(d=>d[1]);const mn=Math.min(0,...vals),mx=Math.max(...vals);const xw=W-pl-pr,yh=H-pt-pb;const bw=xw/data.length*0.62;
+  const Y=v=>pt+yh*(1-(v-mn)/(mx-mn));const zero=Y(0);let g='';
+  for(let k=0;k<=4;k++){const val=mn+(mx-mn)*k/4,y=Y(val);g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#242833"/><text x="${pl-6}" y="${y+3}" text-anchor="end">${Math.round(val)}${suffix||''}</text>`;}
+  data.forEach((d,i)=>{const cx=pl+xw*(i+0.5)/data.length;const y=Y(Math.max(0,d[1])),h=Math.abs(Y(d[1])-zero);const col=d[1]>=0?css('--grn'):css('--red');
+    g+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${col}"/>`;
+    if(data.length<=10)g+=`<text x="${cx}" y="${d[1]>=0?y-5:y+h+12}" text-anchor="middle" style="fill:${col};font-weight:700">${d[1]>0?'+':''}${d[1]}${suffix||''}</text>`;
+    g+=`<text x="${cx}" y="${H-8}" text-anchor="middle" style="font-size:9px">${d[0]}</text>`;});
+  svg.innerHTML=g;}
+function groupBars(id,labels,a,b,ca,cb){const svg=document.getElementById(id);const W=900,H=svg.viewBox.baseVal.height,pl=40,pr=14,pt=16,pb=28;
+  const mx=Math.max(...a,...b);const xw=W-pl-pr,yh=H-pt-pb;const gw=xw/labels.length;const bw=gw*0.34;
+  const Y=v=>pt+yh*(1-v/mx);let g='';
+  for(let k=0;k<=4;k++){const val=mx*k/4,y=Y(val);g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#242833"/><text x="${pl-6}" y="${y+3}" text-anchor="end">${Math.round(val)}</text>`;}
+  labels.forEach((l,i)=>{const cx=pl+gw*(i+0.5);
+    g+=`<rect x="${cx-bw-1}" y="${Y(a[i])}" width="${bw}" height="${yh-(Y(a[i])-pt)}" rx="2" fill="${ca}"/>`;
+    g+=`<rect x="${cx+1}" y="${Y(b[i])}" width="${bw}" height="${yh-(Y(b[i])-pt)}" rx="2" fill="${cb}"/>`;
+    g+=`<text x="${cx}" y="${H-8}" text-anchor="middle" style="font-size:9px">${l}</text>`;});
+  svg.innerHTML=g;}
+
+lineChart('cumChart',[{data:cum(sp),color:css('--sp'),w:1.5},{data:cum(nq),color:css('--nq'),w:1.5},{data:cum(mje),color:css('--mje'),w:2.6}],['시작',...months]);
+barChart('mzbChart',mzbReturns,'%');
+lineChart('tmplChart',[{data:tmpl.map(t=>t[1]),color:css('--mzb'),w:2.4}],tmpl.map(t=>t[0]),'%');
+groupBars('postChart',postLabels,postMje,postMzb,css('--mje'),css('--mzb'));
+</script>
+</body>
+</html>

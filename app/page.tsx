@@ -12,12 +12,20 @@ export default function HomePage() {
   const projectCount = projects.filter(
     (p) => (p.section ?? "projects") === "projects",
   ).length;
+  const automationCount = projects.filter(
+    (p) => p.section === "automation",
+  ).length;
   const skillCount = projects.filter((p) => p.section === "skills").length;
 
   return (
     <main className="min-h-[100dvh]">
       <Nav />
-      <Masthead projects={projectCount} skills={skillCount} years={span} />
+      <Masthead
+        projects={projectCount}
+        automation={automationCount}
+        skills={skillCount}
+        years={span}
+      />
       <Gallery projects={projects} />
       <Footer />
     </main>
