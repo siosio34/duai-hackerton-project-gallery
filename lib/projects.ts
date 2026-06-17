@@ -56,15 +56,33 @@ export const projects: Project[] = [
       ],
       outro: "그렇게 두두는 수직 도시를 오른다. 정상 거래소의 빨간 [전량 매도] 버튼 앞에서, 마지막 판단만을 남겨둔 채. (게임 속 이야기예요. 가볍게 즐겨주세요.)",
     },
-    features: [
-      "7개 존을 오른다. 골목에서 펜트하우스, 달, 신계까지. 정상에 닿으면 무한 상승장 BULL RUN이 열리고, 곧바로 번 돈을 한 판에 거는 더블다운이 기다린다.",
-      "발판 패턴이 다양하다. 나선·지그재그·계단·롱점프·기둥·붕괴·이동·트램펄린·빙판에, 두 줄 중 하나가 가짜인 징검다리까지 섞었다.",
-      "멀티플레이는 Vercel 서버리스 함수와 Upstash Redis 폴링(~400ms)으로 돌아간다. 고스트 플레이어, Q 강탈, 자유 채팅, 글로벌 영구 랭킹을 지원하고, Redis가 없으면 솔로와 로컬 랭킹, AI 봇으로 자동 폴백한다.",
-      "CC0 PBR 텍스처·HDRI·은하수 파노라마·존별 3D 데코를 비동기로 불러온다. 7~24MB짜리 네온 간판은 gltf-transform으로 200KB 안팎까지 압축했다.",
-      "캐릭터·효과음·UI는 전부 프로시저럴이다(프리미티브 지오메트리·WebAudio·캔버스).",
+    features: [],
+    strengths: [
+      {
+        title: "상시 서버 없이 굴러가는 멀티플레이",
+        body: "Vercel은 상주 웹소켓 서버를 못 띄운다. 그래서 서버리스 함수와 Upstash Redis 폴링(~400ms)으로 고스트·강탈·채팅·글로벌 랭킹을 굴렸다. Redis가 없으면 솔로와 AI 봇으로 알아서 떨어져, 어떤 환경에서도 깨지지 않는다.",
+      },
+      {
+        title: "손맛까지 맞춘 절차적 등반",
+        body: "7개 존을 나선·계단·붕괴·이동·트램펄린·빙판 같은 14가지 패턴으로 매번 새로 깐다. 코요테 타임과 점프 버퍼, 더블점프를 넣어 떨어질 듯 말 듯한 손맛을 잡았다.",
+      },
+      {
+        title: "에셋은 가볍게, 화면은 화려하게",
+        body: "캐릭터·효과음·UI를 전부 프로시저럴로 만들어 외부 파일을 거의 안 쓴다. 무거운 네온 간판은 gltf-transform으로 7~24MB에서 200KB 안팎까지 눌러, 화려한 도시를 빠르게 띄운다.",
+      },
+      {
+        title: "스스로 검증하는 빌드",
+        body: "루브릭 기반 9장면 자동 스크린샷, 장면별 FPS 측정, 상호작용·물리 기능 테스트를 스크립트로 갖췄다. 비주얼이 깨지거나 프레임이 떨어지면 바로 드러난다.",
+      },
     ],
-    outcome:
-      "Vercel에 배포돼 있어 누구나 바로 플레이할 수 있다. 루브릭 기반 9장면 자동 스크린샷, 장면별 FPS 측정, 상호작용·물리 기능 테스트를 스크립트로 갖춰 비주얼과 성능, 동작을 회귀 검증한다. 서버가 없을 때도 AI 봇이 대신 등반하고 채팅해서 솔로 레이스가 성립하도록 폴백을 짰다. 덕분에 어떤 환경에서도 깨지지 않는다.",
+    credits: [
+      { source: "ambientCG", use: "PBR 텍스처 12종", license: "CC0", href: "https://ambientcg.com" },
+      { source: "Poly Haven", use: "HDRI 환경광", license: "CC0", href: "https://polyhaven.com" },
+      { source: "ESO / S. Brunier", use: "은하수 파노라마", license: "CC BY 4.0" },
+      { source: "Kevin MacLeod", use: "배경 음악", license: "CC BY 4.0", href: "https://incompetech.com" },
+      { source: "Polygonal Mind", use: "존별 3D 데코", license: "CC0", href: "https://github.com/ToxSam/open-source-3D-assets" },
+      { source: "Kenney", use: "우주 키트", license: "CC0", href: "https://kenney.nl" },
+    ],
     links: [{ label: "Live site", href: "https://onlyup-duai-one.vercel.app" }],
     controls: [
       { keys: ["W", "A", "S", "D"], action: "이동 (카메라 기준)" },

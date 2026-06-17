@@ -123,6 +123,23 @@ export function ProjectDetail({
         )}
       </motion.div>
 
+      {/* Tech stack — right under the video when there's no overview/role lead */}
+      {!project.overview && !project.role && project.tech.length > 0 && (
+        <section className="mt-12 border-t border-line pt-6">
+          <h2 className="meta-label mb-3">기술 스택</h2>
+          <ul className="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <li
+                key={t}
+                className="rounded-full border border-line-strong px-3 py-1 text-sm text-ink-soft"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* Cinematic — the game's intro prologue (portrait-aware), shown up top */}
       {project.media?.cinematic && (
         <section className="mt-16 border-t border-line pt-10">
@@ -193,8 +210,39 @@ export function ProjectDetail({
         </section>
       )}
 
-      {/* Lead (overview or role) + stack — falls back to a slim stack band */}
-      {project.overview || project.role ? (
+      {/* Technical strengths — prominent highlights */}
+      {project.strengths && project.strengths.length > 0 && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-10">기술적 강점</h2>
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+            {project.strengths.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={reduce ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.55, delay: i * 0.06, ease }}
+                className="bg-paper p-7 sm:p-9"
+              >
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-sm text-accent-deep">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="break-keep text-lg font-semibold text-ink">
+                    {s.title}
+                  </h3>
+                </div>
+                <p className="mt-3 break-keep leading-relaxed text-ink-soft">
+                  {s.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Lead (overview or role) + role/stack sidebar */}
+      {(project.overview || project.role) && (
         <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
@@ -231,20 +279,6 @@ export function ProjectDetail({
               </div>
             </Reveal>
           </aside>
-        </div>
-      ) : (
-        <div className="mt-12 border-t border-line pt-6">
-          <h2 className="meta-label mb-3">스택</h2>
-          <ul className="flex flex-wrap gap-2">
-            {project.tech.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-line-strong px-3 py-1 text-sm text-ink-soft"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
         </div>
       )}
 
@@ -317,6 +351,7 @@ export function ProjectDetail({
       )}
 
       {/* Features — editorial numbered grid, not a bullet list */}
+      {project.features.length > 0 && (
       <section className="mt-24 border-t border-line pt-10">
         <h2 className="meta-label mb-10">기능</h2>
         <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
@@ -339,6 +374,7 @@ export function ProjectDetail({
           ))}
         </ul>
       </section>
+      )}
 
       {/* Outcome */}
       {project.outcome && (
@@ -477,6 +513,46 @@ export function ProjectDetail({
           </div>
         </section>
       ))}
+
+      {/* Resource credits */}
+      {project.credits && project.credits.length > 0 && (
+        <section className="mt-24 border-t border-line pt-10">
+          <h2 className="meta-label mb-3">리소스</h2>
+          <p className="mb-9 max-w-[62ch] break-keep leading-relaxed text-ink-soft">
+            화면과 사운드는 공개 라이선스 에셋을 가져다 다듬어 썼다. 출처와
+            라이선스는 아래와 같다.
+          </p>
+          <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+            {project.credits.map((c) => (
+              <li
+                key={c.source}
+                className="flex items-baseline justify-between gap-4 bg-paper px-6 py-4"
+              >
+                <span className="min-w-0">
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-underline font-medium text-ink"
+                    >
+                      {c.source}
+                    </a>
+                  ) : (
+                    <span className="font-medium text-ink">{c.source}</span>
+                  )}
+                  <span className="ml-2 break-keep text-sm text-ink-mute">
+                    {c.use}
+                  </span>
+                </span>
+                <span className="shrink-0 rounded-full border border-line-strong px-2.5 py-0.5 font-mono text-[0.7rem] text-ink-soft">
+                  {c.license}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Embedded A/B comparison (deep-research-report only) */}
       {project.slug === "deep-research-report" && <ResearchCompare embedded />}

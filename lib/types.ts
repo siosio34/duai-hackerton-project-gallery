@@ -85,6 +85,10 @@ export interface Project {
   controls?: { keys: string[]; action: string }[];
   /** Optional in-game controls card image (shown instead of the keycap grid). */
   controlsImage?: string;
+  /** Optional technical strengths, surfaced as a prominent highlights section. */
+  strengths?: { title: string; body: string }[];
+  /** Optional external resource credits (assets referenced). */
+  credits?: { source: string; use: string; license: string; href?: string }[];
   /** Optional themed image showcases (concept galleries), each its own section. */
   showcases?: {
     title: string;
