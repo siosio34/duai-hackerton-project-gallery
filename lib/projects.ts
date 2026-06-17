@@ -674,10 +674,6 @@ export const projects: Project[] = [
       "실제로 'AI 자동매매 봇 기획서'를 같은 초안에서 두 경로로 돌려봤다. 스킬 없이 1-pass로 다듬으면 목차·KPI·리스크 절이 붙어 겉보기 완성도는 올라가지만 아무도 신뢰를 검증하지 않는다. quality-gate-loop로 돌리자, 개선을 거듭할수록 native(서술 완성도)는 2→7로 올랐지만 persona(한국 사용자 신뢰)는 4.1→2.4로 떨어졌다 — 디테일·헤지가 늘수록 일반 사용자는 '리스크가 더 잘 보여서' 신뢰를 덜 했다. 단일 렌즈였다면 못 봤을 렌즈 간 괴리를 게이트가 포착해, 점수를 부풀리지 않고 정직하게 STOP한 뒤 텍스트로 못 고치는 신뢰·설계 문제를 사람에게 에스컬레이션하고 최고점 버전을 복원했다. '그럴듯함 ≠ 신뢰'를 숫자와 인용으로 드러내는 게 이 스킬의 값어치다. (합성 페르소나·LLM council 점수는 방향성 신호로, 실제 시장 검증을 대체하지 않는다.)",
     links: [
       {
-        label: "비교 시연 — 스킬 vs 미사용",
-        href: "/media/eval-improve-skills/comparison.html",
-      },
-      {
         label: "A/B 테스트 (3개 도메인)",
         href: "/media/eval-improve-skills/ab-test.html",
       },
@@ -687,21 +683,6 @@ export const projects: Project[] = [
       },
     ],
     gallery: [
-      {
-        caption:
-          "같은 초안, 두 경로. 스킬 없이 1-pass로 다듬은 결과와 quality-gate-loop를 나란히 둔 시연 페이지.",
-        image: "/media/eval-improve-skills/compare-1-setup.jpg",
-      },
-      {
-        caption:
-          "렌즈 간 괴리. 개선할수록 native(완성도)는 2→7로 오르는데 persona(사용자 신뢰)는 4.1→2.4로 떨어진다 — 게이트가 잡아낸 신호.",
-        image: "/media/eval-improve-skills/compare-2-divergence.jpg",
-      },
-      {
-        caption:
-          "라운드별 3렌즈 채점(native·external·persona)과 페르소나 개별 반응, 판정·Δ를 함께 남긴다.",
-        image: "/media/eval-improve-skills/compare-3-rounds.jpg",
-      },
       {
         caption:
           "3개 도메인(여행 챗·냉장고 레시피·랜딩 카피)에서 provenance를 가린 블라인드 A/B 투표로 스킬 효과를 검증.",

@@ -12,7 +12,6 @@ import { ProjectMedia } from "./ProjectMedia";
 import { ResearchCompare } from "./ResearchCompare";
 import { IdeaPipeline } from "./IdeaPipeline";
 import { ResearchPipeline } from "./ResearchPipeline";
-import { EvalShowcase } from "./EvalShowcase";
 import { Parallax } from "./Parallax";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -587,9 +586,6 @@ export function ProjectDetail({
           </ul>
         </section>
       )}
-
-      {/* Flow diagram + round scores + the three plans in one place (eval-improve-skills only) */}
-      {project.slug === "eval-improve-skills" && <EvalShowcase />}
 
       {/* Source/flow anatomy + example reports (deep-research-report only) */}
       {project.slug === "deep-research-report" && <ResearchPipeline />}
