@@ -40,11 +40,75 @@ const STAGES: Stage[] = [
   },
 ];
 
-const ROUNDS = [
-  { round: 1, overall: 2.0, native: 2.0, external: 2.0, persona: 2.0, decision: "IMPROVE" },
-  { round: 2, overall: 5.0, native: 6.0, external: 5.0, persona: 4.1, decision: "IMPROVE" },
-  { round: 3, overall: 4.9, native: 7.0, external: 5.0, persona: 2.7, decision: "IMPROVE" },
-  { round: 4, overall: 4.6, native: 6.0, external: 5.5, persona: 2.4, decision: "STOP" },
+type Round = {
+  round: number;
+  overall: number;
+  native: number;
+  external: number;
+  persona: number;
+  decision: string;
+  lines: number;
+  file: string;
+  restored?: boolean;
+  changed: string;
+  quote: string;
+  who: string;
+};
+
+const ROUNDS: Round[] = [
+  {
+    round: 1,
+    overall: 2.0,
+    native: 2.0,
+    external: 2.0,
+    persona: 2.0,
+    decision: "IMPROVE",
+    lines: 41,
+    file: "round-1.md",
+    changed: "거친 초안 그대로 채점. 규제·KPI·리스크 장치가 전무해 세 렌즈 모두 바닥(2.0).",
+    quote: "퇴근하고 힘들게 번 돈인데, 한두 달 MVP로 만든 봇에 맡기라는 건 너무 무책임해 보여요.",
+    who: "판매 사무원 · 2.0",
+  },
+  {
+    round: 2,
+    overall: 5.0,
+    native: 6.0,
+    external: 5.0,
+    persona: 4.1,
+    decision: "IMPROVE",
+    lines: 113,
+    file: "round-2.md",
+    changed: "1차 개선으로 41→113줄. Go/No-Go 선행 게이트·규제 검토·KPI 표·리스크 정책을 추가 → 종합 5.0, persona 4.1로 최고점.",
+    quote: "손절·킬스위치 있다고 해도 결국 내 돈이 깨지는 건데, 숫자도 안 나온 기획서 보고 자동매매 맡길 여유는 없어요.",
+    who: "판매 사무원 · 4.5",
+  },
+  {
+    round: 3,
+    overall: 4.9,
+    native: 7.0,
+    external: 5.0,
+    persona: 2.7,
+    decision: "IMPROVE",
+    lines: 173,
+    file: "round-3.md",
+    changed: "디테일·헤지를 더 키워 113→173줄. native(완성도)는 7.0로 올랐지만 persona는 2.7로 하락 — ‘리스크가 더 잘 보여서’ 신뢰가 깎였다.",
+    quote: "퇴근하고 자격증 공부하기도 벅찬데, 손해 나면 결국 제 책임인 자동매매 봇을 믿고 돈을 넣기는 어렵죠.",
+    who: "판매 사무원 · 3.0",
+  },
+  {
+    round: 4,
+    overall: 4.6,
+    native: 6.0,
+    external: 5.5,
+    persona: 2.4,
+    decision: "STOP",
+    lines: 113,
+    file: "round-2.md",
+    restored: true,
+    changed: "더 다듬어도 persona 2.4로 정체. 3라운드 연속 floor 미만 → STOP·에스컬레이션. 산출물은 따로 저장하지 않고 최고점 round 2(113줄)를 복원했다.",
+    quote: "퇴근하고 자격증 공부하기도 벅찬데, 검증 안 된 숫자랑 복잡한 약관을 믿고 제 돈을 자동매매에 넣기는 어렵습니다.",
+    who: "판매 사무원 · 2.0",
+  },
 ];
 
 const DOCS = [
@@ -279,16 +343,18 @@ function Reveal({ children, delay = 0, className }: { children: ReactNode; delay
 export function EvalShowcase() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<string>("withskill");
+  const [round, setRound] = useState<number>(2);
   const [docs, setDocs] = useState<Record<string, string>>({});
 
   useEffect(() => {
     let alive = true;
+    const files = Array.from(new Set([...DOCS.map((d) => d.file), ...ROUNDS.map((r) => r.file)]));
     Promise.all(
-      DOCS.map((d) =>
-        fetch(`${DOC_BASE}/${d.file}`)
+      files.map((f) =>
+        fetch(`${DOC_BASE}/${f}`)
           .then((r) => (r.ok ? r.text() : ""))
-          .then((t) => [d.key, t] as const)
-          .catch(() => [d.key, ""] as const),
+          .then((t) => [f, t] as const)
+          .catch(() => [f, ""] as const),
       ),
     ).then((pairs) => {
       if (alive) setDocs(Object.fromEntries(pairs));
@@ -297,6 +363,8 @@ export function EvalShowcase() {
       alive = false;
     };
   }, []);
+
+  const cur = ROUNDS.find((r) => r.round === round)!;
 
   return (
     <>
@@ -431,6 +499,111 @@ export function EvalShowcase() {
         </p>
       </section>
 
+      {/* ---- Per-round artifact — the loop captured mid-flight ---- */}
+      <section className="mt-24 border-t border-line pt-10">
+        <h2 className="meta-label mb-3">라운드별 진행 — 산출물 캡쳐</h2>
+        <p className="mb-8 max-w-[64ch] break-keep leading-relaxed text-ink-soft">
+          점수만이 아니라 <span className="text-ink">매 라운드의 산출물 자체</span>가 어떻게 바뀌었는지 — 그리고 그때 한국인
+          패널이 실제로 뭐라고 했는지 — 를 라운드를 눌러 그대로 본다. 문서는 <span className="text-ink">41 → 113 → 173줄</span>로
+          커지는데, 디테일이 늘수록 native는 오르고 persona 신뢰는 떨어진다.
+        </p>
+
+        {/* round stepper */}
+        <div className="flex flex-wrap gap-2">
+          {ROUNDS.map((r) => {
+            const on = round === r.round;
+            const stop = r.decision === "STOP";
+            return (
+              <button
+                key={r.round}
+                onClick={() => setRound(r.round)}
+                aria-pressed={on}
+                className={`flex items-center gap-2.5 rounded-xl border px-4 py-2.5 text-left transition-colors ${
+                  on ? "border-accent-deep bg-paper" : "border-line bg-paper-2/50 hover:border-line-strong"
+                }`}
+              >
+                <span className={`font-mono text-sm font-semibold ${on ? "text-accent-deep" : "text-ink-mute"}`}>R{r.round}</span>
+                <span>
+                  <span className={`block text-sm font-medium ${on ? "text-ink" : "text-ink-soft"}`}>
+                    종합 {r.overall.toFixed(1)} · persona {r.persona.toFixed(1)}
+                  </span>
+                  <span className={`block font-mono text-[0.7rem] ${stop ? "text-[#9b1c1c]" : "text-ink-mute"}`}>
+                    {r.lines}줄 · {r.decision}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* selected round: meta (left) + artifact at that round (right) */}
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <div className="rounded-xl border border-line bg-paper-2/50 p-6">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-lg font-semibold text-ink">Round {cur.round}</span>
+                <span
+                  className={`rounded-lg px-3 py-1 text-sm font-bold ${
+                    cur.decision === "STOP" ? "bg-[#f4dcdc] text-[#9b1c1c]" : "bg-accent-soft text-accent-deep"
+                  }`}
+                >
+                  {cur.decision}
+                </span>
+              </div>
+              <div className="mt-4 grid grid-cols-4 gap-2">
+                {([
+                  ["종합", cur.overall, "text-ink"],
+                  ["native", cur.native, "text-ink-soft"],
+                  ["external", cur.external, "text-ink-soft"],
+                  ["persona", cur.persona, "text-accent-deep"],
+                ] as const).map(([k, v, c]) => (
+                  <div key={k} className="rounded-lg border border-line bg-paper px-2 py-2.5 text-center">
+                    <p className={`font-mono text-lg font-semibold tabular-nums ${c}`}>{v.toFixed(1)}</p>
+                    <p className="mt-0.5 text-[0.7rem] text-ink-mute">{k}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 break-keep text-[15px] leading-relaxed text-ink-soft">{cur.changed}</p>
+              <figure className="mt-4 border-l-2 border-accent/40 pl-4">
+                <blockquote className="break-keep text-[15px] italic leading-relaxed text-ink">“{cur.quote}”</blockquote>
+                <figcaption className="mt-1.5 font-mono text-xs text-ink-mute">— 한국인 패널 · {cur.who}</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <figure className="overflow-hidden rounded-xl border border-line bg-paper">
+              <figcaption className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
+                <span className="flex items-center gap-2.5">
+                  <span className="font-medium text-ink">산출물 @ R{cur.round}</span>
+                  <span className="font-mono text-[0.7rem] text-ink-mute">{cur.lines}줄</span>
+                  {cur.restored && (
+                    <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[0.7rem] font-medium text-accent-deep">R2 복원</span>
+                  )}
+                </span>
+                <a href={`${DOC_BASE}/${cur.file}`} target="_blank" rel="noreferrer" className="link-underline text-sm text-ink-mute">
+                  원문 .md ↗
+                </a>
+              </figcaption>
+              {cur.restored && (
+                <p className="border-b border-line bg-paper-2/40 px-5 py-2.5 text-xs text-ink-mute">
+                  R4는 STOP 라운드 — 새 산출물을 저장하지 않고 최고점 R2(113줄)를 최종본으로 복원했다.
+                </p>
+              )}
+              <div className="max-h-[560px] overflow-y-auto px-6 py-7 sm:px-8">
+                {docs[cur.file] === undefined ? (
+                  <p className="text-sm text-ink-mute">불러오는 중…</p>
+                ) : docs[cur.file] === "" ? (
+                  <p className="text-sm text-ink-mute">불러오지 못했다.</p>
+                ) : (
+                  <div className="max-w-[68ch]">{renderMarkdown(docs[cur.file])}</div>
+                )}
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* ---- Three plans, in one place ---- */}
       <section className="mt-24 border-t border-line pt-10">
         <h2 className="meta-label mb-3">세 기획서 한눈에</h2>
@@ -470,9 +643,9 @@ export function EvalShowcase() {
               <p className="break-keep text-sm leading-relaxed text-ink-soft">{d.note}</p>
             </div>
             <div className="max-h-[640px] overflow-y-auto rounded-xl border border-line bg-paper px-6 py-7 sm:px-9 sm:py-9">
-              {docs[d.key] === undefined ? (
+              {docs[d.file] === undefined ? (
                 <p className="text-sm text-ink-mute">문서를 불러오는 중…</p>
-              ) : docs[d.key] === "" ? (
+              ) : docs[d.file] === "" ? (
                 <p className="text-sm text-ink-mute">
                   문서를 불러오지 못했다.{" "}
                   <a href={`${DOC_BASE}/${d.file}`} target="_blank" rel="noreferrer" className="link-underline text-ink-soft">
@@ -480,7 +653,7 @@ export function EvalShowcase() {
                   </a>
                 </p>
               ) : (
-                <div className="max-w-[68ch]">{renderMarkdown(docs[d.key])}</div>
+                <div className="max-w-[68ch]">{renderMarkdown(docs[d.file])}</div>
               )}
             </div>
             <p className="mt-3 text-right">
