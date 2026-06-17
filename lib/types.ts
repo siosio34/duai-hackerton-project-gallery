@@ -95,6 +95,8 @@ export interface Project {
     caption?: string;
     cols?: 3 | 4;
     aspect?: "square" | "wide";
+    /** Render this showcase high up (right after the flow diagram) instead of near the bottom. */
+    early?: boolean;
     items: { src: string; label?: string }[];
   }[];
   /** Builder's role. Optional. */

@@ -237,6 +237,10 @@ export const projects: Project[] = [
         body: "누가 어떤 링크에서 추천했는지 출처째로 보여주고, 댓글 대신 좋아요만으로 가볍게 갈 곳을 추린다.",
       },
       {
+        title: "최적의 동선을 정하기가 어렵다",
+        body: "갈 곳은 정했는데 어떤 순서로 묶어 돌아야 효율적인지가 막막하다. 가까운 곳끼리 묶은 하루 동선을 대신 추천받고 싶었다.",
+      },
+      {
         title: "정리한 장소를 바로 지도로",
         body: "다시 옮겨 적지 않고 구글 마이맵스로 한 번에 내보내, 여행 당일 바로 길찾기로 이어지게.",
       },
@@ -260,6 +264,7 @@ export const projects: Project[] = [
           "도쿄 여행 단톡방 예시(5명 · 10개 링크)로 끝까지 돌려본 실제 화면. 업로드 한 번이면 지도 컬렉션과 장소 상세, 하루 동선까지 나온다.",
         cols: 4,
         aspect: "wide",
+        early: true,
         items: [
           { src: "/media/linktrip/landing.jpg", label: "카카오톡 .txt 드롭 한 번으로 시작" },
           { src: "/media/linktrip/result.jpg", label: "지도 핀 + 출처 링크가 달린 장소 카드" },

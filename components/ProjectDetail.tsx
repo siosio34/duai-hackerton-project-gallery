@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { Lightbox, type LightboxImage } from "./Lightbox";
+import { LinktripChat } from "./LinktripChat";
 import type { Project } from "@/lib/types";
 import { STATUS_LABEL } from "@/lib/types";
 import { ProjectVisual } from "./ProjectVisual";
@@ -42,6 +45,53 @@ export function ProjectDetail({
   next: Project;
 }) {
   const reduce = useReducedMotion();
+  const [zoom, setZoom] = useState<LightboxImage | null>(null);
+
+  const renderShowcase = (sc: NonNullable<Project["showcases"]>[number]) => (
+    <section key={sc.title} className="mt-24 border-t border-line pt-10">
+      <h2 className="meta-label mb-3">{sc.title}</h2>
+      {sc.caption && (
+        <p className="mb-9 max-w-[62ch] break-keep leading-relaxed text-ink-soft">
+          {sc.caption}
+        </p>
+      )}
+      <div
+        className={`grid grid-cols-2 gap-5 ${
+          sc.cols === 4 ? "sm:grid-cols-4" : "sm:grid-cols-3"
+        }`}
+      >
+        {sc.items.map((it, i) => (
+          <motion.figure
+            key={it.src}
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, delay: i * 0.05, ease }}
+          >
+            <div
+              className={`${
+                sc.aspect === "wide" ? "aspect-[16/10]" : "aspect-square"
+              } overflow-hidden rounded-xl border border-line bg-paper-2`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={it.src}
+                alt={it.label ?? ""}
+                loading="lazy"
+                onClick={() => setZoom({ src: it.src, alt: it.label })}
+                className="h-full w-full cursor-zoom-in object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
+              />
+            </div>
+            {it.label && (
+              <figcaption className="mt-2.5 break-keep text-sm text-ink-mute">
+                {it.label}
+              </figcaption>
+            )}
+          </motion.figure>
+        ))}
+      </div>
+    </section>
+  );
 
   return (
     <article className="mx-auto max-w-[1400px] px-5 pb-10 pt-10 sm:px-8">
@@ -336,7 +386,13 @@ export function ProjectDetail({
                 <img
                   src={project.diagram.image}
                   alt="딥리서치 스킬 파이프라인 다이어그램"
-                  className="w-full"
+                  onClick={() =>
+                    setZoom({
+                      src: project.diagram!.image,
+                      alt: project.diagram!.caption,
+                    })
+                  }
+                  className="w-full cursor-zoom-in"
                   loading="lazy"
                 />
               </div>
@@ -349,6 +405,12 @@ export function ProjectDetail({
           </Reveal>
         </section>
       )}
+
+      {/* Input → output (linktrip): real chat fixture, then the captured result screens */}
+      {project.slug === "linktrip" && <LinktripChat />}
+
+      {/* Early showcases — captured service-flow screens, surfaced high up */}
+      {project.showcases?.filter((sc) => sc.early).map(renderShowcase)}
 
       {/* Features — editorial numbered grid, not a bullet list */}
       {project.features.length > 0 && (
@@ -401,7 +463,10 @@ export function ProjectDetail({
                       <img
                         src={g.image}
                         alt={g.caption}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+                        onClick={() =>
+                          setZoom({ src: g.image!, alt: g.caption })
+                        }
+                        className="h-full w-full cursor-zoom-in object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
                         loading="lazy"
                       />
                     ) : (
@@ -436,7 +501,13 @@ export function ProjectDetail({
                   <img
                     src={project.controlsImage}
                     alt="게임 내 조작법 카드"
-                    className="w-full"
+                    onClick={() =>
+                      setZoom({
+                        src: project.controlsImage!,
+                        alt: "게임 내 조작법 카드",
+                      })
+                    }
+                    className="w-full cursor-zoom-in"
                     loading="lazy"
                   />
                 </div>
@@ -468,51 +539,8 @@ export function ProjectDetail({
         </section>
       )}
 
-      {/* Themed showcases (concept galleries) */}
-      {project.showcases?.map((sc) => (
-        <section key={sc.title} className="mt-24 border-t border-line pt-10">
-          <h2 className="meta-label mb-3">{sc.title}</h2>
-          {sc.caption && (
-            <p className="mb-9 max-w-[62ch] break-keep leading-relaxed text-ink-soft">
-              {sc.caption}
-            </p>
-          )}
-          <div
-            className={`grid grid-cols-2 gap-5 ${
-              sc.cols === 4 ? "sm:grid-cols-4" : "sm:grid-cols-3"
-            }`}
-          >
-            {sc.items.map((it, i) => (
-              <motion.figure
-                key={it.src}
-                initial={reduce ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.55, delay: i * 0.05, ease }}
-              >
-                <div
-                  className={`${
-                    sc.aspect === "wide" ? "aspect-[16/10]" : "aspect-square"
-                  } overflow-hidden rounded-xl border border-line bg-paper-2`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={it.src}
-                    alt={it.label ?? ""}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
-                  />
-                </div>
-                {it.label && (
-                  <figcaption className="mt-2.5 break-keep text-sm text-ink-mute">
-                    {it.label}
-                  </figcaption>
-                )}
-              </motion.figure>
-            ))}
-          </div>
-        </section>
-      ))}
+      {/* Themed showcases — late ones (concept galleries) near the bottom */}
+      {project.showcases?.filter((sc) => !sc.early).map(renderShowcase)}
 
       {/* Resource credits */}
       {project.credits && project.credits.length > 0 && (
@@ -578,6 +606,8 @@ export function ProjectDetail({
           </span>
         </div>
       </Link>
+
+      <Lightbox image={zoom} onClose={() => setZoom(null)} />
     </article>
   );
 }
