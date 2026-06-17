@@ -321,6 +321,8 @@ export const projects: Project[] = [
       poster: "/media/stock-subscribe-result/hero.png",
       thumbnail: "/media/stock-subscribe-result/hero.png",
     },
+    // Card opens the integrated dashboard directly — no separate detail page.
+    cardHref: "/media/stock-subscribe-result/dashboard.html",
     overview:
       "유료 구독채널이 공개하는 수익률을 곧이곧대로 믿기 어려워서, 직접 검증해 보려고 만든 파이프라인. 팬딩·네이버 프리미엄에 흩어진 미주은·미주부·월텍남·SAPIENS(올바른 미국주식) 1년치 게시물 3,300개 이상을 헤드리스 브라우저로 긁고, 자기보고 수익률을 야후 파이낸스 실측 벤치마크(S&P500·나스닥)와 대조해 정합성을 검사한다. 텍스트엔 없고 차트 캡처에만 있는 매매내역은 비전 OCR로 정량화하고, FIFO로 매매를 복원해 채널별 실제 성과·매수콜 백테스트까지 산출한 뒤, 5개 채널을 한 화면에서 비교하는 대시보드로 묶었다.",
     problem:

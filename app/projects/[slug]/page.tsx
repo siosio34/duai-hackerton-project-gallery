@@ -6,8 +6,10 @@ import { ProjectDetail } from "@/components/ProjectDetail";
 import { projects, getProject } from "@/lib/projects";
 
 export function generateStaticParams() {
-  // Placeholder (WIP) projects have no detail page.
-  return projects.filter((p) => !p.placeholder).map((p) => ({ slug: p.slug }));
+  // Placeholder (WIP) and card-direct (cardHref) projects have no detail page.
+  return projects
+    .filter((p) => !p.placeholder && !p.cardHref)
+    .map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -17,7 +19,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project || project.placeholder) return { title: "Not found" };
+  if (!project || project.placeholder || project.cardHref)
+    return { title: "Not found" };
   return {
     title: project.title,
     description: project.tagline,
@@ -36,10 +39,10 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project || project.placeholder) notFound();
+  if (!project || project.placeholder || project.cardHref) notFound();
 
-  // "Next project" cycles through real (non-placeholder) entries only.
-  const visible = projects.filter((p) => !p.placeholder);
+  // "Next project" cycles through entries that have a detail page only.
+  const visible = projects.filter((p) => !p.placeholder && !p.cardHref);
   const vIndex = visible.findIndex((p) => p.slug === slug);
   const next = visible[(vIndex + 1) % visible.length];
 

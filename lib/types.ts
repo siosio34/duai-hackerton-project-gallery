@@ -65,6 +65,10 @@ export interface Project {
   /** Work-in-progress teaser. Renders a non-clickable card with a "진행중"
    *  placeholder instead of media, and has no detail page. */
   placeholder?: boolean;
+  /** When set, the card links straight to this URL (the artifact itself,
+   *  e.g. a standalone dashboard) and NO detail page is generated. External
+   *  targets (.html under /public) open in a new tab. */
+  cardHref?: string;
 
   // --- Detail content ---
   /** Lead paragraph. Optional — when omitted, the detail page leads with `role`. */
