@@ -48,7 +48,7 @@ export function Masthead({
     >
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-9">
-          <p className="mh-fade meta-label mb-5">Heka의 프로젝트 갤러리</p>
+          <p className="mh-fade meta-label mb-5">프로젝트 갤러리</p>
           <h1 className="display text-[2rem] font-semibold text-ink sm:text-6xl lg:text-7xl">
             <span className="block overflow-hidden">
               <span className="mh-rise inline-block">직접 만들고 배포한</span>

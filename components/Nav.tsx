@@ -9,13 +9,10 @@ export function Nav() {
         <Link
           href="/"
           className="flex items-baseline gap-2 text-ink"
-          aria-label="Heka의 프로젝트 갤러리, 홈"
+          aria-label="프로젝트 갤러리, 홈"
         >
-          <span className="text-[1.05rem] font-semibold tracking-tight">
-            Heka
-          </span>
           <span className="h-1.5 w-1.5 translate-y-[-1px] bg-accent" aria-hidden />
-          <span className="meta-label hidden sm:inline-block">
+          <span className="text-[1.05rem] font-semibold tracking-tight">
             프로젝트 갤러리
           </span>
         </Link>

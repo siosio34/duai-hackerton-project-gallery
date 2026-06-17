@@ -46,13 +46,13 @@ export function Footer() {
             <div>
               <p className="meta-label">소개</p>
               <p className="mt-3 max-w-[24ch] break-keep text-sm leading-relaxed text-ink-mute">
-                Heka가 만든 프로젝트와 Claude Code 스킬을 모은 갤러리. Next.js와
+                직접 만든 프로젝트와 Claude Code 스킬을 모은 갤러리. Next.js와
                 Tailwind로 제작했고, 비주얼은 스톡이 아니라 실제 산출물입니다.
               </p>
             </div>
           </div>
         </div>
-        <p className="meta-label mt-14">© 2026 Heka의 프로젝트 갤러리</p>
+        <p className="meta-label mt-14">© 2026 프로젝트 갤러리</p>
       </div>
     </footer>
   );
