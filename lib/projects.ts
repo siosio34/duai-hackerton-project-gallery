@@ -343,7 +343,10 @@ export const projects: Project[] = [
     span: 6,
     accent: "#4f46e5",
     visual: "orbit",
-    media: { thumbnail: "/media/eval-improve-skills/thumb.jpg" },
+    media: {
+      thumbnail: "/media/eval-improve-skills/thumb.jpg",
+      poster: "/media/eval-improve-skills/poster.jpg",
+    },
     overview:
       "보고서·기획서·사업제안서·카피·코드 등 완성된 산출물을, 서로 독립적인 평가자 여러 명으로 채점하고 기준치에 도달할 때까지 자동으로 개선·재평가하는 Claude Code 스킬. 같은 평가 엔진을 '무엇을 고치느냐'에 따라 두 모드로 쓴다 — 결과물만 있으면 그 결과물을 갱신(artifact 모드)하고, 입력이 스킬이면 스킬을 돌려 나온 출력을 채점한 뒤 출력이 아니라 스킬 자체(SKILL.md)를 고쳐 다음 실행이 통과하게 만든다(skill 모드).",
     problem:
@@ -354,17 +357,46 @@ export const projects: Project[] = [
       "게이트는 결정적 스크립트로 판정 — 종합점수 ≥ threshold(기본 8.0) AND 모든 렌즈 ≥ floor(기본 6.0) 둘 다 충족해야 PASS. 한 렌즈라도 바닥이면 통과 불가(겉만 좋은 결과물 차단).",
       "artifact 모드 — 미달이면 개선 에이전트가 통합 must_fix만 반영해 결과물을 직접 덮어쓰고 재평가, PASS/상한까지 반복.",
       "skill 모드 — 스킬을 샘플 입력 여러 개에 실행해 출력을 채점하고, 손은 SKILL.md에 댄다. 오버피팅을 막으려고 가장 낮은 렌즈 점수로 게이트해 스킬이 일반화해야만 통과시킨다. 출력은 일회용, 개선된 스킬이 산출물.",
-      "한국인 페르소나는 nvidia/Nemotron-Personas-Korea(100만 레코드·26필드) 실데이터에서 타깃별로 샘플링, relevance weight(1~3) 가중 종합점수 10점 + GO/조건부GO/PIVOT/KILL 판정.",
+      "한국인 페르소나는 nvidia/Nemotron-Personas-Korea(100만 레코드·26필드) 실데이터에서 타깃별로 샘플링, relevance weight(1~3) 가중 종합점수 10점 + GO/조건부GO/PIVOT/KILL 판정. 각 페르소나의 개별 사유(rationale)까지 펼쳐 본다.",
+      "라운드마다 3렌즈 점수·모델·페르소나 상세와 직전 대비 Δ를 리포트로 남긴다. 채점은 --max-parallel로 병렬 처리하고, 개선 에이전트는 모델 간 폴백을 둬 한 모델이 막혀도 루프가 끊기지 않는다. 종료 규칙은 PASS를 넘겨서도 최고점을 끝까지 좇되, 최종본은 가장 잘 나온 버전을 복원한다.",
     ],
     outcome:
-      "두 모드 모두 동작한다. 루프 종료 규칙은 — 목표 점수를 만족하면 몇 번째든 즉시 PASS로 종료하고, 통과 못 하면 최소 10회(min_improve) 개선까지는 무조건 시도한 뒤 점수가 정체·하락하면 조기 종료한다(하드 상한으로 무한루프 방지, 라운드별 백업). 다른 스킬 SKILL.md 끝에 한 줄만 추가하면 그 스킬 결과물에 자가개선 게이트가 붙는 합성형 구조라 평가 대상을 산출물 종류와 무관하게 확장할 수 있다. (스킬 실행은 SKILL.md 지침을 따르는 근사라 헬퍼 스크립트 동작까지 고치진 않으며, 합성 페르소나·LLM council 점수는 방향성 신호로 실제 시장 검증을 대체하지 않는다.)",
+      "실제로 'AI 자동매매 봇 기획서'를 같은 초안에서 두 경로로 돌려봤다. 스킬 없이 1-pass로 다듬으면 목차·KPI·리스크 절이 붙어 겉보기 완성도는 올라가지만 아무도 신뢰를 검증하지 않는다. quality-gate-loop로 돌리자, 개선을 거듭할수록 native(서술 완성도)는 2→7로 올랐지만 persona(한국 사용자 신뢰)는 4.1→2.4로 떨어졌다 — 디테일·헤지가 늘수록 일반 사용자는 '리스크가 더 잘 보여서' 신뢰를 덜 했다. 단일 렌즈였다면 못 봤을 렌즈 간 괴리를 게이트가 포착해, 점수를 부풀리지 않고 정직하게 STOP한 뒤 텍스트로 못 고치는 신뢰·설계 문제를 사람에게 에스컬레이션하고 최고점 버전을 복원했다. '그럴듯함 ≠ 신뢰'를 숫자와 인용으로 드러내는 게 이 스킬의 값어치다. (합성 페르소나·LLM council 점수는 방향성 신호로, 실제 시장 검증을 대체하지 않는다.)",
     links: [
-      { label: "Source", href: "#" },
-      { label: "README", href: "#" },
+      {
+        label: "비교 시연 — 스킬 vs 미사용",
+        href: "/media/eval-improve-skills/comparison.html",
+      },
+      {
+        label: "A/B 테스트 (3개 도메인)",
+        href: "/media/eval-improve-skills/ab-test.html",
+      },
+      {
+        label: "GitHub 레포",
+        href: "https://github.com/siosio34/eval-improve-skills",
+      },
     ],
     gallery: [
-      { caption: "3렌즈 채점 → 결정적 게이트 → 개선 루프.", visual: "orbit" },
-      { caption: "한국인 페르소나 패널 가중 종합점수.", visual: "scan" },
+      {
+        caption:
+          "같은 초안, 두 경로. 스킬 없이 1-pass로 다듬은 결과와 quality-gate-loop를 나란히 둔 시연 페이지.",
+        image: "/media/eval-improve-skills/compare-1-setup.jpg",
+      },
+      {
+        caption:
+          "렌즈 간 괴리. 개선할수록 native(완성도)는 2→7로 오르는데 persona(사용자 신뢰)는 4.1→2.4로 떨어진다 — 게이트가 잡아낸 신호.",
+        image: "/media/eval-improve-skills/compare-2-divergence.jpg",
+      },
+      {
+        caption:
+          "라운드별 3렌즈 채점(native·external·persona)과 페르소나 개별 반응, 판정·Δ를 함께 남긴다.",
+        image: "/media/eval-improve-skills/compare-3-rounds.jpg",
+      },
+      {
+        caption:
+          "3개 도메인(여행 챗·냉장고 레시피·랜딩 카피)에서 provenance를 가린 블라인드 A/B 투표로 스킬 효과를 검증.",
+        image: "/media/eval-improve-skills/abtest.jpg",
+      },
     ],
   },
   {
