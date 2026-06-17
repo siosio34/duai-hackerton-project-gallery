@@ -1,7 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Masthead } from "@/components/Masthead";
 import { Gallery } from "@/components/Gallery";
-import { Footer } from "@/components/Footer";
 import { projects } from "@/lib/projects";
 
 export default function HomePage() {
@@ -27,7 +26,6 @@ export default function HomePage() {
         years={span}
       />
       <Gallery projects={projects} />
-      <Footer />
     </main>
   );
 }

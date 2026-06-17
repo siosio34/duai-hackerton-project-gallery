@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 import { ProjectDetail } from "@/components/ProjectDetail";
 import { projects, getProject } from "@/lib/projects";
 
@@ -50,7 +49,6 @@ export default async function ProjectPage({
     <main className="min-h-[100dvh]">
       <Nav />
       <ProjectDetail project={project} next={next} />
-      <Footer />
     </main>
   );
 }
