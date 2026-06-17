@@ -311,8 +311,8 @@ export function ResearchPipeline() {
         <div className="rounded-xl border border-line bg-paper-2/40 p-7">
           <h3 className="meta-label mb-1">계보 — 차용한 기법</h3>
           <p className="mb-6 max-w-[64ch] break-keep text-sm leading-relaxed text-ink-mute">
-            각 단계의 메커니즘은 공개 딥리서치 연구에서 검증된 패턴을 가져와 한 파이프라인으로 엮은
-            것이다. 새 발명이 아니라, 흩어진 best practice의 조립이 설계의 핵심.
+            각 단계의 메커니즘은 공개 딥리서치 연구에서 검증된 패턴을 가져와 한 파이프라인으로
+            엮었다. 새 발명이 아니라, 흩어진 best practice를 조립한 게 설계의 핵심.
           </p>
           <ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
             {LINEAGE.map((l) => (
@@ -404,7 +404,7 @@ export function ResearchPipeline() {
         </div>
         <p className="mt-5 break-keep text-sm text-ink-mute">
           지표는 각 보고서 원문에서 실측 — 인용 [S#] 수, 공백 제외 한글 자수, 인라인 SVG 차트
-          수. 결론 한 줄은 보고서 자신의 실행 요약을 옮긴 것이다.
+          수. 결론 한 줄은 보고서 자신의 실행 요약을 옮겼다.
         </p>
       </div>
     </section>
