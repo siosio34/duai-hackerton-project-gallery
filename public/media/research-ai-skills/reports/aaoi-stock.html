@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AAOI(Applied Optoelectronics) 주식 심층 분석 — AI 광트랜시버 폭등주의 실체</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #1a1d23;
+    --muted: #5b6270;
+    --faint: #8a909c;
+    --line: #e2e5ea;
+    --bg: #fbfbfc;
+    --panel: #ffffff;
+    --panel-2: #f3f5f8;
+    --accent: #0b6e63;
+    --accent-soft: #e3f1ef;
+    --risk: #9a3412;
+    --risk-soft: #fdf0e7;
+    --opp: #14532d;
+    --opp-soft: #e9f4ec;
+    --warn-soft: #fef6e0;
+    --warn-line: #d9a514;
+    --shadow: 0 10px 30px rgba(26, 29, 35, .06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Pretendard", "Inter", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 16.5px; line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- header ---------- */
+  header.masthead {
+    background: linear-gradient(180deg, #10231f 0%, #173a34 100%);
+    color: #f3f6f5; padding: 72px 24px 56px;
+  }
+  .masthead-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: #9fc5be; margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(30px, 4.6vw, 46px); line-height: 1.18;
+    letter-spacing: -.015em; margin: 0 0 14px; font-weight: 800;
+  }
+  .subtitle { font-size: 18px; color: #c9d8d4; max-width: 700px; margin: 0 0 28px; }
+  .meta-grid {
+    display: flex; flex-wrap: wrap; gap: 10px 28px;
+    font-size: 13.5px; color: #a8bcb7;
+    border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px;
+  }
+  .meta-grid b { color: #e8efed; font-weight: 600; margin-right: 6px; }
+
+  /* ---------- layout ---------- */
+  .page { max-width: 1200px; margin: 0 auto; padding: 48px 24px 80px;
+    display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 56px; }
+  @media (max-width: 960px) { .page { grid-template-columns: 1fr; gap: 32px; } }
+
+  nav.toc { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+  @media (max-width: 960px) { nav.toc { position: static; } }
+  nav.toc .toc-title {
+    font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 12px;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: block; padding: 6px 12px; color: var(--muted);
+    border-left: 2px solid var(--line); border-radius: 0 6px 6px 0;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+  nav.toc li.toc-sub a { padding-left: 26px; font-size: 13px; }
+
+  main { min-width: 0; max-width: 820px; }
+  main section { margin-bottom: 64px; }
+  h2 {
+    font-size: 27px; letter-spacing: -.01em; margin: 0 0 8px; font-weight: 800;
+    padding-top: 8px;
+  }
+  .section-kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  h3 { font-size: 20px; margin: 36px 0 12px; letter-spacing: -.005em; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 6px; }
+  .lede { font-size: 17.5px; color: var(--muted); margin-bottom: 24px; }
+
+  /* ---------- summary ---------- */
+  #summary .summary-box {
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent); border-radius: 12px;
+    padding: 28px 32px; box-shadow: var(--shadow); font-size: 17px;
+  }
+  #summary .summary-box p:last-child { margin-bottom: 0; }
+
+  /* ---------- insight cards ---------- */
+  .insight-list { display: grid; gap: 14px; }
+  .insight {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 24px; box-shadow: var(--shadow);
+  }
+  .insight .insight-head {
+    display: flex; gap: 12px; align-items: baseline; margin-bottom: 6px;
+  }
+  .insight .num {
+    flex: none; font-size: 13px; font-weight: 800; color: var(--accent);
+    background: var(--accent-soft); border-radius: 999px; padding: 2px 10px;
+  }
+  .insight b.takeaway { font-size: 16.5px; }
+  .insight p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* ---------- citations ---------- */
+  sup.cite { line-height: 0; font-size: 11.5px; font-weight: 700; }
+  sup.cite a {
+    color: var(--accent); background: var(--accent-soft);
+    padding: 1px 5px; border-radius: 5px; margin-left: 2px;
+  }
+  sup.cite a:hover { text-decoration: none; filter: brightness(.92); }
+
+  /* ---------- callouts ---------- */
+  .callout {
+    border-radius: 10px; padding: 14px 18px; margin: 18px 0; font-size: 15px;
+    border: 1px solid var(--line); background: var(--panel-2);
+  }
+  .callout.uncertain { background: var(--warn-soft); border-color: #ecd9a0; }
+  .callout.uncertain > strong { color: #8a6306; }
+  .callout.conflict { background: #f4eef8; border-color: #d8c6e6; }
+  .callout.conflict > strong { color: #6b21a8; }
+
+  /* ---------- tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--panel); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  caption { text-align: left; font-weight: 700; padding: 14px 18px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--panel-2); font-size: 13px; letter-spacing: .03em;
+    text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--line); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td .pos { color: var(--opp); font-weight: 600; }
+  td .neg { color: var(--risk); font-weight: 600; }
+
+  /* ---------- risks & opportunities ---------- */
+  .ro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 760px) { .ro-grid { grid-template-columns: 1fr; } }
+  .ro-col { border-radius: 12px; padding: 22px 24px; border: 1px solid var(--line); }
+  .ro-col.risks-col { background: var(--risk-soft); }
+  .ro-col.opps-col { background: var(--opp-soft); }
+  .ro-col h3 { margin: 0 0 14px; font-size: 17px; }
+  .ro-col.risks-col h3 { color: var(--risk); }
+  .ro-col.opps-col h3 { color: var(--opp); }
+  .ro-col ul { padding-left: 20px; margin: 0; }
+  .ro-col li { margin-bottom: 12px; font-size: 15px; }
+  .ro-col li b { display: block; }
+
+  /* ---------- references ---------- */
+  #references ol { padding-left: 0; counter-reset: src; list-style: none; }
+  #references li {
+    counter-increment: src; padding: 12px 14px; border-bottom: 1px solid var(--line);
+    font-size: 14.5px; display: flex; gap: 12px; align-items: baseline;
+  }
+  #references li::before {
+    content: "S" counter(src); flex: none; font-weight: 800; font-size: 12px;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 6px; padding: 2px 8px;
+  }
+  #references li .src-meta { color: var(--faint); font-size: 13px; display: block; }
+  .tier {
+    display: inline-block; font-size: 11px; font-weight: 800; border-radius: 5px;
+    padding: 1px 7px; margin-left: 8px; vertical-align: 1px;
+  }
+  .tier-a { background: #dcefe3; color: #14532d; }
+  .tier-b { background: #e0ebf7; color: #1e4e8c; }
+  .tier-c { background: #fdf0d8; color: #92600a; }
+  .tier-d { background: #f6e0e0; color: #9b1c1c; }
+
+  /* ---------- methodology footer ---------- */
+  footer.methodology {
+    border-top: 1px solid var(--line); background: var(--panel-2);
+    padding: 36px 24px 56px; color: var(--muted); font-size: 14px;
+  }
+  footer.methodology .inner { max-width: 820px; margin: 0 auto; }
+  footer.methodology h2 { font-size: 16px; color: var(--ink); margin-bottom: 12px; }
+
+  /* ---------- print ---------- */
+  @media print {
+    nav.toc { display: none; }
+    .page { display: block; }
+    header.masthead { background: #173a34; -webkit-print-color-adjust: exact; }
+    main section { break-inside: avoid-page; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Deep Research Report · 2026-06-13 기준</div>
+    <h1>AAOI(Applied Optoelectronics) 주식 심층 분석</h1>
+    <p class="subtitle">1년 새 +1,000% 폭등한 AI 광트랜시버주 — 폭증하는 매출 뒤의 적자·희석·고객집중을 증거로 검증한다. (정보 제공용, 투자 권유 아님)</p>
+    <div class="meta-grid">
+      <span><b>기준일</b> 2026-06-13 (작성 2026-06-14)</span>
+      <span><b>대상 독자</b> 투자 실무자·전문가</span>
+      <span><b>심층도</b> deep · 7개 관점 + 회의론 + 주장검증</span>
+      <span><b>인용 소스</b> 46건 (1차 SEC 10건+)</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="toc" id="toc" aria-label="Table of contents">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#summary">요약</a></li>
+      <li><a href="#insights">핵심 인사이트</a></li>
+      <li><a href="#analysis">상세 분석</a></li>
+      <li class="toc-sub"><a href="#analysis-1">1. 데이터센터 피벗은 진행형, 회사는 아직 CATV에 기댄다</a></li>
+      <li class="toc-sub"><a href="#analysis-2">2. 매출은 폭증, 적자·마진·현금소진은 악화</a></li>
+      <li class="toc-sub"><a href="#analysis-3">3. 수주는 진짜지만 대부분 미감사 파이프라인 — Nvidia 신화는 허구</a></li>
+      <li class="toc-sub"><a href="#analysis-4">4. 중국 주도 시장의 소규모 후발주자, 무기는 US생산·자체레이저</a></li>
+      <li class="toc-sub"><a href="#analysis-5">5. 성장은 이미 가격에 — 평균 목표가도 밑돈다</a></li>
+      <li class="toc-sub"><a href="#analysis-6">6. 고객집중과 희석이 2017년의 그림자를 드리운다</a></li>
+      <li class="toc-sub"><a href="#analysis-7">7. 리테일 과열은 식는 중, 스퀴즈 연료는 소진</a></li>
+      <li><a href="#comparison">비교 분석</a></li>
+      <li><a href="#risks">리스크와 기회</a></li>
+      <li><a href="#conclusion">결론과 전망</a></li>
+      <li><a href="#references">참고자료</a></li>
+      <li><a href="#methodology">방법론</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <div class="section-kicker">01</div>
+      <h2>요약</h2>
+      <div class="summary-box">
+        <p>AAOI는 AI 데이터센터용 800G·1.6T 광트랜시버 수요를 타고 1년 만에 주가가 약 +1,066% 뛴 종목이다<sup class="cite"><a href="#src-S27">[S27]</a></sup>. 매출 성장은 실재한다 — 2026년 1분기 매출 $151.1M(+51% YoY), 데이터센터 부문 +154%<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 그러나 그 이면은 투자 실무자가 반드시 분리해서 봐야 할 세 가지로 요약된다.</p>
+        <p><b>첫째, 회사는 여전히 적자다.</b> 1분기 GAAP 순손실은 오히려 전년보다 커진 $14.3M, 총마진은 29.1%로 하락했고 분기 잉여현금흐름은 약 -$143.6M였다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 현금 $449M은 1분기 $382M 공모로 채운 것이며, 5월 추가로 $600M ATM이 등록됐다<sup class="cite"><a href="#src-S5">[S5]</a></sup> — 성장은 지속적 희석으로 조달된다. <b>둘째, 'AI 수주'의 상당 부분은 미감사 보도자료다.</b> 800G $124M·1.6T $200M+ 주문은 모두 회사 PR이고 인증 조건부·취소 가능하며, 널리 퍼진 'Nvidia $4B 베팅'은 사실 Amazon 워런트의 와전이다 — AAOI는 Nvidia 직접 공급사로 확인되지 않는다<sup class="cite"><a href="#src-S6">[S6]</a></sup><sup class="cite"><a href="#src-S10">[S10]</a></sup><sup class="cite"><a href="#src-S11">[S11]</a></sup>. <b>셋째, 고객집중이 극단적이다.</b> 1분기 상위 10고객이 매출의 98%, 단일 CATV 유통사가 ~44%를 차지한다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 2017년 Amazon이 매출의 54.6%에서 10%로 급감하며 주가가 무너진 직접 선례가 있고, 당시 경영진이 지금도 회사를 이끈다<sup class="cite"><a href="#src-S33">[S33]</a></sup>.</p>
+        <p>가장 큰 경고는 밸류에이션이다. 현재가($169.05)는 가장 최신 컨센서스 평균 목표가($151.3)마저 웃돈다<sup class="cite"><a href="#src-S23">[S23]</a></sup>. 성장은 이미 가격에 반영됐고, 1.6T 양산 지연이나 한 고객의 이탈만으로도 큰 폭의 되돌림이 가능한 고변동성 종목이다.</p>
+      </div>
+    </section>
+
+    <section id="insights">
+      <div class="section-kicker">02</div>
+      <h2>핵심 인사이트</h2>
+      <div class="insight-list">
+        <div class="insight">
+          <div class="insight-head"><span class="num">1</span><b class="takeaway">'데이터센터 기업'이라는 라벨은 2026년에야 절반쯤 사실이 됐다.</b></div>
+          <p>2025 회계연도 전체로는 CATV($245M)가 데이터센터($196M)보다 컸다<sup class="cite"><a href="#src-S2">[S2]</a></sup>. 데이터센터가 매출의 절반을 처음 넘긴 건 2026년 1분기다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. AI 스토리는 진짜지만 아직 초기 국면이고, 회사의 현금흐름은 여전히 케이블TV(DOCSIS 4.0) 사이클에 크게 기댄다.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">2</span><b class="takeaway">매출이 51% 늘었는데 적자가 더 커졌다는 사실이 핵심 신호다.</b></div>
+          <p>외형 성장에도 1분기 GAAP 순손실이 전년 $9.2M→$14.3M으로 확대되고 총마진은 30.6%→29.1%로 하락했다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 규모의 경제가 아직 작동하지 않는다는 뜻이며, 경영진의 35~40% 마진 목표는 입증되지 않은 약속이다.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">3</span><b class="takeaway">'Nvidia $4B 베팅'은 시장이 잘못 연결한 것이다.</b></div>
+          <p>회자되는 $4B은 사실 Amazon 워런트의 10년 재량 구매 상한이며 Nvidia와 무관하다(이는 8-K로 확인되는 사실)<sup class="cite"><a href="#src-S10">[S10]</a></sup>. AAOI가 Nvidia 직접 공급사(NVLink/Spectrum-X 인증)라는 증거도 확인되지 않는다 — 다만 이는 D등급 단일 분석에 근거한 '미확인'이지 '공급사가 아님'의 적극 증명은 아니다<sup class="cite"><a href="#src-S11">[S11]</a></sup>. 한편 Amazon·Microsoft가 실제 대형 고객인 것은 맞다<sup class="cite"><a href="#src-S4">[S4]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">4</span><b class="takeaway">AAOI는 중국이 장악한 시장의 소규모 서구 후발주자다.</b></div>
+          <p>InnoLight가 글로벌 1위이고 톱10 모듈 업체 중 7곳이 중국 기업이며, AAOI는 주요 애널리스트 점유율 순위에 등장조차 하지 않는다<sup class="cite"><a href="#src-S17">[S17]</a></sup><sup class="cite"><a href="#src-S22">[S22]</a></sup>. 무기는 점유율이 아니라 미국 생산과 자체 InP 레이저 수직계열화라는 지정학·공급망 헤지다<sup class="cite"><a href="#src-S16">[S16]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">5</span><b class="takeaway">성장은 이미 가격에 반영됐다 — 현재가가 평균 목표가를 웃돈다.</b></div>
+          <p>$169.05 종가는 가장 최신 컨센서스 평균 목표가 $151.3마저 상회한다<sup class="cite"><a href="#src-S23">[S23]</a></sup>. P/S ~26.8x로 Lumentum(28.8x)과 비슷하고 Coherent(11.4x)의 2.4배다<sup class="cite"><a href="#src-S25">[S25]</a></sup><sup class="cite"><a href="#src-S29">[S29]</a></sup>. 4월 6.68x였던 P/S가 두 달 만에 26.8x로 폭발했다<sup class="cite"><a href="#src-S28">[S28]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">6</span><b class="takeaway">2017년의 고객집중 위험이 일부 재현됐다 — 단, 차이도 있다.</b></div>
+          <p>고객집중(상위10=98%, 단일 고객 44%)<sup class="cite"><a href="#src-S1">[S1]</a></sup>은 2017년 Amazon이 54.6%→10%로 빠지며 주가가 -34% 후 ~$2까지 무너졌던 패턴을 떠올리게 하고, 당시 CEO·CFO가 지금도 경영한다<sup class="cite"><a href="#src-S33">[S33]</a></sup><sup class="cite"><a href="#src-S34">[S34]</a></sup>. 다만 차이도 분명하다 — 지금의 최대 고객은 하이퍼스케일러가 아닌 CATV 유통사이고, Amazon은 구매를 유인하는 워런트로 묶여 있으며<sup class="cite"><a href="#src-S10">[S10]</a></sup>, 중국 회피용 미국생산 수요라는 새 변수가 있다. 아날로지는 경고이되 동일 사건의 예고는 아니다.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">7</span><b class="takeaway">단기 모멘텀 연료(숏스퀴즈)는 이미 거의 소진됐다.</b></div>
+          <p>숏 비중이 1월 ~18%에서 13.2%로 내려왔고 days-to-cover는 0.62에 불과하다<sup class="cite"><a href="#src-S37">[S37]</a></sup>. 리테일 심리도 5월 '극도의 강세'에서 6월 69%로 식었다<sup class="cite"><a href="#src-S38">[S38]</a></sup>. 즉 추가 상승은 펀더멘털 실적이 받쳐줘야 하는 국면이다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="analysis">
+      <div class="section-kicker">03</div>
+      <h2>상세 분석</h2>
+      <p class="lede">아래 7개 절은 사업 구조·재무·AI 수요·경쟁·밸류에이션·리스크·시장심리의 일곱 가지 질문에 답한다. 각 절은 "증거가 말하는 것 → 소스 간 불일치 → 평가"의 순서로 구성했고, 1차 SEC 자료(10-Q·10-K·8-K)와 회사 보도자료·애널리스트·소셜 심리를 신뢰도 등급으로 구분해 인용했다.</p>
+
+      <section class="sub" id="analysis-1">
+        <h3>1. 데이터센터 피벗은 진행형, 회사는 아직 CATV에 기댄다</h3>
+        <p>AAOI는 세 개 사업부 — 데이터센터(고속 광트랜시버), CATV(케이블TV용 1.8GHz 증폭기·DOCSIS 4.0), 텔레콤(소액) — 를 운영한다. 시장이 "AI 데이터센터 기업"으로 부르지만, <b>2025 회계연도 전체로는 CATV($245M, 매출의 53.8%)가 데이터센터($196M, 42.9%)보다 컸다</b><sup class="cite"><a href="#src-S2">[S2]</a></sup><sup class="cite"><a href="#src-S13">[S13]</a></sup>. 데이터센터가 매출의 절반을 처음 넘어선 것은 2026년 1분기($81.4M, 53.9%, +154% YoY)다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 피벗은 분명히 일어나고 있지만 '완료'가 아니라 '초기'다.</p>
+        <p>제품 로드맵은 400G(1분기 약 10배 증가)→800G(2025년 4분기 첫 출하, 2026년 1분기 첫 대량 출하했으나 매출은 $4.6M에 불과)→1.6T(>$200M 첫 주문, 2026년 3분기 출하 예정)로 이어진다<sup class="cite"><a href="#src-S1">[S1]</a></sup><sup class="cite"><a href="#src-S3">[S3]</a></sup><sup class="cite"><a href="#src-S7">[S7]</a></sup>. 차별화의 핵심은 <b>자체 InP 레이저 수직계열화</b>다 — AAOI는 광원(레이저칩)을 직접 설계·생산하는 소수 트랜시버 벤더 중 하나이며, 800G 양산 결함률을 50ppm 미만으로 관리한다고 밝혔다<sup class="cite"><a href="#src-S16">[S16]</a></sup>. 생산은 휴스턴 권역을 약 90만 sq ft로 6.5배 확장해 고속 데이터센터 제품을 미국에 집중시키는 중이고, 인력이 가장 많은 중국 닝보(2,927명)는 CATV·레거시 제품을 맡는다<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</p>
+        <p><b>평가:</b> CATV는 천덕꾸러기가 아니라 2026년 ~$300M 규모의 두 번째 성장축이자, 데이터센터 출하가 흔들렸던 분기(2025년 3분기)에 실적을 떠받친 버팀목이었다<sup class="cite"><a href="#src-S12">[S12]</a></sup>. 따라서 "순수 AI 플레이"로 보는 시각은 절반만 맞다. 다만 같은 CATV가 양날의 칼이라는 점도 분명하다 — 이 부문을 떠받치는 단일 유통사(Digicomm)가 곧 6절에서 다룰 최대 고객집중 리스크의 정체다. 투자자는 두 사이클(AI 광학 + 케이블 DOCSIS) 모두를, 그리고 그 둘이 같은 소수 고객에 묶여 있다는 점을 함께 추적해야 한다.</p>
+      </section>
+
+      <section class="sub" id="analysis-2">
+        <h3>2. 매출은 폭증, 적자·마진·현금소진은 악화</h3>
+        <p>2026년 1분기 매출은 $151.1M으로 4개 분기 연속 사상 최대, 전년 대비 +51%다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 그러나 수익성 지표는 반대로 움직였다. <b>GAAP 순손실은 전년 $9.2M에서 $14.3M으로 확대됐고, GAAP 총마진은 30.6%→29.1%로 하락</b>했다(데이터센터 비중 상승에 따른 믹스 악화)<sup class="cite"><a href="#src-S1">[S1]</a></sup>. non-GAAP 손실은 $4.9M으로 컨센서스를 하회했다<sup class="cite"><a href="#src-S3">[S3]</a></sup>. 매출이 절반 넘게 느는데 적자가 커지는 조합은 "아직 규모의 경제가 작동하지 않는다"는 신호다.</p>
+        <p>현금흐름은 더 직설적이다. 1분기 영업현금흐름 -$85.4M에 자본적지출 -$58.2M을 더하면 <b>단일 분기 잉여현금흐름이 약 -$143.6M</b> — 보유 현금 더미의 3분의 1에 해당한다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 3월 말 현금 $449M은 건전해 보이지만, 이는 12월 말 $216M에서 1분기에 약 $382M 규모 공모로 끌어올린 결과다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 그 위에 5월 14일 <b>$600M ATM(시장가 발행) 프로그램</b>이 추가로 등록됐다<sup class="cite"><a href="#src-S5">[S5]</a></sup>. 즉 성장은 영업이익이 아니라 반복적 증자로 자금을 댄다. 여기에 잘 드러나지 않는 또 하나의 단기 리스크가 있다 — 재고가 1분기 $206M으로 전분기($183M) 대비 크게 늘었다<sup class="cite"><a href="#src-S3">[S3]</a></sup>. 아직 인식 매출이 미미한 800G/1.6T 램프를 위한 선제적 자재·생산 빌드업인데, 수요가 어긋나면 재고 감모와 추가 현금 소요로 이어질 수 있는 운전자본 리스크다.</p>
+        <div class="callout uncertain">
+          <strong>수치 정정</strong> — 일부 2차 매체가 인용한 총부채 ~$207M·capex $68.7M는 과대 표기다. 주장검증 결과 1분기 capex는 $58.2M(투자활동 총유출 $68.1M과 구분), 차입금은 비전환 ~$41.2M + 2030 전환사채 $125M ≈ $166M 수준으로 확인된다<sup class="cite"><a href="#src-S1">[S1]</a></sup>.
+        </div>
+        <p><b>평가:</b> 경영진은 2분기 non-GAAP 손익분기, FY2026 매출 >$1.1B와 non-GAAP 영업이익 >$140M, 2026년 말 총마진 35%를 제시했다<sup class="cite"><a href="#src-S3">[S3]</a></sup>. 그러나 <b>GAAP 흑자는 가이드하지 않았고</b>, 마진은 목표와 반대로 움직이고 있으며, 흑자 시나리오는 분기마다 이어지는 희석과 자본적지출을 전제로 한다. non-GAAP 기준 하반기 전환은 "조건부로 신뢰 가능"하나, GAAP 흑자·자생적 현금창출은 아직 증거가 없다.</p>
+      </section>
+
+      <section class="sub" id="analysis-3">
+        <h3>3. 수주는 진짜지만 대부분 미감사 파이프라인 — Nvidia 신화는 허구</h3>
+        <p>AI 수요 스토리의 뼈대는 일련의 대형 수주 발표다: 800G 누적 $124M(동일 고객, $53M+$71M)<sup class="cite"><a href="#src-S6">[S6]</a></sup>, 1.6T >$200M 첫 대량 주문<sup class="cite"><a href="#src-S7">[S7]</a></sup>. 그러나 <b>이 금액들은 전부 회사 보도자료(미감사)이고, "제품 인증 후 납품"이라는 조건부이며, 회사 스스로 위험요인에 "고객 주문의 규모·수량 축소" 가능성을 적시</b>한다<sup class="cite"><a href="#src-S6">[S6]</a></sup>. 즉 인식된 매출이 아니라 파이프라인이다(첫 800G 대량주문은 2025년 12월, Q4 기여 $4~8M의 소액이었다)<sup class="cite"><a href="#src-S9">[S9]</a></sup>. 실제로 1분기 800G 매출은 $4.6M에 그쳤다<sup class="cite"><a href="#src-S3">[S3]</a></sup>.</p>
+        <div class="callout conflict">
+          <strong>상충</strong> — CFO는 $53M 800G가 1.6T와 "동일 고객"이라 했으나<sup class="cite"><a href="#src-S8">[S8]</a></sup>, 어닝콜에서는 1.6T가 "또 다른(another)" 고객이라고 말했다<sup class="cite"><a href="#src-S3">[S3]</a></sup>. 두 발표를 단순 합산한 "$324M 백로그"는 동일 고객 이중계상 위험이 있어 그대로 신뢰하기 어렵다.
+        </div>
+        <p>가장 중요한 사실 정정은 'Nvidia'다. 독립 공급망 분석은 AAOI를 광범위한 광부품 벤더로 한 차례 일반 언급할 뿐, <b>Nvidia 직접 공급(NVLink/Spectrum-X 인증)을 확인하지 못한다</b>; Nvidia의 $4B 광학 지출은 Lumentum과 Coherent에 각 $2B씩 배정됐다<sup class="cite"><a href="#src-S11">[S11]</a></sup>. 널리 퍼진 "AAOI의 $4B Nvidia 베팅"은 <b>Amazon 워런트의 와전</b>이다 — 실체는 Amazon이 10년간 재량으로 최대 $4B을 구매하면 베스팅되는 워런트(최대 794.5만 주, 행사가 $23.70)로, 희석성이고 구매가 일어나야 효력이 생긴다<sup class="cite"><a href="#src-S10">[S10]</a></sup>.</p>
+        <p><b>평가:</b> 그렇다고 고객이 가공인 것은 아니다. FY2025 10-K은 <b>Microsoft를 매출의 28.8% 고객으로 명시</b>했고 Amazon은 워런트 상대방이다<sup class="cite"><a href="#src-S4">[S4]</a></sup> — 하이퍼스케일러 매출은 실재한다. 다만 균형을 위해 한 가지 한계를 명시해야 한다: 이번 조사에서 <b>이 특정 수주 금액을 뒷받침할 제3자 검증(채널 체크, 고객 측 언급, LightCounting·Dell'Oro 같은 독립 집계)은 찾지 못했다</b> — 즉 "수요는 진짜"라는 전제 자체가 회사 발언과 매크로 수요에 기대고 있다. 핵심은 "수요 방향은 진짜로 보이지만, 발표된 수주 금액의 대부분은 아직 취소 가능한 약속이며, Nvidia 연결은 확인되지 않는다"라는 점이다. 투자자는 보도자료 백로그가 아니라 분기 인식 매출의 실제 램프를 봐야 한다.</p>
+      </section>
+
+      <section class="sub" id="analysis-4">
+        <h3>4. 중국 주도 시장의 소규모 후발주자, 무기는 US생산·자체레이저</h3>
+        <p>광트랜시버 시장은 2025년 $23B+(+50%)로 800G가 성장 엔진이다<sup class="cite"><a href="#src-S17">[S17]</a></sup>. 그러나 모듈 계층은 <b>중국이 장악</b>한다 — InnoLight가 글로벌 1위(2024년 ~$3.3B), 글로벌 톱10 모듈 업체 중 7곳이 중국 기업이다<sup class="cite"><a href="#src-S17">[S17]</a></sup><sup class="cite"><a href="#src-S18">[S18]</a></sup>. <b>AAOI는 LightCounting·Cignal AI 등 주요 애널리스트의 점유율 순위에 등장하지 않으며 Nvidia 800G 공급 로스터에도 없다</b><sup class="cite"><a href="#src-S20">[S20]</a></sup><sup class="cite"><a href="#src-S22">[S22]</a></sup>. 진입 방식은 점유율이 아니라 수주·디자인윈 기반이다.</p>
+        <p>차별화 무기는 두 가지다. (1) <b>미국 생산</b>(휴스턴/슈가랜드 확장, 텍사스 반도체혁신기금 $20.9M 보조)으로 지정학·관세 헤지를 제공하고, (2) <b>100% 자체 InP 레이저</b>로 광원 공급 부족을 회피한다<sup class="cite"><a href="#src-S16">[S16]</a></sup><sup class="cite"><a href="#src-S14">[S14]</a></sup>. 그러나 경제성은 중국 편이다. <b>중국 리더들은 이미 규모 위에서 33~39%의 마진을 내며 서구 대비 20~25% 저가로 공급</b>하는데, AAOI의 1분기 마진은 29.1%다<sup class="cite"><a href="#src-S18">[S18]</a></sup>. 게다가 진짜 이익풀은 모듈이 아니라 칩(DSP·EML)에 있으며 그 자리는 Broadcom(GM ~68%)·Marvell·Lumentum·Coherent가 지킨다 — 모듈은 신속도등급 선점 프리미엄이 곧 압축되는 "트레드밀"이다<sup class="cite"><a href="#src-S21">[S21]</a></sup><sup class="cite"><a href="#src-S18">[S18]</a></sup>.</p>
+        <div class="callout uncertain">
+          <strong>불확실</strong> — "InnoLight+Eoptolink가 Nvidia 800G의 ~60%"라는 수치는 두 개의 C등급(벤더 블로그·Substack) 소스에서 나오며, 한쪽은 "물량", 다른 쪽은 "추가 주문"으로 범위가 달라 정밀 점유율로 신뢰하기 어렵다<sup class="cite"><a href="#src-S18">[S18]</a></sup><sup class="cite"><a href="#src-S19">[S19]</a></sup>. 다만 "중국 모듈 우위 + AAOI 소규모"라는 방향성은 다수 소스에서 일관된다.
+        </div>
+        <p><b>평가:</b> AAOI의 기회는 "중국 의존을 줄이려는 하이퍼스케일러가 제2공급원으로 미국산을 원할 때"라는 틈새다. 방향은 그럴듯하나, 그 제2공급원 채택이 실제로 얼마나 큰 물량·어느 정도의 가격 프리미엄으로 이어질지는 아직 정량 근거가 약한 가설 단계다. 가격·규모의 구조적 불리함을 감안하면, 35~40% 마진으로 중국 리더를 추월한다는 전제는 공격적이다.</p>
+      </section>
+
+      <section class="sub" id="analysis-5">
+        <h3>5. 성장은 이미 가격에 — 평균 목표가도 밑돈다</h3>
+        <p>2026년 6월 12일 종가 $169.05, 시가총액 $13.57B, <b>1년 수익률 약 +1,066%</b>다<sup class="cite"><a href="#src-S23">[S23]</a></sup><sup class="cite"><a href="#src-S27">[S27]</a></sup>. 가장 주목할 점은 <b>현재가가 가장 최신 컨센서스 평균 목표가($151.3)마저 웃돈다</b>는 것이다 — 평균적 애널리스트 시각으로 봐도 상방이 아니라 하방이 열려 있다는 뜻이다<sup class="cite"><a href="#src-S23">[S23]</a></sup>.</p>
+        <div class="callout conflict">
+          <strong>상충(컨센서스)</strong> — StockAnalysis는 "Buy"·평균 $151.3(6인)인데 MarketBeat는 "Hold"·평균 $79.80(7인)으로 크게 다르다<sup class="cite"><a href="#src-S23">[S23]</a></sup><sup class="cite"><a href="#src-S24">[S24]</a></sup>. 차이의 원인은 MarketBeat가 2월에 설정된 낡은 목표가를 그대로 반영하기 때문이다. Rosenblatt가 5월 8일 목표가를 $140→$220으로 올린 점을 보면<sup class="cite"><a href="#src-S31">[S31]</a></sup>, 최신 목표가를 반영한 StockAnalysis 쪽이 현재를 더 잘 나타낸다. 어느 쪽을 택하든 결론은 같다 — 현재가는 평균 목표가 위에 있다. 실제로 B. Riley는 실행 리스크·고객집중을 이유로 등급을 Neutral로 낮췄다<sup class="cite"><a href="#src-S46">[S46]</a></sup>.
+        </div>
+        <p>멀티플은 P/S ~26.8x(Yahoo 기준 22.2x)로, Lumentum(28.8x)과 비슷하고 Coherent(11.4x)의 약 2.4배다<sup class="cite"><a href="#src-S25">[S25]</a></sup><sup class="cite"><a href="#src-S29">[S29]</a></sup><sup class="cite"><a href="#src-S30">[S30]</a></sup>. 결정적으로 <b>4월 6일 6.68x였던 P/S가 6월 26.8x로 두 달 만에 4배가 됐다</b> — 주가 상승의 대부분이 실적이 아니라 멀티플 확장이라는 뜻이다<sup class="cite"><a href="#src-S28">[S28]</a></sup>. 독립 모델(Simply Wall St) 역시 현재가를 공정가치 대비 약 11.7% 고평가로 본다(단, 이 '공정가치'는 컨센서스 목표가를 재사용한 것으로 순수 DCF가 아니다)<sup class="cite"><a href="#src-S26">[S26]</a></sup>. 컨센서스 추정은 매출 FY2026 +107~126%, EPS FY2025 -$0.26 → FY2026 +$0.84~0.89로 흑자 전환을 가정한다<sup class="cite"><a href="#src-S23">[S23]</a></sup><sup class="cite"><a href="#src-S28">[S28]</a></sup>.</p>
+        <p><b>평가:</b> 강한 성장이 가격에 이미 들어가 있다. 강세론이 성립하려면 추정치(2026년 흑자 전환 + 2027년 EPS 급증)가 100% 실현되는 것을 넘어, 추정치 상향이 계속돼야 한다. 실행이 컨센서스에 부합하기만 해도 멀티플 축소(de-rating) 위험이 있다.</p>
+      </section>
+
+      <section class="sub" id="analysis-6">
+        <h3>6. 고객집중과 희석이 2017년의 그림자를 드리운다</h3>
+        <p>가장 큰 펀더멘털 리스크는 <b>고객집중</b>이다. 2026년 1분기 상위 10고객이 매출의 98%, 단일 CATV 유통사(매출채권 주석상 Digicomm)가 매출의 ~44%·매출채권의 ~74%를 차지한다<sup class="cite"><a href="#src-S1">[S1]</a></sup>. FY2025로 보면 Digicomm 53.1% + Microsoft 28.8%로 단 두 고객이 매출의 82%다<sup class="cite"><a href="#src-S4">[S4]</a></sup>. 직접 선례가 뼈아프다 — <b>2017년 Amazon이 매출의 54.6%에서 한 분기 만에 10%로 빠지며(40G→100G 전환) 주가가 -34%, 이후 ~$2까지 붕괴</b>했고, 당시 CEO(Thompson Lin)·CFO(Stefan Murry)가 지금도 회사를 이끈다<sup class="cite"><a href="#src-S33">[S33]</a></sup><sup class="cite"><a href="#src-S34">[S34]</a></sup>.</p>
+        <p>두 번째는 <b>희석 오버행</b>이다. 1분기 $382M 공모에 이어 5월 $600M ATM이 등록됐고, 그 위에 2030년 만기 전환사채 $125M이 얹혀 있다<sup class="cite"><a href="#src-S5">[S5]</a></sup><sup class="cite"><a href="#src-S35">[S35]</a></sup>. ATM의 함정은 <b>주가가 낮을수록 더 많은 주식을 찍어야 한다</b>는 점이다 — $223에선 ~3.3% 희석이지만 $90으로 떨어지면 ~8.3%로 커진다<sup class="cite"><a href="#src-S5">[S5]</a></sup>. 세 번째는 변동성이다. 단일 거래일 -17% 급락이 나왔고<sup class="cite"><a href="#src-S32">[S32]</a></sup>, 역사적으로 스트레스기에 S&P의 약 3배 낙폭을 보였으며(2022년 -72%, 2018년 -44%), 내부자는 3개월간 $62.8M을 팔고 매수는 0이었다<sup class="cite"><a href="#src-S42">[S42]</a></sup><sup class="cite"><a href="#src-S36">[S36]</a></sup>.</p>
+        <div class="callout uncertain">
+          <strong>균형 잡힌 시각</strong> — 2026년 6월 9일 -14% 급락의 계기였던 SemiAnalysis의 CPO(광학 동봉 패키징) 지연 리포트는, 사실 플러그형 트랜시버를 파는 AAOI에는 기계적으로 <em>호재</em>다(CPO는 대체 위협). 따라서 그 급락은 펀더멘털 훼손이라기보다 수요 시점에 대한 공포·모멘텀 되돌림에 가깝다. 단, 양면을 봐야 한다 — CPO뿐 아니라 800VDC 전력 예산까지 미뤄져 AI 클러스터 네트워킹 투자 시점 전체가 늦춰진다면, AAOI의 2026~27년 800G·1.6T 램프 가이드 자체가 하방 압력을 받을 수 있다<sup class="cite"><a href="#src-S32">[S32]</a></sup>.
+        </div>
+        <p><b>평가:</b> 회계상 위험신호(material weakness 등)는 이번 조사에서 확인되지 않았다. 그러나 "단일 고객 의존 + 과대약속 경향 + 중국 가격경쟁"이라는 2017년의 3요소가 다시 갖춰져 있다는 점은 강세론자도 무시해선 안 된다.</p>
+      </section>
+
+      <section class="sub" id="analysis-7">
+        <h3>7. 리테일 과열은 식는 중, 스퀴즈 연료는 소진</h3>
+        <p>심리는 사실이 아니라 별개의 증거로 다뤄야 한다("심리가 강세" ≠ "주가가 오른다"). 리테일은 여전히 강세지만 <b>냉각 중</b>이다 — StockTwits 심리는 6월 69% 강세로, $233 신고가 부근이던 5월 14일의 "극도의 강세"(메시지 +116%/24h)에서 내려왔다<sup class="cite"><a href="#src-S38">[S38]</a></sup>. Reddit/WSB는 가격을 반사적으로 추종할 뿐 선행하지 않는다<sup class="cite"><a href="#src-S44">[S44]</a></sup>. 기관은 후행 데이터(13F) 기준 순매수였다 — 보유 61.7%, TTM 순유입 $483M<sup class="cite"><a href="#src-S39">[S39]</a></sup>.</p>
+        <p>중요한 것은 <b>숏스퀴즈 연료가 거의 소진됐다</b>는 점이다. 숏 비중이 1월 ~18%에서 13.2%로 내려왔고 days-to-cover는 0.62에 불과하다 — 상반기 상승을 증폭했던 스퀴즈 메커니즘이 이제 약하다<sup class="cite"><a href="#src-S37">[S37]</a></sup>. 동시에 과열 마커가 쌓였다: 신규 2배 레버리지 단일종목 ETF 출시, IV 랭크 95%, 그리고 4월 Citron의 공매도 리포트를 당일 +11%로 짓밟은 모멘텀 군중<sup class="cite"><a href="#src-S41">[S41]</a></sup><sup class="cite"><a href="#src-S45">[S45]</a></sup><sup class="cite"><a href="#src-S40">[S40]</a></sup>.</p>
+        <p><b>평가:</b> 컨센서스는 "거품(불수익·26x P/S)" 대 "초기국면(AI 800G/1.6T + Amazon/Oracle 램프)"으로 진짜 양분돼 있다<sup class="cite"><a href="#src-S43">[S43]</a></sup>. 단기 변동성을 키웠던 기술적 연료(스퀴즈)가 빠진 만큼, 앞으로의 주가는 8월 2분기 실적 같은 펀더멘털 이벤트에 더 민감해질 것이다.</p>
+      </section>
+    </section>
+
+    <section id="comparison">
+      <div class="section-kicker">04</div>
+      <h2>비교 분석</h2>
+      <div class="table-wrap"><table>
+        <caption>광트랜시버 3사 상대 밸류에이션 (스냅샷 2026-06-12)<sup class="cite"><a href="#src-S25">[S25]</a></sup><sup class="cite"><a href="#src-S29">[S29]</a></sup><sup class="cite"><a href="#src-S30">[S30]</a></sup></caption>
+        <thead><tr><th>지표</th><th>AAOI</th><th>Coherent (COHR)</th><th>Lumentum (LITE)</th></tr></thead>
+        <tbody>
+          <tr><td>주가 / 시가총액</td><td>$169.05 / $13.57B</td><td>$385.03 / $75.33B</td><td>$921.56 / $71.70B</td></tr>
+          <tr><td>매출(TTM)</td><td>$507M</td><td>$6.60B</td><td>$2.49B</td></tr>
+          <tr><td>P/S (TTM)</td><td>~26.8x (Yahoo 22.2x)</td><td>~11.4x</td><td>~28.8x</td></tr>
+          <tr><td>선행 P/E</td><td>적자(FY26 EPS ~$0.89 추정)</td><td>51.7x</td><td>58.2x</td></tr>
+          <tr><td>컨센서스 / 목표가</td><td>"Buy"~"Hold" 분열 / 현재가 > 평균 목표가</td><td>일반적 "Buy"</td><td>"Buy" / +20.8% 상방</td></tr>
+          <tr><td>수익성</td><td>GAAP 적자</td><td>흑자</td><td>흑자</td></tr>
+          <tr><td>점유율 위치</td><td>순위 외(sub-scale)</td><td>부품·트랜시버 상위</td><td>부품(EML)·클라우드 강자</td></tr>
+        </tbody>
+      </table></div>
+      <p>표가 말하는 핵심은 두 가지다. 첫째, <b>AAOI의 P/S(~26.8x)는 Lumentum과 비슷하지만 Coherent의 2.4배</b>다. 그런데 AAOI는 셋 중 매출 규모가 가장 작고(연 $0.5B 대 $2.5~6.6B), 유일하게 적자이며, 점유율 순위에는 들지도 못한다. 즉 같은 멀티플을 정당화하려면 가장 높은 성장률을 가장 오래 유지해야 한다 — 실행 난도가 가장 높은 종목에 가장 높은 기대가 걸려 있는 셈이다.</p>
+      <p>둘째, <b>밸류에이션을 떠받치는 것은 성장률 단 하나</b>다. AAOI의 FY2026 매출 성장 추정치(+107~126%)는 세 회사 중 압도적으로 높다<sup class="cite"><a href="#src-S23">[S23]</a></sup>. 이 성장 프리미엄이 흔들리는 순간(1.6T 지연, 고객 이탈, 마진 미달) 멀티플은 Coherent 수준(~11x)으로 수렴할 여지가 있고, 그 경우 주가의 하방은 매우 크다. 반대로 강세론자에게 Coherent·Lumentum은 "AI 광학 익스포저를 흑자 기업으로 갖는" 더 방어적인 대안이 된다.</p>
+    </section>
+
+    <section id="risks">
+      <div class="section-kicker">05</div>
+      <h2>리스크와 기회</h2>
+      <div class="ro-grid">
+        <div class="ro-col risks-col">
+          <h3>리스크</h3>
+          <ul>
+            <li><b>고객집중 (심각도 높음 / 가능성 중)</b> — 상위 10고객 98%, 단일 고객 ~44%; 2017년 Amazon 이탈로 -34%→~$2 붕괴한 직접 선례<sup class="cite"><a href="#src-S1">[S1]</a></sup><sup class="cite"><a href="#src-S33">[S33]</a></sup>.</li>
+            <li><b>지속 적자·마진 압축 (높음 / 이미 현실)</b> — 매출 +51%에도 GAAP 손실 확대, 총마진 29.1%로 하락<sup class="cite"><a href="#src-S1">[S1]</a></sup>.</li>
+            <li><b>희석 오버행 (높음 / 높음)</b> — $382M 공모 + $600M ATM + 전환사채; 주가 하락 시 희석 가중<sup class="cite"><a href="#src-S5">[S5]</a></sup>.</li>
+            <li><b>밸류에이션 에어포켓 (높음 / 중)</b> — 현재가가 평균 목표가 상회, P/S 4월→6월 4배; 성장 미달 시 de-rating<sup class="cite"><a href="#src-S23">[S23]</a></sup><sup class="cite"><a href="#src-S28">[S28]</a></sup>.</li>
+            <li><b>수주의 불확실성 (중 / 중)</b> — 핵심 수주가 미감사 PR·인증 조건부·취소 가능; 1.6T 고객 동일성 불명확<sup class="cite"><a href="#src-S6">[S6]</a></sup>.</li>
+            <li><b>변동성·내부자 매도 (중 / 높음)</b> — 단일일 -17%, 내부자 3개월 $62.8M 매도·매수 0; 스트레스기 S&P의 ~3배 낙폭<sup class="cite"><a href="#src-S36">[S36]</a></sup><sup class="cite"><a href="#src-S42">[S42]</a></sup>.</li>
+            <li><b>중국 경쟁·관세 (중 / 중)</b> — 저가 중국 리더가 이미 더 높은 마진을 규모로 달성; CATV는 닝보 생산으로 관세 노출<sup class="cite"><a href="#src-S18">[S18]</a></sup><sup class="cite"><a href="#src-S12">[S12]</a></sup>.</li>
+          </ul>
+        </div>
+        <div class="ro-col opps-col">
+          <h3>기회</h3>
+          <ul>
+            <li><b>AI 광학 슈퍼사이클</b> — 800G 출하 +60%, 1.6T 칩셋 2026년 >$2B; 시장 자체가 +50% 성장<sup class="cite"><a href="#src-S17">[S17]</a></sup>.</li>
+            <li><b>실재하는 하이퍼스케일러 매출</b> — Microsoft가 명시된 28.8% 고객, Amazon은 워런트 상대방; 데이터센터 +154% YoY<sup class="cite"><a href="#src-S4">[S4]</a></sup><sup class="cite"><a href="#src-S1">[S1]</a></sup>.</li>
+            <li><b>US생산·수직계열화 헤지</b> — 자체 InP 레이저 + 미국 공장으로 중국 의존 회피하려는 하이퍼스케일러의 제2공급원 수요<sup class="cite"><a href="#src-S16">[S16]</a></sup>.</li>
+            <li><b>non-GAAP 흑자 전환 임박</b> — 경영진 2분기 손익분기, FY26 non-GAAP 영업이익 >$140M 가이드<sup class="cite"><a href="#src-S3">[S3]</a></sup>.</li>
+            <li><b>CATV/DOCSIS 4.0 2차 축</b> — 1.8GHz 증폭기 사이클이 2026년 ~$300M, 적자 완충<sup class="cite"><a href="#src-S12">[S12]</a></sup>.</li>
+            <li><b>CPO 지연의 반사 수혜</b> — 광학 동봉 패키징 지연 시 플러그형 트랜시버 수명 연장<sup class="cite"><a href="#src-S32">[S32]</a></sup>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="section-kicker">06</div>
+      <h2>결론과 전망</h2>
+      <p>AAOI는 "진짜 성장 + 진짜 위험 + 이미 비싼 가격"이 한데 모인, 전형적인 고변동성 모멘텀 종목이다. 핵심 질문에 직접 답하면:</p>
+      <ul>
+        <li><b>사업은 건강한가?</b> 매출은 폭증하지만 GAAP 적자가 커지고 마진은 하락 중이다. 데이터센터 피벗은 진행형이며 회사는 아직 CATV에 크게 의존한다<sup class="cite"><a href="#src-S1">[S1]</a></sup><sup class="cite"><a href="#src-S2">[S2]</a></sup>.</li>
+        <li><b>AI 수요는 실체가 있나?</b> 있다 — 단, 발표된 수주 금액의 대부분은 미감사 파이프라인이고 'Nvidia 연결'은 사실이 아니다. 확인된 대형 고객은 Microsoft·Amazon이다<sup class="cite"><a href="#src-S4">[S4]</a></sup><sup class="cite"><a href="#src-S11">[S11]</a></sup>.</li>
+        <li><b>밸류에이션이 주가를 정당화하나?</b> 아니다. 현재가는 가장 최신 컨센서스 평균 목표가마저 웃돈다. 성장은 이미 가격에 들어가 있다<sup class="cite"><a href="#src-S23">[S23]</a></sup>.</li>
+        <li><b>가장 치명적 리스크는?</b> 고객집중과 희석 — 2017년 붕괴의 구조가 재현돼 있다<sup class="cite"><a href="#src-S33">[S33]</a></sup><sup class="cite"><a href="#src-S5">[S5]</a></sup>.</li>
+      </ul>
+      <p><b>무엇을 지켜봐야 하나(다음 분기 체크리스트):</b> ① 8월 6일 2분기 실적에서 <i>인식 매출</i> 기준 800G/1.6T 램프(보도자료 백로그가 아니라)와 non-GAAP 손익분기 달성 여부, ② 총마진이 35% 목표를 향해 실제로 반등하는지(현재는 하락 중), ③ ATM을 통한 실제 발행 주식 수와 추가 희석 속도, ④ 데이터센터 고객 다변화(단일 고객 44% 의존 완화) 신호, ⑤ 1.6T 고객이 한 곳인지 두 곳인지의 해소.</p>
+      <p><b>판단을 바꿀 증거:</b> (강세 전환) 두 분기 연속 GAAP 흑자 + 마진 35% 도달 + 고객집중 완화가 동시에 확인되면 프리미엄이 정당화되기 시작한다. (약세 확증) 한 대형 고객의 주문 축소·연기, 또는 마진의 추가 하락은 2017년 시나리오의 재현 신호다.</p>
+      <p><b>실무자 관점의 함의:</b> 이 종목은 "사거나 팔라"의 문제가 아니라 포지션 크기와 시점의 문제다. AI 광학 익스포저를 원하되 변동성을 줄이려면 흑자 기업인 Coherent·Lumentum이 더 방어적이다<sup class="cite"><a href="#src-S29">[S29]</a></sup><sup class="cite"><a href="#src-S30">[S30]</a></sup>. AAOI에 베팅한다면, 그것은 "미감사 수주가 인식 매출로, 적자가 흑자로, 단일 고객이 다변화로 전환된다"는 일련의 실행에 거는 고위험 베팅임을 분명히 인식해야 한다. <b>본 보고서는 정보 제공용이며 투자·재무 조언이 아니다.</b></p>
+    </section>
+
+    <section id="references">
+      <div class="section-kicker">07</div>
+      <h2>참고자료</h2>
+      <ol>
+        <li id="src-S1"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000143774926015620/aaoi20260331_10q.htm" rel="noopener">AAOI Q1 2026 Form 10-Q (기간종료 2026-03-31)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 10-Q · 2026-05-07 · 접속 2026-06-14</span></span></li>
+        <li id="src-S2"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000168316826001315/aaoi_ex9901.htm" rel="noopener">AAOI Q4·FY2025 실적 (8-K EX-99.1)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 8-K/PR · 2026-02-26 · 접속 2026-06-14</span></span></li>
+        <li id="src-S3"><span><a href="https://www.fool.com/earnings/call-transcripts/" rel="noopener">AAOI Q1 2026 어닝콜 트랜스크립트</a><span class="tier tier-b">B</span> <span class="src-meta">트랜스크립트 · 2026-05-07 · 접속 2026-06-14</span></span></li>
+        <li id="src-S4"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000143774926005875/aaoi20251231_10k.htm" rel="noopener">AAOI FY2025 Form 10-K (고객집중 명시)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 10-K · 2026-02 · 접속 2026-06-14</span></span></li>
+        <li id="src-S5"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000110465926061146/tm2614157-1_424b5.htm" rel="noopener">$600M ATM 증자 프로그램 (424B5)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 424B5 · 2026-05-14 · 접속 2026-06-14</span></span></li>
+        <li id="src-S6"><span><a href="https://www.stocktitan.net/news/AAOI/aoi-receives-new-upsized-order-for-800g-data-center-transceivers-chfxeg1gjkoq.html" rel="noopener">800G $71M 추가(upsized) 주문 PR</a><span class="tier tier-c">C</span> <span class="src-meta">회사 PR · 2026-04-02 · 접속 2026-06-14</span></span></li>
+        <li id="src-S7"><span><a href="https://www.lightreading.com/ai-machine-learning/aoi-receives-first-volume-order-of-1-6t-data-center-transceivers-from-major-hyperscale-customer" rel="noopener">1.6T 첫 대량주문 &gt;$200M PR</a><span class="tier tier-b">B</span> <span class="src-meta">트레이드프레스/PR · 2026-03-09 · 접속 2026-06-14</span></span></li>
+        <li id="src-S8"><span><a href="https://www.investing.com/news/company-news/applied-optoelectronics-secures-53m-order-for-800g-transceivers-93CH-4577918" rel="noopener">$53M 800G 주문 PR + 고객 연결</a><span class="tier tier-b">B</span> <span class="src-meta">뉴스/PR · 2026-03-24 · 접속 2026-06-14</span></span></li>
+        <li id="src-S9"><span><a href="https://www.globenewswire.com/news-release/2025/12/10/3203517/0/en/AOI-Receives-First-Volume-Order-of-800G-Data-Center-Transceivers-from-Major-Hyperscale-Customer.html" rel="noopener">2025-12 첫 800G 대량주문 PR</a><span class="tier tier-b">B</span> <span class="src-meta">회사 PR · 2025-12-10 · 접속 2026-06-14</span></span></li>
+        <li id="src-S10"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000110465926061168/tm2614157d2_8k.htm" rel="noopener">Amazon 워런트 계약 (8-K) — "$4B"의 실체</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 8-K · 2025-03-13 · 접속 2026-06-14</span></span></li>
+        <li id="src-S11"><span><a href="https://research.fpx.world/p/part-2-beyond-power-the-networking" rel="noopener">fpx.world 네트워킹 공급망 분석 (Nvidia 반증)</a><span class="tier tier-d">D</span> <span class="src-meta">독립 애널 · 2026 · 접속 2026-06-14</span></span></li>
+        <li id="src-S12"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000168316825008029/aaoi_ex9901.htm" rel="noopener">AAOI Q3 2025 실적 (8-K EX-99.1)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 8-K · 2025-11-06 · 접속 2026-06-14</span></span></li>
+        <li id="src-S13"><span><a href="https://www.fool.com/earnings/call-transcripts/2026/02/26/applied-optoelectronics-aaoi-earnings-call/" rel="noopener">AAOI Q4 2025 어닝콜 (Motley Fool)</a><span class="tier tier-b">B</span> <span class="src-meta">트랜스크립트 · 2026-02-26 · 접속 2026-06-14</span></span></li>
+        <li id="src-S14"><span><a href="https://www.globenewswire.com/news-release/2025/10/28/3175239/9986/en/AOI-Announces-Expansion-in-the-City-of-Sugar-Land.html" rel="noopener">Sugar Land 확장 PR</a><span class="tier tier-b">B</span> <span class="src-meta">회사 PR · 2025-10-28 · 접속 2026-06-14</span></span></li>
+        <li id="src-S15"><span><a href="https://investors.ao-inc.com/news-releases/news-release-details/aoi-expands-its-houston-area-footprint-900000-square-feet" rel="noopener">Houston 권역 90만 sq ft 확장 PR</a><span class="tier tier-b">B</span> <span class="src-meta">회사 PR · 2026 · 접속 2026-06-14</span></span></li>
+        <li id="src-S16"><span><a href="https://finance.yahoo.com/news/applied-optoelectronics-expands-texas-manufacturing-223607785.html" rel="noopener">텍사스 제조·수직계열화 (자체 InP 레이저)</a><span class="tier tier-b">B</span> <span class="src-meta">뉴스 종합 · 2025–2026 · 접속 2026-06-14</span></span></li>
+        <li id="src-S17"><span><a href="https://www.lightcounting.com/newsletter/en/june-2025-quarterly-market-update-332" rel="noopener">LightCounting 시장 개관</a><span class="tier tier-b">B</span> <span class="src-meta">애널펌 · 2025 · 접속 2026-06-14</span></span></li>
+        <li id="src-S18"><span><a href="https://photoncap.net/p/chinese-optical-modules-own-7-of" rel="noopener">PhotonCap "중국이 톱10 중 7"</a><span class="tier tier-c">C</span> <span class="src-meta">Substack 분석 · 2026-04-18 · 접속 2026-06-14</span></span></li>
+        <li id="src-S19"><span><a href="https://ip-fiber.com/blogs/news/nvidia-orders-surge-innolight-and-eoptolink-dominate-60-of-800g-sfp-optical-modules-supply" rel="noopener">ip-fiber "InnoLight+Eoptolink 800G 60%"</a><span class="tier tier-c">C</span> <span class="src-meta">벤더 블로그 · 2025-11-11 · 접속 2026-06-14</span></span></li>
+        <li id="src-S20"><span><a href="https://cignal.ai/2025/05/800gbe-optics-shipments-to-grow-60-in-2025/" rel="noopener">Cignal AI 800GbE 전망</a><span class="tier tier-b">B</span> <span class="src-meta">광학 전문 애널펌 · 2025-05-07 · 접속 2026-06-14</span></span></li>
+        <li id="src-S21"><span><a href="https://www.intelmarketresearch.com/optical-transceivers-market-13887" rel="noopener">트랜시버 마진/가격압박 동학</a><span class="tier tier-c">C</span> <span class="src-meta">시장조사 애그리게이터 · 2025–2026 · 접속 2026-06-14</span></span></li>
+        <li id="src-S22"><span><a href="https://www.100gmodules.com/info/2026-top-optical-transceiver-manufacturers-103418406.html" rel="noopener">100gmodules 톱 트랜시버 제조사 2026</a><span class="tier tier-c">C</span> <span class="src-meta">벤더 블로그 · 2026-03-09 · 접속 2026-06-14</span></span></li>
+        <li id="src-S23"><span><a href="https://stockanalysis.com/stocks/aaoi/forecast/" rel="noopener">StockAnalysis.com 예측·컨센서스</a><span class="tier tier-a">A-</span> <span class="src-meta">애그리게이터 · 데이터 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S24"><span><a href="https://www.marketbeat.com/stocks/NASDAQ/AAOI/forecast/" rel="noopener">MarketBeat 예측</a><span class="tier tier-b">B</span> <span class="src-meta">애그리게이터 · 데이터 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S25"><span><a href="https://finance.yahoo.com/quote/AAOI/" rel="noopener">Yahoo Finance 시세·키스탯</a><span class="tier tier-a">A-</span> <span class="src-meta">애그리게이터 · 데이터 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S26"><span><a href="https://simplywall.st/stocks/us/tech/nasdaq-aaoi/applied-optoelectronics" rel="noopener">Simply Wall St 밸류에이션</a><span class="tier tier-b">B</span> <span class="src-meta">모델 기반 · 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S27"><span><a href="https://www.financecharts.com/stocks/AAOI/summary/price" rel="noopener">수익률 (financecharts)</a><span class="tier tier-b">B</span> <span class="src-meta">애그리게이터 · 2026-06 · 접속 2026-06-14</span></span></li>
+        <li id="src-S28"><span><a href="https://www.zacks.com/stock/quote/AAOI/detailed-earning-estimates" rel="noopener">Zacks 추정·랭크</a><span class="tier tier-a">A-</span> <span class="src-meta">애그리게이터/오피니언 · 2026-06 · 접속 2026-06-14</span></span></li>
+        <li id="src-S29"><span><a href="https://stockanalysis.com/stocks/cohr/" rel="noopener">Coherent(COHR) 개요 — PEER</a><span class="tier tier-a">A-</span> <span class="src-meta">애그리게이터 · 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S30"><span><a href="https://stockanalysis.com/stocks/lite/" rel="noopener">Lumentum(LITE) 개요 — PEER</a><span class="tier tier-a">A-</span> <span class="src-meta">애그리게이터 · 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S31"><span><a href="https://www.gurufocus.com/news/8846039/" rel="noopener">Rosenblatt 목표가 $220 상향</a><span class="tier tier-b">B</span> <span class="src-meta">애널 액션 뉴스 · 2026-05-08 · 접속 2026-06-14</span></span></li>
+        <li id="src-S32"><span><a href="https://www.gurufocus.com/news/8908427/applied-optoelectronics-aaoi-shares-drop-14-amid-bearish-report" rel="noopener">SemiAnalysis CPO 지연 리포트 급락</a><span class="tier tier-b">B</span> <span class="src-meta">뉴스 · 2026-06-09 · 접속 2026-06-14</span></span></li>
+        <li id="src-S33"><span><a href="https://www.sec.gov/Archives/edgar/data/0001158114/000168316817002645/applied_8k-ex9901.htm" rel="noopener">2017 Amazon 붕괴 선례 (8-K+분석)</a><span class="tier tier-a">A</span> <span class="src-meta">SEC 8-K/분석 · 2017 · 접속 2026-06-14</span></span></li>
+        <li id="src-S34"><span><a href="https://bmfreports.medium.com/applied-optoelectronics-aaoi-an-optical-illusion-ready-to-shatter-ce6c2e53d447" rel="noopener">2018 폭락·경영진 연속성 (숏 논거)</a><span class="tier tier-c">C</span> <span class="src-meta">베어 블로그 · 2024–2025 · 접속 2026-06-14</span></span></li>
+        <li id="src-S35"><span><a href="https://investors.ao-inc.com/news-releases/news-release-details/applied-optoelectronics-closes-exchange-2026-notes-and" rel="noopener">전환사채 교환 (2024-12)</a><span class="tier tier-b">B</span> <span class="src-meta">회사 PR · 2024-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S36"><span><a href="https://www.marketbeat.com/stocks/NASDAQ/AAOI/short-interest" rel="noopener">숏·내부자매도 (MarketBeat/StocksToTrade)</a><span class="tier tier-c">C</span> <span class="src-meta">애그리게이터 · 2026-06 · 접속 2026-06-14</span></span></li>
+        <li id="src-S37"><span><a href="https://fintel.io/ss/us/aaoi" rel="noopener">fintel 숏인터레스트 (거래소 피드)</a><span class="tier tier-b">B</span> <span class="src-meta">숏데이터 · 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S38"><span><a href="https://stocktwits.com/symbol/AAOI" rel="noopener">StockTwits 리테일 심리</a><span class="tier tier-b">S-strong</span> <span class="src-meta">소셜 심리 · 접속 2026-06-14</span></span></li>
+        <li id="src-S39"><span><a href="https://www.marketbeat.com/stocks/NASDAQ/AAOI/institutional-ownership/" rel="noopener">MarketBeat 기관보유 (13F)</a><span class="tier tier-b">B</span> <span class="src-meta">13F 애그리게이터 · 2026-06-12 · 접속 2026-06-14</span></span></li>
+        <li id="src-S40"><span><a href="https://stocktwits.com/news-articles/markets/equity/citron-shorts-applied-optoelectronics-calls-valuation-detached-from-fundamentals-and-flags-downside-risks/cZJ0039RItN" rel="noopener">Citron 숏 리포트 + 반응</a><span class="tier tier-b">B</span> <span class="src-meta">뉴스 · 2026-04-10 · 접속 2026-06-14</span></span></li>
+        <li id="src-S41"><span><a href="https://www.timothysykes.com/news/applied-optoelectronics-inc-aaoi-news-2026_06_10/" rel="noopener">모멘텀·내부자매도·레버리지 ETF</a><span class="tier tier-c">C</span> <span class="src-meta">트레이딩 뉴스 · 2026-06-10 · 접속 2026-06-14</span></span></li>
+        <li id="src-S42"><span><a href="https://www.trefis.com/stock/aaoi/articles/602239/" rel="noopener">변동성·드로다운 이력 (Trefis)</a><span class="tier tier-b">B</span> <span class="src-meta">분석 · 2026-06-10 · 접속 2026-06-14</span></span></li>
+        <li id="src-S43"><span><a href="https://247wallst.com/investing/2026/04/11/applied-optoelectronics-has-limited-upside-to-our-108-18-target-despite-the-200m-order-catalyst-3/" rel="noopener">247wallst $108 목표 (과열 캠프)</a><span class="tier tier-c">C</span> <span class="src-meta">오피니언 · 2026-04-11 · 접속 2026-06-14</span></span></li>
+        <li id="src-S44"><span><a href="https://www.reddit.com/r/wallstreetbets/" rel="noopener">Reddit/WSB 심리 (검색 종합)</a><span class="tier tier-c">S-weak</span> <span class="src-meta">소셜 심리 · 2026 Mar–May · 접속 2026-06-14</span></span></li>
+        <li id="src-S45"><span><a href="https://marketchameleon.com/Overview/AAOI/" rel="noopener">옵션/내재변동성 (검색 종합)</a><span class="tier tier-c">C</span> <span class="src-meta">옵션 데이터 · 2026-05 · 접속 2026-06-14</span></span></li>
+        <li id="src-S46"><span><a href="https://finance.yahoo.com/markets/stocks/articles/applied-optoelectronics-aaoi-story-shifting-150817310.html" rel="noopener">B. Riley Neutral 하향</a><span class="tier tier-c">C</span> <span class="src-meta">애널 뉴스 · 2026 · 접속 2026-06-14</span></span></li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer class="methodology" id="methodology">
+  <div class="inner">
+    <h2>방법론</h2>
+    <p>작성일 2026-06-14(분석 기준일 2026-06-13). 심층도 <b>deep</b> — 7개 관점(사업·재무·AI수요·경쟁·밸류에이션·리스크·시장심리)을 병렬 리서치한 뒤, 회의론(skeptic) 1회와 핵심 주장 3건에 대한 적대적 주장검증(Digicomm 고객집중·Nvidia 공급 여부·재무 수치)을 거쳐 증거 원장으로 통합했다. 자문한 소스 60+건 중 URL 중복 제거 후 <b>46건</b>을 채택(1차 SEC 자료 10건+ 포함). 최신성 창 12~18개월(역사적 선례인 2017~2018년 Amazon 붕괴는 비교 목적상 포함), 모든 수치는 소스에 시점을 명기했다.</p>
+    <p><b>한계:</b> (1) 800G·1.6T 수주 금액은 대부분 미감사 회사 보도자료로 인식 매출과 다르며 취소·조정될 수 있다. (2) 시장점유율은 1차 Dell'Oro/LightCounting 보고서 원문을 확보하지 못해 2차 인용(C등급)에 의존했다 — 다만 "AAOI 소규모·중국 모듈 우위"라는 방향성은 다수 소스에서 일관된다. (3) 1.6T 고객이 한 곳인지 두 곳인지는 회사 발언 간 상충이 미해결이다. (4) X/Twitter 심리와 실시간 옵션 지표는 미계측으로 남았다. <b>council: codex+grok (외부 LLM 교차검토 실행). humanize: 실행(한국어 자연화).</b> 본 보고서는 정보 제공용이며 투자·재무 조언이 아니다.</p>
+  </div>
+</footer>
+
+</body>
+</html>

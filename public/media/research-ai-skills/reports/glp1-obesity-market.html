@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLP-1 비만치료제 시장 2026 — 경쟁·파이프라인·약가·안전성 딥리서치</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #1a1d23;
+    --muted: #5b6270;
+    --faint: #8a909c;
+    --line: #e2e5ea;
+    --bg: #fbfbfc;
+    --panel: #ffffff;
+    --panel-2: #f3f5f8;
+    --accent: #0b6e63;
+    --accent-soft: #e3f1ef;
+    --risk: #9a3412;
+    --risk-soft: #fdf0e7;
+    --opp: #14532d;
+    --opp-soft: #e9f4ec;
+    --warn-soft: #fef6e0;
+    --warn-line: #d9a514;
+    --shadow: 0 10px 30px rgba(26, 29, 35, .06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Pretendard", "Inter", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 16.5px; line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- header ---------- */
+  header.masthead {
+    background: linear-gradient(180deg, #10231f 0%, #173a34 100%);
+    color: #f3f6f5; padding: 72px 24px 56px;
+  }
+  .masthead-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: #9fc5be; margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(30px, 4.6vw, 46px); line-height: 1.18;
+    letter-spacing: -.015em; margin: 0 0 14px; font-weight: 800;
+  }
+  .subtitle { font-size: 18px; color: #c9d8d4; max-width: 700px; margin: 0 0 28px; }
+  .meta-grid {
+    display: flex; flex-wrap: wrap; gap: 10px 28px;
+    font-size: 13.5px; color: #a8bcb7;
+    border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px;
+  }
+  .meta-grid b { color: #e8efed; font-weight: 600; margin-right: 6px; }
+
+  /* ---------- layout ---------- */
+  .page { max-width: 1200px; margin: 0 auto; padding: 48px 24px 80px;
+    display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 56px; }
+  @media (max-width: 960px) { .page { grid-template-columns: 1fr; gap: 32px; } }
+
+  nav.toc { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+  @media (max-width: 960px) { nav.toc { position: static; } }
+  nav.toc .toc-title {
+    font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 12px;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: block; padding: 6px 12px; color: var(--muted);
+    border-left: 2px solid var(--line); border-radius: 0 6px 6px 0;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+  nav.toc li.toc-sub a { padding-left: 26px; font-size: 13px; }
+
+  main { min-width: 0; max-width: 820px; }
+  main section { margin-bottom: 64px; }
+  h2 {
+    font-size: 27px; letter-spacing: -.01em; margin: 0 0 8px; font-weight: 800;
+    padding-top: 8px;
+  }
+  .section-kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  h3 { font-size: 20px; margin: 36px 0 12px; letter-spacing: -.005em; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 6px; }
+  .lede { font-size: 17.5px; color: var(--muted); margin-bottom: 24px; }
+
+  /* ---------- summary ---------- */
+  #summary .summary-box {
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent); border-radius: 12px;
+    padding: 28px 32px; box-shadow: var(--shadow); font-size: 17px;
+  }
+  #summary .summary-box p:last-child { margin-bottom: 0; }
+
+  /* ---------- insight cards ---------- */
+  .insight-list { display: grid; gap: 14px; }
+  .insight {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 24px; box-shadow: var(--shadow);
+  }
+  .insight .insight-head {
+    display: flex; gap: 12px; align-items: baseline; margin-bottom: 6px;
+  }
+  .insight .num {
+    flex: none; font-size: 13px; font-weight: 800; color: var(--accent);
+    background: var(--accent-soft); border-radius: 999px; padding: 2px 10px;
+  }
+  .insight b.takeaway { font-size: 16.5px; }
+  .insight p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* ---------- citations ---------- */
+  sup.cite { line-height: 0; font-size: 11.5px; font-weight: 700; }
+  sup.cite a {
+    color: var(--accent); background: var(--accent-soft);
+    padding: 1px 5px; border-radius: 5px; margin-left: 2px;
+  }
+  sup.cite a:hover { text-decoration: none; filter: brightness(.92); }
+
+  /* ---------- callouts ---------- */
+  .callout {
+    border-radius: 10px; padding: 14px 18px; margin: 18px 0; font-size: 15px;
+    border: 1px solid var(--line); background: var(--panel-2);
+  }
+  .callout.uncertain { background: var(--warn-soft); border-color: #ecd9a0; }
+  .callout.uncertain > strong { color: #8a6306; }
+  .callout.conflict { background: #f4eef8; border-color: #d8c6e6; }
+  .callout.conflict > strong { color: #6b21a8; }
+
+  /* ---------- tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--panel); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  caption { text-align: left; font-weight: 700; padding: 14px 18px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--panel-2); font-size: 13px; letter-spacing: .03em;
+    text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--line); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td .pos { color: var(--opp); font-weight: 600; }
+  td .neg { color: var(--risk); font-weight: 600; }
+
+  /* ---------- risks & opportunities ---------- */
+  .ro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 760px) { .ro-grid { grid-template-columns: 1fr; } }
+  .ro-col { border-radius: 12px; padding: 22px 24px; border: 1px solid var(--line); }
+  .ro-col.risks-col { background: var(--risk-soft); }
+  .ro-col.opps-col { background: var(--opp-soft); }
+  .ro-col h3 { margin: 0 0 14px; font-size: 17px; }
+  .ro-col.risks-col h3 { color: var(--risk); }
+  .ro-col.opps-col h3 { color: var(--opp); }
+  .ro-col ul { padding-left: 20px; margin: 0; }
+  .ro-col li { margin-bottom: 12px; font-size: 15px; }
+  .ro-col li b { display: block; }
+
+  /* ---------- references ---------- */
+  #references ol { padding-left: 0; counter-reset: src; list-style: none; }
+  #references li {
+    counter-increment: src; padding: 12px 14px; border-bottom: 1px solid var(--line);
+    font-size: 14.5px; display: flex; gap: 12px; align-items: baseline;
+  }
+  #references li::before {
+    content: "S" counter(src); flex: none; font-weight: 800; font-size: 12px;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 6px; padding: 2px 8px;
+  }
+  #references li .src-meta { color: var(--faint); font-size: 13px; display: block; }
+  .tier {
+    display: inline-block; font-size: 11px; font-weight: 800; border-radius: 5px;
+    padding: 1px 7px; margin-left: 8px; vertical-align: 1px;
+  }
+  .tier-a { background: #dcefe3; color: #14532d; }
+  .tier-b { background: #e0ebf7; color: #1e4e8c; }
+  .tier-c { background: #fdf0d8; color: #92600a; }
+  .tier-d { background: #f6e0e0; color: #9b1c1c; }
+
+  /* ---------- charts (inline SVG, self-contained; see references/charts.md) ---------- */
+  figure.chart { margin: 24px 0; border: 1px solid var(--line); border-radius: 12px;
+    background: var(--panel); padding: 20px 22px 14px; box-shadow: var(--shadow); }
+  figure.chart .chart-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+  figure.chart .chart-sub { font-size: 12.5px; color: var(--faint); margin-bottom: 14px; }
+  figure.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+  figure.chart figcaption { font-size: 11.5px; color: var(--faint); margin-top: 10px; line-height: 1.5; }
+  figure.chart text { font-family: inherit; fill: var(--muted); }
+  .cl-bar { fill: var(--accent); }
+  .cl-bar-2 { fill: #14532d; }
+  .cl-pos { fill: #2f8f6f; }
+  .cl-neg { fill: #c2603f; }
+  .cl-hi { fill: #c98b3a; }
+  .cl-axis { stroke: var(--line); stroke-width: 1; }
+  .cl-zero { stroke: #b9bec7; stroke-width: 1.5; }
+  .cl-val { fill: var(--ink); font-weight: 700; font-size: 12px; }
+  .cl-lbl { fill: var(--muted); font-size: 12.5px; }
+  .cl-line { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+  .cl-dot { fill: var(--accent); }
+  .cl-dot-crash { fill: #c2603f; }
+  .cl-note { fill: var(--faint); font-size: 11px; }
+
+  /* ---------- methodology footer ---------- */
+  footer.methodology {
+    border-top: 1px solid var(--line); background: var(--panel-2);
+    padding: 36px 24px 56px; color: var(--muted); font-size: 14px;
+  }
+  footer.methodology .inner { max-width: 820px; margin: 0 auto; }
+  footer.methodology h2 { font-size: 16px; color: var(--ink); margin-bottom: 12px; }
+
+  /* ---------- print ---------- */
+  @media print {
+    nav.toc { display: none; }
+    .page { display: block; }
+    header.masthead { background: #173a34; -webkit-print-color-adjust: exact; }
+    main section { break-inside: avoid-page; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Deep Research Report · 2026-06-17</div>
+    <h1>GLP-1 비만치료제 시장 2026 — 경쟁, 파이프라인, 약가, 안전성</h1>
+    <p class="subtitle">키워드 하나가 폭증시킨 시장에서, 무엇이 진짜 성장이고 무엇이 과장인가. 효능 사다리부터 약가 정치, 지속률, 한국 시장까지 12개 관점으로 갈라본다.</p>
+    <div class="meta-grid">
+      <span><b>작성일</b> 2026-06-17</span>
+      <span><b>대상 독자</b> 산업 분석가 · 투자 실무자</span>
+      <span><b>리서치 깊이</b> deep · 12관점 + 회의론 + 검증 2 + council</span>
+      <span><b>출처</b> 78개 인용 / 139개 검토</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="toc" id="toc" aria-label="목차">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#summary">요약</a></li>
+      <li><a href="#insights">핵심 인사이트</a></li>
+      <li><a href="#analysis">상세 분석</a></li>
+      <li class="toc-sub"><a href="#a-market">1. 시장 규모: 숫자가 아니라 범위</a></li>
+      <li class="toc-sub"><a href="#a-duopoly">2. 노보 vs 릴리: 주사제는 릴리, 경구는 노보</a></li>
+      <li class="toc-sub"><a href="#a-efficacy">3. 효능 사다리와 estimand 함정</a></li>
+      <li class="toc-sub"><a href="#a-pipeline">4. 경구 혁명과 차세대 파이프라인</a></li>
+      <li class="toc-sub"><a href="#a-price">5. 약가: list는 급락, net은 제자리</a></li>
+      <li class="toc-sub"><a href="#a-persistence">6. 지속률이 진짜 변수</a></li>
+      <li class="toc-sub"><a href="#a-indication">7. 적응증 확장: 입증된 넷, 실패한 하나</a></li>
+      <li class="toc-sub"><a href="#a-safety">8. 안전성: 헤드라인과 실제 드래그</a></li>
+      <li class="toc-sub"><a href="#a-korea">9. 한국·아시아 시장</a></li>
+      <li><a href="#comparison">비교: 차세대 자산 마스터 테이블</a></li>
+      <li><a href="#risks">리스크와 기회</a></li>
+      <li><a href="#conclusion">결론</a></li>
+      <li><a href="#references">참고 출처</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <div class="section-kicker">01</div>
+      <h2>요약</h2>
+      <div class="summary-box">
+        <p><b>결론부터.</b> 2026년 GLP-1 비만치료제 시장은 임상적으로는 진짜이고 재정적으로는 과대평가돼 있다. 효능 사다리(세마글루타이드 약 14% → 터제파타이드 20% → 차세대 24%+)는 동료심사 임상으로 단단하고<sup class="cite"><a href="#src-S1">[S1]</a></sup>, 미국 성인 12%가 현재 복용할 만큼 수요도 실재한다<sup class="cite"><a href="#src-S2">[S2]</a></sup>. 그러나 "2030년 2,000억 달러"류 강세 전망의 상단은 실세계 데이터가 받쳐주지 못한다.</p>
+        <p>세 가지가 시장 서사를 갈라놓는다. 첫째, <b>TAM은 상승하는 한 점이 아니라 밴드다.</b> 같은 골드만삭스가 2030년 비만약 시장을 강세 시나리오 $114bn으로 올리면서 동시에 약세 $95bn(이전 $130bn에서 하향)도 내놨다<sup class="cite"><a href="#src-S3">[S3]</a></sup><sup class="cite"><a href="#src-S4">[S4]</a></sup>. JPM $200bn·일부 벤더 $268bn 같은 상단은 데이터가 부정하는 지속률을 가정한다<sup class="cite"><a href="#src-S5">[S5]</a></sup>. 둘째, <b>표시가는 급락하지만 실질가(net)는 거의 안 떨어진다</b> — 노보의 위고비 $1,349→$675 인하는 리베이트 축소로 상쇄돼 보험자 실비용은 사실상 불변이다(머서·WTW)<sup class="cite"><a href="#src-S6">[S6]</a></sup>. 셋째, <b>릴리가 모든 축에서 앞선다는 통념은 틀렸다</b> — 주사제 효능·매출은 릴리지만<sup class="cite"><a href="#src-S7">[S7]</a></sup>, 2026년 경구 비만약 처방은 노보의 경구 위고비가 릴리 Foundayo를 6배 앞섰고 노보는 밸류에이션이 이미 리셋됐다(약 12배 PER)<sup class="cite"><a href="#src-S8">[S8]</a></sup>.</p>
+        <p>판단의 경첩은 <b>침투율이 아니라 지속률</b>이다. 비당뇨 환자의 약 절반이 1년 안에 끊고, 위고비 3년 잔존율은 14%다<sup class="cite"><a href="#src-S9">[S9]</a></sup>. 중단하면 1년 안에 체중 대부분이 돌아와 평생 치료가 필요하지만<sup class="cite"><a href="#src-S10">[S10]</a></sup>, 비용·부작용이 그 지속을 깎는다. 방향은 강세, 크기와 지속성은 과장 — 이 보고서는 그 간극을 출처로 분리한다. (투자 자문이 아니다.)</p>
+      </div>
+    </section>
+
+    <section id="insights">
+      <div class="section-kicker">02</div>
+      <h2>핵심 인사이트</h2>
+      <div class="insight-list">
+        <div class="insight">
+          <div class="insight-head"><span class="num">1</span><b class="takeaway">시장 규모는 범위로 봐야 한다 — 은행 전망 $95~114bn(2030), 벤더 상단 $268bn은 신뢰 불가</b></div>
+          <p>2030 전망의 격차는 거의 전적으로 <b>범위(scope)</b> 차이다: 비만 한정 vs 당뇨+비만 vs 전체 인크레틴. 골드만 $95~114bn, MS $150~190bn(2035), JPM $200bn, 벤더 BCC $268bn·FMI $39.5bn. 은행도 침투·지속률 가정에 따라 같은 해를 두 배로 벌린다<sup class="cite"><a href="#src-S3">[S3]</a></sup><sup class="cite"><a href="#src-S11">[S11]</a></sup><sup class="cite"><a href="#src-S4">[S4]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">2</span><b class="takeaway">릴리는 주사제·매출·밸류에이션에서 리드하지만, 격차는 경구·밸류에이션 축에서 좁혀진다</b></div>
+          <p>릴리 1분기 매출 +56%(터제파타이드 프랜차이즈 $12.8bn/분기) vs 노보 가이던스 첫 역성장<sup class="cite"><a href="#src-S7">[S7]</a></sup>. SURMOUNT-5 직접 비교에서 터제파타이드 20.2% vs 세마 13.7%<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 그러나 경구 비만약 처방은 노보가 앞서고(주7 약 6.7만 vs 1.2만건), 노보는 ~12배 PER로 악재가 선반영<sup class="cite"><a href="#src-S8">[S8]</a></sup><sup class="cite"><a href="#src-S12">[S12]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">3</span><b class="takeaway">표시가 인하는 회계적 착시 — net price는 리베이트 상쇄로 거의 불변</b></div>
+          <p>위고비 표시가 $1,349이나 추정 net은 약 $569; 노보의 $675 신규 표시가(2027 시행)는 리베이트 축소로 보험자 실비용이 거의 안 변한다(머서·WTW 독립 확인)<sup class="cite"><a href="#src-S13">[S13]</a></sup><sup class="cite"><a href="#src-S6">[S6]</a></sup>. 한편 compounding(저가 조제) 차단으로 무보험층은 오히려 $349 브랜드 하한에 갇힌다<sup class="cite"><a href="#src-S14">[S14]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">4</span><b class="takeaway">강세 TAM의 약한 고리는 지속률 — 1년 내 약 절반 중단, 3년 잔존 14%</b></div>
+          <p>실세계 1년 지속률은 빠르게 개선됐지만(2024년 코호트 약 60%) 여전히 약 절반이 1년 내 중단하고 위고비 3년 잔존은 14%<sup class="cite"><a href="#src-S9">[S9]</a></sup>. 중단 시 1년 내 감량의 2/3~82% 재증가<sup class="cite"><a href="#src-S10">[S10]</a></sup>. 평생 수요의 이론적 근거이자, 비용·부작용이 깎는 실현 매출의 상한.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">5</span><b class="takeaway">"비만 너머"는 입증된 성장 스토리 — 단 알츠하이머는 실패했다</b></div>
+          <p>심혈관(SELECT, MACE -20%)·MASH·수면무호흡·당뇨성 신장병이 FDA 승인 + 동료심사로 확정돼, 비만이 아닌 "질환" 사유로 보험을 연다<sup class="cite"><a href="#src-S15">[S15]</a></sup>. 반면 알츠하이머 evoke 임상은 2025-11 실패해 신경계 TAM 서사를 디플레했다<sup class="cite"><a href="#src-S16">[S16]</a></sup>.</p>
+        </div>
+        <div class="insight">
+          <div class="insight-head"><span class="num">6</span><b class="takeaway">한국은 전면 비급여 + 가격 전쟁 + 오남용 규제 — 국내 파이프라인은 한미·디앤디</b></div>
+          <p>위고비(2024-10)·마운자로(2025-08) 출시 후 노보가 공급가 최대 42% 인하<sup class="cite"><a href="#src-S17">[S17]</a></sup>, 환자 부담 월 21~42만원 전면 비급여; 식약처는 GLP-1을 오남용 우려 의약품으로 지정<sup class="cite"><a href="#src-S18">[S18]</a></sup>. 국내는 한미 에페글레나타이드(2026 하반기 목표)·HM15275(P2), 디앤디파마텍 경구 GLP-1<sup class="cite"><a href="#src-S19">[S19]</a></sup>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="analysis">
+      <div class="section-kicker">03</div>
+      <h2>상세 분석</h2>
+      <p class="lede">아홉 개 소절은 핵심 질문을 따라간다 — 시장 크기와 그 불확실성, 듀오폴리의 실제 구도, 효능의 진짜 위계, 경구 전환과 파이프라인, 약가 정치, 지속률, 적응증 확장, 안전성, 그리고 한국. 강세 서사와 그것을 깎는 반증을 같은 자리에 둔다.</p>
+
+      <section class="sub" id="a-market">
+        <h3>1. 시장 규모는 숫자가 아니라 범위다</h3>
+        <p>어느 은행도 깨끗한 "2026년 시장 규모" 한 점을 내놓지 않는다. 분기 실적에서 역산하면 2026년 글로벌 GLP-1 클래스(당뇨+비만)는 연 환산 약 $85~100bn 런레이트로, 범위에 따라 전년比 20~40% 성장 중이다<sup class="cite"><a href="#src-S20">[S20]</a></sup><sup class="cite"><a href="#src-S21">[S21]</a></sup>. 진짜 논쟁은 2030년 이후다. 그리고 그 격차는 거의 전적으로 <b>범위와 침투·지속 가정</b>에서 온다.</p>
+        <figure class="chart">
+          <div class="chart-title">그림 1. 비만/GLP-1 시장 전망 — 같은 시장, 4배 벌어지는 추정</div>
+          <div class="chart-sub">단위 10억 달러(USD bn). 강조 막대는 신뢰 낮은 벤더 추정(상·하단 극단)</div>
+          <svg viewBox="0 0 620 280" role="img" aria-label="출처별 시장 전망 막대그래프, 39.5십억에서 268십억 달러까지">
+            <g class="cl-lbl" text-anchor="end">
+              <text x="192" y="38">FMI 2030 (벤더)</text>
+              <text x="192" y="72">GS 2030 약세</text>
+              <text x="192" y="106">GS 2030 강세</text>
+              <text x="192" y="140">MS 2035 비만</text>
+              <text x="192" y="174">MS 2035 당뇨+비만</text>
+              <text x="192" y="208">JPM 2030 인크레틴</text>
+              <text x="192" y="242">BCC 2030 (벤더)</text>
+            </g>
+            <rect class="cl-hi"  x="200" y="24"  width="59"  height="20" rx="3"/>
+            <rect class="cl-bar" x="200" y="58"  width="142" height="20" rx="3"/>
+            <rect class="cl-bar-2" x="200" y="92" width="170" height="20" rx="3"/>
+            <rect class="cl-bar" x="200" y="126" width="224" height="20" rx="3"/>
+            <rect class="cl-bar" x="200" y="160" width="284" height="20" rx="3"/>
+            <rect class="cl-bar" x="200" y="194" width="299" height="20" rx="3"/>
+            <rect class="cl-hi"  x="200" y="228" width="400" height="20" rx="3"/>
+            <g class="cl-val" text-anchor="start">
+              <text x="263" y="39">39.5</text>
+              <text x="346" y="73">95</text>
+              <text x="374" y="107">114</text>
+              <text x="428" y="141">150</text>
+              <text x="488" y="175">190</text>
+              <text x="503" y="209">200</text>
+              <text x="604" y="243">268</text>
+            </g>
+          </svg>
+          <figcaption>은행 추정은 $95~200bn에 모이고, 벤더 추정은 $39.5~268bn으로 흩어진다. 골드만은 같은 시점을 강세 $114bn·약세 $95bn 두 갈래로 낸다. 출처: <a href="#src-S3">[S3]</a><a href="#src-S11">[S11]</a><a href="#src-S22">[S22]</a><a href="#src-S23">[S23]</a><a href="#src-S4">[S4]</a></figcaption>
+        </figure>
+        <p>핵심은 <b>골드만이 강세 $114bn과 약세 $95bn(이전 $130bn에서 하향)을 동시에 들고 있다</b>는 사실이다. 약세 근거는 명시적으로 지속률과 가격이다<sup class="cite"><a href="#src-S4">[S4]</a></sup>. 따라서 "$114bn으로 상향"만 인용하는 건 같은 보고서의 절반을 지운 것이다. JPM $200bn·MS $190bn은 약 12% 글로벌 침투와 높은 지속을 <em>동시에</em> 가정해야 성립하고, 벤더 BCC $268bn은 상호 모순적인 D급 PR이다<sup class="cite"><a href="#src-S23">[S23]</a></sup>.</p>
+        <div class="callout uncertain"><strong>불확실 · 범위 주의.</strong> 두 숫자는 범위가 다르니 직접 비교하면 안 된다 — 약 $85~100bn 런레이트는 <em>당뇨+비만 GLP-1 클래스 전체</em>의 2026년 역산값이고, 골드만 $95~114bn은 <em>비만 한정</em> 2030년 전망이다(MS는 비만 $150bn·당뇨+비만 $190bn을 2035년으로 따로 제시). 어느 것도 단일 출처 점추정이 아니며, 강세 상단은 침투·지속 가정에 의존한다. 본 보고서는 신뢰 가능한 비만 시장 은행 케이스를 약 $95~114bn(2030)으로 본다.</p></div>
+        <p>왜 점추정이 아니라 밴드여야 하는지는 전망을 움직이는 다섯 레버를 보면 분명하다 — (1) 약 13억 명 적격 인구 중 실제 치료 비율(MS는 2035년 12% 가정), (2) 경구 GLP-1 믹스(골드만은 2030년 TAM의 40%를 경구로 본다), (3) 미국 net 가격 침식(골드만은 DTC를 $287/월로 -20% 반영), (4) 역외·제네릭 확장(JPM), (5) 메디케어·메디케이드 커버리지(BALANCE·Bridge 파일럿). 이 다섯이 모두 강세로 정렬되면 $200bn대가 나오고, 침투·지속이 보수적이면 $95bn으로 내려온다. 같은 은행이 같은 해를 두 배로 벌리는 건 모델이 틀려서가 아니라 <b>이 레버들의 불확실성이 진짜로 그만큼 크기 때문</b>이다. 따라서 실무적으로는 단일 숫자를 인용하기보다, "어떤 침투·가격·커버리지 가정에서 나온 숫자인가"를 함께 묻는 것이 옳다 — 출처 없는 "2030년 X천억 달러"는 사실상 가정의 별칭이다.</p>
+      </section>
+
+      <section class="sub" id="a-duopoly">
+        <h3>2. 노보 vs 릴리: 주사제는 릴리, 경구는 노보, 밸류에이션은 갈렸다</h3>
+        <p>2026년 듀오폴리의 표면은 릴리의 완승처럼 보인다. 1분기 릴리 총매출 $19.8bn(+56%), 터제파타이드 프랜차이즈(마운자로 $8.66bn +125%, 젭바운드 $4.16bn +80%)만으로 노보의 두 간판약을 성장률에서 압도한다<sup class="cite"><a href="#src-S20">[S20]</a></sup>. 가이던스가 분기점을 굳힌다 — 릴리 FY26 +28% vs 노보 -4~-12%(CER)<sup class="cite"><a href="#src-S24">[S24]</a></sup>.</p>
+        <p>이 발산을 제대로 읽으려면 노보의 역성장이 <b>물량이 아니라 가격</b>에서 온다는 점을 분리해야 한다. 노보 1분기 미국 사업이 -11%였지만 그건 GLP-1 물량이 줄어서가 아니라 실현 단가가 내려가서다 — 비만 케어는 여전히 +22%(CER) 성장했고 경구 위고비는 출시 분기에 약 $354M으로 컨센서스의 2배를 찍었다<sup class="cite"><a href="#src-S21">[S21]</a></sup>. 즉 노보의 "down-year"는 수요 붕괴가 아니라 MFN·약가 인하·메디케이드 축소가 환자당 매출을 리셋한 결과다. 이 구분이 중요한 이유는, 가격발 역성장은 물량발 역성장보다 회복 탄력이 크고(가격은 믹스·신제품으로 되돌릴 여지가 있다), 동시에 산업 전체가 향하는 방향 — <b>더 싼 경구, 더 낮은 net, 더 넓은 침투</b> — 을 노보가 먼저 통과하고 있다는 신호이기도 하기 때문이다. 릴리는 아직 그 가격 압축 구간에 본격 진입하지 않았을 뿐이며, 경구 가격전쟁이 본격화되면 릴리의 프리미엄 멀티플이 노보가 지금 겪는 것을 뒤늦게 겪을 수 있다.</p>
+        <figure class="chart">
+          <div class="chart-title">그림 2. 1분기 2026 전년比 성장률 — 한쪽은 가속, 한쪽은 가격발 역성장</div>
+          <div class="chart-sub">단위 %, 전년동기比. 노보 조정매출은 CER 기준; FY26은 가이던스 중간값</div>
+          <svg viewBox="0 0 620 250" role="img" aria-label="노보와 릴리 성장률 발산 막대그래프">
+            <line class="cl-zero" x1="162" y1="14" x2="162" y2="232"/>
+            <g class="cl-lbl">
+              <text x="156" y="38" text-anchor="end">릴리 마운자로</text>
+              <text x="156" y="72" text-anchor="end">릴리 젭바운드</text>
+              <text x="156" y="106" text-anchor="end">릴리 총매출</text>
+              <text x="156" y="140" text-anchor="end">노보 위고비(주사)</text>
+              <text x="168" y="174" text-anchor="start">노보 조정매출</text>
+              <text x="168" y="208" text-anchor="start">노보 FY26 가이던스</text>
+            </g>
+            <rect class="cl-pos" x="162" y="24"  width="438" height="20" rx="3"/>
+            <rect class="cl-pos" x="162" y="58"  width="280" height="20" rx="3"/>
+            <rect class="cl-pos" x="162" y="92"  width="196" height="20" rx="3"/>
+            <rect class="cl-pos" x="162" y="126" width="42"  height="20" rx="3"/>
+            <rect class="cl-neg" x="148" y="160" width="14"  height="20" rx="3"/>
+            <rect class="cl-neg" x="134" y="194" width="28"  height="20" rx="3"/>
+            <g class="cl-val">
+              <text x="606" y="39" text-anchor="start">+125</text>
+              <text x="448" y="73" text-anchor="start">+80</text>
+              <text x="364" y="107" text-anchor="start">+56</text>
+              <text x="210" y="141" text-anchor="start">+12</text>
+              <text x="142" y="175" text-anchor="end">-4</text>
+              <text x="128" y="209" text-anchor="end">-8</text>
+            </g>
+          </svg>
+          <figcaption>릴리는 가속, 노보는 가격발(가격 하락) 역성장 — 단 노보도 GLP-1 물량은 늘었다. 출처: <a href="#src-S20">[S20]</a><a href="#src-S21">[S21]</a><a href="#src-S25">[S25]</a><a href="#src-S26">[S26]</a></figcaption>
+        </figure>
+        <p>그러나 회의론 패스가 이 "전 축 우위" 서사를 두 군데서 깼다. 첫째, <b>2026년의 진짜 격전지인 경구 비만약에서는 노보가 초기 리드를 잡았다</b> — 출시 7주차 경구 위고비 약 6.7만 처방 vs 릴리 Foundayo 약 1.17만, 노보가 신규 미국 처방의 약 65%<sup class="cite"><a href="#src-S8">[S8]</a></sup>. 다만 두 약은 승인·출시 시점이 달라 초기 주간 처방이 선점효과·적정증량·리필에 크게 좌우되므로, 이 수치는 "노보의 초기 우세"이지 구조적 승부의 결론은 아니다(launch-adjusted 지표로 재평가 필요). 그래도 릴리 주가가 Foundayo의 더딘 출발에 빠진 것은 시장이 이 신호를 진지하게 봤다는 뜻이다. 둘째, <b>밸류에이션 비대칭이 노보에 유리</b>하다 — 노보는 ~12배 PER로 악재가 선반영됐고 FY26 가이던스를 오히려 소폭 상향했으며, 경구 위고비 사용자의 약 80%가 신규 환자(경구 전반의 시장 확장 신호)다<sup class="cite"><a href="#src-S12">[S12]</a></sup>. 반면 릴리는 ~25~30배로, DCF 적정가가 현재가보다 30~48% 낮다는 평가도 있다<sup class="cite"><a href="#src-S27">[S27]</a></sup>. 노보의 차세대 amycretin도 2026년 광범위 P3에 진입해 반격 카드가 살아 있다<sup class="cite"><a href="#src-S28">[S28]</a></sup>.</p>
+        <p>단 노보의 파이프라인 반격에는 큰 흠집이 있다 — <b>CagriSema가 2026-02 젭바운드(터제파타이드)와의 직접 비교(REDEFINE 4)에서 비열등성 입증에 실패</b>(23.0% vs 25.5%)해 발표 당일 노보 -16%·릴리 +5%로 갈렸고, 일부 애널리스트는 CagriSema 피크 매출 추정을 대폭 하향했다(의견)<sup class="cite"><a href="#src-S78">[S78]</a></sup>. 즉 노보는 경구·밸류에이션에서 따라붙지만, 차세대 <em>최고 효능</em> 자산은 여전히 릴리(레타트루타이드)다. 3위권(암젠 MariTide 월1회, 로슈, 바이킹 VK2735, 화이자/메트세라)은 실재하나 ~2027~2028 전까지 상업화가 어려워, 근시일 시장은 듀오폴리로 남는다<sup class="cite"><a href="#src-S29">[S29]</a></sup>. <b>요약: 릴리의 주사제 효능·매출·차세대 효능 리드는 진짜(SURVIVE), 그러나 "모든 축에서 격차 확대"는 경구와 밸류에이션에서 틀렸다.</b></p>
+      </section>
+
+      <section class="sub" id="a-efficacy">
+        <h3>3. 효능 사다리는 진짜다 — 단 모든 숫자엔 estimand 꼬리표가 붙는다</h3>
+        <p>기전이 늘수록 효능이 오르는 위계는 동료심사로 확립됐다. 비당뇨 비만에서 peak 평균 체중감량은 경구 GLP-1(오포글리프론 약 12%) < GLP-1 단일주사(세마 13.7%) < GIP/GLP-1 이중(터제파타이드 20.2%) < amylin 병용(CagriSema 22.7%) < 삼중작용(레타트루타이드 24%+)<sup class="cite"><a href="#src-S1">[S1]</a></sup><sup class="cite"><a href="#src-S30">[S30]</a></sup><sup class="cite"><a href="#src-S31">[S31]</a></sup>.</p>
+        <figure class="chart">
+          <div class="chart-title">그림 3. 효능 사다리 — peak 평균 체중감량(%)</div>
+          <div class="chart-sub">비당뇨 비만, 1차 시험 기준. 강조는 유일한 직접 비교(SURMOUNT-5)의 터제파타이드</div>
+          <svg viewBox="0 0 620 230" role="img" aria-label="약물별 체중감량 효능 막대그래프">
+            <g class="cl-lbl" text-anchor="end">
+              <text x="142" y="38">오포글리프론 (경구)</text>
+              <text x="142" y="72">세마글루타이드</text>
+              <text x="142" y="106">터제파타이드</text>
+              <text x="142" y="140">CagriSema</text>
+              <text x="142" y="174">레타트루타이드</text>
+            </g>
+            <rect class="cl-bar" x="150" y="24"  width="188" height="20" rx="3"/>
+            <rect class="cl-bar" x="150" y="58"  width="208" height="20" rx="3"/>
+            <rect class="cl-bar-2" x="150" y="92" width="307" height="20" rx="3"/>
+            <rect class="cl-bar" x="150" y="126" width="345" height="20" rx="3"/>
+            <rect class="cl-bar" x="150" y="160" width="368" height="20" rx="3"/>
+            <g class="cl-val" text-anchor="start">
+              <text x="344" y="39">12.4</text>
+              <text x="364" y="73">13.7</text>
+              <text x="463" y="107">20.2</text>
+              <text x="501" y="141">22.7</text>
+              <text x="524" y="174">24.2</text>
+            </g>
+            <text class="cl-note" x="150" y="206">레타트루타이드 TRIUMPH-1 Phase 3에서 80주 28.3%(고용량/효능 estimand)까지 보고; estimand에 따라 수치가 달라짐</text>
+          </svg>
+          <figcaption>위계는 명확하나 직접 비교 증거는 터제파타이드 vs 세마(SURMOUNT-5)뿐. 출처: <a href="#src-S1">[S1]</a><a href="#src-S32">[S32]</a><a href="#src-S30">[S30]</a><a href="#src-S31">[S31]</a><a href="#src-S33">[S33]</a></figcaption>
+        </figure>
+        <p>검증자(독립 반증)는 SURMOUNT-5를 5점 만점 4점으로 "성립"으로 판정했다 — 동일 모집단·동일 1차 종료점·양팔 모두 최대 내약 용량의 진짜 head-to-head(터제파타이드 20.2% vs 세마 13.7%, 차이 6.5%p, P<0.001), 다만 오픈라벨·릴리 자금이라는 한계<sup class="cite"><a href="#src-S1">[S1]</a></sup>. 회의론은 한 발 더 나갔다: 레타트루타이드는 2026-05 TRIUMPH-1 Phase 3로 <em>오히려 업그레이드</em>됐지만(이전 "Phase 2뿐"이 무색), 광고되는 30.3%는 104주·최고용량·효능 estimand의 체리피킹이며 저용량·treatment-policy로는 훨씬 낮다<sup class="cite"><a href="#src-S33">[S33]</a></sup>. CagriSema(시험제품 22.7% vs 정책 20.4%)·오포글리프론(PR 12.4% vs 리뷰 11.2%)도 같다. <b>실무 규칙: 모든 효능 %는 용량·주차·estimand를 함께 보지 않으면 부풀려진 숫자다.</b></p>
+      </section>
+
+      <section class="sub" id="a-pipeline">
+        <h3>4. 경구 혁명은 이미 시작됐다 — 카니발이 아니라 확장</h3>
+        <p>2026년은 "경구의 해"다. 두 경구 비만약이 이미 출시됐다 — 노보 경구 위고비(oral semaglutide 25mg, 2026-01)와 릴리 오포글리프론(브랜드 Foundayo, 2026-04)<sup class="cite"><a href="#src-S34">[S34]</a></sup><sup class="cite"><a href="#src-S35">[S35]</a></sup>. 오포글리프론은 펩타이드가 아닌 <b>소분자</b>라 cold chain이 불필요하고 대량생산이 쉬워, 펩타이드 주사제의 마운자로식 공급 리스크를 크게 낮춘다 — 이게 경구 위고비(펩타이드) 대비 핵심 차별점이다(다만 수요 폭증·정제 생산·유통 병목은 여전히 가능하므로 "공급부족을 원천 차단"이라 단정할 수는 없다)<sup class="cite"><a href="#src-S36">[S36]</a></sup>.</p>
+        <p>효능 천장은 여전히 주사 삼중/이중이 올린다(레타트루타이드, CagriSema, 월1회 MariTide). 경구는 효능이 한 단계 아래(12%대)지만 접근성으로 차별화한다. 시장 컨센서스(Clarivate·IQVIA)는 차세대가 <b>카니발라이제이션이 아니라 시장 확장</b>이라는 쪽이다 — 경구 위고비 신규 처방의 약 80%가 GLP-1 신규 환자라는 사실이 이를 뒷받침한다(경구 전반의 풀 확대 신호)<sup class="cite"><a href="#src-S37">[S37]</a></sup><sup class="cite"><a href="#src-S38">[S38]</a></sup>. 다음 차별축은 근육(제지방) 보존 — survodutide·pemvidutide·MariTide가 "감량의 질"을 마케팅한다<sup class="cite"><a href="#src-S39">[S39]</a></sup><sup class="cite"><a href="#src-S40">[S40]</a></sup>. 자산 전수는 아래 <a href="#comparison">마스터 테이블</a> 참고.</p>
+        <p>공급 측면에선 부족이 공식 해소됐다 — FDA Declaratory Order로 터제파타이드 2024-12, 세마글루타이드 2025-02 RESOLVED, 2026년 현재 유지<sup class="cite"><a href="#src-S41">[S41]</a></sup>. 단 "해소"는 도매 기준이고 용량·지역별 소매 변동은 남는다. 노보(카탈런트 $16.5bn 인수 + 3사이트 $11bn)·릴리(레바논 API $9bn, 누적 미국 $50bn+)의 증설이 충전·API 병목에 집중된다<sup class="cite"><a href="#src-S42">[S42]</a></sup><sup class="cite"><a href="#src-S43">[S43]</a></sup>.</p>
+        <p>제조 경제학은 경구 전환의 숨은 동력이다. 펩타이드 주사제(세마·터제파타이드)는 고체상 펩타이드 합성(SPPS) 의존 API와 무균 충전(fill-finish)이라는 <b>이중 병목</b>을 안고 있어, 2023~24년 부족 사태도 결국 이 두 공정의 한계에서 비롯됐다 — 그래서 양사 capex가 API와 충전에 몰린다<sup class="cite"><a href="#src-S42">[S42]</a></sup>. 반면 오포글리프론은 저분자 경구정이라 SPPS·콜드체인·무균충전을 모두 우회하고, 릴리는 출시 전 재고를 $0.55~1.5bn 비축해 마운자로식 초기 품귀를 피하려 했다<sup class="cite"><a href="#src-S36">[S36]</a></sup>. 이 저제조비가 자비 $149/월 같은 공격적 현금가를 가능케 하고, 그게 다시 무보험·저소득층의 접근성을 여는 고리가 된다. 요컨대 경구는 효능에서 한 단계 양보하는 대신 <b>공급·가격·접근성</b>에서 구조적 우위를 얻는 트레이드이며, 이것이 "year of the orals"라는 표현의 실체다 — 단 펩타이드 경구(경구 위고비)는 흡수촉진제·낮은 생체이용률 탓에 이 제조 우위를 온전히 누리지 못해, 같은 경구라도 소분자(오포글리프론)와 펩타이드(경구 위고비)의 원가 구조는 다르다.</p>
+      </section>
+
+      <section class="sub" id="a-price">
+        <h3>5. 약가: 표시가는 무너지지만 net은 제자리, 접근성은 양극화</h3>
+        <p>2026년은 표시가(list)가 실질가(net)를 향해 붕괴하는 해다. 위고비 표시가는 약 $1,349/월이지만 SSR/ICER 추정 실질 net은 약 $569/월 — 리베이트가 총액의 50%를 넘는다<sup class="cite"><a href="#src-S13">[S13]</a></sup>. 그래서 노보의 2026-02 표시가 $675(2027 시행, 약 35~50% 인하)는 <b>거의 net 중립</b>이다: 머서와 WTW 둘 다 노보가 리베이트를 줄여 상쇄하므로 보험자 실비용은 거의 안 변한다고 본다<sup class="cite"><a href="#src-S6">[S6]</a></sup>.</p>
+        <figure class="chart">
+          <div class="chart-title">그림 4. 위고비 월 가격의 여러 얼굴 — 표시가 vs 실질가 vs 채널가</div>
+          <div class="chart-sub">단위 USD/월. 강조 막대는 명목 표시가(가장 크지만 실제 지불액 아님)</div>
+          <svg viewBox="0 0 620 270" role="img" aria-label="위고비 가격 트랙별 막대그래프">
+            <g class="cl-lbl" text-anchor="end">
+              <text x="162" y="38">표시가(list)</text>
+              <text x="162" y="72">신규 표시가 2027</text>
+              <text x="162" y="106">추정 실질가(net)</text>
+              <text x="162" y="140">IRA 메디케어(고용량)</text>
+              <text x="162" y="174">현금 DTC</text>
+              <text x="162" y="208">TrumpRx 메디케어</text>
+            </g>
+            <rect class="cl-hi"  x="170" y="24"  width="420" height="20" rx="3"/>
+            <rect class="cl-bar" x="170" y="58"  width="210" height="20" rx="3"/>
+            <rect class="cl-bar" x="170" y="92"  width="177" height="20" rx="3"/>
+            <rect class="cl-bar" x="170" y="126" width="120" height="20" rx="3"/>
+            <rect class="cl-bar" x="170" y="160" width="109" height="20" rx="3"/>
+            <rect class="cl-bar" x="170" y="194" width="76"  height="20" rx="3"/>
+            <g class="cl-val" text-anchor="start">
+              <text x="594" y="39">1,349</text>
+              <text x="384" y="73">675</text>
+              <text x="351" y="107">569</text>
+              <text x="294" y="141">385</text>
+              <text x="283" y="174">349</text>
+              <text x="250" y="209">245</text>
+            </g>
+          </svg>
+          <figcaption>표시가 인하 헤드라인은 실제 지불액과 다르다 — net은 리베이트 상쇄로 거의 불변. 출처: <a href="#src-S13">[S13]</a><a href="#src-S44">[S44]</a><a href="#src-S45">[S45]</a><a href="#src-S46">[S46]</a><a href="#src-S6">[S6]</a></figcaption>
+        </figure>
+        <p>같은 분자에 <b>네 개의 메디케어 가격</b>이 공존한다: IRA 협상가(오젬픽 $274, 고용량 위고비 $385, 2027 시행), 트럼프 MFN 딜($245, 메디케어·메디케이드), 메디케어 GLP-1 Bridge($50 본인부담, 2026-07~2027-12), 현금 DTC($349)<sup class="cite"><a href="#src-S44">[S44]</a></sup><sup class="cite"><a href="#src-S45">[S45]</a></sup>. 접근성은 채널별로 양극화된다 — 메디케어 비만 환자는 사상 처음 $50 Bridge로 진입하고 현금 환자는 $349로 내려오지만, FDA가 2026-04 sema·터제파타이드의 503B 영구 제외를 제안하면서 <b>~$100대 합법 대량 조제(compounding) 공급이 급감해 무보험·저소득층은 오히려 후퇴</b>한다(제한적 503A 환자별 조제와 불법 온라인 공급은 잔존하나 정규 채널은 아니다)<sup class="cite"><a href="#src-S14">[S14]</a></sup>. 영국 NHS는 사용 시점 거의 무료지만 BMI 기준으로 단계 배급(3년 약 22만명)이다<sup class="cite"><a href="#src-S47">[S47]</a></sup>.</p>
+      </section>
+
+      <section class="sub" id="a-persistence">
+        <h3>6. 지속률이 진짜 변수다 — 평생약이 필요하지만 절반이 1년 안에 끊는다</h3>
+        <p>강세 TAM의 가장 약한 고리는 침투율이 아니라 지속률이다. 실세계 1년 지속률은 빠르게 두 배가 됐지만(2021년 약 33% → 2024년 코호트 약 60~63%), 여전히 세마글루타이드 감량 환자의 약 절반이 1년 내 중단하고(5개월에 46%), 위고비 3년 잔존율은 단 14%다<sup class="cite"><a href="#src-S9">[S9]</a></sup><sup class="cite"><a href="#src-S48">[S48]</a></sup>.</p>
+        <figure class="chart">
+          <div class="chart-title">그림 5. 체중감량 GLP-1 잔존 곡선 — 1년에 절반, 3년에 14%</div>
+          <div class="chart-sub">치료 유지 비율(%) vs 치료 개월. x축 간격 불균일(0/5/12/36개월)</div>
+          <svg viewBox="0 0 620 250" role="img" aria-label="치료 유지율 감소 선그래프">
+            <line class="cl-axis" x1="70" y1="210" x2="590" y2="210"/>
+            <g class="cl-lbl" text-anchor="end" font-size="11">
+              <text x="60" y="34">100%</text>
+              <text x="60" y="124">50%</text>
+              <text x="60" y="214">0%</text>
+            </g>
+            <polyline class="cl-line" points="70,30 142,112.8 243,120 590,184.8"/>
+            <circle class="cl-dot" cx="70" cy="30" r="3.5"/>
+            <circle class="cl-dot" cx="142" cy="112.8" r="3.5"/>
+            <circle class="cl-dot" cx="243" cy="120" r="3.5"/>
+            <circle class="cl-dot-crash" cx="590" cy="184.8" r="5"/>
+            <g class="cl-lbl" text-anchor="middle" font-size="11">
+              <text x="70" y="230">0</text>
+              <text x="142" y="230">5개월</text>
+              <text x="243" y="230">12개월</text>
+              <text x="590" y="230">36개월</text>
+            </g>
+            <g class="cl-val" text-anchor="middle" font-size="11">
+              <text x="150" y="104">54%</text>
+              <text x="251" y="112">50%</text>
+              <text x="568" y="178">14%</text>
+            </g>
+          </svg>
+          <figcaption>중단의 절반은 1년 안에 일어난다; 3년 잔존 14%. 출처: <a href="#src-S9">[S9]</a><a href="#src-S48">[S48]</a><a href="#src-S49">[S49]</a></figcaption>
+        </figure>
+        <p>역설은 이렇다. 중단하면 체중이 빠르게 돌아온다 — 세마글루타이드는 1년 내 감량의 약 2/3가 재증가하고(평균), 터제파타이드 중단군은 약 82.5%가 감량분의 25% 이상을 되찾았다(참가자 비율, SURMOUNT-4); 심대사 개선도 비례해 사라진다<sup class="cite"><a href="#src-S10">[S10]</a></sup>. 즉 GLP-1은 사실상 만성질환 약(평생 복용)이라 이론적 평생 수요는 막대하다. 그러나 비용이 경첩이다 — 본인부담 최저 분위 41% vs 최고 분위 51%로 중단율이 단조 증가하고<sup class="cite"><a href="#src-S49">[S49]</a></sup>, 메디케어는 비만 적응증을 구조적으로 배제하며(심혈관·당뇨 적응증이 우회로), 메디케이드는 13개 주만 비만 커버(4개 주는 최근 삭감), 상업보험도 대형 고용주(43%)에 쏠려 중형은 16%에 그친다<sup class="cite"><a href="#src-S50">[S50]</a></sup><sup class="cite"><a href="#src-S51">[S51]</a></sup>. <b>실현 지속 수요는 가용 인구보다 훨씬 작고, 그 격차를 메우는 변수가 비용·보험·내약성이다.</b></p>
+        <p>비용과 보험은 분리된 두 마찰이 아니라 하나의 되먹임 고리다. 보험이 빠지면 환자는 본인부담이 오르고, 본인부담이 오르면 중단율이 오르며(최저 분위 41% → 최고 분위 51%)<sup class="cite"><a href="#src-S49">[S49]</a></sup>, 중단이 늘면 보험자가 보는 "비싼데 금방 끊는 약"이라는 인식이 강화돼 커버리지를 더 조인다 — 대형 고용주의 66%가 이미 GLP-1을 처방집 약가 부담의 핵심으로 지목하고, 생활습관 프로그램 게이트(34%, 종전 10%)·BMI 문턱·grandfathering으로 신규 진입을 좁히고 있다<sup class="cite"><a href="#src-S50">[S50]</a></sup>. 이 고리를 끊을 후보가 둘 있다. 하나는 <b>경구·현금 채널의 저가화</b>로 본인부담 자체를 낮춰 지속률을 끌어올리는 길(NovoCare $349, 경구 자비가 인하)이고, 다른 하나는 <b>적응증 확장</b>으로 보험이 "비만"이 아닌 "질환"으로 비용을 떠안게 만드는 길이다. 둘 다 2026년에 동시에 진행 중이라는 점이 강세론의 근거지만, 어느 쪽도 아직 3년 잔존율 14%를 의미 있게 끌어올렸다는 실세계 데이터는 없다 — 그래서 지속률은 <em>관찰해야 할 1순위 지표</em>로 남는다.</p>
+      </section>
+
+      <section class="sub" id="a-indication">
+        <h3>7. 적응증 확장: 입증된 넷, 그리고 실패한 하나</h3>
+        <p>"비만 너머" 서사는 상단 적응증에서 더 이상 추측이 아니다. 네 개가 FDA 승인 + 동료심사 Phase 3로 확정됐고, 각각이 비만이 아닌 <b>질환</b> 사유로 보험을 연다는 점이 진짜 TAM 레버다 — 보험자는 순수 "체중감량"은 거부해도 질환 적응증은 커버한다<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</p>
+        <ul>
+          <li><b>심혈관(위고비, SELECT):</b> MACE -20%, FDA 2024-03 승인 — 첫 체중약 CV 승인, 메디케어 Part D를 열었다. 가장 강한 근거<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</li>
+          <li><b>MASH/지방간(위고비, ESSENCE):</b> NEJM 2025-04, FDA 가속승인 2025-08 — 단 가속승인은 대리지표 기반, 확증 데이터 대기<sup class="cite"><a href="#src-S52">[S52]</a></sup>.</li>
+          <li><b>수면무호흡(젭바운드, SURMOUNT-OSA):</b> FDA 2024-12, 첫 OSA 약물<sup class="cite"><a href="#src-S53">[S53]</a></sup>.</li>
+          <li><b>당뇨성 신장병(세마, FLOW):</b> 복합 종료점 -24%, NEJM 2024 — 단 당뇨성 CKD이며 비당뇨 CKD는 미입증<sup class="cite"><a href="#src-S54">[S54]</a></sup>.</li>
+        </ul>
+        <p>심부전(HFpEF)은 2층 근거다 — STEP-HFpEF(세마)는 증상·QoL만, SUMMIT(터제파타이드)는 임상 이벤트 종료점까지 더해 더 강하다<sup class="cite"><a href="#src-S55">[S55]</a></sup>. 반면 강하게 헤지해야 할 것들도 분명하다: <b>알츠하이머 evoke/evoke+는 2025-11 실패</b>(n=3,808, 인지 무효과)해 신경계 TAM 서사를 반증했고<sup class="cite"><a href="#src-S16">[S16]</a></sup>, 중독은 알코올만 초기 신호·니코틴은 무효, 골관절염은 체중 매개 가능성이 커 독립 적응증이 아니다<sup class="cite"><a href="#src-S56">[S56]</a></sup>. 또 SELECT의 -20%(위약 대조)와 터제파타이드 SURPASS-CVOT(활성 대조, 증분 약 8%)를 혼동하면 안 된다<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</p>
+        <p>여기서 메커니즘을 분명히 해야 한다. 적응증 확장이 시장을 키우는 진짜 경로는 "환자 수가 늘어서"가 아니라 <b>이미 비만인 사람을 보험이 거부하던 문턱을 질환 라벨이 우회시켜서</b>다. 미국 보험은 순수 체중감량을 사치 처방으로 보고 빼지만, 같은 환자가 "심혈관 위험이 있는 비만"이 되는 순간 위고비는 메디케어 Part D에서 급여 가능해진다 — SELECT가 연 것은 약효가 아니라 <em>지불 경로</em>다<sup class="cite"><a href="#src-S15">[S15]</a></sup>. 그래서 적응증 확장의 가치는 raw TAM이 아니라 <b>이미 처방 가능한 인구 중 실제로 비용이 지불되는 비율(reimbursed share)</b>을 끌어올리는 데 있다. 다만 이 레버에는 두 가지 마찰이 있다 — MASH 가속승인은 대리지표 기반이라 확증 결과가 어긋나면 라벨이 후퇴할 수 있고, OSA·골관절염처럼 효과가 체중 매개일 가능성이 큰 적응증은 "새 시장"이 아니라 이미 비만으로 잡힌 인구를 다른 이름으로 다시 센 것일 수 있다. 시장 추정은 이 확장을 명시적 동력으로 약 $528억(2025)에서 2030~2035년 $1,300~2,000억으로 보지만, 이 상단은 애널리스트 정밀도(C급)이며 알츠하이머 실패가 보여주듯 적응증별 근거 강도를 섞지 않고 따로 채점해야 한다<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</p>
+      </section>
+
+      <section class="sub" id="a-safety">
+        <h3>8. 안전성: 헤드라인 신호는 디리스킹, 진짜 드래그는 내약성</h3>
+        <p>가장 무서운 헤드라인들은 규제당국이 오히려 정리했다. FDA(2024-01)·EMA(2024-04) 둘 다 GLP-1과 자살관념 사이 인과 없음으로 결론(FDA는 경고문구 삭제 요청)<sup class="cite"><a href="#src-S57">[S57]</a></sup>; NAION(시신경)은 EMA가 "매우 드묾"(1만명당 1건 추가)으로 정리<sup class="cite"><a href="#src-S58">[S58]</a></sup>; 갑상선 C세포 경고는 설치류 한정으로 인간 관련성 미상이다<sup class="cite"><a href="#src-S59">[S59]</a></sup>.</p>
+        <p>진짜 밸류에이션 드래그는 회수급 블랙스완이 아니라 <b>흔한 내약성·지속률 문제의 누적</b>이다 — (1) GI 부작용(오심 약 32%, GI 중단 5~13%)<sup class="cite"><a href="#src-S60">[S60]</a></sup>, (2) 제지방/근육 손실 논쟁(감량의 25~30%, 터제파타이드가 세마보다 불리하다는 preprint vs "비례적"이라는 반론 — 현재진행형 과학 논쟁)<sup class="cite"><a href="#src-S61">[S61]</a></sup>, (3) 중단 후 빠른 체중 재증가(평생 복용 압박)<sup class="cite"><a href="#src-S62">[S62]</a></sup>. 이 셋이 결합해 비당뇨 환자의 약 85%가 2년 내 중단하고, 중단 사유 1위(43.7%)가 부작용/안전성 우려다<sup class="cite"><a href="#src-S63">[S63]</a></sup>. 소송(위장관·시각 트랙 MDL 약 3,763건, 2026-06)은 인과 미입증으로 sentiment·법무비용 리스크이지 회수 위협은 아니다<sup class="cite"><a href="#src-S64">[S64]</a></sup>.</p>
+        <p>투자·전략 관점에서 핵심은 이 안전성 프로파일을 <b>밸류에이션 채널</b>로 번역하는 것이다. 규제 회수 리스크(자살관념·NAION·갑상선)는 사실상 디리스킹됐으므로 노보·릴리에 꼬리위험(tail risk)으로 가격될 이유가 약하다 — 시장이 이걸 과도하게 할인한다면 그건 기회다. 반대로 진짜로 가격에 반영돼야 할 것은 <b>내약성이 지속률을 통해 실현 매출을 깎는 경로</b>다. 강세 TAM은 2030년 미국 사용자 3,000만 명 같은 침투율을 가정하지만, 비당뇨 환자 85% 2년 중단이 그 가정의 분모를 갉아먹는다. 골드만의 약세 시나리오($95bn)가 명시적으로 지속률·가격을 근거로 든 것도 같은 맥락이다 — 안전성은 임상 각주가 아니라 TAM 신뢰구간의 하단을 정하는 변수다. 추가로 임신 금기(동물 최기형성)와 터제파타이드의 경구피임 흡수 저하는 가임기 여성에서 의도치 않은 임신 리스크를 만들어, 라벨·마케팅 마찰로 남는다 — 회수급은 아니지만 처방 게이트를 좁히는 요인이다.</p>
+        <div class="callout conflict"><strong>미해결 논쟁.</strong> 제지방 손실의 임상적 의미는 양분돼 있다 — "터제파타이드 불리/위험"(preprint·ADA)과 "비례적·과장 아님"(Cell Reports Medicine)이 맞선다<sup class="cite"><a href="#src-S65">[S65]</a></sup>. DEXA 정식 데이터 전까지 단정하지 않는다. 췌장염도 RCT는 안심, FAERS 자발보고는 강신호로 갈려 RCT를 우선한다.</p></div>
+      </section>
+
+      <section class="sub" id="a-korea">
+        <h3>9. 한국·아시아: 전면 비급여, 가격 전쟁, 오남용 규제</h3>
+        <p>한국은 위고비(2024-10)·마운자로(2025-08) 출시로 시장이 양분됐고, 마운자로의 저가 공세(저용량 약 27.8만원, 위고비 대비 약 25% 저렴)에 맞서 노보가 위고비 공급가를 용량별 10~40%(최대 42%) 인하했다<sup class="cite"><a href="#src-S17">[S17]</a></sup>. 2026년 환자 비급여 부담은 월 약 21~42만원, 비만 적응증은 전면 비급여를 유지한다 — 동일성분 오젬픽이 당뇨로 2026-02 급여됐으나 처방기준이 엄격해 우회 급여는 사실상 막혔다<sup class="cite"><a href="#src-S66">[S66]</a></sup>.</p>
+        <p>식약처는 GLP-1을 오남용 우려 의약품으로 지정하고 청소년 부작용·온라인 불법유통을 단속한다<sup class="cite"><a href="#src-S18">[S18]</a></sup>. 한국 성인 비만율은 34.4%(10년 전 26.3%)지만 OECD 평균보다 낮고 자가 비만 인식률(54%)이 높아, 미용 목적 오남용이 정책의 핵심 동인이다<sup class="cite"><a href="#src-S67">[S67]</a></sup>. 국내 파이프라인은 한미약품 에페글레나타이드(주1회, 2026 하반기 출시 목표)·HM15275(삼중작용, Phase 2)와 디앤디파마텍 경구 GLP-1(북미 임상, 리벨서스 대비 생체이용률 우위 표방)이 선두다<sup class="cite"><a href="#src-S19">[S19]</a></sup><sup class="cite"><a href="#src-S68">[S68]</a></sup>. 아시아 차원에선 세마글루타이드 특허가 2026년 만료되기 시작해 중국 제네릭·내수약(이노벤트 등)이 이미 위고비·마운자로를 위협한다<sup class="cite"><a href="#src-S69">[S69]</a></sup>. 이 역외 제네릭 파장은 글로벌 듀오폴리 서사에 두 가지 함의를 준다 — 첫째, 인도 물질특허는 이미 2026-03 만료돼 제네릭이 브랜드의 1/10 가격에 풀렸고(P9의 하방 논거와 직결), 중국·브라질도 2025~26년 뒤따른다. 미국(2032)·EU(2031)가 시간을 벌어주지만 <b>역외 매출 침식은 지금 진행 중</b>이라 노보의 2026년 가이던스 하락에도 일부 반영돼 있다. 둘째, 한국처럼 전면 비급여인 시장에서는 가격이 곧 수요라, 저가 제네릭·바이오시밀러가 들어오면 본인부담이 내려가 침투가 빨라질 수 있다 — 선진국에서 보험이 막는 접근성을 신흥국에서는 가격이 직접 푸는, 정반대 동학이다. 국내 파이프라인(한미·디앤디)도 이 가격 민감 시장을 1차 타깃으로 본다는 점에서, 한국은 "오리지널 듀오폴리의 변두리"가 아니라 <b>경구·저가 경쟁의 선행 시장</b>으로 읽는 편이 맞다.</p>
+        <div class="callout uncertain"><strong>불확실.</strong> 일본 시장(위고비 공적보험 적용 여부·마운자로 약가)은 1차 출처를 확보하지 못해 신뢰도 낮음 — 후속 확인 필요.</p></div>
+      </section>
+    </section>
+
+    <section id="comparison">
+      <div class="section-kicker">04</div>
+      <h2>비교: 차세대 자산 마스터 테이블</h2>
+      <p>경구·삼중·월1회·근육보존이라는 네 축으로 차세대 자산을 전수했다. 효능 수치는 모두 estimand·용량·주차에 따라 달라지므로 peak/대표값을 표기한다.</p>
+      <div class="table-wrap"><table>
+        <caption>표 1. 주요 차세대 비만 자산 (2026-06 기준)</caption>
+        <thead><tr><th>자산</th><th>기업</th><th>기전 · 투여</th><th>단계</th><th>대표 효능</th><th>예상 출시</th><th>차별점</th></tr></thead>
+        <tbody>
+          <tr><td>오포글리프론(Foundayo)</td><td>릴리</td><td>경구 소분자 GLP-1</td><td>미국 출시(2026-04)</td><td class="pos">약 12.4%</td><td>출시 완료</td><td>소분자 → 공급 리스크 낮음</td></tr>
+          <tr><td>경구 위고비</td><td>노보</td><td>경구 펩타이드 GLP-1</td><td>미국 출시(2026-01)</td><td>약 17%(순응)</td><td>출시 완료</td><td>첫 경구 GLP-1 비만약</td></tr>
+          <tr><td>레타트루타이드</td><td>릴리</td><td>주1회 GIP+GLP-1+글루카곤(삼중)</td><td>Phase 3</td><td class="pos">24~28%</td><td>2027 추정</td><td>최고 효능(estimand 주의)</td></tr>
+          <tr><td>CagriSema</td><td>노보</td><td>주1회 amylin+GLP-1</td><td>P3 완료·제출</td><td>22.7%<span class="neg"> (vs 터제파타이드 비열등 실패)</span></td><td>2026말~2027</td><td>amylin 병용</td></tr>
+          <tr><td>survodutide</td><td>BI/Zealand</td><td>주1회 글루카곤/GLP-1</td><td>Phase 3</td><td>16.6%</td><td>2027+ 추정</td><td>간(MASH)·근육 보존</td></tr>
+          <tr><td>MariTide</td><td>암젠</td><td>월1회 GIP길항+GLP-1</td><td>Phase 3</td><td>약 20%(P2)</td><td>2027~2028 추정</td><td>월1회 투여</td></tr>
+          <tr><td>VK2735</td><td>바이킹</td><td>GLP-1/GIP(경구+SC)</td><td>Phase 3</td><td>SC 14.7%</td><td>2027+ 추정</td><td>경구·주사 양제형</td></tr>
+          <tr><td>pemvidutide</td><td>알티뮨</td><td>주1회 글루카곤/GLP-1</td><td>P3 2026 개시</td><td>7.5%+MASH</td><td>2028+ 추정</td><td>class-leading 근육보존</td></tr>
+        </tbody>
+      </table></div>
+      <p class="src-meta" style="color:var(--faint);font-size:13px">출처: <sup class="cite"><a href="#src-S70">[S70]</a></sup><sup class="cite"><a href="#src-S71">[S71]</a></sup><sup class="cite"><a href="#src-S34">[S34]</a></sup><sup class="cite"><a href="#src-S72">[S72]</a></sup><sup class="cite"><a href="#src-S73">[S73]</a></sup><sup class="cite"><a href="#src-S39">[S39]</a></sup><sup class="cite"><a href="#src-S40">[S40]</a></sup>. 예상 출시는 제출 시점 기반 추정([forecast])이며 출시 확정은 두 경구약뿐.</p>
+      <h3>듀오폴리 비교축</h3>
+      <div class="table-wrap"><table>
+        <caption>표 2. 노보 vs 릴리 — 축별 우위 (2026-06)</caption>
+        <thead><tr><th>축</th><th>노보 노디스크</th><th>일라이 릴리</th><th>현재 우위</th></tr></thead>
+        <tbody>
+          <tr><td>주사제 효능</td><td>세마 13.7%</td><td>터제파타이드 20.2%</td><td class="neg">릴리</td></tr>
+          <tr><td>매출 성장(Q1'26)</td><td>조정 -4% CER</td><td>+56%</td><td class="neg">릴리</td></tr>
+          <tr><td>경구 비만약 처방</td><td>주7 약 6.7만</td><td>약 1.2만</td><td class="pos">노보</td></tr>
+          <tr><td>밸류에이션</td><td>약 12배(악재 선반영)</td><td>약 25~30배(프리미엄)</td><td class="pos">노보(리스크/리워드)</td></tr>
+          <tr><td>차세대 파이프라인</td><td>CagriSema·amycretin</td><td>레타트루타이드(최고효능)</td><td class="neg">릴리</td></tr>
+        </tbody>
+      </table></div>
+      <p>요약하면, 릴리는 임상·매출의 현재 챔피언이고 노보는 밸류에이션·경구에서 리스크/리워드가 더 나은 도전자다. "릴리 완승"도 "노보 몰락"도 아닌, 축별로 갈린 구도다<sup class="cite"><a href="#src-S74">[S74]</a></sup><sup class="cite"><a href="#src-S8">[S8]</a></sup>.</p>
+    </section>
+
+    <section id="risks">
+      <div class="section-kicker">05</div>
+      <h2>리스크와 기회</h2>
+      <div class="ro-grid">
+        <div class="ro-col risks-col">
+          <h3>리스크</h3>
+          <ul>
+            <li><b>ASP/가격 압축.</b> MFN + 자발적 표시가 ≤50% 인하 + 경구 저가가 환자당 매출을 구조적으로 리셋<sup class="cite"><a href="#src-S75">[S75]</a></sup>.</li>
+            <li><b>지속률 천장.</b> 1년 내 약 절반 중단 → 강세 TAM이 가정하는 평생 수요를 실세계가 못 받친다<sup class="cite"><a href="#src-S5">[S5]</a></sup>.</li>
+            <li><b>릴리 멀티플 에어포켓.</b> 약 25~30배는 무결점 실행을 가격에 반영 — 성장 감속/경구 가격전쟁 시 하방 큼<sup class="cite"><a href="#src-S27">[S27]</a></sup>.</li>
+            <li><b>조기 특허 절벽(역외).</b> 인도 세마 물질특허 2026-03 만료, 중국·브라질 2025~26 → 역외 침식 진행 중<sup class="cite"><a href="#src-S76">[S76]</a></sup>.</li>
+            <li><b>"버블" 경고.</b> 딜로이트(비매도측 독립)는 GLP-1 집중이 섹터 버블이라 경고, ex-GLP-1 R&D IRR 2.9%<sup class="cite"><a href="#src-S77">[S77]</a></sup>.</li>
+          </ul>
+        </div>
+        <div class="ro-col opps-col">
+          <h3>기회</h3>
+          <ul>
+            <li><b>경구 시장 확장.</b> 경구 위고비 신규 처방 약 80%가 GLP-1 신규 환자 — 카니발이 아니라 풀 확대<sup class="cite"><a href="#src-S38">[S38]</a></sup>.</li>
+            <li><b>적응증 = 보험 해제.</b> CV·MASH·OSA 승인이 비만이 아닌 질환 급여를 연다<sup class="cite"><a href="#src-S15">[S15]</a></sup>.</li>
+            <li><b>compounding 차단.</b> FDA 503B 제외 제안은 브랜드 가격 테일윈드<sup class="cite"><a href="#src-S14">[S14]</a></sup>.</li>
+            <li><b>노보 밸류 회복.</b> 약 12배 + 가이던스 상향 + amycretin 반격 카드<sup class="cite"><a href="#src-S12">[S12]</a></sup>.</li>
+            <li><b>근육보존 차별화.</b> "감량의 질"이 다음 마케팅 전장(survodutide·pemvidutide)<sup class="cite"><a href="#src-S40">[S40]</a></sup>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="section-kicker">06</div>
+      <h2>결론</h2>
+      <p><b>시장 규모(Q1)?</b> 2026년 클래스는 약 $85~100bn 런레이트, 2030년 은행 케이스는 약 $95~114bn — 상승하는 한 점이 아니라 침투·지속에 의존하는 밴드다. $190~268bn 상단은 데이터가 부정하는 지속률을 가정한다<sup class="cite"><a href="#src-S4">[S4]</a></sup>.</p>
+      <p><b>노보 vs 릴리(Q2)?</b> 주사제 효능·매출은 릴리, 경구 처방과 밸류에이션 리스크/리워드는 노보. 격차는 주사 축에서 유지되고 경구·밸류에이션 축에서 좁혀진다<sup class="cite"><a href="#src-S8">[S8]</a></sup>.</p>
+      <p><b>차세대(Q3)?</b> 경구 혁명은 이미 출시로 현실화됐고, 컨센서스는 카니발이 아니라 시장 확장. 효능 천장은 주사 삼중이 올리되 모든 숫자엔 estimand 꼬리표<sup class="cite"><a href="#src-S37">[S37]</a></sup>.</p>
+      <p><b>약가(Q4)?</b> 표시가는 급락하나 net은 리베이트 상쇄로 거의 불변. 접근성은 메디케어·현금에서 개선, compounding 의존층에서 후퇴하는 비대칭<sup class="cite"><a href="#src-S6">[S6]</a></sup>.</p>
+      <p><b>안전성·지속(Q5)?</b> 헤드라인 신호는 디리스킹됐고, 진짜 타격은 내약성·지속률에서 누적돼 실현 매출의 상한을 만든다<sup class="cite"><a href="#src-S63">[S63]</a></sup>.</p>
+      <p><b>무엇을 지켜볼까.</b> ① 레타트루타이드 TRIUMPH 후속 readout과 규제 제출 시점 ② 2026~27 net price가 실제로 내려가는지 ③ 경구 위고비 vs Foundayo 처방 점유 추이 ④ 메디케어 GLP-1 Bridge 실제 청구 ⑤ 한국 경구 위고비 출시·급여 논의. <b>판단을 뒤집을 신호:</b> 지속률이 구조적으로 70%+로 올라서면 강세 상단이 정당화되고, 경구 가격전쟁이 마진을 무너뜨리면 릴리 프리미엄이 깨진다.</p>
+      <p style="color:var(--muted);font-size:14.5px;border-top:1px solid var(--line);padding-top:14px">본 보고서는 정보 제공과 방법론 시연을 위한 것으로 투자 자문이나 의학적 조언이 아니다. 모든 수치는 표기된 출처와 날짜 기준이며, 추정값은 추정으로 표기했다. 합성된 시장 전망은 방향성 신호이지 실제 시장·임상 결과를 보증하지 않는다.</p>
+    </section>
+
+    <section id="references">
+      <div class="section-kicker">07</div>
+      <h2>참고 출처</h2>
+      <ol>
+        <li id="src-S1"><span><a href="https://pubmed.ncbi.nlm.nih.gov/40353578/" rel="noopener" target="_blank">SURMOUNT-5 — head-to-head tirzepatide vs semaglutide in obesity, tirzepatide superior</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed RCT (Phase 3b, open-label) · 2025-07-03 · accessed 2026-06-17</span></span></li>
+        <li id="src-S2"><span><a href="https://www.kff.org/public-opinion/poll-1-in-8-adults-say-they-are-currently-taking-a-glp-1-drug-for-weight-loss-diabetes-or-another-condition-even-as-half-say-the-drugs-are-difficult-to-afford/" rel="noopener" target="_blank">poll (KFF Health Tracking Poll, Nov 2025)</a><span class="tier tier-a">A</span><span class="src-meta">poll (KFF Health Tracking Poll, Nov 2025 · 2025-11 · accessed 2026-06-17</span></span></li>
+        <li id="src-S3"><span><a href="https://www.zerohedge.com/medical/goldman-hikes-obesity-drug-market-forecast-oral-glp-1s-go-mass-market" rel="noopener" target="_blank">Goldman Hikes Obesity Drug Market Forecast As Oral GLP-1s Go Mass Market (ZeroHedge relay of Goldman note)</a><span class="tier tier-b">B</span><span class="src-meta">news (relay of Goldman Sachs research) · 2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S4"><span><a href="https://www.goldmansachs.com/insights/articles/the-anti-obesity-drug-market-may-prove-smaller-than-expected" rel="noopener" target="_blank">Goldman Sachs has a BEARISH forecast on record ($95bn, CUT from $130bn)</a><span class="tier tier-b">B</span><span class="src-meta">bank research · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S5"><span><a href="https://www.thelancet.com" rel="noopener" target="_blank">WebSearch synthesis</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed research + real-world data · 2025–2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S6"><span><a href="https://www.mercer.com/en-us/insights/us-health-news/novo-nordisks-glp-1-list-price-cut-what-to-watch-next/" rel="noopener" target="_blank">consultancy analysis (Mercer)</a><span class="tier tier-b">B</span><span class="src-meta">consultancy analysis (Mercer) · 2026-02 · accessed 2026-06-17</span></span></li>
+        <li id="src-S7"><span><a href="https://finance.yahoo.com/sectors/healthcare/articles/eli-lilly-q1-2026-earnings-111020291.html" rel="noopener" target="_blank">Eli Lilly Q1 2026 earnings — GLP-1 surge, revenue +56%</a><span class="tier tier-b">B</span><span class="src-meta">news (IR-sourced) · 2026-04-30 · accessed 2026-06-17</span></span></li>
+        <li id="src-S8"><span><a href="https://www.fiercepharma.com/pharma/oral-glp-1-tracker-launch-trajectories-lilly-foundayo-novo-wegovy-pill" rel="noopener" target="_blank">Novo oral first-mover advantage REAL; Lilly&#x27;s Foundayo is LOSING the oral launch</a><span class="tier tier-b">B</span><span class="src-meta">trade journalism · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S9"><span><a href="https://blog.healthverity.com/glp-1-trends-2025-real-world-data-patient-outcomes-future-therapies" rel="noopener" target="_blank">reporting Prime Therapeutics claims study, pub 2025-06-25</a><span class="tier tier-b">B</span><span class="src-meta">payer claims analysis (Prime Therapeutic · blog · accessed 2026-06-17</span></span></li>
+        <li id="src-S10"><span><a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2841273" rel="noopener" target="_blank">peer-reviewed post-hoc trial analysis (JAMA Internal Medicine, SURMOUNT-4)</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed post-hoc trial analysis (J · 2025-11-24 · accessed 2026-06-17</span></span></li>
+        <li id="src-S11"><span><a href="https://www.morganstanley.com/insights/articles/glp1-weight-loss-market-may-double-190-billion-2035" rel="noopener" target="_blank">GLP-1 Market Expected to More Than Double to $190B by 2035 (Morgan Stanley)</a><span class="tier tier-b">B</span><span class="src-meta">vendor (bank research, primary) · 2025 · accessed 2026-06-17</span></span></li>
+        <li id="src-S12"><span><a href="https://www.investing.com/analysis/novo-nordisk-why-the-stock-looks-mispriced-after-the-wegovy-pill-approval-200672298" rel="noopener" target="_blank">Novo at ~12–13x is a defensible value case, not a trap; Q1&#x27;26 guidance RAISED</a><span class="tier tier-b">B</span><span class="src-meta">analyst commentary + earnings journalism · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S13"><span><a href="https://icer.org/wp-content/uploads/2025/04/Affordable-Access-to-GLP-1-Obesity-Medications-_-ICER-White-Paper-_-04.09.2025.pdf" rel="noopener" target="_blank">+ SSR Health via Managed Healthcare Exec</a><span class="tier tier-b">B</span><span class="src-meta">ICER white paper citing SSR Health net-p · 2025-04-09 · accessed 2026-06-17</span></span></li>
+        <li id="src-S14"><span><a href="https://www.fda.gov/news-events/press-announcements/fda-proposes-exclude-semaglutide-tirzepatide-and-liraglutide-503b-bulks-list" rel="noopener" target="_blank">page WebFetch-404; via FDA-title search corroboration</a><span class="tier tier-a">A</span><span class="src-meta">FDA press announcement (reported) · 2026-04-30 · accessed 2026-06-17</span></span></li>
+        <li id="src-S15"><span><a href="https://www.nejm.org/" rel="noopener" target="_blank">SELECT trial (CV) + Wegovy CV indication</a><span class="tier tier-a">A</span><span class="src-meta">trial publication (NEJM) + FDA label exp · trial · accessed 2026-06-17</span></span></li>
+        <li id="src-S16"><span><a href="https://www.biospace.com/press-releases/novo-nordisk-a-s-evoke-phase-3-trials-did-not-demonstrate-a-statistically-significant-reduction-in-alzheimers-disease-progression" rel="noopener" target="_blank">evoke / evoke+ (Alzheimer&#x27;s) — FAILED readout</a><span class="tier tier-b">B</span><span class="src-meta">company topline announcement (SEC 6-K co · 2025-11-24 · accessed 2026-06-17</span></span></li>
+        <li id="src-S17"><span><a href="https://hnews.kr/news/view.php?no=64589" rel="noopener" target="_blank">히트뉴스, 단독</a><span class="tier tier-b">B</span><span class="src-meta">국내 매체 (제약 전문) · 2024-10 · accessed 2026-06-17</span></span></li>
+        <li id="src-S18"><span><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954741" rel="noopener" target="_blank">대한민국 정책브리핑</a><span class="tier tier-a">A</span><span class="src-meta">정부(식약처 발표 인용) · 2025 · accessed 2026-06-17</span></span></li>
+        <li id="src-S19"><span><a href="https://www.thebionews.net/news/articleView.html?idxno=10756" rel="noopener" target="_blank">더바이오</a><span class="tier tier-b">B</span><span class="src-meta">국내 매체(바이오 전문) · 2025 · accessed 2026-06-17</span></span></li>
+        <li id="src-S20"><span><a href="https://www.biopharmadive.com/news/lilly-q1-2026-earnings-foundayo-zepbound-obesity/818912/" rel="noopener" target="_blank">Eli Lilly Q1 2026 earnings (BioPharma Dive)</a><span class="tier tier-a">A</span><span class="src-meta">news (reports company IR/earnings) · 2026-04-30 · accessed 2026-06-17</span></span></li>
+        <li id="src-S21"><span><a href="https://finance.yahoo.com/sectors/healthcare/articles/novo-nordisk-q1-2026-earnings-114019111.html" rel="noopener" target="_blank">Novo Nordisk Q1 2026 earnings (Yahoo Finance / BioPharma Dive / GlobeNewswire IR relay)</a><span class="tier tier-a">A</span><span class="src-meta">news (reports company IR; GlobeNewswire  · 2026-05-06 · accessed 2026-06-17</span></span></li>
+        <li id="src-S22"><span><a href="https://www.jpmorgan.com/insights/global-research/current-events/obesity-drugs" rel="noopener" target="_blank">How Supply and Demand for Weight Loss Drugs is Playing Out in 2026 (J.P. Morgan Global Research)</a><span class="tier tier-b">B</span><span class="src-meta">vendor (bank research, primary) · 2026-02-27 · accessed 2026-06-17</span></span></li>
+        <li id="src-S23"><span><a href="https://www.precedenceresearch.com/obesity-glp-1-market" rel="noopener" target="_blank">Obesity GLP-1 Market (Precedence Research)</a><span class="tier tier-c">C</span><span class="src-meta">vendor (market-research firm) · 2025/2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S24"><span><a href="https://www.cnbc.com/2026/02/04/eli-lilly-novo-nordisk-earnings-glp1-market.html" rel="noopener" target="_blank">Comparative outlook — Lilly accelerating, Novo bracing for decline 2026</a><span class="tier tier-b">B</span><span class="src-meta">news · 2026-02-04 · accessed 2026-06-17</span></span></li>
+        <li id="src-S25"><span><a href="https://www.sec.gov/Archives/edgar/data/0000353278/000117184326000596/f6k_020326.htm" rel="noopener" target="_blank">primary company filing (Novo Nordisk Form 6-K, Company Announcement, fetched via SEC EDGAR with UA)</a><span class="tier tier-a">A</span><span class="src-meta">primary company filing (Novo Nordisk For · 2026-02-03 · accessed 2026-06-17</span></span></li>
+        <li id="src-S26"><span><a href="https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000018/caq12026.htm" rel="noopener" target="_blank">primary company filing (Novo Nordisk Q1 2026 Financial Report Form 6-K, via SEC EDGAR)</a><span class="tier tier-a">A</span><span class="src-meta">primary company filing (Novo Nordisk Q1  · 2026-05-06 · accessed 2026-06-17</span></span></li>
+        <li id="src-S27"><span><a href="https://www.tikr.com/blog/eli-lilly-stock-is-down-13-in-2026-does-foundayo-change-the-math" rel="noopener" target="_blank">Lilly&#x27;s premium multiple carries the larger air-pocket; fair values well below price</a><span class="tier tier-b">B</span><span class="src-meta">analyst/valuation commentary · published · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S28"><span><a href="https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916463" rel="noopener" target="_blank">Novo amycretin gives a credible best-in-class next-gen comeback (gap narrows)</a><span class="tier tier-b">B</span><span class="src-meta">company PR + biotech trade · published:  · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S29"><span><a href="https://www.iqvia.com" rel="noopener" target="_blank">Third players — Amgen MariTide, Roche, Viking, Structure, Metsera/Pfizer</a><span class="tier tier-b">B</span><span class="src-meta">mixed (blog + trial PR) · 2025-06 · accessed 2026-06-17</span></span></li>
+        <li id="src-S30"><span><a href="https://www.prnewswire.com/news-releases/cagrisema-2-4-mg--2-4-mg-demonstrated-22-7-mean-weight-reduction-in-adults-with-overweight-or-obesity-in-redefine-1--published-in-nejm-302487770.html" rel="noopener" target="_blank">REDEFINE 1 — CagriSema (semaglutide + cagrilintide amylin combo)</a><span class="tier tier-a">A</span><span class="src-meta">NEJM-published RCT (Phase 3) reported vi · 2025-06-22 · accessed 2026-06-17</span></span></li>
+        <li id="src-S31"><span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12498447/" rel="noopener" target="_blank">Orforglipron ATTAIN-1 — oral small-molecule GLP-1 agonist, Phase 3</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed RCT (Phase 3) reported via · 2025-09 · accessed 2026-06-17</span></span></li>
+        <li id="src-S32"><span><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2301972" rel="noopener" target="_blank">Retatrutide Phase 2 — triple agonist (GIP/GLP-1/glucagon), highest efficacy to date</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed RCT (Phase 2) · 2023-06-26 · accessed 2026-06-17</span></span></li>
+        <li id="src-S33"><span><a href="https://www.ajmc.com/view/retatrutide-achieves-up-to-30-3-average-weight-loss-in-phase-3-triumph-1-trial" rel="noopener" target="_blank">Retatrutide now Ph3-CONFIRMED, but 24–30% is estimand/dose/timepoint cherry-picking</a><span class="tier tier-b">B</span><span class="src-meta">company PR + clinical trade · published: · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S34"><span><a href="https://www.prnewswire.com/news-releases/fda-approves-novo-nordisks-wegovy-pill-the-first-and-only-oral-glp-1-for-weight-loss-in-adults-302648344.html" rel="noopener" target="_blank">Novo 경구 Wegovy (oral semaglutide 25mg) — FDA 승인, 첫 경구 GLP-1 비만약 [fact]</a><span class="tier tier-b">B</span><span class="src-meta">PR · 2025-12-22 · accessed 2026-06-17</span></span></li>
+        <li id="src-S35"><span><a href="https://investor.lilly.com/news-releases/news-release-details/lillys-oral-glp-1-orforglipron-successful-third-phase-3-trial" rel="noopener" target="_blank">Lilly orforglipron — 3번째 P3 성공, 2026년 글로벌 비만 규제 제출 / 美 브랜드 Foundayo 출시</a><span class="tier tier-b">B</span><span class="src-meta">IR PR + trade · 2025–2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S36"><span><a href="https://nowpatient.com/blog/how-eli-lilly-is-planning-to-prevent-a-shortage-of-orforglipron-when-it-launches-in-2026" rel="noopener" target="_blank">secondary analysis</a><span class="tier tier-c">C</span><span class="src-meta">secondary analysis · 2025-05-30 · accessed 2026-06-17</span></span></li>
+        <li id="src-S37"><span><a href="https://clarivate.com/life-sciences-healthcare/blog/drugs-to-watch-2026-qa-lillys-next-generation-weight-loss-drugs/" rel="noopener" target="_blank">시장 영향 — Clarivate 분석: 차세대는 카니발라이제이션 아닌 시장 확장</a><span class="tier tier-c">C</span><span class="src-meta">analyst blog · 2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S38"><span><a href="https://www.fiercepharma.com" rel="noopener" target="_blank">Wegovy pill $355M quarter</a><span class="tier tier-b">B</span><span class="src-meta">reporting · 2025-12-22 · accessed 2026-06-17</span></span></li>
+        <li id="src-S39"><span><a href="https://www.globenewswire.com/news-release/2026/04/28/3282218/0/en/...survodutide-achieved-significant-weight-loss-of-16-6...html" rel="noopener" target="_blank">BI/Zealand survodutide — glucagon/GLP-1 dual, SYNCHRONIZE-1 16.6% + 근육량 보존</a><span class="tier tier-b">B</span><span class="src-meta">PR · 2026-04-28, · accessed 2026-06-17</span></span></li>
+        <li id="src-S40"><span><a href="https://ir.altimmune.com/news-releases/news-release-details/altimmune-announces-positive-topline-results-impact-phase-2b" rel="noopener" target="_blank">Altimmune pemvidutide — glucagon/GLP-1 1:1, MASH 우선, class-leading lean mass 보존</a><span class="tier tier-b">B</span><span class="src-meta">IR PR · 2025-12, · accessed 2026-06-17</span></span></li>
+        <li id="src-S41"><span><a href="https://www.fda.gov/media/184606/download" rel="noopener" target="_blank">FDA Declaratory Order, tirzepatide</a><span class="tier tier-a">A</span><span class="src-meta">FDA primary order · 2024-12-19 · accessed 2026-06-17</span></span></li>
+        <li id="src-S42"><span><a href="https://www.catalent.com/catalent-news/novo-holdings-completes-acquisition-of-catalent/" rel="noopener" target="_blank">company press release</a><span class="tier tier-b">B</span><span class="src-meta">company press release · 2024-12-18 · accessed 2026-06-17</span></span></li>
+        <li id="src-S43"><span><a href="https://www.prnewswire.com/news-releases/lilly-increases-manufacturing-investment-to-9-billion-at-newest-indiana-site-to-boost-api-production-for-tirzepatide-and-pipeline-medicines-302155135.html" rel="noopener" target="_blank">company press release (Lilly)</a><span class="tier tier-b">B</span><span class="src-meta">company press release (Lilly) · 2024-05-24 · accessed 2026-06-17</span></span></li>
+        <li id="src-S44"><span><a href="https://www.cms.gov/newsroom/press-releases/hhs-announces-15-additional-drugs-selected-medicare-drug-price-negotiations-continued-effort-lower" rel="noopener" target="_blank">via FiercePharma/AJMC/KFF corroboration; CMS page WebFetch-blocked</a><span class="tier tier-a">A</span><span class="src-meta">gov press release (reported) · 2025-11 · accessed 2026-06-17</span></span></li>
+        <li id="src-S45"><span><a href="https://www.kff.org/medicare/what-to-know-about-the-balance-model-for-glp-1s-in-medicare-and-medicaid/" rel="noopener" target="_blank">KFF program explainer</a><span class="tier tier-a">A</span><span class="src-meta">KFF program explainer · 2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S46"><span><a href="https://www.fiercepharma.com/marketing/novo-unveils-newly-reduced-self-pay-prices-wegovy-ozempic-after-white-house-deal" rel="noopener" target="_blank">+ noom/injectco/goodrx corroboration</a><span class="tier tier-b">B</span><span class="src-meta">major outlet + DTC price pages · 2025-12 · accessed 2026-06-17</span></span></li>
+        <li id="src-S47"><span><a href="https://oxpeptides.com/guides/mounjaro-wegovy-nhs-cost" rel="noopener" target="_blank">+ glp1treatments.co.uk Europe comparison</a><span class="tier tier-c">C</span><span class="src-meta">secondary UK pharmacy/guide · 2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S48"><span><a href="https://www.jmcp.org/doi/pdf/10.18553/jmcp.2024.23332" rel="noopener" target="_blank">figures via Medscape/WebSearch; full text 403</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed real-world claims study (J · 2024-08 · accessed 2026-06-17</span></span></li>
+        <li id="src-S49"><span><a href="https://pubmed.ncbi.nlm.nih.gov/40464214/" rel="noopener" target="_blank">peer-reviewed real-world claims study (Obesity (Silver Spring), Jul 2025)</a><span class="tier tier-a">A</span><span class="src-meta">peer-reviewed real-world claims study (O · 2025-07 · accessed 2026-06-17</span></span></li>
+        <li id="src-S50"><span><a href="https://www.kff.org/medicaid/medicaid-coverage-of-and-spending-on-glp-1s/" rel="noopener" target="_blank">federal/policy analysis (KFF)</a><span class="tier tier-a">A</span><span class="src-meta">federal/policy analysis (KFF) · 2026-01-16 · accessed 2026-06-17</span></span></li>
+        <li id="src-S51"><span><a href="https://www.kff.org/health-costs/2025-employer-health-benefits-survey/" rel="noopener" target="_blank">employer survey (KFF annual)</a><span class="tier tier-a">A</span><span class="src-meta">employer survey (KFF annual) · 2025-10-22 · accessed 2026-06-17</span></span></li>
+        <li id="src-S52"><span><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2413258" rel="noopener" target="_blank">ESSENCE trial (MASH) + FDA accelerated approval</a><span class="tier tier-a">A</span><span class="src-meta">trial publication (NEJM) + FDA accelerat · NEJM · accessed 2026-06-17</span></span></li>
+        <li id="src-S53"><span><a href="https://www.nejm.org/doi/abs/10.1056/NEJMoa2404881" rel="noopener" target="_blank">SURMOUNT-OSA (sleep apnea) + Zepbound approval</a><span class="tier tier-a">A</span><span class="src-meta">trial publication (NEJM) + FDA approval · NEJM · accessed 2026-06-17</span></span></li>
+        <li id="src-S54"><span><a href="https://www.nejm.org/doi/abs/10.1056/NEJMoa2403347" rel="noopener" target="_blank">FLOW trial (CKD)</a><span class="tier tier-a">A</span><span class="src-meta">trial publication (NEJM) · NEJM · accessed 2026-06-17</span></span></li>
+        <li id="src-S55"><span><a href="https://www.nejm.org/doi/10.1056/NEJMoa2410027" rel="noopener" target="_blank">SUMMIT (HFpEF, tirzepatide) — hard outcome</a><span class="tier tier-a">A</span><span class="src-meta">trial publication (NEJM) · NEJM · accessed 2026-06-17</span></span></li>
+        <li id="src-S56"><span><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00305-3" rel="noopener" target="_blank">Addiction (alcohol use disorder / nicotine)</a><span class="tier tier-a">A</span><span class="src-meta">RCT (small) + observational · 2024-2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S57"><span><a href="https://www.pharmacytimes.com/view/fda-finds-no-increased-suicide-risk-with-glp-1-medications-requests-removal-of-warning-labels" rel="noopener" target="_blank">FDA: no causal link GLP-1 ↔ suicidal ideation; warning removal</a><span class="tier tier-b">B</span><span class="src-meta">Regulator review (FDA) reported via trad · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S58"><span><a href="https://www.ema.europa.eu/en/news/prac-concludes-eye-condition-naion-very-rare-side-effect-semaglutide-medicines-ozempic-rybelsus-wegovy" rel="noopener" target="_blank">EMA PRAC: NAION = very rare side effect of semaglutide</a><span class="tier tier-a">A</span><span class="src-meta">Regulator safety review (EMA PRAC press  · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S59"><span><a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/215256s024lbl.pdf" rel="noopener" target="_blank">Thyroid C-cell: boxed warning, rodent-only, human relevance unknown</a><span class="tier tier-a">A</span><span class="src-meta">FDA label (boxed warning) + review · 202 · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S60"><span><a href="https://www.uspharmacist.com/article/gi-adverse-effects-of-glucagonlike-peptide1-receptor-agonists" rel="noopener" target="_blank">GI adverse events: frequency &amp; discontinuation</a><span class="tier tier-b">B</span><span class="src-meta">Review of RCT GI tolerability · 2024–202 · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S61"><span><a href="https://www.medrxiv.org/content/10.64898/2026.04.11.26350687v1.full" rel="noopener" target="_blank">Lean/muscle mass loss: tirzepatide &gt; semaglutide</a><span class="tier tier-c">C</span><span class="src-meta">Preprint (medRxiv body-composition pheno · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S62"><span><a href="https://www.tctmd.com/news/weight-regained-within-18-months-stopping-glp-1-drugs" rel="noopener" target="_blank">Discontinuation &amp; weight regain (chronic-use necessity)</a><span class="tier tier-b">B</span><span class="src-meta">Systematic review/meta-analysis (BMJ) re · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S63"><span><a href="https://www.ajmc.com/view/gaps-in-persistence-coverage-limit-glp-1-impact-in-obesity" rel="noopener" target="_blank">Real-world persistence collapse → demand/valuation tail risk</a><span class="tier tier-b">B</span><span class="src-meta">Real-world persistence study + analyst ( · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S64"><span><a href="https://www.drugwatch.com/legal/ozempic-lawsuit/" rel="noopener" target="_blank">Gastroparesis / bowel-obstruction litigation (MDL)</a><span class="tier tier-c">C</span><span class="src-meta">Litigation status (court/MDL reporting)  · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S65"><span><a href="https://www.cell.com/cell-reports-medicine/fulltext/S2666-3791(26)00082-0" rel="noopener" target="_blank">Counter-evidence: lean loss may be proportionate / cancer risk lower</a><span class="tier tier-b">B</span><span class="src-meta">Peer-reviewed mechanistic + cohort · 202 · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S66"><span><a href="https://www.hitnews.co.kr/news/articleView.html?idxno=58543" rel="noopener" target="_blank">히트뉴스</a><span class="tier tier-b">B</span><span class="src-meta">국내 매체(제약 전문) · 2025 · accessed 2026-06-17</span></span></li>
+        <li id="src-S67"><span><a href="https://www.kdca.go.kr" rel="noopener" target="_blank">질병관리청 보도자료, 2025-11-11</a><span class="tier tier-a">A</span><span class="src-meta">정부(질병관리청) · 2025-11-11 · accessed 2026-06-17</span></span></li>
+        <li id="src-S68"><span><a href="https://www.hanmi.co.kr/science/pipeline/focused/hm15275.hm" rel="noopener" target="_blank">한미약품 파이프라인</a><span class="tier tier-b">B</span><span class="src-meta">기업 공식(IR/파이프라인) · 2025-2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S69"><span><a href="https://www.sentv.co.kr/article/view/sentv202601230175" rel="noopener" target="_blank">국내 매체(경제/바이오)</a><span class="tier tier-b">B</span><span class="src-meta">국내 매체(경제/바이오) · 2026-01 · accessed 2026-06-17</span></span></li>
+        <li id="src-S70"><span><a href="https://lilly.gcs-web.com/news-releases/news-release-details/lillys-oral-glp-1-orforglipron-demonstrated-meaningful-weight" rel="noopener" target="_blank">Lilly orforglipron ATTAIN-1 — oral small-molecule GLP-1, 72주 최대 12.4% 감량 (NEJM)</a><span class="tier tier-a">A</span><span class="src-meta">IR PR + peer-reviewed · 2025 · accessed 2026-06-17</span></span></li>
+        <li id="src-S71"><span><a href="https://www.prnewswire.com/news-releases/lillys-triple-agonist-retatrutide-delivered-powerful-weight-loss-in-pivotal-phase-3-obesity-trial-302778859.html" rel="noopener" target="_blank">Lilly retatrutide TRIUMPH-1 — GGG triple agonist, 최대 30.3% 감량</a><span class="tier tier-b">B</span><span class="src-meta">PR + trade · 2026-05 · accessed 2026-06-17</span></span></li>
+        <li id="src-S72"><span><a href="https://www.amgen.com/newsroom/press-releases/2025/06/results-from-amgens-phase-2-obesity-study-of-monthly-maritide-presented-at-the-american-diabetes-association-85th-scientific-sessions" rel="noopener" target="_blank">Amgen MariTide — 월1회, P2 최대 ~20% 감량, P3 진행</a><span class="tier tier-b">B</span><span class="src-meta">IR PR · 2025-06 · accessed 2026-06-17</span></span></li>
+        <li id="src-S73"><span><a href="https://ir.vikingtherapeutics.com/2025-08-19-Viking-Therapeutics-Announces-Positive-Top-Line-Results-from-Phase-2-VENTURE-Oral-Dosing-Trial-of-VK2735-Tablet-Formulation-in-Patients-with-Obesity" rel="noopener" target="_blank">Viking VK2735 — 경구+피하 GLP-1/GIP dual, P3 진행</a><span class="tier tier-b">B</span><span class="src-meta">IR PR · 2025–2026 · accessed 2026-06-17</span></span></li>
+        <li id="src-S74"><span><a href="https://companiesmarketcap.com/eli-lilly/marketcap/" rel="noopener" target="_blank">Market cap &amp; valuation — Lilly ~$1.01T vs Novo ~$194B</a><span class="tier tier-b">B</span><span class="src-meta">market data · 2026-05–06 · accessed 2026-06-17</span></span></li>
+        <li id="src-S75"><span><a href="https://www.tikr.com/blog/novo-nordisk-has-fallen-56-from-its-high-is-nvo-finally-cheap-enough-to-buy-in-2026" rel="noopener" target="_blank">analysis blog (aggregates market data)</a><span class="tier tier-b">B</span><span class="src-meta">analysis blog (aggregates market data) · ~2026-04 · accessed 2026-06-17</span></span></li>
+        <li id="src-S76"><span><a href="https://www.cnbc.com/2026/03/23" rel="noopener" target="_blank">WebSearch synthesis on patent cliff</a><span class="tier tier-b">B</span><span class="src-meta">reporting · 2025-12 · accessed 2026-06-17</span></span></li>
+        <li id="src-S77"><span><a href="https://www.deloitte.com/uk/en/about/press-room/weight-loss-drugs-boom-drives-pharma-r-and-d-returns.html" rel="noopener" target="_blank">Deloitte: GLP-1 concentration is a sector &quot;bubble&quot;; ex-GLP-1 pharma R&amp;D returns near-zero</a><span class="tier tier-b">B</span><span class="src-meta">consultancy report + journalism · publis · undated · accessed 2026-06-17</span></span></li>
+        <li id="src-S78"><span><a href="https://www.cnbc.com/2026/02/23/" rel="noopener" target="_blank">노보 CagriSema, 터제파타이드 대비 비열등성 실패 (REDEFINE 4, CNBC·Reuters 보도)</a><span class="tier tier-b">B</span><span class="src-meta">시장보도 + 애널리스트 액션 · 2026-02-23 · accessed 2026-06-17</span></span></li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer class="methodology" id="methodology">
+  <div class="inner">
+    <h2>방법론</h2>
+    <p><b>실행.</b> 2026-06-17, deep-research-report 스킬. Phase 1에서 12개 관점 서브에이전트를 병렬 실행(시장규모·경쟁·효능·파이프라인·공급·약가·접근성·안전성·밸류에이션·적응증·수요여론·한국)해 각자 재귀적 breadth→depth 웹리서치 후 evidence/notes 파일에 기록하고 250단어 요약만 반환했다. Phase 2에서 회의론 서브에이전트 1 + 핵심 주장 검증자 2(SURMOUNT-5 효능, 노보 가이던스·약가)를 양보 임계 ≥4/5 프로토콜로 적용했다.</p>
+    <p><b>증거.</b> 총 135개 원장 항목 → URL 중복 제거 후 123개 고유 출처(A 46 · B 54 · C 15 · sentiment 1). 모든 비자명 주장은 [S#]로 원장에 연결되며, 원장에 없는 사실은 인용하지 않았다. recency ON — 2025~2026 출처 우선, 오래된 항목은 date-stamp.</p>
+    <p><b>퓨전·검증.</b> 회의론·검증 패스가 적대적 합성(self-fusion) 역할을 했다 — 단독 강세 합성에서 세 과장을 정정했다: (1) 2030 TAM을 "상승하는 $114bn"에서 은행 밴드 $95~114bn으로, (2) "net price 하락"을 "리베이트 상쇄로 net 거의 불변"으로, (3) "릴리 전 축 우위"를 "경구·밸류에이션은 노보 우위"로. 검증자 2건은 SURVIVED(4/5, 5/5).</p>
+    <p><b>한계.</b> 일부 1차 IR/규제 페이지가 자동 fetch를 차단(403)해 2차 매체로 교차 확인한 수치가 있다(해당 항목 표기). 일본 시장 데이터 미확보. 시장 전망치는 매도측·벤더 추정으로 신뢰도를 차등했다. live X sentiment는 grok 크레딧 소진으로 SKIP, Polymarket은 관련 시장 없어 SKIP. council 교차 리뷰: codex (1 reviewer) — grok은 크레딧 소진으로 skip. codex 지적 10건 중 8건 반영(CagriSema 비열등성 실패 보강, 82.5% 재증가 해석 정정, 경구 80% 신규환자 귀속 수정, 시장 범위 명시, 내부 수치 일관화, 과장 표현 3건 완화), 2건은 원장 근거로 유지(net price 불변은 머서·WTW 2개 독립 출처).</p>
+  </div>
+</footer>
+
+</body>
+</html>
