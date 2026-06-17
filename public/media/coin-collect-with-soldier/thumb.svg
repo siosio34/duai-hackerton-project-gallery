@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <defs>
+    <symbol id="coinT" viewBox="-50 -50 100 100">
+      <circle r="46" fill="#cda23f"/>
+      <circle r="46" fill="none" stroke="#15803d" stroke-width="5"/>
+      <circle r="38" fill="none" stroke="#16140f" stroke-width="1" opacity="0.18"/>
+      <path d="M0,-30 L7.05,-9.71 L28.53,-9.27 L11.41,3.71 L17.63,24.27 L0,12 L-17.63,24.27 L-11.41,3.71 L-28.53,-9.27 L-7.05,-9.71 Z"
+            fill="#1c1a12" opacity="0.82"/>
+    </symbol>
+  </defs>
+
+  <rect width="800" height="600" fill="#ece8dd"/>
+  <rect x="0" y="0" width="800" height="600" fill="#e2ddce" opacity="0.4"/>
+
+  <!-- kicker -->
+  <text x="400" y="92" font-size="16" letter-spacing="3" fill="#16140f" opacity="0.5" font-weight="600" text-anchor="middle">REAL-COIN · 3-LAYER REWARD</text>
+
+  <!-- ascending mini coins + rising line -->
+  <g fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.55">
+    <path d="M250,360 C 330,320 360,318 400,290 S 470,235 545,210"/>
+  </g>
+  <ellipse cx="250" cy="392" rx="44" ry="7" fill="#16140f" opacity="0.06"/>
+  <ellipse cx="550" cy="262" rx="56" ry="8" fill="#16140f" opacity="0.07"/>
+  <use href="#coinT" x="212" y="318" width="76" height="76"/>
+
+  <!-- hero coin -->
+  <ellipse cx="400" cy="338" rx="78" ry="10" fill="#16140f" opacity="0.08"/>
+  <use href="#coinT" x="318" y="208" width="164" height="164"/>
+  <use href="#coinT" x="498" y="170" width="104" height="104"/>
+
+  <!-- verification badge -->
+  <g transform="translate(470,300)">
+    <circle r="30" fill="#15803d"/>
+    <path d="M-13,1 l9,9 l17,-19" fill="none" stroke="#ece8dd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- rank chevrons -->
+  <g transform="translate(305,452)" stroke="#15803d" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,20 l11,-9 l11,9" opacity="0.5"/>
+    <path d="M45,20 l11,-9 l11,9 M45,32 l11,-9 l11,9" opacity="0.68"/>
+    <path d="M90,20 l11,-9 l11,9 M90,32 l11,-9 l11,9 M90,44 l11,-9 l11,9" opacity="0.84"/>
+    <path d="M135,20 l11,-9 l11,9 M135,32 l11,-9 l11,9 M135,44 l11,-9 l11,9 M135,56 l11,-9 l11,9"/>
+  </g>
+
+  <text x="400" y="552" font-size="20" font-weight="700" fill="#16140f" text-anchor="middle">입대 · 진급 · 전역</text>
+</svg>

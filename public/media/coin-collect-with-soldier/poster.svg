@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif">
+  <defs>
+    <!-- Coin symbol: gold face, green ring, military star -->
+    <symbol id="coin" viewBox="-50 -50 100 100">
+      <circle r="46" fill="#cda23f"/>
+      <circle r="46" fill="none" stroke="#15803d" stroke-width="5"/>
+      <circle r="38" fill="none" stroke="#16140f" stroke-width="1" opacity="0.18"/>
+      <path d="M0,-30 L7.05,-9.71 L28.53,-9.27 L11.41,3.71 L17.63,24.27 L0,12 L-17.63,24.27 L-11.41,3.71 L-28.53,-9.27 L-7.05,-9.71 Z"
+            fill="#1c1a12" opacity="0.82"/>
+    </symbol>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e2ddce" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#e2ddce" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="675" fill="#ece8dd"/>
+  <rect x="0" y="430" width="1200" height="245" fill="url(#floor)"/>
+
+  <!-- kicker + wordmark -->
+  <text x="90" y="92" font-size="17" letter-spacing="3" fill="#16140f" opacity="0.5" font-weight="600">REAL-COIN REWARD · 3-LAYER</text>
+  <text x="88" y="168" font-size="68" font-weight="700" fill="#16140f" letter-spacing="-2">코인모으기</text>
+  <text x="92" y="212" font-size="26" font-weight="600" fill="#15803d" letter-spacing="1">WITH 군인</text>
+
+  <!-- rank ladder (이병→병장), top-right -->
+  <g transform="translate(1016,76)">
+    <text x="0" y="-12" font-size="13" letter-spacing="2" fill="#16140f" opacity="0.5" font-weight="600">계급 자동 진급</text>
+    <!-- four ascending chevron stacks -->
+    <g stroke="#15803d" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0,18 l10,-8 l10,8" opacity="0.55"/>
+      <path d="M35,18 l10,-8 l10,8 M35,28 l10,-8 l10,8" opacity="0.7"/>
+      <path d="M70,18 l10,-8 l10,8 M70,28 l10,-8 l10,8 M70,38 l10,-8 l10,8" opacity="0.85"/>
+      <path d="M105,18 l10,-8 l10,8 M105,28 l10,-8 l10,8 M105,38 l10,-8 l10,8 M105,48 l10,-8 l10,8"/>
+    </g>
+    <g font-size="11" fill="#16140f" opacity="0.55" text-anchor="middle" font-weight="500">
+      <text x="10" y="66">이병</text>
+      <text x="45" y="66">일병</text>
+      <text x="80" y="66">상병</text>
+      <text x="115" y="66">병장</text>
+    </g>
+  </g>
+
+  <!-- rising connectors -->
+  <g fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round" opacity="0.6">
+    <path d="M360,400 C 470,360 500,360 560,320"/>
+    <path d="M660,320 C 770,280 800,275 860,240"/>
+  </g>
+
+  <!-- pedestal 1 — Layer 1 -->
+  <g>
+    <ellipse cx="305" cy="548" rx="86" ry="11" fill="#16140f" opacity="0.07"/>
+    <rect x="222" y="448" width="166" height="100" rx="6" fill="#e2ddce" stroke="#16140f" stroke-opacity="0.13"/>
+    <rect x="222" y="448" width="166" height="5" rx="2.5" fill="#15803d" opacity="0.8"/>
+    <use href="#coin" x="259" y="354" width="92" height="92"/>
+    <text x="305" y="586" font-size="20" font-weight="700" fill="#16140f" text-anchor="middle">Layer 1</text>
+    <text x="305" y="610" font-size="14" fill="#16140f" opacity="0.6" text-anchor="middle">인증 즉시 · 기본</text>
+  </g>
+
+  <!-- pedestal 2 — Layer 2 -->
+  <g>
+    <ellipse cx="605" cy="548" rx="96" ry="12" fill="#16140f" opacity="0.07"/>
+    <rect x="514" y="378" width="182" height="170" rx="6" fill="#e2ddce" stroke="#16140f" stroke-opacity="0.13"/>
+    <rect x="514" y="378" width="182" height="5" rx="2.5" fill="#15803d" opacity="0.85"/>
+    <use href="#coin" x="551" y="278" width="108" height="108"/>
+    <text x="605" y="586" font-size="20" font-weight="700" fill="#16140f" text-anchor="middle">Layer 2</text>
+    <text x="605" y="610" font-size="14" fill="#16140f" opacity="0.6" text-anchor="middle">진급 시점 · 자동</text>
+  </g>
+
+  <!-- pedestal 3 — Layer 3 -->
+  <g>
+    <ellipse cx="905" cy="548" rx="110" ry="13" fill="#16140f" opacity="0.08"/>
+    <rect x="803" y="298" width="204" height="250" rx="6" fill="#e2ddce" stroke="#16140f" stroke-opacity="0.13"/>
+    <rect x="803" y="298" width="204" height="5" rx="2.5" fill="#15803d"/>
+    <use href="#coin" x="841" y="186" width="128" height="128"/>
+    <text x="905" y="586" font-size="20" font-weight="700" fill="#16140f" text-anchor="middle">Layer 3</text>
+    <text x="905" y="610" font-size="14" fill="#16140f" opacity="0.6" text-anchor="middle">전역 시점 · 유지 판정</text>
+  </g>
+</svg>
