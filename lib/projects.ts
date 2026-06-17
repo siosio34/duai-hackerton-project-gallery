@@ -199,18 +199,77 @@ export const projects: Project[] = [
   {
     slug: "linktrip",
     title: "링크트립",
-    tagline: "공개 준비 중인 프로젝트입니다.",
+    tagline:
+      "여행 단톡방에 흩어진 유튜브·릴스·블로그·지도 링크에서 장소를 자동으로 뽑아, 친구들과 같이 보는 지도 컬렉션과 하루 동선으로 묶어준다.",
     section: "projects",
     category: "Web",
-    tags: ["진행중"],
-    tech: [],
+    tags: ["여행", "지도", "장소 추출", "공유 컬렉션"],
+    tech: [
+      "Next.js 15",
+      "FastAPI",
+      "Supabase",
+      "Leaflet",
+      "Google Places API",
+      "yt-dlp",
+    ],
     year: 2026,
     status: "in-progress",
     span: 6,
-    accent: "#2563eb",
+    accent: "#059669",
     visual: "mesh",
-    placeholder: true,
-    features: [],
+    media: {
+      poster: "/media/linktrip/poster.jpg",
+      thumbnail: "/media/linktrip/thumb.jpg",
+    },
+    overview:
+      "여행 단톡방엔 유튜브 맛집 영상, 인스타 릴스, 네이버 블로그 후기, 구글맵 링크가 매일 쌓이지만 며칠만 지나면 채팅에 묻혀 다시 못 찾는다. 링크트립은 카카오톡 단톡방 export 한 장을 받아 거기 등장한 모든 링크에서 실제 장소를 뽑아내고, 친구들과 같이 보며 좋아요를 누르는 공유 지도와 하루 동선으로 묶어준다. 정리한 장소는 구글 마이맵스로 그대로 내보낼 수 있다.",
+    motivations: [
+      {
+        title: "며칠이면 채팅에 묻힌다",
+        body: "단톡방에 던져진 링크들은 스크롤에 밀려 사라진다. 막상 떠날 때가 되면 '그 영상 어디 갔지'부터 시작한다.",
+      },
+      {
+        title: "장소 정리는 매번 노가다",
+        body: "영상 보고, 블로그 읽고, 이름 검색해서 지도에 하나씩 찍는 수작업. 이걸 사람 대신 파이프라인이 하게 했다.",
+      },
+      {
+        title: "친구들과 같이 정하고 싶다",
+        body: "누가 어떤 링크에서 추천했는지 출처째로 보여주고, 댓글 대신 좋아요만으로 가볍게 갈 곳을 추린다.",
+      },
+      {
+        title: "정리한 장소를 바로 지도로",
+        body: "다시 옮겨 적지 않고 구글 마이맵스로 한 번에 내보내, 여행 당일 바로 길찾기로 이어지게.",
+      },
+    ],
+    diagram: {
+      image: "/media/linktrip/flow.jpg",
+      caption:
+        "단톡방 .txt 한 장이 친구들과 같이 보는 지도가 되기까지. 업로드 → 파싱·분류 → 콘텐츠 페치 → 장소 추출·매칭 → 저장·슬러그 발급 → 지도에서 보고 좋아요.",
+    },
+    features: [
+      "9가지 링크를 자동 분류해 추출한다 — 유튜브·쇼츠·인스타·네이버 블로그는 자막과 본문에서, 구글맵 장소·마이맵스·저장 리스트·시트·닥스는 URL·KML 같은 결정론적 단서에서.",
+      "텍스트에서 실제 장소를 뽑아 매칭한다. yt-dlp 자막·캡션과 블로그 본문에서 장소명을 추려 Google Places API로 place_id·좌표·사진·평점·가격대를 확정한다.",
+      "친구들과 같이 보는 공유 지도. 장소 카드마다 출처 링크 미리보기(썸네일·제목·발췌)를 붙여 '왜 이 장소인지'가 한눈에 보인다. unlisted 슬러그로 받은 사람만, 장소당 좋아요 1표로 가볍게 추린다.",
+      "하루 동선을 자동으로 추천한다. 가까운 곳끼리 묶어 Day별 루트로 펼치고, 미식 집중·여유 하이라이트·동네별 3가지 프리셋으로 성격을 바꾼다.",
+      "구글 마이맵스로 내보내기. KML 다운로드로 정리한 장소를 본인 '내 지도'에 그대로 import해 여행 당일 길찾기로 이어진다.",
+    ],
+    showcases: [
+      {
+        title: "직접 써보기",
+        caption:
+          "도쿄 여행 단톡방 예시(5명 · 10개 링크)로 끝까지 돌려본 실제 화면. 업로드 한 번이면 지도 컬렉션과 장소 상세, 하루 동선까지 나온다.",
+        cols: 4,
+        aspect: "wide",
+        items: [
+          { src: "/media/linktrip/landing.jpg", label: "카카오톡 .txt 드롭 한 번으로 시작" },
+          { src: "/media/linktrip/result.jpg", label: "지도 핀 + 출처 링크가 달린 장소 카드" },
+          { src: "/media/linktrip/place-detail.jpg", label: "장소마다 평점·가격대·구글 리뷰와 출처" },
+          { src: "/media/linktrip/planner.jpg", label: "가까운 곳끼리 묶은 Day별 동선 추천" },
+        ],
+      },
+    ],
+    outcome:
+      "백엔드 추출 파이프라인과 프론트 화면(업로드 · 지도 컬렉션 · 하루 동선)은 도쿄 여행 픽스처로 끝까지 돌아간다. 비동기 잡·Supabase 저장과 공개 배포는 다음 단계.",
     links: [],
     gallery: [],
   },
