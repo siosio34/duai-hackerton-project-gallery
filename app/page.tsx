@@ -17,7 +17,7 @@ export default function HomePage() {
   const skillCount = projects.filter((p) => p.section === "skills").length;
 
   return (
-    <main className="min-h-[100dvh]">
+    <main className="min-h-[100dvh] pb-24 sm:pb-32">
       <Nav />
       <Masthead
         projects={projectCount}

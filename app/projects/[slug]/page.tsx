@@ -46,7 +46,7 @@ export default async function ProjectPage({
   const next = visible[(vIndex + 1) % visible.length];
 
   return (
-    <main className="min-h-[100dvh]">
+    <main className="min-h-[100dvh] pb-16 sm:pb-24">
       <Nav />
       <ProjectDetail project={project} next={next} />
     </main>
