@@ -10,7 +10,9 @@ import { STATUS_LABEL } from "@/lib/types";
 import { ProjectVisual } from "./ProjectVisual";
 import { ProjectMedia } from "./ProjectMedia";
 import { ResearchCompare } from "./ResearchCompare";
+import { IdeaPipeline } from "./IdeaPipeline";
 import { ResearchPipeline } from "./ResearchPipeline";
+import { EvalShowcase } from "./EvalShowcase";
 import { Parallax } from "./Parallax";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -407,6 +409,9 @@ export function ProjectDetail({
         </section>
       )}
 
+      {/* Readable inline pipeline diagram (idea-validation-skill only) */}
+      {project.slug === "idea-validation-skill" && <IdeaPipeline />}
+
       {/* Input → output (linktrip): real chat fixture, then the captured result screens */}
       {project.slug === "linktrip" && <LinktripChat />}
 
@@ -582,6 +587,9 @@ export function ProjectDetail({
           </ul>
         </section>
       )}
+
+      {/* Flow diagram + round scores + the three plans in one place (eval-improve-skills only) */}
+      {project.slug === "eval-improve-skills" && <EvalShowcase />}
 
       {/* Source/flow anatomy + example reports (deep-research-report only) */}
       {project.slug === "deep-research-report" && <ResearchPipeline />}
