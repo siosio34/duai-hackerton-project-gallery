@@ -156,6 +156,44 @@ export const projects: Project[] = [
           { src: "/media/onlyup-duai/npc-03.jpg" },
         ],
       },
+      {
+        title: "정상에 닿은 뒤 — 한 방의 도박",
+        caption:
+          "정상 거래소의 [전량 매도] 버튼이 끝이 아니다. 이 런으로 번 포트폴리오 전부를 한 스핀에 거는 더블다운, 그리고 매도를 미루고 올라타면 곰이 추격해 오는 BULL RUN 무한 상승장이 기다린다.",
+        cols: 4,
+        aspect: "wide",
+        items: [
+          { src: "/media/onlyup-duai/end-victory.jpg", label: "신계 정상, 전량 매도 직전" },
+          { src: "/media/onlyup-duai/end-slot.jpg", label: "더블다운 — 챙길까, 올인할까" },
+          { src: "/media/onlyup-duai/end-jackpot.jpg", label: "MOON! ₿₿₿ ×4 잭팟" },
+          { src: "/media/onlyup-duai/end-bullrun.jpg", label: "BULL RUN, 청산 곰의 추격" },
+        ],
+      },
+      {
+        title: "혼자 오르지 않는다",
+        caption:
+          "상주 서버 없이 Vercel 서버리스와 Redis 폴링으로 굴러가는 멀티플레이. 같은 탑을 오르는 고스트와 AI 봇, Q로 옆 사람 코인을 뺏는 강탈왕 쟁탈전, 금액·시간·체크포인트로 줄 세우는 명예의 전당, 그리고 런이 끝나면 뜨는 계좌 공유 카드까지.",
+        cols: 4,
+        aspect: "wide",
+        items: [
+          { src: "/media/onlyup-duai/mp-airace.jpg", label: "고스트·AI 봇과 같은 탑을 경쟁" },
+          { src: "/media/onlyup-duai/mp-king.jpg", label: "가장 많이 턴 사람에게 붙는 👑 강탈왕" },
+          { src: "/media/onlyup-duai/mp-rank.jpg", label: "명예의 전당 · 전체/오늘, 금액/시간/체크포인트" },
+          { src: "/media/onlyup-duai/mp-share.jpg", label: "런이 끝나면 뜨는 오늘의 계좌 카드" },
+        ],
+      },
+      {
+        title: "숨겨진 방",
+        caption:
+          "1층 슬럼 구석엔 🍕 표식이 붙은 비밀 워프 패드가 있다. E로 들어가면 숨은 방과 그곳을 지키는 두니가 나오고, 정상 거래소로 가는 지름길이 열린다.",
+        cols: 3,
+        aspect: "wide",
+        items: [
+          { src: "/media/onlyup-duai/secret-entrance.jpg", label: "1층 구석, 🍕 표식의 비밀 통로" },
+          { src: "/media/onlyup-duai/secret-room.jpg", label: "워프 너머 숨겨진 방" },
+          { src: "/media/onlyup-duai/secret-kayjay.jpg", label: "히든룸을 지키는 두니" },
+        ],
+      },
     ],
   },
   {
