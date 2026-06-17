@@ -11,6 +11,7 @@ import { ProjectVisual } from "./ProjectVisual";
 import { ProjectMedia } from "./ProjectMedia";
 import { ResearchCompare } from "./ResearchCompare";
 import { IdeaPipeline } from "./IdeaPipeline";
+import { EvalImprovePipeline } from "./EvalImprovePipeline";
 import { ResearchPipeline } from "./ResearchPipeline";
 import { Parallax } from "./Parallax";
 
@@ -410,6 +411,9 @@ export function ProjectDetail({
 
       {/* Readable inline pipeline diagram (idea-validation-skill only) */}
       {project.slug === "idea-validation-skill" && <IdeaPipeline />}
+
+      {/* Readable inline eval→improve loop diagram (eval-improve-skills only) */}
+      {project.slug === "eval-improve-skills" && <EvalImprovePipeline />}
 
       {/* Input → output (linktrip): real chat fixture, then the captured result screens */}
       {project.slug === "linktrip" && <LinktripChat />}
