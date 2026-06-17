@@ -214,7 +214,7 @@ export const projects: Project[] = [
     ],
     year: 2026,
     status: "in-progress",
-    span: 6,
+    span: 12,
     accent: "#059669",
     visual: "mesh",
     media: {
