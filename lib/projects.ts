@@ -279,6 +279,92 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
+    slug: "investment-dashboard",
+    title: "투자 인텔리전스 대시보드",
+    tagline:
+      "매크로·환율·소셜·종목 리서치·구독 정보 흐름을 한 화면에서 빠르게 읽고 비교하는 로컬 투자 인텔리전스 터미널. 의견을 주입하지 않고 근거·시나리오·리스크를 펼쳐, 판단은 사용자에게 남긴다.",
+    section: "projects",
+    category: "Web app",
+    tags: ["매크로 대시보드", "종목 딥리서치", "소셜 센티먼트", "ML 예측"],
+    tech: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "TanStack Query",
+      "Node.js",
+      "Chrome DevTools Protocol",
+      "FRED",
+      "Kronos",
+    ],
+    year: 2026,
+    status: "live",
+    featured: true,
+    span: 12,
+    accent: "#3a9fe0",
+    visual: "grid",
+    media: {
+      poster: "/media/investment-dashboard/macro-hero.png",
+      thumbnail: "/media/investment-dashboard/macro-hero.png",
+    },
+    overview:
+      "리서치 헤비 개인 투자자가 매크로·종목·소셜을 여러 탭과 앱을 오가며 추적하던 흐름을, 한 화면으로 모은 로컬 대시보드. 매크로 투자 환경·달러 매수 타이밍·소셜 트렌드 타임라인·종목 딥리서치·구독 새 글 알림 다섯 기능을 하나의 고밀도 다크 터미널에 묶었다. 핵심 원칙은 '의견을 대신 주입하지 않는다' — 모든 출력은 근거 / 시나리오 / 리스크 / 확률적 해석 중심이고, 명령형 매매 표현은 쓰지 않는다. 데이터는 공식 API·RSS·본인 인증 세션으로 직접 호출하고, 모든 수치엔 출처와 마지막 업데이트 시각이 붙는다.",
+    problem:
+      "정보는 흩어져 있고, 정리해 주는 서비스는 대개 '사세요/파세요'로 결론을 대신 내려 준다. 자기보고 수익률·리딩방 톤·과장된 백테스트가 섞인 채로. 혼자 매크로·환율·소셜·종목을 추적하려면 탭을 수십 개 열어야 했고, 그렇게 모은 신호도 출처와 시각이 사라지면 신뢰하기 어려웠다. 필요한 건 '의견을 주입하는 도구'가 아니라, 근거와 반대 시나리오·리스크를 빠르게 스캔하고 직접 판단하게 돕는 계기판이었다.",
+    role: "솔로 빌드. 다섯 기능의 데이터 프로바이더를 mock/real로 추상화하고, 결정적 점수 엔진과 lazy LLM 내러티브를 분리했다. 종목축에는 미리 만들어 둔 Kronos 20일 예측·IC 검증을 재배선하고, Bloomberg의 밀도·Linear의 절제 사이를 노린 'AI스럽지 않은' 고밀도 다크 터미널 UI까지 전 구간을 설계했다.",
+    features: [
+      "매크로 투자 환경 대시보드 — FRED 등 12개 핵심 지표를 점수화해 지금이 위험선호/방어/중립인지 단일 Composite(Macro Regime Score)와 매수·중립·매도 단계로 가시화한다. 근거 지표·반대 시나리오·이번 주 이벤트를 함께 펼친다.",
+      "종목 딥리서치 — 티커 한 줄로 4축(시세·퀀트 factor·Kronos 20일 ML 예측·LLM 내러티브)을 종합해 '검토 포인트' 브리프를 만든다. 각 축은 독립 실패를 허용해 CDP 미접속·모델 부재 시 그 축만 mock으로 빠지고 나머지로 완전한 스냅샷을 반환한다.",
+      "달러 매수 타이밍 참고 — 원/달러·DXY·달러 갭 비율·적정 환율 4개 지표를 O/X 게이트로 묶어 휴리스틱 분할 환전 '참고 신호'를 낸다. 확정 조언이 아니라 통과 게이트 수로만 말한다.",
+      "소셜 트렌드 타임라인 — Reddit·YouTube·X(grok)에서 engagement 높은 글을 번역·클러스터링해 Today's Social Pulse·Hot Topics·종목 멘션·sentiment와 '왜 화제인지' 3줄을 정리한다.",
+      "구독 새 글 알림 — RSS·Fanding·US-Insight 유료 구독 소스의 신규 글을 감지해 5줄 요약·핵심 포인트·종목/섹터 태그로 펼친다. 약관을 존중해 본인 인증 세션 기반 read-only로만 수집한다.",
+    ],
+    strengths: [
+      {
+        title: "결정적 엔진 + lazy LLM 분리",
+        body: "점수·예측은 결정적 엔진이 인라인으로(빠름) 내고, 느린 서술 브리프(~20–40s)는 화면이 먼저 뜬 뒤 백그라운드로 채운다. LLM은 요약·번역·구조화·의견 비교에만 쓰고 매매 신호 생성엔 절대 쓰지 않는다.",
+      },
+      {
+        title: "4축 독립 실패 허용 (partial-real)",
+        body: "종목 스냅샷의 시세·퀀트·ML·내러티브 네 축은 서로 독립적으로 실패해도 된다. 한 소스가 죽으면 그 축만 mock/생략으로 폴백하고 나머지로 완전한 결과를 돌려준다 — 매크로의 partial-real 패턴과 동일.",
+      },
+      {
+        title: "출처·시각이 따라붙는 데이터",
+        body: "모든 패널은 LIVE/mock 모드 배지와 소스·업데이트 시각을 달고 산다. 데이터는 공식 API·RSS·본인 인증 세션으로 직접 호출하고, 시크릿은 로컬 백엔드/프록시에만 둬 클라이언트에 노출하지 않는다.",
+      },
+    ],
+    outcome:
+      "'정리해서 의견을 주입받는' 흔한 투자 앱의 반대편에서, 근거·시나리오·리스크를 한 화면에 펼쳐 판단을 사용자에게 돌려주는 계기판으로 완성했다. 다섯 기능 전부가 mock/real 동일 인터페이스로 동작해 데이터가 비어도 UI가 무너지지 않고, 종목 딥리서치는 Kronos 예측까지 얹은 4축 스냅샷을 단일 화면에서 보여 준다. 보라색 AI 그라디언트·네온 글로우 없이 Bloomberg 밀도와 Linear 절제 사이를 겨냥한 다크 터미널 룩을 유지했다.",
+    links: [],
+    gallery: [
+      {
+        caption:
+          "매크로 투자 환경 — 12개 지표를 점수화한 Composite 'Buy +0.63'. 핵심 지표 분석·점수 분포·근거를 한 화면에 밀집시켰다.",
+        image: "/media/investment-dashboard/macro.png",
+      },
+      {
+        caption:
+          "종목 딥리서치 상세 — 시세·퀀트·Kronos 20일 예측·내러티브 4축 스냅샷. 캔들 위에 ML 예측 구간을 겹쳐 검토 포인트를 제시한다.",
+        image: "/media/investment-dashboard/stock-detail.png",
+      },
+      {
+        caption:
+          "소셜 트렌드 타임라인 — Reddit·YouTube·X의 engagement 높은 글을 번역·클러스터링하고 종목 멘션·sentiment·'왜 화제인지'를 정리한다.",
+        image: "/media/investment-dashboard/social.png",
+      },
+      {
+        caption:
+          "달러 매수 타이밍 — 원/달러·DXY·달러 갭·적정 환율 4게이트를 O/X로 묶은 휴리스틱 참고 신호. 확정 조언 대신 통과 게이트 수로만 말한다.",
+        image: "/media/investment-dashboard/dollar.png",
+      },
+      {
+        caption:
+          "구독 새 글 알림 — RSS·Fanding·US-Insight 유료 소스의 신규 글을 본인 인증 세션 read-only로 모아 5줄 요약·종목/섹터 태그로 펼친다.",
+        image: "/media/investment-dashboard/subscriptions.png",
+      },
+    ],
+  },
+  {
     slug: "coin-collect-with-soldier",
     title: "코인모으기 With 군인",
     tagline: "공개 준비 중인 프로젝트입니다.",
@@ -514,6 +600,11 @@ export const projects: Project[] = [
         body: "차트(시장 매력도 레이더·SOM 시나리오·페르소나 채택vs지불·법률 심각도)와 표, 근거 추적이 함께 있는 디자인된 HTML로 GO/MODIFY/KILL을 낸다.",
       },
     ],
+    diagram: {
+      image: "/media/idea-validation-skill/pipeline.jpg",
+      caption:
+        "러프한 아이디어 한 줄이 GO/MODIFY/KILL 판정과 디자인 리포트가 되기까지의 6단계. 각 단계엔 게이트가 있어 통과 못 하면 멈추고, 다섯 증거 클래스(검증된 근거·페르소나 가설·카운슬 판단·포지셔닝 가설·가정)는 전 과정 분리된다.",
+    },
     features: [
       "6단계 파이프라인 — 아이디어 명료화(1·6 pager) → 시장 평가 → 한국인 페르소나 패널 → LLM 카운슬 → 법률 스크린 → 빌드 준비 렌즈. 각 단계에 게이트가 있어, 통과 못 하면 무엇이 빠졌는지 알리고 다음으로 안 넘어간다.",
       "다섯 증거 클래스 분리 — 검증된 근거 / 합성 페르소나 가설 / 카운슬 판단 / 포지셔닝 가설 / 가정. 출처 없는 추정이 사실로 인용되지 않게 끝까지 표기한다.",
