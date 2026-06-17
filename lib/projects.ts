@@ -671,11 +671,43 @@ export const projects: Project[] = [
       "라운드마다 3렌즈 점수·모델·페르소나 상세와 직전 대비 Δ를 리포트로 남긴다. 채점은 --max-parallel로 병렬 처리하고, 개선 에이전트는 모델 간 폴백을 둬 한 모델이 막혀도 루프가 끊기지 않는다. 종료 규칙은 PASS를 넘겨서도 최고점을 끝까지 좇되, 최종본은 가장 잘 나온 버전을 복원한다.",
     ],
     outcome:
-      "실제로 'AI 자동매매 봇 기획서'를 같은 초안에서 두 경로로 돌려봤다. 스킬 없이 1-pass로 다듬으면 목차·KPI·리스크 절이 붙어 겉보기 완성도는 올라가지만 아무도 신뢰를 검증하지 않는다. quality-gate-loop로 돌리자, 개선을 거듭할수록 native(서술 완성도)는 2→7로 올랐지만 persona(한국 사용자 신뢰)는 4.1→2.4로 떨어졌다 — 디테일·헤지가 늘수록 일반 사용자는 '리스크가 더 잘 보여서' 신뢰를 덜 했다. 단일 렌즈였다면 못 봤을 렌즈 간 괴리를 게이트가 포착해, 점수를 부풀리지 않고 정직하게 STOP한 뒤 텍스트로 못 고치는 신뢰·설계 문제를 사람에게 에스컬레이션하고 최고점 버전을 복원했다. '그럴듯함 ≠ 신뢰'를 숫자와 인용으로 드러내는 게 이 스킬의 값어치다. (합성 페르소나·LLM council 점수는 방향성 신호로, 실제 시장 검증을 대체하지 않는다.)",
+      "실제로 'AI 자동매매 봇 기획서' 초안을 quality-gate-loop(artifact 모드)로 돌려, 라운드마다 개선되는 화면을 그대로 캡쳐했다(아래). 같은 초안이 라운드를 거치며 종합점수 4.0→5.8→6.0→6.3으로 올랐지만, 렌즈를 쪼개 보면 이야기가 갈린다 — native(서술 완성도)는 4.0→6.7로 또렷이 올라가는데 persona(한국 사용자 신뢰)는 2.7→3.6에 묶여 floor 6을 끝내 못 넘는다. 디테일·헤지·KPI 표가 붙어 문서는 '완성도 있어' 보이지만, 일반 사용자에겐 오히려 리스크가 더 또렷해져 신뢰가 따라오지 않는다. 단일 렌즈였다면 6.3이라는 평균에 묻혔을 괴리를, 게이트가 persona floor 미달로 STOP시켜 정직하게 드러냈다. 게다가 막판엔 '백테스트·페이퍼 게이트를 데이터셋·기간·슬리피지·OOS·중단기준까지 내려라'처럼 텍스트로는 못 고치는 설계 요구가 정체로 감지돼, 점수를 부풀리지 않고 사람에게 에스컬레이션한 뒤 최고점 버전을 보존했다. '그럴듯함 ≠ 신뢰'를 숫자와 인용으로 드러내는 게 이 스킬의 값어치다. (이번 실행은 grok 크레딧 소진으로 external 렌즈가 codex 단독이었다. 합성 페르소나·LLM council 점수는 방향성 신호이며 실제 시장 검증을 대체하지 않는다.)",
+    showcases: [
+      {
+        title: "라운드별 자기개선 — 점수가 오르는 화면",
+        early: true,
+        cols: 4,
+        aspect: "wide",
+        caption:
+          "동일한 'AI 자동매매 봇 기획서' 초안 하나를 quality-gate-loop(artifact 모드)로 돌리며, 단계별 뷰어를 라운드마다 그대로 캡쳐했다. 상단 스파크라인과 좌측 레일의 점수가 라운드를 거치며 오르는 걸 볼 수 있다. 종합은 4.0→5.8→6.0→6.3으로 올라가지만, native(서술 완성도)가 4.0→6.7로 또렷이 오르는 동안 persona(한국 사용자 신뢰)는 2.7→3.6에 묶여 floor 6을 끝내 못 넘는다 — 그래서 게이트는 평균에 묻히지 않고 persona 미달로 STOP한다. 마지막 라운드 화면 상단의 '에스컬레이션 정체' 배너는 텍스트로는 못 고치는 설계 요구(백테스트·페이퍼 게이트의 데이터셋·기간·슬리피지·OOS·중단 기준)를 사람에게 넘긴 신호다. (썸네일 클릭 시 확대)",
+        items: [
+          {
+            src: "/media/eval-improve-skills/rounds/round1.png",
+            label: "Round 1 · 종합 4.0 — native 4.0 / external 4.0 / persona 2.7 → IMPROVE",
+          },
+          {
+            src: "/media/eval-improve-skills/rounds/round2.png",
+            label: "Round 2 · 종합 5.8 — native 5.7 / external 6.0 / persona 3.4 → IMPROVE",
+          },
+          {
+            src: "/media/eval-improve-skills/rounds/round3.png",
+            label: "Round 3 · 종합 6.0 — native 6.0 / external 6.0 / persona 3.4 → IMPROVE",
+          },
+          {
+            src: "/media/eval-improve-skills/rounds/round4.png",
+            label: "Round 4 · 종합 6.3 — native 6.7 / external 6.0 / persona 3.6 → STOP",
+          },
+        ],
+      },
+    ],
     links: [
       {
         label: "A/B 테스트 (3개 도메인)",
         href: "/media/eval-improve-skills/ab-test.html",
+      },
+      {
+        label: "최종 라운드 전체 화면",
+        href: "/media/eval-improve-skills/rounds/round4-full.jpg",
       },
       {
         label: "GitHub 레포",
